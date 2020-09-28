@@ -31,7 +31,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <input class="form-control mr-sm-2" type="text" placeholder="기업을 검색해 보세요.">
       <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
     </form>
   </div>
