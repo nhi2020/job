@@ -1,3 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.MemMyUser_SQL"></mapper>
+<mapper namespace="MemMyUser">
+
+
+	<!-- 회원정보 -->
+	<select id="memmyList" resultType="MemMyUserVO">
+		SELECT
+		 ID,
+		 NAME,
+		 GENDER,
+		 EMAIL,
+		 PHONE,
+		 BIRTHDAY,
+		 CAREER
+		FROM MEMBER
+		ORDER BY ID
+	</select>
+	
+	<select id="memmySelect" resultType="MemMyUserVO" parameterType="String">
+		SELECT
+		 	ID,
+		 	NAME,
+		 	GENDER,
+		 	EMAIL,
+		 	PHONE,
+		 	BIRTHDAY,
+		 	CAREER
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	
+	
+	
+</mapper>
