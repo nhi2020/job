@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 관리자 -->
+	    <typeAlias alias="BizMngVO"      	type="com.job.mng.biz.service.BizMngVO" />
+		<typeAlias alias="LoginMngVO"      	type="com.job.mng.login.service.LoginMngVO" />
+		<typeAlias alias="MainMngVO"      	type="com.job.mng.main.service.MainMngVO" />
+		<typeAlias alias="MemMngVO"      	type="com.job.mng.member.service.MemMngVO" />
+		<typeAlias alias="ReviewMngVO"      type="com.job.mng.review.service.ReviewMngVO" />
+		<!-- 기업,개인회원 -->
+		<typeAlias alias="BizLoginUserVO"   type="com.job.user.biz.login.service.BizLoginUserVO" />
+		<typeAlias alias="BizMyUserVO"      type="com.job.user.biz.mypage.service.BizMyUserVO" />
+		<typeAlias alias="BizUserVO"      	type="com.job.user.biz.service.BizUserVO" />
+		<typeAlias alias="MainUserVO"      	type="com.job.user.main.service.MainUserVO" />
+		<typeAlias alias="MemLoginUserVO"   type="com.job.user.member.login.service.MemLoginUserVO" />
+		<typeAlias alias="MemMyUserVO"      type="com.job.user.member.mypage.service.MemMyUserVO" />
+		<typeAlias alias="MemUserVO"      	type="com.job.user.member.service.MemUserVO" />
+		<typeAlias alias="ReviewUserVO"     type="com.job.user.review.service.ReviewUserVO" />
+	
+	</typeAliases>
+	
+	<mappers>
+		<!-- 관리자 -->
+	    <mapper resource="mybatis/MainMng_SQL.xml"/>
+	    <mapper resource="mybatis/LoginMng_SQL.xml"/>
+	    <mapper resource="mybatis/BizMng_SQL.xml"/>
+	    <mapper resource="mybatis/MemMng_SQL.xml"/>
+	    <mapper resource="mybatis/ReviewMng_SQL.xml"/>
+	    <!--  기업,개인회원 -->
+	    <mapper resource="mybatis/MainUser_SQL.xml"/>
+	    <mapper resource="mybatis/BizUser_SQL.xml"/>
+	    <mapper resource="mybatis/MemUser_SQL.xml"/>
+	    <mapper resource="mybatis/MemMyUser_SQL.xml"/>
+	    <mapper resource="mybatis/BizMyUser_SQL.xml"/>
+	    <mapper resource="mybatis/MemLoginUser_SQL.xml"/>
+	    <mapper resource="mybatis/BizLoginUser_SQL.xml"/>
+	    <mapper resource="mybatis/ReviewUser_SQL.xml"/>
+	    
+		
+	</mappers>
+	
+	
+</configuration>
