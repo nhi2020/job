@@ -19,12 +19,15 @@
         <a class="nav-link" href="javascript:void(0)">기업</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)">Link</a>
+        <a class="nav-link" href="javascript:void(0)">리뷰</a>
       </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="javascript:void(0)">로그인</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)">로그아웃</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="javascript:void(0)">회원가입</a>
