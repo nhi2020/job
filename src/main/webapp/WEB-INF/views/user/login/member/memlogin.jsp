@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="../../../inc/top.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="../../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
+	로그인 페이지
+</div>
+<%@ include file="../../../inc/footer.jsp" %>	
 </body>
 </html>

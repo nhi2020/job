@@ -10,7 +10,7 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-	aaa
+	메인페이지 입니다.
 </div>
 <%@ include file="../../inc/footer.jsp" %>	
 </body>
