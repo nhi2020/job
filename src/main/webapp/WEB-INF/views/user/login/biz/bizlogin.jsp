@@ -10,7 +10,21 @@
 <body>
 <%@ include file="../../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-	로그인 페이지
+	<h2>로그인</h2>
+	<form name="frm">
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<label for="bsm_no">사업자번호:</label> 
+					<input type="text" name="bsm_no" class="form-control" id="bsm_no">
+				</div>
+				<div class="form-group">
+					<label for="pass">비밀번호:</label> 
+					<input type="password" name="pass" class="form-control" id="pass">
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 <%@ include file="../../../inc/footer.jsp" %>	
 </body>
