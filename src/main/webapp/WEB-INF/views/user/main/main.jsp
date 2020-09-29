@@ -10,10 +10,17 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
+	<c:if test="${!empty sessionScope.user.id}">
+		<div class="row">
+			<div class="col-sm-3">
+				${sessionScope.user.name}님 환영
+			</div>
+		</div>
+	</c:if>
 	<h2><strong>오늘의 추천 기업</strong></h2>
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image ${sessionScope.user.id}</div>
+			<div class="fakeimg">Fake Image </div>
 		</div>
 		<div class="col-sm-3">
 			<div class="fakeimg">Fake Image</div>
