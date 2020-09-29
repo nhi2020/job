@@ -18,11 +18,12 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
 	</bean>
-	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결 -->
+	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결  xml--> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
 	</bean>
+	<!-- VO연결 -->
 	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
