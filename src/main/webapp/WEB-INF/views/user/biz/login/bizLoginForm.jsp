@@ -25,8 +25,8 @@
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
-					<label for="bsm_no">사업자 번호</label> 
-					<input type="text" name="bsm_no" class="form-control" id="bsm_no">
+					<label for="bsmno">사업자 번호</label> 
+					<input type="text" name="bsmno" class="form-control" id="bsmno">
 				</div>
 				<div class="form-group">
 					<label for="pass">비밀번호</label> 
@@ -34,6 +34,7 @@
 				</div>
 				<div>
 					<a class="btn btn-danger px-3" href="/user/main/main.do"><i class="fas fa-location-arrow"></i> 로그인</a>
+					&emsp;&emsp;
 					<a class="btn btn-primary px-3" href="/user/biz/join/bizJoinForm.do"><i class="fas fa-file-signature"></i> 회원가입</a>
 				</div>
 			</div>

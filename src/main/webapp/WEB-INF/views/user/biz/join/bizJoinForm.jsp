@@ -27,12 +27,12 @@ function check(){
 		url:'<%=context%>/bsm_no_check.do',
 		type : 'POST',
 		dataType : 'json',
-		data : {"bsm_no" : $("#bsm_no").val()},
+		data : {"bsmno" : $("#bsmno").val()},
 		success : function(data) {
 				if (data == 1) {
 					alert("중복된 사업자번호가 존재합니다.");
 				} else if (data == 0) {
-					$("#bsm_no").attr("value", "Y");
+					$("#bsmno").attr("value", "Y");
 					alert("사용하실 수 있는 사업자 번호입니다.");
 				}
 			},
@@ -85,8 +85,8 @@ function check(){
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
-			<label for="bsm_no">사업자 번호 ('-'를 포함한 사업자 번호를 입력해주세요)</label>
-				<input type="text" class="form-control" id="bsm_no" name="bsm_no" placeholder="사업자 번호를 입력하세요" maxlength="12" required="required">
+			<label for="bsmno">사업자 번호 ('-'를 포함한 사업자 번호를 입력해주세요)</label>
+				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="12" required="required">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="b_check" type="button" onclick="check();">

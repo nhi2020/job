@@ -14,14 +14,36 @@ public class ReviewUserDAO {
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
 	
-	public List<ReviewUserVO> reviewSelectList() {
-		System.out.println("StartDAO");
-		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList");
+	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO) {
+		System.out.println("StartDAO1");
+		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList1", reviewUserVO);
 		return reviewSelectList;
 	}
 	
-	public int total() {
-		int total = sessionTemplate.selectOne("reviewUser.total");
+	public int total1() {
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1");
+		return total;		
+	}
+	
+	public List<ReviewUserVO> reviewSelectList2(ReviewUserVO reviewUserVO) {
+		System.out.println("StartDAO2");
+		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList2", reviewUserVO);
+		return reviewSelectList;
+	}
+	
+	public int total2() {
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2");
+		return total;		
+	}
+	
+	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO) {
+		System.out.println("StartDAO3");
+		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList3", reviewUserVO);
+		return reviewSelectList;
+	}
+	
+	public int total3() {
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3");
 		return total;		
 	}
 	

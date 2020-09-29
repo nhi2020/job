@@ -3,9 +3,9 @@
 <mapper namespace="bizLogin">
 	<!-- 기업로그인 -->
 	<select id="b_login"  resultType="BizLoginUserVO">
-		<![CDATA[select bsm_no, pass 
+		<![CDATA[select bsmno, pass 
 		         from biz 
-		         where bsm_no=#{bsm_no} and pass=#{pass}
+		         where bsmno=#{bsmno} and pass=#{pass}
 		]]>
 	</select>
 

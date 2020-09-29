@@ -16,32 +16,39 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	private ReviewUserDAO reviewUserDAO;
 	
 	@Override
-	public List<ReviewUserVO> reviewSelectList(ReviewUserVO reviewUserVO) {
+	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO) {
 		System.out.println("StartServiceImpl");
-		return reviewUserDAO.reviewSelectList();
+		return reviewUserDAO.reviewSelectList1(reviewUserVO);
 	}
 
 	@Override
-	public int total() {
+	public int total1() {
 		// TODO Auto-generated method stub
-		return reviewUserDAO.total();
+		return reviewUserDAO.total1();
 	}
 
 	@Override
-	public void reviewInsertForm() {
-		// TODO Auto-generated method stub
-		
+	public List<ReviewUserVO> reviewSelectList2(ReviewUserVO reviewUserVO) {
+		System.out.println("StartServiceImpl");
+		return reviewUserDAO.reviewSelectList2(reviewUserVO);
 	}
 
 	@Override
-	public ReviewUserVO reviewDetailForm(int rnum) {
+	public int total2() {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewUserDAO.total2();
 	}
 
+	@Override
+	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO) {
+		System.out.println("StartServiceImpl");
+		return reviewUserDAO.reviewSelectList3(reviewUserVO);
+	}
 
-
-
-	
+	@Override
+	public int total3() {
+		// TODO Auto-generated method stub
+		return reviewUserDAO.total3();
+	}
 
 }

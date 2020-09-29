@@ -2,7 +2,7 @@ package com.job.mng.biz.service;
 
 public class BizMngVO {
 	
-	private String bsm_no; 
+	private String bsmno; 
 	private String pass;
 	private int bnum; 
 	private String type; 
@@ -18,11 +18,12 @@ public class BizMngVO {
 	private String del_date; 
 	private String del_yn;
 	
-	public String getBsm_no() {
-		return bsm_no;
+	
+	public String getBsmno() {
+		return bsmno;
 	}
-	public void setBsm_no(String bsm_no) {
-		this.bsm_no = bsm_no;
+	public void setBsmno(String bsmno) {
+		this.bsmno = bsmno;
 	}
 	public String getPass() {
 		return pass;

@@ -15,13 +15,19 @@
 <!-- 폰트 어썸 -->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<script>
+	function memLogin(){
+		document.frm.action="/user/member/login/memLogin.do";
+		document.frm.submit();
+	}
+</script>
 </head>
 <body>
 <%@ include file="../../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
 	<h3 style="font-weight: bold;"><i class="fas fa-user-friends"></i> 개인회원 로그인</h3>
 	<br><br>
-	<form name="frm">
+	<form name="frm" method="post">
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
@@ -32,8 +38,10 @@
 					<label for="pass">비밀번호</label> 
 					<input type="password" name="pass" class="form-control" id="pass">
 				</div>
-				<div>
-					<a class="btn btn-danger px-3" href="/user/main/main.do"><i class="fas fa-location-arrow"></i> 로그인</a>
+				<div>    <!--  /user/main/main.do -->
+					<!-- <input type="submit" value="로그인" class="btn btn-danger"/> -->
+					<a class="btn btn-danger px-3" href="javascript:memLogin();"><i class="fas fa-location-arrow"></i> 로그인</a>
+					&emsp;&emsp;
 					<a class="btn btn-primary px-3" href="/user/member/join/memJoinForm.do"><i class="fas fa-file-signature"></i> 회원가입</a>
 				</div>
 			</div>
