@@ -1,5 +1,8 @@
 package com.job.mng.biz.web;
 
-public class BizMngController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class BizMngController {
+ 
 }

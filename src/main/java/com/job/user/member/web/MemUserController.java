@@ -17,7 +17,7 @@ public class MemUserController {
 	@Resource(name = "memUserService")
 	private MemUserService memUserService;
 
-	@RequestMapping("memSelectList.do")
+	@RequestMapping("/memSelectList.do")
 	public String memSelectList(Model model) throws Exception {
 		List<MemUserVO> list = memUserService.list();
 		model.addAttribute("list", list);
