@@ -34,6 +34,7 @@
 				</div>
 				<div>
 					<a class="btn btn-danger px-3" href="/user/main/main.do"><i class="fas fa-location-arrow"></i> 로그인</a>
+					&emsp;&emsp;
 					<a class="btn btn-primary px-3" href="/user/biz/join/bizJoinForm.do"><i class="fas fa-file-signature"></i> 회원가입</a>
 				</div>
 			</div>
