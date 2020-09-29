@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memLogin">
+    <!-- 개인 로그인 -->
+	<select id="loginCheck" parameterType="MemLoginUserVO" resultType="int">
+		<![CDATA[
+			select count(*)
+			from member
+			where id=#{id} and pass=#{pass}		
+		]]>
+		
+		
+	</select>
+	
+	<!-- 개인 로그인 체크 -->
+	<select id="user" parameterType="MemLoginUserVO" resultType="MemLoginUserVO" >
+		<![CDATA[
+				select id, pass, name
+		        from member 
+		        where id=#{id} and pass=#{pass}
+		]]>
+		
+	</select>
+	
 	
 
 </mapper>
