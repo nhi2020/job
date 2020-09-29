@@ -10,10 +10,12 @@
 		<typeAlias alias="MemMngVO"      	type="com.job.mng.member.service.MemMngVO" />
 		<typeAlias alias="ReviewMngVO"      type="com.job.mng.review.service.ReviewMngVO" />
 		<!-- 기업,개인회원 -->
+		<typeAlias alias="BizJoinUserVO"    type="com.job.user.biz.join.service.BizJoinUserVO" />
 		<typeAlias alias="BizLoginUserVO"   type="com.job.user.biz.login.service.BizLoginUserVO" />
 		<typeAlias alias="BizMyUserVO"      type="com.job.user.biz.mypage.service.BizMyUserVO" />
 		<typeAlias alias="BizUserVO"      	type="com.job.user.biz.service.BizUserVO" />
 		<typeAlias alias="MainUserVO"      	type="com.job.user.main.service.MainUserVO" />
+		<typeAlias alias="MemJoinUserVO"    type="com.job.user.member.join.service.MemJoinUserVO" />
 		<typeAlias alias="MemLoginUserVO"   type="com.job.user.member.login.service.MemLoginUserVO" />
 		<typeAlias alias="MemMyUserVO"      type="com.job.user.member.mypage.service.MemMyUserVO" />
 		<typeAlias alias="MemUserVO"      	type="com.job.user.member.service.MemUserVO" />
@@ -34,7 +36,9 @@
 	    <mapper resource="mybatis/MemUser_SQL.xml"/>
 	    <mapper resource="mybatis/MemMyUser_SQL.xml"/>
 	    <mapper resource="mybatis/BizMyUser_SQL.xml"/>
+	    <mapper resource="mybatis/MemJoinUser_SQL.xml"/>
 	    <mapper resource="mybatis/MemLoginUser_SQL.xml"/>
+	    <mapper resource="mybatis/BizJoinUser_SQL.xml"/>
 	    <mapper resource="mybatis/BizLoginUser_SQL.xml"/>
 	    <mapper resource="mybatis/ReviewUser_SQL.xml"/>
 	    

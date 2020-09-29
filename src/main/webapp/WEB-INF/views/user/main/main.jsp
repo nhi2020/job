@@ -13,7 +13,7 @@
 	<h2><strong>오늘의 추천 기업</strong></h2>
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image</div>
+			<div class="fakeimg">Fake Image ${sessionScope.user.id}</div>
 		</div>
 		<div class="col-sm-3">
 			<div class="fakeimg">Fake Image</div>
