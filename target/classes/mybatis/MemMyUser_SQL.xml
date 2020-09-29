@@ -3,34 +3,50 @@
 <mapper namespace="MemMyUser">
 
 
-	<!-- 회원정보 -->
+	<!-- 회원정보 리스트 -->
 	<select id="memmyList" resultType="MemMyUserVO">
 		SELECT
-		 ID,
-		 NAME,
-		 GENDER,
-		 EMAIL,
-		 PHONE,
-		 BIRTHDAY,
-		 CAREER
+		ID,
+		NAME,
+		GENDER,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		CAREER
 		FROM MEMBER
 		ORDER BY ID
 	</select>
-	
+
+	<!-- 개인정보 -->
 	<select id="memmySelect" resultType="MemMyUserVO" parameterType="String">
 		SELECT
-		 	ID,
-		 	NAME,
-		 	GENDER,
-		 	EMAIL,
-		 	PHONE,
-		 	BIRTHDAY,
-		 	CAREER
+		ID,
+		NAME,
+		GENDER,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		CAREER
 		FROM MEMBER
-		WHERE ID = #{id}
+		WHERE ID =
+		'aaa12'
 	</select>
-	
-	
-	
-	
+
+	<!--회원수정  -->
+	<select id="memmyUpdate" parameterType="int" resultType="MemUserVO">
+		select * from member where id ='aaa12'
+	</select>
+
+	<!--회원정보 수정 1-->
+	<update id="myupdate" parameterType="MemMyUserVO">
+		UPDATE MEMBER
+		SET
+		NAME = #{name},
+		EMAIL = #{email},
+		PHONE = #{phone},
+		CAREER = #{career}
+		WHERE
+		ID = 'aaa12'
+	</update>
+
 </mapper>

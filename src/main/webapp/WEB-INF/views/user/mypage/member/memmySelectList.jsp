@@ -5,22 +5,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../../../inc/top.jsp"%>
-<title>Insert title here</title>
+<title>마이페이지</title>
 </head>
 <body>
+	<%@ include file="../../../inc/header.jsp"%>
+	<div class="container" style="margin-top: 30px"></div>
 
-${ss.id}
-${ss.name }
-${ss.gender}
-${ss.email}
-${ss.phone}
-${ss.birthday}
-${ss.career}
+	<h2>마이페이지</h2>
+	<form name="form1" method="post" action="/memmyUpdateForm.do">
+	<input type="hidden" name="id" value="${ss.id}"/>
+		<table border="1" width="400">
+			<tr>
+				<td>아이디</td>
+				<td>${ss.id}</td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td>${ss.name }</td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<c:if test="${ss.gender eq 'M'}">	
+				<td>남자</td>
+				</c:if>
+				<c:if test="${ss.gender eq'W'}">	
+				<td>여자</td>
+				</c:if>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td>${ss.email }</td>
+			</tr>
+			<tr>
+				<td>폰번호</td>
+				<td>${ss.phone }</td>
+			</tr>
+			<tr>
+				<td>생일</td>
+				<td>${ss.birthday }</td>
+			</tr>
+			<tr>
+				<td>경력</td>
+				<td>${ss.career }</td>
+			</tr>
 
-
-
-
-	
+		</table>
+		<input type="submit" value="수정"/>
+	</form>
 	<%@ include file="../../../inc/footer.jsp"%>
 </body>
 </html>

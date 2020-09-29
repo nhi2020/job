@@ -4,7 +4,7 @@ public class ReviewUserVO {
 	
 	private int rnum; 
 	private String id; 
-	private int bsm_no; 
+	private int bsmno; 
 	private String rev_type;
 	private String review;
 	private String sal;
@@ -17,6 +17,21 @@ public class ReviewUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+
+	private String search;   private String keyword;
+	private String pageNum;  
+	private int start; 		 private int end;
+	
+	public String getSearch() {		return search;	}
+	public void setSearch(String search) {	this.search = search;	}
+	public String getKeyword() {	return keyword;	}
+	public void setKeyword(String keyword) { this.keyword=keyword; }
+	public String getPageNum() {	return pageNum;	}
+	public void setPageNum(String pageNum) { this.pageNum = pageNum; }
+	public int getStart() {	return start;	}
+	public void setStart(int start) {	this.start = start;	}
+	public int getEnd() {	return end;	}
+	public void setEnd(int end) {	this.end = end;	}
 	
 	public int getRnum() {
 		return rnum;
@@ -30,11 +45,11 @@ public class ReviewUserVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getBsm_no() {
-		return bsm_no;
+	public int getBsmno() {
+		return bsmno;
 	}
-	public void setBsm_no(int bsm_no) {
-		this.bsm_no = bsm_no;
+	public void setBsm_no(int bsmno) {
+		this.bsmno = bsmno;
 	}
 	public String getRev_type() {
 		return rev_type;
