@@ -6,11 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 public interface MemMyUserService {
-	//public MemMyUserVO memmySelect(String id);
-
+	
+	// 회원 정보리스트
 	public List<MemMyUserVO> memmylist();
-
-	public MemMyUserVO memmySelect(HttpServletRequest request);
+	//개인정보
+	public MemMyUserVO memmySelect(String id);
+	//업데이트
+	public int memmyUpdate(MemMyUserVO vo)throws Exception;
+	public int myupdate(MemMyUserVO vo); 
 	
 
 }
