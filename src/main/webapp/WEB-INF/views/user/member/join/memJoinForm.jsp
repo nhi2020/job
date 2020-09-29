@@ -42,6 +42,7 @@ function check(){
 		});
 
 	}
+	
 
 		/* 비밀번호 확인 */
 		$(document).ready(function() {
@@ -60,42 +61,31 @@ function check(){
 			});
 		});
 		
-		/* 비밀번호 유효성 검사 */
+	    /* 비밀번호 유효성 검사 */
+	    function pwCheck(pass){
+	    	$.ajax({
+	    		type:'POST',
+	    		url:'<%=context%>/memPwCheck.do',
+	    		data:{pass:pass},
+	    		success:function(result){
+	    			if(result==true){
+	    				m_pwcheck2.innerHTML="유효성 체크 문제 없습니다.";
+	    			}else{
+	    				m_pwcheck2.innerHTML="유효성 체크 범위를 벗어났습니다.";
+	    			}
+	    		},
+	    		error:function(request,status){
+	    			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    		}
+	    	});
+	    }
 		
-		
-		function chkPW(){
-
-			 var pw = $("#pass").val();
-			 var num = pw.search(/[0-9]/g);
-			 var eng = pw.search(/[a-z]/ig);
-			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-			 if(pw.length < 8 || pw.length > 20){
-				 $('m_pwcheck2').text('');
-				 $('m_pwcheck2').html("8자리 ~ 20자리 이내로 입력해주세요.");
-				 
-			  /* alert("8자리 ~ 20자리 이내로 입력해주세요."); */
-			  return false;
-			 }else if(pw.search(/\s/) != -1){
-			  alert("비밀번호는 공백 없이 입력해주세요.");
-			  return false;
-			 }else if(num < 0 || eng < 0 || spe < 0 ){
-			  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-			  return false;
-			 }else {
-				console.log("통과"); 
-			    return true;
-			 }
-
-			}
-		
-
 	</script>
 
 
  <div class="container" style="margin-top:30px">
-	<form method="post" action="memlogin.do" >
-		<h3 style="font-weight: bold;">개인 회원가입</h3>
+	<form method="post" action="/user/member/join/memJoin.do" >
+		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
 			<label for="id">아이디</label>
@@ -106,8 +96,8 @@ function check(){
 			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button>
 		</div>
 		<div class="form-group">
-			<label for="pass">비밀번호</label>
-				<input type="password" class="form-control" id="pass" name="pass" oninput="pass.value" placeholder="비밀번호를 입력하세요" required="required" onclick="chkPW();">
+			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
+				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck(pass.value)" placeholder="비밀번호를 입력하세요" required="required" >
 				<p id="m_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 		</div>
 		<div class="form-group">
