@@ -92,7 +92,7 @@ public class MemMyUserController {
 		
 		return result;
 	}
-	/*비밀번호 변경*/
+	/*비밀번호 변경*/ 
 	/*@RequestMapping(value ="/passchange.do")
 	public String passchange(MemMyUserVO vo, HttpSession session) throws Exception{
 		logger.info("비밀번호 변경 요청");
