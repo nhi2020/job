@@ -45,6 +45,14 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
 					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="">내 프로필</a> 
+							<a class="dropdown-item" href="">활동내역</a> 
+							<a class="dropdown-item" href="">탈퇴</a> 
+						</div>
+					</li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
