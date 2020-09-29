@@ -25,8 +25,8 @@
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
-					<label for="bsm_no">사업자 번호</label> 
-					<input type="text" name="bsm_no" class="form-control" id="bsm_no">
+					<label for="bsmno">사업자 번호</label> 
+					<input type="text" name="bsmno" class="form-control" id="bsmno">
 				</div>
 				<div class="form-group">
 					<label for="pass">비밀번호</label> 

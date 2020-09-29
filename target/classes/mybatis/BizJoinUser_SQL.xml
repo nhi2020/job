@@ -3,8 +3,8 @@
 <mapper namespace="bizJoin">
 	<insert id="insertBizJoin" parameterType="BizJoinUserVO">
 		<!-- 기업회원가입 -->
-		<![CDATA[insert into biz(bsm_no,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date)
-		         values(#{bsm_no},#{pass},(SELECT NVL(MAX(bnum)+1, 1) FROM biz),'B',
+		<![CDATA[insert into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date)
+		         values(#{bsmno},#{pass},(SELECT NVL(MAX(bnum)+1, 1) FROM biz),'B',
 		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},to_date(sysdate,'YYYY-MM-DD'))
 		         ]]>
 	</insert>
@@ -12,7 +12,7 @@
 	<select id="bsm_no_check" resultType="int">
 		<![CDATA[select count(*) 
 		         from biz 
-		         where bsm_no=#{bsm_no}]]>
+		         where bsmno=#{bsmno}]]>
 	</select>
 
 </mapper>
