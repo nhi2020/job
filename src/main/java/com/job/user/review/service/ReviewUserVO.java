@@ -5,11 +5,11 @@ public class ReviewUserVO {
 	private int rnum; 
 	private String id; 
 	private int bsmno; 
-	private String rev_type;
+	private String mreview;
 	private String review;
 	private String sal;
 	private String spot;
-	private String b_cnt;
+	private int b_cnt;
 	private String reg_date;
 	private String up_date;
 	private String del_date;
@@ -48,14 +48,11 @@ public class ReviewUserVO {
 	public int getBsmno() {
 		return bsmno;
 	}
-	public void setBsm_no(int bsmno) {
-		this.bsmno = bsmno;
+	public String getMreview() {
+		return mreview;
 	}
-	public String getRev_type() {
-		return rev_type;
-	}
-	public void setRev_type(String rev_type) {
-		this.rev_type = rev_type;
+	public void setMreview(String mreview) {
+		this.mreview = mreview;
 	}
 	public String getReview() {
 		return review;
@@ -75,11 +72,15 @@ public class ReviewUserVO {
 	public void setSpot(String spot) {
 		this.spot = spot;
 	}
-	public String getB_cnt() {
+	
+	public int getB_cnt() {
 		return b_cnt;
 	}
-	public void setB_cnt(String b_cnt) {
+	public void setB_cnt(int b_cnt) {
 		this.b_cnt = b_cnt;
+	}
+	public void setBsmno(int bsmno) {
+		this.bsmno = bsmno;
 	}
 	public String getReg_date() {
 		return reg_date;

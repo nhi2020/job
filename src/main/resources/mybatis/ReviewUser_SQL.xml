@@ -2,13 +2,171 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewUser">
 
-	<select id="reviewList" parameterType="ReviewUserVO" resultType="ReviewUserVO">
-		select *
-		from (select rownum rn, a.* from (select * from review order by rnum) a) 
-		where rn between #{start} and #{end}
+	<select id="reviewList1" parameterType="ReviewUserVO" resultType="ReviewUserVO">
+		<![CDATA[
+		select 
+			*
+		from 
+		(
+			select 
+				rownum rn
+				, RNUM
+				, ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, REG_DATE
+				, UP_DATE
+				, DEL_DATE
+				, DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			from (
+				select 
+					RNUM
+					, ID
+					, BSMNO
+					, MREVIEW
+					, REVIEW
+					, SAL
+					, SPOT
+					, B_CNT
+					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, DEL_YN
+					, M_STATUS
+					, M_DIFFICULTLY
+					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+				from review 
+				where 1=1
+				and DEL_YN='N'
+				and REVIEW is not null
+				order by rnum
+			) a
+		) a, biz b
+		where 1=1 
+		and a.bsmno=b.bsmno
+		and rn between #{start} and #{end}
+		]]>
 	</select>
-	 <select id="total" resultType="ReviewUserVO">
-		select count(*) from REVIEW
-	</select> 
-
+	<select id="reviewList2" parameterType="ReviewUserVO" resultType="ReviewUserVO">
+		<![CDATA[
+		select 
+			*
+		from 
+		(
+			select 
+				rownum rn
+				, RNUM
+				, ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, REG_DATE
+				, UP_DATE
+				, DEL_DATE
+				, DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			from (
+				select 
+					RNUM
+					, ID
+					, BSMNO
+					, MREVIEW
+					, REVIEW
+					, SAL
+					, SPOT
+					, B_CNT
+					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, DEL_YN
+					, M_STATUS
+					, M_DIFFICULTLY
+					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+				from review 
+				where 1=1
+				and DEL_YN='N'
+				and SAL is not null
+				order by rnum
+			) a
+		) a, biz b
+		where 1=1 
+		and a.bsmno=b.bsmno 
+		and rn between #{start} and #{end}
+		]]>
+	</select>
+	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
+		<![CDATA[
+		select 
+			*
+		from 
+		(
+			select 
+				rownum rn
+				, RNUM
+				, ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, REG_DATE
+				, UP_DATE
+				, DEL_DATE
+				, DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			from (
+				select 
+					RNUM
+					, ID
+					, BSMNO
+					, MREVIEW
+					, REVIEW
+					, SAL
+					, SPOT
+					, B_CNT
+					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, DEL_YN
+					, M_STATUS
+					, M_DIFFICULTLY
+					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+				from review 
+				where 1=1
+				and DEL_YN='N'
+				and MREVIEW is not null
+				order by rnum
+			) a
+		) a, biz b
+		where 1=1 
+		and a.bsmno=b.bsmno 
+		and rn between #{start} and #{end}
+		]]>
+	</select>
+	<select id="total1" resultType="int">
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null
+	</select>
+	
+	<select id="total2" resultType="int">
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and SAL is not null
+	</select>
+	
+	<select id="total3" resultType="int">
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null
+	</select>
 </mapper>
