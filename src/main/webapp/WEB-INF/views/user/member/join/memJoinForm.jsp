@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-<%@ include file="../../../inc/top.jsp" %>
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>개인 회원가입</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="../../../inc/header.jsp" %>
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <script type="text/javascript">
 /* 아이디 중복체크 */
 function check(){
@@ -155,6 +155,6 @@ function check(){
 	</form>
 	</div>
 
-	<%@ include file="../../../inc/footer.jsp" %>	
+	<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

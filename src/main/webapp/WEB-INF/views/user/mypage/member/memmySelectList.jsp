@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../../inc/top.jsp"%>
+<%@ include file="/WEB-INF/views/inc/top.jsp"%>
 <title>마이페이지</title>
 </head>
 <body>
-	<%@ include file="../../../inc/header.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container" style="margin-top: 30px"></div>
 
 	<h2>마이페이지</h2>
@@ -52,6 +52,6 @@
 		</table>
 		<input type="submit" value="수정"/>
 	</form>
-	<%@ include file="../../../inc/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>
