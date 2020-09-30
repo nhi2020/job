@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.job.user.member.login.service.MemLoginUserService;
 import com.job.user.member.login.service.MemLoginUserVO;
 import com.job.user.member.mypage.service.MemMyUserService;
 import com.job.user.member.mypage.service.MemMyUserVO;
@@ -26,7 +27,10 @@ public class MemMyUserController {
 	
 	@Resource(name = "memMyUserService")
 	private MemMyUserService memMyUserService;
-
+	
+	@Resource(name = "memLoginUserService")
+	private MemLoginUserService memLoginUserService;
+	
 	/* 회원 정보리스트*/
 	@RequestMapping(value = "/user/member/mypage/memMyList.do")
 	public String memMyList(Model model) {
@@ -37,32 +41,40 @@ public class MemMyUserController {
 
 	/* 개인정보*/
 	@RequestMapping(value = "/user/member/mypage/memMySelectList.do")
-	public String memMySelectList(MemMyUserVO vo, Model model, HttpServletRequest request) {
-		HttpSession session=request.getSession();
+	public String memMySelectList(Model model) {
+		/*HttpSession session=request.getSession();
 		MemLoginUserVO loginUser=(MemLoginUserVO)session.getAttribute("user");
 		vo.setId(loginUser.getId());
 		MemMyUserVO user = memMyUserService.memMySelect(vo);
 		// System.out.println(sora.getId());
 		// System.out.println(sora.getGender());
-		model.addAttribute("user", user);
+		model.addAttribute("user", user);*/
 		return "user/mypage/member/memMySelectList";
 	}
 
 	/*회원정보 수정 업데이트*/
 	@RequestMapping(value = "/user/member/mypage/memMyUpdateForm.do")
-	public String memmyUpdate(MemMyUserVO vo, Model model) {
-		System.out.println("컨트롤러 리퀘스트 매핑 시작.....");
-		MemMyUserVO user =memMyUserService.memMySelect(vo);
-		model.addAttribute("user",user);
+	public String memmyUpdate(Model model) {
+		/*MemMyUserVO user =memMyUserService.memMySelect(vo);
+		model.addAttribute("user",user);*/
 		return "user/mypage/member/memMyUpdateForm";
 	}
 	
 	/*회원정보 수정*/
 	@RequestMapping(value="/user/member/mypage/myUpdate.do")
-	public String myupdate(MemMyUserVO vo, Model model) {
-		int result =memMyUserService.myUpdate(vo);
-		model.addAttribute("result",result);
-		model.addAttribute("kk3","Message Test");
+	public String myupdate(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO) {
+		int result=memMyUserService.myUpdate(vo);
+		if(result==1){
+			try {
+				session.removeAttribute("user");
+				loginVO.setId(vo.getId());
+				loginVO.setPass(vo.getPass());
+				MemLoginUserVO user = memLoginUserService.user(loginVO);
+				session.setAttribute("user", user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return "forward:memMySelectList.do";
 	}
 	/*비밀번호 변경폼*/

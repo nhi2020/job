@@ -13,18 +13,19 @@
 
 	<h2>회원정보 상세</h2>
 	<form action="/user/member/mypage/myUpdate.do" method="post" name="form1">
-		<input type="hidden" name="id" value="${user.id}">
+		<input type="hidden" name="id" value="${sessionScope.user.id}">
+		<input type="hidden" name="pass" value="${sessionScope.user.pass}">
 		<table border="1" width="400">
 			<tr>
 				<th>아이디</th>
-				<td>${user.id}</td>
+				<td>${sessionScope.user.id}</td>
 			</tr>
 			<tr>
 				<th>이름</th>
 				<td><input type="text" name="name" required="required"
-					value="${user.name }"></td>
+					value="${sessionScope.user.name }"></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" required="required"
 					value="${user.email }"></td>
@@ -44,7 +45,7 @@
 				<th>경력</th>
 				<td><input type="text" name="career" required="required"
 					value="${user.career }"></td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td colspan="2"><input type="submit" value="확인"></td>
 			</tr>

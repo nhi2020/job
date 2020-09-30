@@ -44,10 +44,7 @@
 	<update id="myUpdate" parameterType="MemMyUserVO">
 		UPDATE MEMBER
 		SET
-		NAME = #{name},
-		EMAIL = #{email},
-		PHONE = #{phone},
-		CAREER = #{career}
+		NAME = #{name}
 		WHERE
 		ID = #{id}
 	</update>
