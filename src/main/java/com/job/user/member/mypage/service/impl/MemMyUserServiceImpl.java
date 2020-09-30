@@ -17,28 +17,25 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 
 	// 회원정보리스트
 	@Override
-	public List<MemMyUserVO> memmylist() {
+	public List<MemMyUserVO> memMyList() {
 		System.out.println("start service");
-		return memMyUserDAO.memmylist();
+		return memMyUserDAO.memMyList();
 	}
 
 	// 개인정보
 	@Override
-	public MemMyUserVO memmySelect(String id) {
-		// TODO Auto-generated method stub
-		return memMyUserDAO.memmySelect(id);
+	public MemMyUserVO memMySelect(String id) {
+		return memMyUserDAO.memMySelect(id);
 	}
 	//업데이트1
 	@Override
-	public int memmyUpdate(MemMyUserVO vo) throws Exception {
-		int result = memMyUserDAO.memmyUpdate(vo);
+	public int memMyUpdate(MemMyUserVO vo) throws Exception {
+		int result = memMyUserDAO.memMyUpdate(vo);
 		return result;
 	}
 	//업데이트2
 	@Override
-	public int myupdate(MemMyUserVO vo) {
-		// TODO Auto-generated method stub
-		System.out.println("222222222222");
+	public int myUpdate(MemMyUserVO vo) {
 		return memMyUserDAO.myupdate(vo);
 	}
 

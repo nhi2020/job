@@ -27,19 +27,18 @@ public class MemMyUserController {
 	private MemMyUserService memMyUserService;
 
 	/* 회원 정보리스트*/
-	@RequestMapping(value = "/memmlist.do")
-	public String memmylist(Model model) {
-		System.out.println("startmem");
-		List<MemMyUserVO> memmylist = memMyUserService.memmylist();
-		model.addAttribute("list", memmylist);
-		return "user/mypage/member/memmylist";
+	@RequestMapping(value = "/user/member/mypage/memMyList.do")
+	public String memMyList(Model model) {
+		List<MemMyUserVO> memMyList = memMyUserService.memMyList();
+		model.addAttribute("list", memMyList);
+		return "user/mypage/member/memMyList";
 	}
 
 	/* 개인정보*/
-	@RequestMapping(value = "/memmySelectList.do")
-	public String memmySelect(Model model, HttpServletRequest request, String id) {
+	@RequestMapping(value = "/user/member/mypage/memMySelectList.do")
+	public String memMySelectList(Model model, HttpServletRequest request, String id) {
 		System.out.println("test");
-		MemMyUserVO ss = memMyUserService.memmySelect(id);
+		MemMyUserVO ss = memMyUserService.memMySelect(id);
 		// System.out.println(sora.getId());
 		// System.out.println(sora.getGender());
 		model.addAttribute("ss", ss);
@@ -47,38 +46,35 @@ public class MemMyUserController {
 	}
 
 	/*회원정보 수정 업데이트*/
-	@RequestMapping(value = "/memmyUpdateForm.do")
+	@RequestMapping(value = "/user/member/mypage/memMyUpdateForm.do")
 	public String memmyUpdate(String id , Model model) {
-		MemMyUserVO vo =memMyUserService.memmySelect(id);
+		MemMyUserVO vo =memMyUserService.memMySelect(id);
 		model.addAttribute("vo",vo);
-		return "user/mypage/member/memmyUpdateForm";
+		return "user/mypage/member/memMyUpdateForm";
 	}
 	
 	/*회원정보 수정*/
-	@RequestMapping(value="/myupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value="/user/member/mypage/myUpdate.do", method = RequestMethod.POST)
 	public String myupdate(MemMyUserVO vo, Model model) {
-		System.out.println("33333333333");
-		int k =memMyUserService.myupdate(vo);
+		int k =memMyUserService.myUpdate(vo);
 		model.addAttribute("k",k);
 		model.addAttribute("kk3","Message Test");
-		return "forward:memmySelectList.do";
+		return "forward:memMySelectList.do";
 	}
 	/*비밀번호 변경폼*/
-	@RequestMapping(value="memmypassForm.do")
+	@RequestMapping(value="/user/member/mypage/memMyPassForm.do")
 	public String passForm(String id, Model model ) {
-		MemMyUserVO vo =memMyUserService.memmySelect(id);
+		MemMyUserVO vo =memMyUserService.memMySelect(id);
 		model.addAttribute("vo",vo);
-		return"user/mypage/member/memmypassForm";
+		return"user/mypage/member/memMyPassForm";
 	}
 	
 	/*비밀번호 변경*/ 
-	@RequestMapping(value ="/passchange.do")
+	@RequestMapping(value ="/user/member/mypage/passChange.do")
 	public String passchange(MemMyUserVO vo, Model model) throws Exception{
 		logger.info("비밀번호 변경 요청");
 		//memMyUserService.passchange(vo);
 		MemMyUserVO vo2= new MemMyUserVO();
-		
-		
-		return"changeSuccess";
+		return"user/mypage/member/passChange";
 	}
 }
