@@ -4,7 +4,7 @@
 
 
 	<!-- 회원정보 리스트 -->
-	<select id="memMylist" resultType="MemMyUserVO">
+	<select id="memMyList" resultType="MemMyUserVO">
 		SELECT
 		ID,
 		NAME,
@@ -18,23 +18,26 @@
 	</select>
 
 	<!-- 개인정보 -->
-	<select id="memMySelect" resultType="MemMyUserVO" parameterType="String">
+	<select id="memMySelect" resultType="MemMyUserVO" parameterType="MemMyUserVO">
 		SELECT
-		ID,
-		NAME,
-		GENDER,
-		EMAIL,
-		PHONE,
-		BIRTHDAY,
-		CAREER
+			ID
+			, PASS
+			, MNUM
+			, TYPE
+			, NAME
+			, GENDER
+			, EMAIL
+			, PHONE
+			, BIRTHDAY
+			, CAREER
+			, DEL_YN
 		FROM MEMBER
-		WHERE ID =
-		'aaa12'
+		WHERE ID = #{id}
 	</select>
 
 	<!--회원수정  -->
-	<select id="memMyUpdate" parameterType="int" resultType="MemUserVO">
-		select * from member where id ='aaa12'
+	<select id="memMyUpdate" parameterType="MemMyUserVO" resultType="MemMyUserVO">
+		select * from member where id = #{id}
 	</select>
 
 	<!--회원정보 수정 1-->
@@ -46,7 +49,7 @@
 		PHONE = #{phone},
 		CAREER = #{career}
 		WHERE
-		ID = 'aaa12'
+		ID = #{id}
 	</update>
 
 </mapper>

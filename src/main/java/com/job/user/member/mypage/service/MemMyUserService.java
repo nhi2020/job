@@ -10,7 +10,7 @@ public interface MemMyUserService {
 	// 회원 정보리스트
 	public List<MemMyUserVO> memMyList();
 	//개인정보
-	public MemMyUserVO memMySelect(String id);
+	public MemMyUserVO memMySelect(MemMyUserVO vo);
 	//업데이트
 	public int memMyUpdate(MemMyUserVO vo)throws Exception;
 	public int myUpdate(MemMyUserVO vo); 

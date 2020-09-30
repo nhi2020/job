@@ -21,9 +21,9 @@ public class MemMyUserDAO {
 	}
 
 	// 개인정보
-	public MemMyUserVO memMySelect(String id) {
+	public MemMyUserVO memMySelect(MemMyUserVO vo) {
 		//String id = "aaa12";
-		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelect", id);
+		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelect", vo);
 		return user;
 	}
 
@@ -37,7 +37,6 @@ public class MemMyUserDAO {
 	/*업데이트2*/
 	public int myupdate(MemMyUserVO vo) {
 		int result = (Integer)sqlSessionTemplate.update("MemMyUser.myUpdate", vo);
-		System.out.println("result : "+result);
 		return result;
 	}
 	

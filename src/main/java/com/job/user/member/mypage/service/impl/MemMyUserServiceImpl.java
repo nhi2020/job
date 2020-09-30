@@ -24,8 +24,8 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 
 	// 개인정보
 	@Override
-	public MemMyUserVO memMySelect(String id) {
-		return memMyUserDAO.memMySelect(id);
+	public MemMyUserVO memMySelect(MemMyUserVO vo) {
+		return memMyUserDAO.memMySelect(vo);
 	}
 	//업데이트1
 	@Override

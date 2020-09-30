@@ -12,41 +12,41 @@
 	<div class="container" style="margin-top: 30px"></div>
 
 	<h2>마이페이지</h2>
-	<form name="form1" method="post" action="/memmyUpdateForm.do">
-	<input type="hidden" name="id" value="${ss.id}"/>
+	<form name="form1" method="post" action="/user/member/mypage/memMyUpdateForm.do">
+	<input type="hidden" name="id" value="${user.id}"/>
 		<table border="1" width="400">
 			<tr>
 				<td>아이디</td>
-				<td>${ss.id}</td>
+				<td>${user.id}</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td>${ss.name }</td>
+				<td>${user.name }</td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<c:if test="${ss.gender eq 'M'}">	
+				<c:if test="${user.gender eq 'M'}">	
 				<td>남자</td>
 				</c:if>
-				<c:if test="${ss.gender eq'W'}">	
+				<c:if test="${user.gender eq 'W'}">	
 				<td>여자</td>
 				</c:if>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td>${ss.email }</td>
+				<td>${user.email }</td>
 			</tr>
 			<tr>
 				<td>폰번호</td>
-				<td>${ss.phone }</td>
+				<td>${user.phone }</td>
 			</tr>
 			<tr>
 				<td>생일</td>
-				<td>${ss.birthday }</td>
+				<td>${user.birthday }</td>
 			</tr>
 			<tr>
 				<td>경력</td>
-				<td>${ss.career }</td>
+				<td>${user.career }</td>
 			</tr>
 
 		</table>
