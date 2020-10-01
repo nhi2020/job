@@ -21,4 +21,10 @@ public class BizLoginUserServiceImpl implements BizLoginUserService {
 		return bizLoginUserDAO.b_login(vo);
 	}
 
+	/*기업 로그인 체크*/
+	@Override
+	public int b_LoginCheck(BizLoginUserVO vo) throws Exception {
+		return bizLoginUserDAO.b_LoginCheck(vo);
+	}
+
 }

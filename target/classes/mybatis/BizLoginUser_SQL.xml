@@ -2,10 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bizLogin">
 	<!-- 기업로그인 -->
-	<select id="b_login"  resultType="BizLoginUserVO">
-		<![CDATA[select bsmno, pass 
-		         from biz 
-		         where bsmno=#{bsmno} and pass=#{pass}
+	<select id="b_Login"  resultType="BizLoginUserVO">
+		<![CDATA[
+		         select bsmno, 
+		                pass,
+		                bnum,
+		                type,
+		                company,
+		                email,
+		                ceo,
+		                phone,
+		                field,
+		                addr,
+		                logo,
+		                reg_date,
+		                up_date,
+		                del_date,
+		                del_yn
+		         from   biz 
+		         where  bsmno=#{bsmno} and pass=#{pass}
+		]]>
+	</select>
+	
+	<!-- 기업로그인 체크 -->
+	<select id="b_LoginCheck" parameterType="BizLoginUserVO" resultType="int">
+		<![CDATA[
+			  	 select count(*)
+			  	 from   biz
+				 where  bsmno=#{bsmno} and pass=#{pass}
 		]]>
 	</select>
 

@@ -1,6 +1,9 @@
 package com.job.user.member.login.service.impl;
 
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
@@ -26,8 +29,25 @@ public class MemLoginUserServiceImpl implements MemLoginUserService{
 		return result;
 	}
 
-	
-	
+	/*개인 아이디 찾기*/
+	@Override
+	public String memFindId(HttpServletResponse response,MemLoginUserVO vo) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		String id=memLoginUserDAO.memFindId(vo);
+		System.out.println("id:"+id);
+		if(id==null) {
+			out.println("<script>");
+			out.println("alert('가입된 아이디가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			return id;
+		}
+	}
+
 
 	
 }

@@ -4,24 +4,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.user.member.join.service.MemJoinUserService;
 import com.job.user.member.join.service.MemJoinUserVO;
+import com.job.util.FileUtils;
 
 @Controller
 public class MemJoinUserController {
 	@Resource(name="memJoinUserService")
 	MemJoinUserService memJoinUserService;
 	
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
+	
 	/*개인회원가입 post*/
 	@RequestMapping(value="/user/member/join/memJoin.do")
-	public String memJoin(MemJoinUserVO vo)throws Exception{
+	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{
 		int result=memJoinUserService.m_check(vo);
+		fileUtils.parseInsertFileInfo(request);
 		try {
 			if(result==1) {
 				return "user/member/join/memJoinForm";

@@ -13,7 +13,14 @@
 	<c:if test="${!empty sessionScope.user.id}">
 		<div class="row">
 			<div class="col-sm-3">
-				${sessionScope.user.name}님 환영
+				${sessionScope.user.name}님 환영합니다.
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${!empty sessionScope.b_user.bsmno}">
+		<div class="row">
+			<div class="col-sm-3">
+				${sessionScope.b_user.company}님 환영합니다.
 			</div>
 		</div>
 	</c:if>

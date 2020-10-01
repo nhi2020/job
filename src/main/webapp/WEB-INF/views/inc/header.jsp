@@ -25,7 +25,23 @@
 		</ul>
 		<ul class="navbar-nav" id="main-menu">
 			<c:choose>
-				<c:when test="${empty sessionScope.user.id}">
+				<%-- <c:when test="${empty sessionScope.user.id}">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/user/member/login/memLoginForm.do">개인 로그인</a> 
+							<a class="dropdown-item" href="/user/biz/login/bizLoginForm.do">기업 로그인</a> 
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 회원가입 </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/user/member/join/memJoinForm.do">개인 회원가입</a> 
+							<a class="dropdown-item" href="/user/biz/join/bizJoinForm.do">기업 회원가입</a> 
+						</div>
+					</li>
+				</c:when> --%>
+				<c:when test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
 						<div class="dropdown-menu">
@@ -57,8 +73,7 @@
 			</c:choose>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text"
-				placeholder="기업을 검색해 보세요.">
+			<input class="form-control mr-sm-2" type="text" placeholder="기업을 검색해 보세요.">
 			<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
 		</form>
 	</div>

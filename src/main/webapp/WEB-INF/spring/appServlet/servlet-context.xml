@@ -24,11 +24,16 @@
 	<context:component-scan base-package="com.job" />
 	
 	<beans:bean id="memLoginInterCeptor" class="com.job.user.interceptor.MemLoginInterCeptor"></beans:bean>
+	<beans:bean id="bizLoginInterCeptor" class="com.job.user.interceptor.BizLoginInterCeptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/member/mypage/**"/>
 			<beans:ref bean="memLoginInterCeptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/user/biz/mypage/**"/>
+			<beans:ref bean="bizLoginInterCeptor"/>
 		</interceptor>
 	</interceptors>
 </beans:beans>

@@ -11,8 +11,14 @@ public class BizLoginUserDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+	
 	/*기업 로그인*/
 	public BizLoginUserVO b_login(BizLoginUserVO vo)throws Exception{
-		return sqlSessionTemplate.selectOne("bizLogin.b_login", vo);
+		return sqlSessionTemplate.selectOne("bizLogin.b_Login", vo);
+	}
+	
+	/*기업 로그인 체크*/
+	public int b_LoginCheck(BizLoginUserVO vo)throws Exception{
+		return sqlSessionTemplate.selectOne("bizLogin.b_LoginCheck", vo);
 	}
 }

@@ -21,8 +21,14 @@ public class MemLoginUserDAO {
 	/*개인 로그인 체크*/
 	public int loginCheck(MemLoginUserVO vo) throws Exception{
 		int result=(Integer)sqlSessionTemplate.selectOne("memLogin.loginCheck", vo);
-		System.out.println("result : "+result);
+		System.out.println("loginCheck result : "+result);
 		return  result;
 	}
+	
+	/*개인 아이디 찾기*/
+	public String memFindId(MemLoginUserVO vo) throws Exception{
+		return sqlSessionTemplate.selectOne("memLogin.findId", vo);
+	}
+
 
 }
