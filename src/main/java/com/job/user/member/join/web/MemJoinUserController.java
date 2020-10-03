@@ -6,21 +6,22 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.user.member.join.service.MemJoinUserService;
 import com.job.user.member.join.service.MemJoinUserVO;
-import com.job.util.FileUtils;
+import com.job.util.JobFileUtils;
 
 @Controller
 public class MemJoinUserController {
 	@Resource(name="memJoinUserService")
 	MemJoinUserService memJoinUserService;
 	
-	@Resource(name="fileUtils")
-	private FileUtils fileUtils;
+	@Resource(name="jobFileUtils")
+	private JobFileUtils jobFileUtils;
 	
 	/*개인회원가입 폼*/
 	@RequestMapping(value="/user/member/join/memJoinForm.do")
@@ -32,7 +33,7 @@ public class MemJoinUserController {
 	@RequestMapping(value="/user/member/join/memJoin.do")
 	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{
 		int result=memJoinUserService.m_check(vo);
-		fileUtils.parseInsertFileInfo(request);
+		jobFileUtils.parseInsertFileInfo(request);
 		try {
 			if(result==1) {
 				return "user/member/join/memJoinForm";
