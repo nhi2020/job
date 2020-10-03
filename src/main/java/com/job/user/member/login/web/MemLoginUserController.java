@@ -18,6 +18,12 @@ public class MemLoginUserController {
 	@Resource(name="memLoginUserService")
 	MemLoginUserService memLoginUserService;
 	
+	/*개인로그인*/
+	@RequestMapping(value="/user/member/login/memLoginForm.do")
+	public String memLoginForm() {
+		return "user/member/login/memLoginForm";
+	}
+	
 	/*개인 로그인 & 체크*/
 	@RequestMapping(value="/user/member/login/memLogin.do")
 	public String memLogin(HttpSession session, MemLoginUserVO  vo) throws Exception {

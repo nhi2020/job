@@ -32,5 +32,15 @@
 				 where  bsmno=#{bsmno} and pass=#{pass}
 		]]>
 	</select>
+	
+	<!-- 기업 사업자 번호 찾기 -->
+	<select id="findBsmno" parameterType="String" resultType="String">
+		<![CDATA[
+				select bsmno
+				from   biz
+				where  company=#{company} and phone=#{phone} and email=#{email}
+		]]>
+	
+	</select>
 
 </mapper>

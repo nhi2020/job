@@ -20,6 +20,14 @@ function bizLogin() {
 	document.frm.action="/user/biz/login/bizLogin.do";
 	document.frm.submit();
 }
+function findBsm(){
+	document.frm.action="/user/biz/login/bizFindBsmForm.do";
+	document.frm.submit();
+}
+function findPass(){
+	document.frm.action="/user/biz/login/bizFindPassForm.do";
+	document.frm.submit();
+}
 
 </script>
 
@@ -39,6 +47,10 @@ function bizLogin() {
 				<div class="form-group">
 					<label for="pass">비밀번호</label> 
 					<input type="password" name="pass" class="form-control" id="pass" placeholder="비밀번호를 입력하세요">
+				</div>
+				<div class="form-group">
+					<a class="btn btn-link" href="javascript:findBsm();" style="font-weight: bold">사업자 번호 찾기</a>
+					<a class="btn btn-link" href="javascript:findPass();" style="font-weight: bold">비밀번호 찾기</a>
 				</div>
 				<div>
 					<a class="btn btn-danger px-3" href="javascript:bizLogin();"><i class="fas fa-location-arrow"></i> 로그인</a>

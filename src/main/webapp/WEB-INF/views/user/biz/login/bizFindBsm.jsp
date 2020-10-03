@@ -15,36 +15,35 @@
 <!-- 폰트 어썸 -->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<script>
+	function bizLogin(){
+		document.frm.action="/user/biz/login/bizLoginForm.do";
+		document.frm.submit();
+	}
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top: 30px">
-	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 아이디 찾기</h3>
+	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 사업자 번호 찾기 검색결과</h3>
 	<br><br>
-	<form name="frm" method="post" action="/user/member/login/memFindId.do">
+	<form name="frm" method="post">
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
-					<label for="name">이름</label>
-					<input type="text" name="name" id="name"  class="form-control" placeholder="이름을 입력하세요">
+					<h4> 찾으신 아이디는 ${bsmno } 입니다. <br><br> 다시 로그인 해주세요.</h4>
 				</div>
+				<br>
 				<div class="form-group">
-					<label for="phone">전화번호</label>
-					<input type="text" name="phone" id="phone"  class="form-control" placeholder="전화번호를 입력하세요">
-				</div>
-				<div class="form-group">
-					<label for="email">이메일</label>
-					<input type="text" name="email" id="email"  class="form-control" placeholder="이메일을 입력하세요">
-				</div>
-				<div class="form-group">
-					<input type="submit" value="확인" class="btn btn-danger px-3">&emsp;&emsp;
-					<a class="btn btn-primary px-3" href="/user/member/login/memLoginForm.do">취소</a>
+				    <a class="btn btn-danger px-3" href="javascript:bizLogin();" ><i class="fas fa-location-arrow"></i> 로그인 하러가기</a>
+				
 				</div>
 			</div>
-		
 		</div>
 	</form>
 </div>
+
+
 <%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

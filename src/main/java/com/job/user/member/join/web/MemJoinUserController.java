@@ -22,6 +22,12 @@ public class MemJoinUserController {
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
 	
+	/*개인회원가입 폼*/
+	@RequestMapping(value="/user/member/join/memJoinForm.do")
+	public String memJoinForm() {
+		return "user/member/join/memJoinForm";
+	}
+	
 	/*개인회원가입 post*/
 	@RequestMapping(value="/user/member/join/memJoin.do")
 	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{

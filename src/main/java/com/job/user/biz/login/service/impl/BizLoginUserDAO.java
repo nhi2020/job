@@ -19,6 +19,13 @@ public class BizLoginUserDAO {
 	
 	/*기업 로그인 체크*/
 	public int b_LoginCheck(BizLoginUserVO vo)throws Exception{
-		return sqlSessionTemplate.selectOne("bizLogin.b_LoginCheck", vo);
+		int result=(Integer)sqlSessionTemplate.selectOne("bizLogin.b_LoginCheck", vo);
+		System.out.println("b_LoginCheck result : "+result);
+		return result;
+	}
+	
+	/*기업 사업자 번호 찾기*/
+	public String findBsmno(BizLoginUserVO vo)throws Exception{
+		return sqlSessionTemplate.selectOne("bizLogin.findBsmno", vo);
 	}
 }

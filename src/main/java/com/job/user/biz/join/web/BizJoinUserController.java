@@ -18,6 +18,12 @@ public class BizJoinUserController {
 	@Resource(name = "bizJoinUserService")
 	private BizJoinUserService bizJoinUserService;
 
+	/*기업회원가입 폼*/
+	@RequestMapping(value="/user/biz/join/bizJoinForm.do")
+	public String bizJoinForm() {
+		return "user/biz/join/bizJoinForm";
+	}
+	
 	/* 기업회원가입 post*/
 	@RequestMapping(value="/user/biz/join/bizJoin.do")
 	public String bizJoin(BizJoinUserVO vo) throws Exception{
