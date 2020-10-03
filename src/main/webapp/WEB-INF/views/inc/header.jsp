@@ -25,22 +25,6 @@
 		</ul>
 		<ul class="navbar-nav" id="main-menu">
 			<c:choose>
-				<%-- <c:when test="${empty sessionScope.user.id}">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/user/member/login/memLoginForm.do">개인 로그인</a> 
-							<a class="dropdown-item" href="/user/biz/login/bizLoginForm.do">기업 로그인</a> 
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 회원가입 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/user/member/join/memJoinForm.do">개인 회원가입</a> 
-							<a class="dropdown-item" href="/user/biz/join/bizJoinForm.do">기업 회원가입</a> 
-						</div>
-					</li>
-				</c:when> --%>
 				<c:when test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
@@ -61,6 +45,7 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
 					</li>
+					<c:if test="${!empty sessionScope.user.id}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 						<div class="dropdown-menu">
@@ -69,6 +54,17 @@
 							<a class="dropdown-item" href="">탈퇴</a> 
 						</div>
 					</li>
+					</c:if>
+					<c:if test="${!empty sessionScope.b_user.bsmno}">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="">내 프로필</a> 
+							<a class="dropdown-item" href="">활동내역</a> 
+							<a class="dropdown-item" href="">탈퇴</a> 
+						</div>
+					</li>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</ul>
