@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.apache.commons.io.FileUtils;
-import com.member.log.util.FileVO;
 
 @Component("jobFileUtils")
 public class JobFileUtils {
