@@ -25,7 +25,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<h2>회원정보 상세</h2>
-	<form action="/user/member/mypage/myUpdate.do" method="post"
+	<form action="/user/mypage/member/myUpdate.do" method="post"
 		id="upForm">
 		<input type="hidden" name="id" value="${sessionScope.user.id}">
 		<input type="hidden" name="pass" value="${sessionScope.user.pass}">

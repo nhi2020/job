@@ -43,8 +43,8 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 	
 	/*개인회원 탈퇴*/
 	@Override
-	public void memMyDelete(MemMyUserVO vo) throws Exception {
-		memMyUserDAO.memMyDelete(vo);
+	public int memMyDelete(MemMyUserVO vo) throws Exception {
+		return memMyUserDAO.memMyDelete(vo);
 		
 	}
 

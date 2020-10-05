@@ -44,10 +44,7 @@
 							type : "POST",
 							dataType : "json",
 							data : $("#passForm").serializeArray(),
-							
 							success : function(data) {
-								console.log('s : ', data);
-								alert(data);
 								if (data == 0) {
 									alert("패스워드실패");
 									return;
