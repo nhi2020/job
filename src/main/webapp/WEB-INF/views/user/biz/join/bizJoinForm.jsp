@@ -22,13 +22,13 @@
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <script type="text/javascript">
 /* 사업자번호 중복체크 */
-function check(){
-	$.ajax({
-		url:'<%=context%>/bsm_no_check.do',
-		type : 'POST',
-		dataType : 'json',
-		data : {"bsmno" : $("#bsmno").val()},
-		success : function(data) {
+	function check(){
+		$.ajax({
+			url:'<%=context%>/bsm_no_check.do',
+			type : 'POST',
+			dataType : 'json',
+			data : {"bsmno" : $("#bsmno").val()},
+			success : function(data) {
 				if (data == 1) {
 					alert("중복된 사업자번호가 존재합니다.");
 				} else if (data == 0) {
@@ -42,7 +42,27 @@ function check(){
 		});
 
 	}
-
+	function joinBiz(){
+		var bp=$('#b_pwcheck').text();
+		var bp2=$('#b_pwcheck2').text();
+		if(bp2=='비밀번호 형식이 일치하지 않습니다.'){
+			alert('비밀번호 형식이 일치하지 않습니다.');
+			document.frm.pass.value="";
+			document.frm.pass.focus();
+			return false;
+		}
+		
+		if(bp=='비밀번호가 일치하지 않습니다.'){
+			alert('비밀번호가 일치하지 않습니다.');
+			document.frm.pass2.value="";
+			document.frm.pass2.focus();
+			return false;
+		}
+		
+		document.frm.action="/user/biz/join/bizJoin.do";
+		document.frm.submit();
+		
+	}
 		/* 비밀번호 확인 */
 		$(document).ready(function() {
 			$('#pass').keyup(function() {
@@ -81,7 +101,7 @@ function check(){
 	</script>
 
  <div class="container" style="margin-top:30px">
-	<form method="post" action="/user/biz/join/bizJoin.do" >
+	<form method="post" name="frm">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
@@ -142,7 +162,7 @@ function check(){
 				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
-				<button class="btn btn-primary px-3" id="reg_submit">
+				<button class="btn btn-primary px-3" id="reg_submit" onclick="joinBiz();">
 					<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
 				</button>
 			</div>

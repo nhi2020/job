@@ -1,14 +1,13 @@
 package com.job.user.biz.login.service.impl;
 
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
-import com.job.user.biz.join.service.BizJoinUserService;
-import com.job.user.biz.join.service.BizJoinUserVO;
 import com.job.user.biz.login.service.BizLoginUserService;
 import com.job.user.biz.login.service.BizLoginUserVO;
 
@@ -48,6 +47,12 @@ public class BizLoginUserServiceImpl implements BizLoginUserService {
 		}else {
 			return bsmno;
 		}
+	}
+
+	/*기업 비밀번호 찾기 후 변경*/
+	@Override
+	public void bizPassChange(Map<String, Object> map, BizLoginUserVO vo) throws Exception {
+		bizLoginUserDAO.bizPassChange(map, vo);
 	}
 
 }

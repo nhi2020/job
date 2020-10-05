@@ -42,5 +42,16 @@
 		]]>
 	
 	</select>
+	
+	<!-- 기업 비밀번호 변경 -->
+	<update id="bizPassChange" parameterType="hashMap">
+		<![CDATA[
+				update biz
+				set    pass=#{pass}
+				where  email=#{email} and del_yn='N' 
+		]]>
+		
+	
+	</update>
 
 </mapper>
