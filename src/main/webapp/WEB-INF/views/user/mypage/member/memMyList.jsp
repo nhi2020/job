@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp" %>
-<title>Insert title here</title>
+<title>jobara</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>

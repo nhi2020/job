@@ -32,8 +32,15 @@ public class MemMyUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	private String pchange;
 	
 	
+	public String getPchange() {
+		return pchange;
+	}
+	public void setPchange(String pchange) {
+		this.pchange = pchange;
+	}
 	public int getRnum() {
 		return rnum;
 	}
