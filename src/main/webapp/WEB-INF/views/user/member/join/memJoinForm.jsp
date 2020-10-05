@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-<%@ include file="../../../inc/top.jsp" %>
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>개인 회원가입</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="../../../inc/header.jsp" %>
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <script type="text/javascript">
 /* 아이디 중복체크 */
 function check(){
@@ -33,7 +33,7 @@ function check(){
 					alert("중복된 아이디가 존재합니다.");
 				} else if (data == 0) {
 					$("#id").attr("value", "Y");
-					alert("사용하실 수 있는 아이디입니다.");
+					alert("사용가능한 아이디입니다.");
 				}
 			},
 			error : function() {
@@ -42,6 +42,7 @@ function check(){
 		});
 
 	}
+	
 
 		/* 비밀번호 확인 */
 		$(document).ready(function() {
@@ -60,42 +61,31 @@ function check(){
 			});
 		});
 		
-		/* 비밀번호 유효성 검사 */
+	    /* 비밀번호 유효성 검사 */
+	    function pwCheck(pass){
+	    	$.ajax({
+	    		type:'POST',
+	    		url:'<%=context%>/memPwCheck.do',
+	    		data:{pass:pass},
+	    		success:function(result){
+	    			if(result==true){
+	    				m_pwcheck2.innerHTML="비밀번호 사용가능합니다.";
+	    			}else{
+	    				m_pwcheck2.innerHTML="비밀번호 형식이 일치하지 않습니다.";
+	    			}
+	    		},
+	    		error:function(request,status){
+	    			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    		}
+	    	});
+	    }
 		
-		
-		function chkPW(){
-
-			 var pw = $("#pass").val();
-			 var num = pw.search(/[0-9]/g);
-			 var eng = pw.search(/[a-z]/ig);
-			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-			 if(pw.length < 8 || pw.length > 20){
-				 $('m_pwcheck2').text('');
-				 $('m_pwcheck2').html("8자리 ~ 20자리 이내로 입력해주세요.");
-				 
-			  /* alert("8자리 ~ 20자리 이내로 입력해주세요."); */
-			  return false;
-			 }else if(pw.search(/\s/) != -1){
-			  alert("비밀번호는 공백 없이 입력해주세요.");
-			  return false;
-			 }else if(num < 0 || eng < 0 || spe < 0 ){
-			  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-			  return false;
-			 }else {
-				console.log("통과"); 
-			    return true;
-			 }
-
-			}
-		
-
 	</script>
 
 
  <div class="container" style="margin-top:30px">
-	<form method="post" action="memlogin.do" >
-		<h3 style="font-weight: bold;">개인 회원가입</h3>
+	<form method="post" action="/user/member/join/memJoin.do" enctype="multipart/form-data" >
+		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
 			<label for="id">아이디</label>
@@ -106,13 +96,13 @@ function check(){
 			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button>
 		</div>
 		<div class="form-group">
-			<label for="pass">비밀번호</label>
-				<input type="password" class="form-control" id="pass" name="pass" oninput="pass.value" placeholder="비밀번호를 입력하세요" required="required" onclick="chkPW();">
+			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
+				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" required="required" >
 				<p id="m_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 		</div>
 		<div class="form-group">
 			<label for="pass2">비밀번호 확인</label>
-				<input type="password" class="form-control" id="pass2" name="pass2" placeholder="비밀번호를 다시 입력하세요" required="required">
+				<input type="password" class="form-control" id="pass2" name="pass2" maxlength="18" placeholder="비밀번호를 다시 입력하세요" required="required">
 				<p id="m_pwcheck" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 
 		</div>
@@ -150,10 +140,14 @@ function check(){
                <%for(int i=1; i<=20; i++){ %>
                <option value="<%=i+"년"%>"><%=i+"년"%></option>
                <% } %>
-               <option value="20년 이상">20년 이상</option>
+               <option value="21년 이상">21년 이상</option>
             </select>
 			
 		</div>
+		<div class="form-group">
+			<label for="image">사진 업로드</label>
+				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+		</div> 
 		<div class="reg_button">
 				<a class="btn btn-danger px-3" href="javascript:location.href=history.back();">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
@@ -165,6 +159,6 @@ function check(){
 	</form>
 	</div>
 
-	<%@ include file="../../../inc/footer.jsp" %>	
+	<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

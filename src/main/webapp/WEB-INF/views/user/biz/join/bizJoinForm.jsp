@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-<%@ include file="../../../inc/top.jsp" %>
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>기업 회원가입</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="../../../inc/header.jsp" %>
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <script type="text/javascript">
 /* 사업자번호 중복체크 */
 function check(){
@@ -27,13 +27,13 @@ function check(){
 		url:'<%=context%>/bsm_no_check.do',
 		type : 'POST',
 		dataType : 'json',
-		data : {"bsm_no" : $("#bsm_no").val()},
+		data : {"bsmno" : $("#bsmno").val()},
 		success : function(data) {
 				if (data == 1) {
 					alert("중복된 사업자번호가 존재합니다.");
 				} else if (data == 0) {
-					$("#bsm_no").attr("value", "Y");
-					alert("사용하실 수 있는 사업자 번호입니다.");
+					$("#bsmno").attr("value", "Y");
+					alert("사용가능한 사업자 번호입니다.");
 				}
 			},
 			error : function() {
@@ -59,28 +59,47 @@ function check(){
 				}
 			});
 		});
+		
+		/* 비밀번호 유효성 검사 */
+	    function pwCheck1(pass){
+	    	$.ajax({
+	    		type:'POST',
+	    		url:'<%=context%>/bizPwCheck.do',
+	    		data:{pass:pass},
+	    		success:function(result){
+	    			if(result==true){
+	    				b_pwcheck2.innerHTML="비밀번호 사용가능합니다.";
+	    			}else{
+	    				b_pwcheck2.innerHTML="비밀번호 형식이 일치하지 않습니다.";
+	    			}
+	    		},
+	    		error:function(request,status){
+	    			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    		}
+	    	});
+	    }
 	</script>
 
-
  <div class="container" style="margin-top:30px">
-	<form method="post" action="bizlogin.do" >
-		<h3 style="font-weight: bold;">기업 회원가입</h3>
+	<form method="post" action="/user/biz/join/bizJoin.do" >
+		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
-			<label for="bsm_no">사업자 번호 ('-'를 포함한 사업자 번호를 입력해주세요)</label>
-				<input type="text" class="form-control" id="bsm_no" name="bsm_no" placeholder="사업자 번호를 입력하세요" maxlength="12" required="required">
+			<label for="bsmno">사업자 번호 ('-'를 포함한 사업자 번호를 입력해주세요)</label>
+				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="12" required="required">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="b_check" type="button" onclick="check();">
 			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button>
 		</div>
 		<div class="form-group">
-			<label for="pass">비밀번호</label>
-				<input type="password" class="form-control" id="pass" name="pass" oninput="pass.value" placeholder="비밀번호를 입력하세요" required="required">
+			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
+				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck1(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" required="required">
+				<p id="b_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 		</div>
 		<div class="form-group">
 			<label for="pass2">비밀번호 확인</label>
-				<input type="password" class="form-control" id="pass2" name="pass2" placeholder="비밀번호를 다시 입력하세요" required="required">
+				<input type="password" class="form-control" id="pass2" name="pass2" maxlength="18" placeholder="비밀번호를 다시 입력하세요" required="required">
 				<p id="b_pwcheck" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 
 		</div>
@@ -132,6 +151,6 @@ function check(){
 	</form>
 	</div>
 
-	<%@ include file="../../../inc/footer.jsp" %>	
+	<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

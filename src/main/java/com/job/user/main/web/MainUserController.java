@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainUserController {
 	
-	@RequestMapping(value="main.do")
+	/*메인페이지*/
+	@RequestMapping(value="/user/main/main.do")
 	public String main() {
-		
-		return "user/main/main";
+		return  "user/main/main";
 	}
+	
 }

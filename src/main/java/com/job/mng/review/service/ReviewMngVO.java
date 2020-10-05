@@ -4,7 +4,7 @@ public class ReviewMngVO {
 	
 	private int rnum; 
 	private String id; 
-	private String bsm_no; 
+	private String bsmno; 
 	private String rev_type;
 	private String review;
 	private String sal;
@@ -30,11 +30,12 @@ public class ReviewMngVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getBsm_no() {
-		return bsm_no;
+	
+	public String getBsmno() {
+		return bsmno;
 	}
-	public void setBsm_no(String bsm_no) {
-		this.bsm_no = bsm_no;
+	public void setBsmno(String bsmno) {
+		this.bsmno = bsmno;
 	}
 	public String getRev_type() {
 		return rev_type;

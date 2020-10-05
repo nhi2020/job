@@ -11,17 +11,24 @@ import com.job.user.member.login.service.MemLoginUserVO;
 public class MemLoginUserDAO {
 
 	@Autowired
-	private SqlSessionTemplate sessionTemplate;
+	private SqlSessionTemplate sqlSessionTemplate;
 
-	/*개인회원가입*/
-	public void join(MemLoginUserVO vo) {
-		sessionTemplate.insert("sangah.MemJoinUser_SQL", vo);
+	/*개인 로그인*/
+	public MemLoginUserVO user(MemLoginUserVO vo) throws Exception{
+		return sqlSessionTemplate.selectOne("memLogin.user", vo);
 	}
 	
-	/*아이디 중복체크*/
-	public int m_check(MemLoginUserVO vo) throws Exception{
-		int result= sessionTemplate.selectOne("sangah.m_check", vo);
-		return result;
+	/*개인 로그인 체크*/
+	public int loginCheck(MemLoginUserVO vo) throws Exception{
+		int result=(Integer)sqlSessionTemplate.selectOne("memLogin.loginCheck", vo);
+		System.out.println("loginCheck result : "+result);
+		return  result;
 	}
+	
+	/*개인 아이디 찾기*/
+	public String memFindId(MemLoginUserVO vo) throws Exception{
+		return sqlSessionTemplate.selectOne("memLogin.findId", vo);
+	}
+
 
 }

@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sangah">
-	<!-- 개인회원가입 -->
-	<insert id="MemJoinUser_SQL" parameterType="MemUserVO">
-	<![CDATA[
-		insert into member(id,pass,mnum,type,name,gender,email,phone,birthday,career,reg_date)
-		         values(#{id},#{pass},(SELECT NVL(MAX(mnum)+1, 1) FROM member),'M',#{name},#{gender},
-		         #{email},#{phone},#{birthday},#{career},to_date(sysdate,'YYYY-MM-DD'))
-	]]>
-	</insert>
-	<!-- 아이디  중복체크 -->
-	<select id="m_check" resultType="int">
-	<![CDATA[
-		select count(*) from member where id=#{id}
-	]]>
+<mapper namespace="memLogin">
+    
+	<!-- 개인 로그인 -->
+	<select id="user" parameterType="MemLoginUserVO" resultType="MemLoginUserVO" >
+		<![CDATA[
+				 select id, 
+				        pass, 
+				        mnum,
+				        type,
+				        name,
+				        gender,
+				        email,
+				        phone,
+				        birthday,
+				        career,
+				        image,
+				        reg_date,
+				        up_date,
+				        del_date,
+				        del_yn
+		         from   member 
+		         where  id=#{id} and pass=#{pass}
+		]]>
+		
+	</select>
+	
+	<!-- 개인 로그인 체크 -->
+	<select id="loginCheck" parameterType="MemLoginUserVO" resultType="int">
+		<![CDATA[
+			     select count(*)
+			     from   member
+			     where  id=#{id} and pass=#{pass}		
+		]]>
+	</select>
+	
+	<!-- 개인 아이디 찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		<![CDATA[
+				select id
+				from member
+				where email=#{email} and name=#{name} and phone=#{phone}
+		]]>
 	</select>
 
 </mapper>

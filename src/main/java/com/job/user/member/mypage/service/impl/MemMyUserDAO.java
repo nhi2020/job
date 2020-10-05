@@ -1,9 +1,6 @@
 package com.job.user.member.mypage.service.impl;
 
-
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +13,31 @@ public class MemMyUserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<MemMyUserVO> memmylist() {
-		System.out.println("startdao");
-		List<MemMyUserVO> memmylist = sqlSessionTemplate.selectList("MemMyUser.memmyList");
-		System.out.println(memmylist);
-		return memmylist;
+	// 회원정보리스트
+	public List<MemMyUserVO> memMyList() {
+		List<MemMyUserVO> memMylist = sqlSessionTemplate.selectList("MemMyUser.memMyList");
+		return memMylist;
 
 	}
 
-
-	public MemMyUserVO memmySelect(HttpServletRequest request) {
-		String id = "aaa12";
-		// TODO Auto-generated method stub
-		MemMyUserVO ss =  sqlSessionTemplate.selectOne("MemMyUser.memmySelect", id);
-		System.out.println("=======================================");
-		System.out.println(ss);
-		System.out.println("=======================================");
-		//return (HashMap) sqlSessionTemplate.selectOne("MemMyUser.memmySelect", id);
-		return ss;
+	// 개인정보
+	public MemMyUserVO memMySelect(MemMyUserVO vo) {
+		//String id = "aaa12";
+		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelect", vo);
+		return user;
 	}
 
+	/* 개인정보 업데이트 */
+	public int memMyUpdate(MemMyUserVO vo) throws Exception {
+		//String id = "aaa12";
+		int result = (Integer)sqlSessionTemplate.update("MemMyUser.memMyUpdate", vo);
+		return result;
+	}
+	
+	/*업데이트2*/
+	public int myupdate(MemMyUserVO vo) {
+		int result = (Integer)sqlSessionTemplate.update("MemMyUser.myUpdate", vo);
+		return result;
+	}
+	
 }

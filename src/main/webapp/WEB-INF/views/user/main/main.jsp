@@ -4,16 +4,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../inc/top.jsp" %>
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../../inc/header.jsp" %>
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
+	<c:if test="${!empty sessionScope.user.id}">
+		<div class="row">
+			<div class="col-sm-3">
+				${sessionScope.user.name}님 환영합니다.
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${!empty sessionScope.b_user.bsmno}">
+		<div class="row">
+			<div class="col-sm-3">
+				${sessionScope.b_user.company}님 환영합니다.
+			</div>
+		</div>
+	</c:if>
 	<h2><strong>오늘의 추천 기업</strong></h2>
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image</div>
+			<div class="fakeimg">Fake Image </div>
 		</div>
 		<div class="col-sm-3">
 			<div class="fakeimg">Fake Image</div>
@@ -36,6 +50,6 @@
       	</div>
 	</div>
 </div>
-<%@ include file="../../inc/footer.jsp" %>	
+<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

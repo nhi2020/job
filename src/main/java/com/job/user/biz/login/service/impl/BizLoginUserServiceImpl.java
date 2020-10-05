@@ -1,9 +1,14 @@
 package com.job.user.biz.login.service.impl;
 
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
+import com.job.user.biz.join.service.BizJoinUserService;
+import com.job.user.biz.join.service.BizJoinUserVO;
 import com.job.user.biz.login.service.BizLoginUserService;
 import com.job.user.biz.login.service.BizLoginUserVO;
 
@@ -13,18 +18,36 @@ public class BizLoginUserServiceImpl implements BizLoginUserService {
 	@Resource(name = "bizLoginUserDAO")
 	private BizLoginUserDAO bizLoginUserDAO;
 
-	/* 기업회원가입 */
+	/*기업 로그인*/
 	@Override
-	public void join(BizLoginUserVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		bizLoginUserDAO.join(vo);
+	public BizLoginUserVO b_login(BizLoginUserVO vo) throws Exception {
+		return bizLoginUserDAO.b_login(vo);
 	}
-	
-	/*사업자번호 중복체크*/
+
+	/*기업 로그인 체크*/
 	@Override
-	public int bsm_no_check(BizLoginUserVO vo) throws Exception {
-		int result=bizLoginUserDAO.bsm_no_check(vo);
+	public int b_LoginCheck(BizLoginUserVO vo) throws Exception {
+		int result=bizLoginUserDAO.b_LoginCheck(vo);		
 		return result;
+	}
+
+	/*기업 사업자 번호 찾기*/
+	@Override
+	public String findBsmno(HttpServletResponse response, BizLoginUserVO vo) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		String bsmno=bizLoginUserDAO.findBsmno(vo);
+		System.out.println("bsmno: "+bsmno);
+		if(bsmno==null) {
+			out.println("<script>");
+			out.println("alert('가입된 사업자 번호가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		}else {
+			return bsmno;
+		}
 	}
 
 }

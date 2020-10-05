@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../../../inc/top.jsp" %>
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../../../inc/header.jsp" %>
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
 	
 </div>
-<%@ include file="../../../inc/footer.jsp" %>	
+<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 
 	<h2>회원목록</h2>
 
