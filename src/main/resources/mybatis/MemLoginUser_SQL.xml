@@ -21,7 +21,7 @@
 				        del_date,
 				        del_yn
 		         from   member 
-		         where  id=#{id} and pass=#{pass}
+		         where  id=#{id} and pass=#{pass} and del_yn='N'
 		]]>
 		
 	</select>
@@ -31,7 +31,7 @@
 		<![CDATA[
 			     select count(*)
 			     from   member
-			     where  id=#{id} and pass=#{pass}		
+			     where  id=#{id} and pass=#{pass} and del_yn='N'		
 		]]>
 	</select>
 	
@@ -39,8 +39,8 @@
 	<select id="findId" parameterType="String" resultType="String">
 		<![CDATA[
 				select id
-				from member
-				where email=#{email} and name=#{name} and phone=#{phone}
+				from   member
+				where  email=#{email} and name=#{name} and phone=#{phone} and del_yn='N'
 		]]>
 	</select>
 
@@ -48,8 +48,8 @@
 	<update id="memPassChange" parameterType="hashMap">
 		<![CDATA[
 				update member
-				set pass=#{pass}
-				where email=#{email}
+				set    pass=#{pass}
+				where  email=#{email} and del_yn='N'
 		]]>
 		
 		

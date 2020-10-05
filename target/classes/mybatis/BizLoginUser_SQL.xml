@@ -20,7 +20,7 @@
 		                del_date,
 		                del_yn
 		         from   biz 
-		         where  bsmno=#{bsmno} and pass=#{pass}
+		         where  bsmno=#{bsmno} and pass=#{pass} and del_yn='N'
 		]]>
 	</select>
 	
@@ -29,7 +29,7 @@
 		<![CDATA[
 			  	 select count(*)
 			  	 from   biz
-				 where  bsmno=#{bsmno} and pass=#{pass}
+				 where  bsmno=#{bsmno} and pass=#{pass} and del_yn='N'
 		]]>
 	</select>
 	
@@ -38,7 +38,7 @@
 		<![CDATA[
 				select bsmno
 				from   biz
-				where  company=#{company} and phone=#{phone} and email=#{email}
+				where  company=#{company} and phone=#{phone} and email=#{email} and del_yn='N'
 		]]>
 	
 	</select>
