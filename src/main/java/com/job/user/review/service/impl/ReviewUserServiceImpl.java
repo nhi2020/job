@@ -51,4 +51,9 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 		return reviewUserDAO.total3();
 	}
 
+	@Override
+	public int reviewWriteForm(ReviewUserVO reviewUserVO) {
+		return reviewUserDAO.reviewWriteForm(reviewUserVO);
+	}
+
 }

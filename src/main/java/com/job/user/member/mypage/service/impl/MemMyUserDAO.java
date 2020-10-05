@@ -41,22 +41,22 @@ public class MemMyUserDAO {
 	}
 
 	/* 개인회원 탈퇴 */
-	public void memMyDelete(MemMyUserVO vo) throws Exception {
-		sqlSessionTemplate.delete("MemMyUser.memMyDelete", vo);
+	public int memMyDelete(MemMyUserVO vo) throws Exception {
+		int result = sqlSessionTemplate.update("MemMyUser.memMyDelete", vo);
+		return result;
 	}
 
 	/* 패스워드 체크 */
-	public int myPassChk(MemMyUserVO vo) throws Exception{
-		int result = sqlSessionTemplate.selectOne("MemMyUser.myPassChk",vo);
+	public int myPassChk(MemMyUserVO vo) throws Exception {
+		int result = sqlSessionTemplate.selectOne("MemMyUser.myPassChk", vo);
 		return result;
-		
+
 	}
-	
+
 	/* 비밀번호 업데이트 */
 	public int myUpdatePassChng(MemMyUserVO vo) {
 		int result = (Integer) sqlSessionTemplate.update("MemMyUser.myUpdatePassChng", vo);
 		return result;
 	}
-	
-	
+
 }

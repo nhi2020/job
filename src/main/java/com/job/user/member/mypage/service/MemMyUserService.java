@@ -19,7 +19,7 @@ public interface MemMyUserService {
 	public int myUpdate(MemMyUserVO vo);
 
 	/* 개인회원 탈퇴 */
-	public void memMyDelete(MemMyUserVO vo) throws Exception;
+	public int memMyDelete(MemMyUserVO vo) throws Exception;
 	
 	/*패스워드 체크*/
 	public int myPassChk(MemMyUserVO vo) throws Exception;

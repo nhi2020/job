@@ -61,11 +61,13 @@
 	</update>
 
 	<!--개인회원 탈퇴 -->
-	<delete id="memMyDelete">
-		DELETE FROM MEMBER
+	<update id="memMyDelete">
+		UPDATE MEMBER
+		SET
+		DEL_YN='Y'
 		WHERE ID = #{id}
 		AND PASS = #{pass}
-	</delete>
+	</update>
 
 	<!-- 패스워드 체크 -->
 	<select id="myPassChk" resultType="int">

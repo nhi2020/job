@@ -28,7 +28,7 @@ public class MemMyUserController {
 	private MemLoginUserService memLoginUserService;
 
 	/* 개인회원 리스트 */
-	@RequestMapping(value = "/user/member/mypage/memMyList.do")
+	@RequestMapping(value = "/user/mypage/member/memMyList.do")
 	public String memMyList(Model model) {
 		List<MemMyUserVO> memMyList = memMyUserService.memMyList();
 		model.addAttribute("list", memMyList);
@@ -36,7 +36,7 @@ public class MemMyUserController {
 	}
 
 	/* 개인정보 */
-	@RequestMapping(value = "/user/member/mypage/memMySelectList.do")
+	@RequestMapping(value = "/user/mypage/member/memMySelectList.do")
 	public String memMySelectList(Model model) {
 		/*
 		 * HttpSession session=request.getSession(); MemLoginUserVO
@@ -48,7 +48,7 @@ public class MemMyUserController {
 	}
 
 	/* 개인정보 업데이트 */
-	@RequestMapping(value = "/user/member/mypage/memMyUpdateForm.do")
+	@RequestMapping(value = "/user/mypage/member/memMyUpdateForm.do")
 	public String memmyUpdate(Model model) {
 		/*
 		 * MemMyUserVO user =memMyUserService.memMySelect(vo);
@@ -58,7 +58,7 @@ public class MemMyUserController {
 	}
 
 	/* 개인정보 업데이트1 */
-	@RequestMapping(value = "/user/member/mypage/myUpdate.do")
+	@RequestMapping(value = "/user/mypage/member/myUpdate.do")
 	public String myupdate(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO) {
 		int result = memMyUserService.myUpdate(vo);
 		if (result == 1) {
@@ -94,8 +94,11 @@ public class MemMyUserController {
 			return "redirect:memMyDeleteForm.do";
 
 		}
-		memMyUserService.memMyDelete(vo);
-		session.invalidate();
+		int result = memMyUserService.memMyDelete(vo);
+		if(result ==1 ) {
+			session.invalidate();
+		}
+				
 		return "user/member/login/memLoginForm";
 	}
 
