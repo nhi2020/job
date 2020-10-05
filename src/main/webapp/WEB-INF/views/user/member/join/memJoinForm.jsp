@@ -149,7 +149,7 @@ function check(){
 				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
 		</div> 
 		<div class="reg_button">
-				<a class="btn btn-danger px-3" href="javascript:location.href=history.back();">
+				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
 				<button class="btn btn-primary px-3" id="reg_submit">

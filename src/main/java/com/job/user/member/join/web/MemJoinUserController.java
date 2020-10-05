@@ -62,7 +62,7 @@ public class MemJoinUserController {
 	public boolean pwCheck(String pass) {
 		
 		boolean check=false;
-		String pw_check= "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\"+=])[A-Za-z[0-9]$@$!%*?&`~'\"+=]{6,18}$";;
+		String pw_check= "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*?&`~'\"+=])[A-Za-z[0-9]$@$!%*?&`~'\"+=]{6,18}$";
 		Pattern pattern_symbol=Pattern.compile(pw_check);
 		Matcher matcher_symbol=pattern_symbol.matcher(pass);
 		if(matcher_symbol.find()) {

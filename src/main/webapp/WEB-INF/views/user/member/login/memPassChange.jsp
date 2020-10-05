@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String context = request.getContextPath();
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,6 +18,27 @@
 <!-- 폰트 어썸 -->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<script type="text/javascript">
+/* 비밀번호 유효성 검사 */
+function pwCheck(pass){
+	$.ajax({
+		type:'POST',
+		url:'<%=context%>/memPwCheck.do',
+		data:{pass:pass},
+		success:function(result){
+			if(result==true){
+				m_pwcheck2.innerHTML="비밀번호 사용가능합니다.";
+			}else{
+				m_pwcheck2.innerHTML="비밀번호 형식이 일치하지 않습니다.";
+			}
+		},
+		error:function(request,status){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+</script>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
@@ -27,7 +51,8 @@
 			<div class="col">
 				<div class="form-group">
 					<label for="pass">변경할 비밀번호 입력</label>
-					<input type="text" name="pass" id="pass"  class="form-control" placeholder="비밀번호를 입력하세요">
+					<input type="password" name="pass" id="pass"  class="form-control" oninput="pwCheck(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요">
+					<p id="m_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 				</div>
 				<div class="form-group">
 					<input type="submit" value="확인" class="btn btn-danger px-3">

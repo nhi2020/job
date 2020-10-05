@@ -16,7 +16,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,10 +82,8 @@ public class MemLoginUserController {
 	/*개인 비밀번호 찾기 - 메일 보내기*/
 	
 	@RequestMapping(value="/user/member/login/memFindPass.do")
-	public String memFindPass(HttpServletRequest request,String id,String email,HttpServletResponse response, Model model) throws Exception {
+	public String memFindPass(@RequestParam(value="email")String email,HttpServletResponse response, Model model) throws Exception {
 		System.out.println("member mail sending..");
-		String tomail=request.getParameter("email");
-		System.out.println("tomail : "+tomail);
 		String setfrom="tkddk0119@gmail.com";
 		String title="<jobara> 비밀번호 찾기 인증 이메일입니다.";
 		String tempPass=(int)(Math.random() * 999999) + 1 + "";
@@ -101,7 +98,7 @@ public class MemLoginUserController {
 			MimeMessage message=mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper=new MimeMessageHelper(message, true, "UTF-8");
 			messageHelper.setFrom(setfrom);
-			messageHelper.setTo(tomail);
+			messageHelper.setTo(email);
 			messageHelper.setSubject(title);
 			messageHelper.setText(content);
 			mailSender.send(message);
@@ -109,7 +106,6 @@ public class MemLoginUserController {
 			System.out.println(e);
 		}
 		
-		//ModelAndView mv=new ModelAndView();
 		model.addAttribute("tempPass",tempPass);
 		model.addAttribute("email",email);
 		
@@ -122,38 +118,32 @@ public class MemLoginUserController {
 	}
 	
 	/*개인 비밀번호 찾기 - 인증번호 입력 후 확인버튼 누르면 실행*/ 
-	@RequestMapping(value="/user/member/login/memPassEmailInjeung.do",method=RequestMethod.POST)
-	public ModelAndView memPassEmailInjeung(@RequestParam(value="tempPass") String tempPass, @RequestParam(value="email") String email, @RequestParam(value="injeung") String injeung, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/user/member/login/memPassEmailInjeung.do")
+	public String memPassEmailInjeung(@RequestParam(value="tempPass") String tempPass, @RequestParam(value="email") String email, @RequestParam(value="injeung") String injeung, HttpServletResponse response,Model model) throws Exception{
 		System.out.println("마지막 injeung : "+injeung);
 		System.out.println("마지막 tempPass : "+tempPass);
-		
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("/user/member/login/memPassChange");
-		mv.addObject("email", email);
+		String url="/user/member/login/memPassChange";
+		model.addAttribute("email", email);
 		
 		if(injeung.equals(tempPass)) {
-			mv.setViewName("user/member/login/memPassChange");
-			mv.addObject("email", email);
+			url="user/member/login/memPassChange";
+			model.addAttribute("email", email);
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('인증번호가 일치하였습니다. 비밀번호 변경창으로 이동합니다.');</script>");
 			writer.flush();
 			
-			return mv;
-			
 		} else if(injeung!=tempPass) {
-			ModelAndView mv2=new ModelAndView();
-			mv2.setViewName("user/member/login/memPassEmail");
+			url="user/member/login/memPassEmail";
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
 			writer.flush();
 			
-			return mv2;
 		}
-		return mv;
+		return url;
 	}
 	
 	/*개인 비밀번호 찾기 - 변경할 비밀번호 입력 후 확인 시 */ 

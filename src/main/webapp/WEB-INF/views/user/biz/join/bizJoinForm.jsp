@@ -139,7 +139,7 @@ function check(){
 		</div>
 
 		<div class="reg_button">
-				<a class="btn btn-danger px-3" href="javascript:location.href=history.back();">
+				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
 				<button class="btn btn-primary px-3" id="reg_submit">
