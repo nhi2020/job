@@ -281,6 +281,7 @@
 			<version>2.10.4</version>
 		</dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		
 		<!-- MultipartHttpServletRequset -->
@@ -296,6 +297,21 @@
          <version>1.2.2</version>
       </dependency>
 >>>>>>> refs/remotes/origin/master
+=======
+		
+		<!-- MultipartHttpServletRequset -->
+      <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>2.0.1</version>
+      </dependency>
+
+      <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.2.2</version>
+      </dependency>
+>>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 	</dependencies>
 
 	<build>
