@@ -1,5 +1,7 @@
 package com.job.user.member.login.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 public interface MemLoginUserService {
@@ -13,8 +15,8 @@ public interface MemLoginUserService {
 	/*개인 아이디 찾기*/
 	public String memFindId(HttpServletResponse response,MemLoginUserVO vo)throws Exception;
 
-	
-
+	/*개인 비밀번호 찾기 후 변경*/
+	public void memPassChange(Map<String, Object> map, MemLoginUserVO vo)throws Exception;
 
 	
 }

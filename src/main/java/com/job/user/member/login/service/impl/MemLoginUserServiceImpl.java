@@ -1,6 +1,7 @@
 package com.job.user.member.login.service.impl;
 
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +47,13 @@ public class MemLoginUserServiceImpl implements MemLoginUserService{
 		} else {
 			return id;
 		}
+	}
+
+	/*개인 비밀번호 찾기 후 변경*/
+	@Override
+	public void memPassChange(Map<String, Object> map, MemLoginUserVO vo) throws Exception {
+		memLoginUserDAO.memPassChange(map,vo);
+		
 	}
 
 
