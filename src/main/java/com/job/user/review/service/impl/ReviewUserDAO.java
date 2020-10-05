@@ -47,4 +47,8 @@ public class ReviewUserDAO {
 		return total;		
 	}
 	
+	public int reviewWriteForm(ReviewUserVO reviewUserVO) {
+		return 0;
+	}
+	
 }
