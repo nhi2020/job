@@ -25,6 +25,7 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, TITLE
 			from (
 				select 
 					RNUM
@@ -42,6 +43,7 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+					, TITLE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -77,6 +79,7 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, TITLE
 			from (
 				select 
 					RNUM
@@ -94,6 +97,7 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+					, TITLE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -129,6 +133,7 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, TITLE
 			from (
 				select 
 					RNUM
@@ -146,6 +151,7 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
+					, TITLE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -169,4 +175,13 @@
 	<select id="total3" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null
 	</select>
+	
+	<insert id="reviewWriteForm" parameterType="ReviewUserVO">
+
+	<selectKey keyProperty="B_CNT" order="BEFORE" resultType="int">
+		SELECT REVIEW_B_CNT.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO BOARD (b_cnt, id, title, review)
+				VALUES (#{b_cnt}, #{id}, #{title}, #{review})
+	</insert>
 </mapper>

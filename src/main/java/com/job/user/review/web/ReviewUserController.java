@@ -42,18 +42,15 @@ public class ReviewUserController {
 		return "user/review/reviewSelectList";
 	}
 	
-/*	@RequestMapping(value="reviewInsertForm.do")
-	public String reviewInsertForm(Model model) {
-		System.out.println("ReviewUserController insertEmp Start...");
-		reviewUserService.reviewInsertForm();
-		return "user/review/reviewInsertForm";
+	@RequestMapping("reviewWriteForm.do")
+	public String reviewWriteForm() {
+	  return "user/review/reviewWriteForm";
 	}
-
-	@RequestMapping(value="reviewDetailForm.do")
-	public String reviewDetailForm(HttpServletRequest request , int rnum, Model model) {
-		ReviewUserVO reviewUserVO = reviewUserService.reviewDetailForm(rnum);
-		model.addAttribute("reviewUserVO",reviewUserVO);
-		return "user/review/reviewDetailForm";
-	} */
+	
+	@RequestMapping("write.do")
+	public String write(ReviewUserVO reviewUserVO) {
+		reviewUserService.reviewWriteForm(reviewUserVO);
+		return "redirect: /detail?B_CNT="+ reviewUserVO.getB_cnt();
+	}
 	
 }
