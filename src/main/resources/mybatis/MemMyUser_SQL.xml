@@ -3,34 +3,94 @@
 <mapper namespace="MemMyUser">
 
 
-	<!-- 회원정보 -->
-	<select id="memmyList" resultType="MemMyUserVO">
+	<!--개인회원 리스트 -->
+	<select id="memMyList" resultType="MemMyUserVO">
 		SELECT
-		 ID,
-		 NAME,
-		 GENDER,
-		 EMAIL,
-		 PHONE,
-		 BIRTHDAY,
-		 CAREER
+		ID,
+		NAME,
+		GENDER,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		CAREER
 		FROM MEMBER
 		ORDER BY ID
 	</select>
-	
-	<select id="memmySelect" resultType="MemMyUserVO" parameterType="String">
-		SELECT
-		 	ID,
-		 	NAME,
-		 	GENDER,
-		 	EMAIL,
-		 	PHONE,
-		 	BIRTHDAY,
-		 	CAREER
+
+	<!--개인정보 -->
+	<select id="memMySelect" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT id,
+		PASS,
+		MNUM,
+		TYPE,
+		NAME,
+		GENDER,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		CAREER,
+		IMAGE,
+		REG_DATE,
+		UP_DATE,
+		DEL_DATE,
+		DEL_YN
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+
+	<!--개인정보 업데이트 -->
+	<select id="memMyUpdate" parameterType="MemMyUserVO" resultType="MemMyUserVO">
+		SELECT * FROM MEMBER WHERE ID = #{id}
+	</select>
+
+	<!--개인정보 업데이트1 -->
+	<update id="myUpdate" parameterType="MemMyUserVO">
+		UPDATE MEMBER
+		SET
+		NAME=#{name},
+		EMAIL =
+		#{email},
+		PHONE =
+		#{phone},
+		CAREER =
+		#{career}
+		WHERE
+		ID
+		=
+		#{id}
+	</update>
+
+	<!--개인회원 탈퇴 -->
+	<update id="memMyDelete">
+		UPDATE MEMBER
+		SET
+		DEL_YN='Y'
+		WHERE ID = #{id}
+		AND PASS = #{pass}
+	</update>
+
+	<!-- 패스워드 체크 -->
+	<select id="myPassChk" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ID=#{id}
+		AND PASS=#{pass}
+	</select>
+
+	<!-- 패스워드 변경 -->
+	<update id="memMyPass" parameterType="MemMyUserVO">
+		update member
+		set
+		pass =#{pass}
+		where id =#{id}
+
+	</update>
 	
-	
-	
-	
+	<!-- 패스워드 변경 -->
+	<update id="myUpdatePassChng" parameterType="MemMyUserVO">
+		update member
+		set
+		pass = #{pchange}
+		where id = #{id}
+	</update>
 </mapper>

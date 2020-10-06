@@ -2,7 +2,7 @@ package com.job.user.main.service;
 
 public class MainUserVO {
 	/*기업*/
-	private String bsm_no; 
+	private String bsmno; 
 	private String b_pass;
 	private int bnum; 
 	private String b_type; 
@@ -36,7 +36,7 @@ public class MainUserVO {
 	/*리뷰*/
 	private int rnum; 
 	private String r_id; 
-	private String r_bsm_no; 
+	private String r_bsmno; 
 	private String rev_type;
 	private String review;
 	private String sal;
@@ -50,11 +50,11 @@ public class MainUserVO {
 	private String m_difficultly;
 	private String m_date;
 	
-	public String getBsm_no() {
-		return bsm_no;
+	public String getBsmno() {
+		return bsmno;
 	}
-	public void setBsm_no(String bsm_no) {
-		this.bsm_no = bsm_no;
+	public void setBsmno(String bsmno) {
+		this.bsmno = bsmno;
 	}
 	public String getB_pass() {
 		return b_pass;
@@ -242,11 +242,12 @@ public class MainUserVO {
 	public void setR_id(String r_id) {
 		this.r_id = r_id;
 	}
-	public String getR_bsm_no() {
-		return r_bsm_no;
+	
+	public String getR_bsmno() {
+		return r_bsmno;
 	}
-	public void setR_bsm_no(String r_bsm_no) {
-		this.r_bsm_no = r_bsm_no;
+	public void setR_bsmno(String r_bsmno) {
+		this.r_bsmno = r_bsmno;
 	}
 	public String getRev_type() {
 		return rev_type;

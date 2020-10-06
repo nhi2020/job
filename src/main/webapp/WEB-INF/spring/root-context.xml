@@ -18,11 +18,12 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
 	</bean>
-	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결 -->
+	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결  xml--> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
 	</bean>
+	<!-- VO연결 -->
 	<bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
@@ -31,6 +32,14 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<!-- MultipartResolver 설정 -->
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="100000000" />
+      <property name="maxInMemorySize" value="100000000" />
+   </bean>
+   
 	<!-- Transaction 기본 설정 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -47,4 +56,21 @@
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* service.*Service.*(..))"/>
 		<!-- service 패키지의 Service 포함하는 모든 클래스,인터페이스의 모든 메서드를 포인트 컷 한다. -->
 	</aop:config>
+	
+	<!-- 메일보내기 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="jobarakr1@gmail.com" />
+		<property name="password" value="choongang1969" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	
 </beans>
