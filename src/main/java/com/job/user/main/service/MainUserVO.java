@@ -12,7 +12,7 @@ public class MainUserVO {
 	private String b_phone; 
 	private String field; 
 	private String addr; 
-	private String logo;
+	private String attachid;
 	private String b_reg_date; 
 	private String b_up_date; 
 	private String b_del_date; 
@@ -28,7 +28,7 @@ public class MainUserVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String image;
+	private String m_attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
@@ -49,7 +49,6 @@ public class MainUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
-	
 	public String getBsmno() {
 		return bsmno;
 	}
@@ -110,11 +109,11 @@ public class MainUserVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getLogo() {
-		return logo;
+	public String getAttachid() {
+		return attachid;
 	}
-	public void setLogo(String logo) {
-		this.logo = logo;
+	public void setAttachid(String attachid) {
+		this.attachid = attachid;
 	}
 	public String getB_reg_date() {
 		return b_reg_date;
@@ -200,11 +199,11 @@ public class MainUserVO {
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public String getImage() {
-		return image;
+	public String getM_attachid() {
+		return m_attachid;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setM_attachid(String m_attachid) {
+		this.m_attachid = m_attachid;
 	}
 	public String getReg_date() {
 		return reg_date;
@@ -242,7 +241,6 @@ public class MainUserVO {
 	public void setR_id(String r_id) {
 		this.r_id = r_id;
 	}
-	
 	public String getR_bsmno() {
 		return r_bsmno;
 	}
@@ -321,6 +319,7 @@ public class MainUserVO {
 	public void setM_date(String m_date) {
 		this.m_date = m_date;
 	}
+	
 	
 	
 }

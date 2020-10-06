@@ -1,5 +1,6 @@
 package com.job.user.biz.login.web;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,14 +42,22 @@ public class BizLoginUserController {
 	
 	/*기업 로그인 & 체크*/
 	@RequestMapping(value="/user/biz/login/bizLogin.do")
-	public String bizLogin(HttpSession session, BizLoginUserVO vo) throws Exception{
+	public String bizLogin(HttpSession session, BizLoginUserVO vo,HttpServletResponse response) throws Exception{
 		int result= bizLoginUserService.b_LoginCheck(vo);
 		String url= "user/main/main";
 		if(result==1) {
 			BizLoginUserVO b_user=bizLoginUserService.b_login(vo);
 			session.setAttribute("b_user", b_user);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('로그인되었습니다.');</script>");
+			writer.flush();
 			url= "user/main/main";
 		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('사업자 번호 또는 비밀번호를 확인해주세요.');</script>");
+			writer.flush();
 			url= "user/biz/login/bizLoginForm";
 		}
 		return url;
@@ -56,7 +65,11 @@ public class BizLoginUserController {
 	
 	/*기업 로그아웃*/
 	@RequestMapping(value="/user/biz/login/bizLogout.do")
-	public String bizLogout(HttpSession session) {
+	public String bizLogout(HttpSession session,HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		writer.println("<script>alert('로그아웃되었습니다.');</script>");
+		writer.flush();
 		session.invalidate();
 		return "user/main/main";
 	}
@@ -81,7 +94,9 @@ public class BizLoginUserController {
 	
 	/*기업 비밀번호 찾기 - 메일 보내기*/
 	@RequestMapping(value="/user/biz/login/bizFindPass.do")
-	public String bizFindPass(@RequestParam(value="email")String email,HttpServletResponse response, Model model) throws Exception {
+	public String bizFindPass(@RequestParam(value="email")String email,HttpServletResponse response, Model model,BizLoginUserVO vo) throws Exception {
+		int result=bizLoginUserService.bizPassCheck(vo);
+		if(result==1) {
 		System.out.println("biz mail sending..");
 		String setfrom="tkddk0119@gmail.com";
 		String title="<jobara> 비밀번호 찾기 인증 이메일입니다.";
@@ -114,6 +129,13 @@ public class BizLoginUserController {
 		writer.flush();
 		
 		return "/user/biz/login/bizPassEmail";
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('사업자 번호 또는 이메일을 확인해주세요.'); history.go(-1);</script>");
+			writer.flush();
+			return "/user/biz/login/bizFindPassForm";
+		}
 	}
 	
 	/*기업 비밀번호 찾기 - 인증번호 입력 후 확인버튼 누르면 실행*/ 
@@ -147,7 +169,7 @@ public class BizLoginUserController {
 	
 	/*기업 비밀번호 찾기 - 변경할 비밀번호 입력 후 확인 시 */ 
 	@RequestMapping(value="/user/biz/login/bizPassChange.do",method=RequestMethod.POST)
-	public ModelAndView bizPassChange(@RequestParam(value="email") String email, @RequestParam(value="pass") String pass, BizLoginUserVO vo, HttpServletResponse response)throws Exception{
+	public String bizPassChange(@RequestParam(value="email") String email, @RequestParam(value="pass") String pass, BizLoginUserVO vo, HttpServletResponse response)throws Exception{
 		vo.setEmail(email);
 		vo.setPass(pass);
 		
@@ -156,11 +178,8 @@ public class BizLoginUserController {
 		map.put("pass", vo.getPass());
 		
 		bizLoginUserService.bizPassChange(map, vo);
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("/user/biz/login/bizPassChangeResult");
-		return mv;
+		return "/user/biz/login/bizPassChangeResult";
 	}
-	
 	
 	
 	

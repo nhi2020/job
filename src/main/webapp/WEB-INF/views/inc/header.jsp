@@ -6,23 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- <style type="text/css">
+	li{
+		float: right;
+	}
+</style> -->
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-		style="margin:24px 0;"> <a class="navbar-brand"
-		href="/user/main/main.do">Logo</a>
-	<button class="navbar-toggler navbar-toggler-right" type="button"
-		data-toggle="collapse" data-target="#navb">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> <a class="navbar-brand" href="/user/main/main.do">Logo</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
 	<div class="collapse navbar-collapse" id="navb">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link"
-				href="javascript:void(0)">기업</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="javascript:void(0)">리뷰</a></li>
-		</ul>
+		
 		<ul class="navbar-nav" id="main-menu">
 			<c:choose>
 				<c:when test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
@@ -42,10 +39,11 @@
 					</li>
 				</c:when>
 				<c:otherwise>
-					<li class="nav-item">
-						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
-					</li>
 					<c:if test="${!empty sessionScope.user.id}">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
+						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
+					</ul>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 						<div class="dropdown-menu">
@@ -54,6 +52,9 @@
 							<a class="dropdown-item" href="/user/mypage/member/memMyPassForm.do">비밀번호변경</a> 
 							<a class="dropdown-item" href="/user/mypage/member/memMyDeleteForm.do">탈퇴</a> 
 						</div> 
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
 					</li>
 					</c:if>
 					<c:if test="${!empty sessionScope.b_user.bsmno}">
@@ -64,6 +65,9 @@
 							<a class="dropdown-item" href="">활동내역</a> 
 							<a class="dropdown-item" href="">탈퇴</a> 
 						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
 					</li>
 					</c:if>
 				</c:otherwise>

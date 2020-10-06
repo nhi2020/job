@@ -49,12 +49,21 @@ public class MemLoginUserServiceImpl implements MemLoginUserService{
 		}
 	}
 
+	
+	/*개인 비밀번호 변경을 위한 아이디, 이메일 일치 여부*/
+	@Override
+	public int memPassCheck(MemLoginUserVO vo) throws Exception {
+		int result=memLoginUserDAO.memPassCheck(vo);
+		return result;
+	}
+	
 	/*개인 비밀번호 찾기 후 변경*/
 	@Override
 	public void memPassChange(Map<String, Object> map, MemLoginUserVO vo) throws Exception {
 		memLoginUserDAO.memPassChange(map,vo);
 		
 	}
+
 
 
 	

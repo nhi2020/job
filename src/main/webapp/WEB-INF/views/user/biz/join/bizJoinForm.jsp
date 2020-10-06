@@ -31,8 +31,8 @@
 			success : function(data) {
 				if (data == 1) {
 					alert("중복된 사업자번호가 존재합니다.");
+					document.frm.bsmno.value="";
 				} else if (data == 0) {
-					$("#bsmno").attr("value", "Y");
 					alert("사용가능한 사업자 번호입니다.");
 				}
 			},
@@ -81,7 +81,7 @@
 		});
 		
 		/* 비밀번호 유효성 검사 */
-	    function pwCheck1(pass){
+	    function pwCheck(pass){
 	    	$.ajax({
 	    		type:'POST',
 	    		url:'<%=context%>/bizPwCheck.do',
@@ -114,7 +114,7 @@
 		</div>
 		<div class="form-group">
 			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
-				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck1(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" required="required">
+				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" required="required">
 				<p id="b_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 		</div>
 		<div class="form-group">
