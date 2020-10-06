@@ -65,13 +65,13 @@ public class BizLoginUserController {
 	
 	/*기업 로그아웃*/
 	@RequestMapping(value="/user/biz/login/bizLogout.do")
-	public String bizLogout(HttpSession session,HttpServletResponse response) throws Exception {
+	public void bizLogout(HttpSession session,HttpServletResponse response) throws Exception {
+		session.invalidate();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer=response.getWriter();
 		writer.println("<script>alert('로그아웃되었습니다.');</script>");
+		writer.println("<script>location.href='/user/main/main.do';</script>");
 		writer.flush();
-		session.invalidate();
-		return "user/main/main";
 	}
 	
 	/*기업 사업자 번호 찾기 폼*/
