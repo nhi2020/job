@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.job.user.member.join.service.MemJoinUserService;
 import com.job.user.member.join.service.MemJoinUserVO;
 import com.job.util.JobFileUtils;
+import com.job.util.JobFileVO;
 
 @Controller
 public class MemJoinUserController {
@@ -33,7 +34,7 @@ public class MemJoinUserController {
 	@RequestMapping(value="/user/member/join/memJoin.do")
 	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{
 		int result=memJoinUserService.m_check(vo);
-		jobFileUtils.parseInsertFileInfo(request, null);
+		jobFileUtils.parseInsertFileInfo(request, "job\\src\\main\\webapp\\resources\\images\\upload\\member\\");
 		try {
 			if(result==1) {
 				return "user/member/join/memJoinForm";

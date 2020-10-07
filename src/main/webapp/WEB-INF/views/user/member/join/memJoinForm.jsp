@@ -105,7 +105,7 @@ function check(){
 
 
  <div class="container" style="margin-top:30px">
-	<form method="post" name="frm" >
+	<form method="post" name="frm" enctype="multipart/form-data">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >

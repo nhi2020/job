@@ -21,7 +21,7 @@ public class JobFileUtils {
 			throws Exception {
 		String url=this.getClass().getResource("").getPath();
 		String rootPath=url.substring(1,url.indexOf(".metadata"))+path;
-		
+		 
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
