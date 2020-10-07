@@ -166,8 +166,8 @@ function check(){
 			
 		</div>
 		<div class="form-group">
-			<label for="image">사진 업로드</label>
-				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+			<label for="file">내 이미지</label>
+				<input type="file" class="form-control" id="file" name="file" placeholder="내 이미지를 넣으세요." required="required">
 		</div> 
 		<div class="reg_button">
 				<a class="btn btn-danger px-3" href="/user/main/main.do">

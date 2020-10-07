@@ -5,9 +5,9 @@
 		<!-- 기업회원가입 -->
 		<![CDATA[
 				 insert 
-				 into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date,del_yn)
+				 into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date,del_yn,attachid)
 		         values(#{bsmno},#{pass},(SELECT NVL(MAX(bnum)+1, 1) FROM biz),'B',
-		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},sysdate,'N')
+		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},sysdate,'N',(SELECT MAX(attachid) FROM image))
 		         ]]>
 	</insert>
 		<!-- 사업자번호 중복체크 -->
@@ -17,5 +17,14 @@
 		         from   biz 
 		         where  bsmno=#{bsmno} and del_yn='N']]>
 	</select>
+	
+	<!-- 기업 이미지 넣기 -->
+	<insert id="insertBizImage" parameterType="JobFileVO">
+		<![CDATA[
+				insert
+				into image(attachid,originalfilename,storedfilename,filesize)
+				values ((SELECT NVL(MAX(attachid)+1, 1) FROM image),#{originalfilename},#{storedfilename},#{filesize})
+		]]>
+	</insert>
 
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.job.user.biz.join.service.BizJoinUserService;
 import com.job.user.biz.join.service.BizJoinUserVO;
+import com.job.util.JobFileVO;
 
 @Service("bizJoinUserService")
 public class BizJoinUserServiceImpl implements BizJoinUserService {
@@ -24,6 +25,13 @@ public class BizJoinUserServiceImpl implements BizJoinUserService {
 	@Override
 	public int bsm_no_check(BizJoinUserVO vo) throws Exception {
 		int result=bizJoinUserDAO.bsm_no_check(vo);
+		return result;
+	}
+
+	/*기업 이미지 넣기*/
+	@Override
+	public int insertBizImage(JobFileVO vo) throws Exception {
+		int result=bizJoinUserDAO.insertBizImage(vo);
 		return result;
 	}
 

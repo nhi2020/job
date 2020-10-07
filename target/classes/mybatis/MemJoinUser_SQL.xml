@@ -3,12 +3,12 @@
 <mapper namespace="memJoin">
 	<!-- 개인회원가입 -->
 	<insert id="insertMemJoin" parameterType="MemUserVO">
-	<![CDATA[
-			insert 
-			into member(id,pass,mnum,type,name,gender,email,phone,birthday,career,reg_date,del_yn)
-		    values(#{id},#{pass},(SELECT NVL(MAX(mnum)+1, 1) FROM member),'M',#{name},#{gender},
-		         #{email},#{phone},#{birthday},#{career},sysdate,'N')
-	]]>
+		<![CDATA[
+				insert 
+				into member(id,pass,mnum,type,name,gender,email,phone,birthday,career,reg_date,del_yn,attachid)
+		 	    values(#{id},#{pass},(SELECT NVL(MAX(mnum)+1, 1) FROM member),'M',#{name},#{gender},
+		         #{email},#{phone},#{birthday},#{career},sysdate,'N',(SELECT MAX(attachid) FROM image))
+		]]>
 	</insert>
 	<!-- 아이디  중복체크 -->
 	<select id="m_check" resultType="int">
@@ -20,11 +20,11 @@
 	</select>
 	
 	<!-- 개인 이미지 넣기 -->
-	<insert id="insertMemImage" parameterType="com.job.util.JobFileVO">
+	<insert id="insertMemImage" parameterType="JobFileVO">
 		<![CDATA[
 				insert
-				into member()
-				values ()
+				into image(attachid,originalfilename,storedfilename,filesize)
+				values ((SELECT NVL(MAX(attachid)+1, 1) FROM image),#{originalfilename},#{storedfilename},#{filesize})
 		]]>
 	</insert>
 
