@@ -27,16 +27,36 @@
 	<h2><strong>오늘의 추천 기업</strong></h2>
 	<div class="row">
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image </div>
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" /></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal"><span class="font-weight-normal">IT서비스</span></span></p>
 		</div>
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image</div>
+			<div class="fakeimg"><img src="/resources/images/upload/biz/20191012230041_uxazviga.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
 		</div>
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image</div>
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
 		</div>
 		<div class="col-sm-3">
-			<div class="fakeimg">Fake Image</div>
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
+		</div>
+		<div class="col-sm-3">
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
+		</div>
+		<div class="col-sm-3">
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
+		</div>
+		<div class="col-sm-3">
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
+		</div>
+		<div class="col-sm-3">
+			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
+			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
 		</div>
 		<hr class="d-sm-none">
 	</div>

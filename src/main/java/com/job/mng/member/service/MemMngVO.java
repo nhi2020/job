@@ -12,23 +12,24 @@ public class MemMngVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String image;
+	private String attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
 	
+	
+	public String getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(String attachid) {
+		this.attachid = attachid;
+	}
 	public String getCareer() {
 		return career;
 	}
 	public void setCareer(String career) {
 		this.career = career;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
 	}
 	public int getMnum() {
 		return mnum;
