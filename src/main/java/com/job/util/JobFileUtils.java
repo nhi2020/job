@@ -17,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 @Component("jobFileUtils")
 public class JobFileUtils {
 	
-	public List<JodFileVO> parseInsertFileInfo(HttpServletRequest request,String path)
+	public List<JobFileVO> parseInsertFileInfo(HttpServletRequest request,String path)
 			throws Exception {
 		String url=this.getClass().getResource("").getPath();
 		String rootPath=url.substring(1,url.indexOf(".metadata"))+path;
@@ -29,8 +29,8 @@ public class JobFileUtils {
 		String originalFileExtension = null;
 		String storedFileName = null;
 		
-		List<JodFileVO> list = new ArrayList<JodFileVO>();
-		JodFileVO vo=new JodFileVO();
+		List<JobFileVO> list = new ArrayList<JobFileVO>();
+		JobFileVO vo=new JobFileVO();
 		
 		File file = new File(rootPath);
 		if (file.exists() == false) {
