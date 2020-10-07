@@ -1,6 +1,6 @@
 package com.job.util;
 
-public class JodFileVO {
+public class JobFileVO {
 
 	private int attachid;
 	private String originalfilename;
