@@ -55,4 +55,11 @@ public class BizLoginUserServiceImpl implements BizLoginUserService {
 		bizLoginUserDAO.bizPassChange(map, vo);
 	}
 
+	/*기업 비밀번호 변경을 위한 사업자 번호, 이메일 일치 여부*/
+	@Override
+	public int bizPassCheck(BizLoginUserVO vo) throws Exception {
+		int result=bizLoginUserDAO.bizPassCheck(vo);
+		return result;
+	}
+
 }

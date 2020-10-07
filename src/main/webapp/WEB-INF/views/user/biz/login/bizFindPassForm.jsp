@@ -25,8 +25,8 @@
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
-					<label for="id">아이디</label>
-					<input type="text" name="id" id="id"  class="form-control" placeholder="아이디를 입력하세요">
+					<label for="bsmno">사업자 번호</label>
+					<input type="text" name="bsmno" id="bsmno"  class="form-control" placeholder="사업자 번호를 입력하세요">
 				</div>
 				<div class="form-group">
 					<label for="email">이메일</label>

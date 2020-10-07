@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.job.user.member.login.service.MemLoginUserService;
 import com.job.user.member.login.service.MemLoginUserVO;
@@ -39,14 +38,22 @@ public class MemLoginUserController {
 	
 	/*개인 로그인 & 체크*/
 	@RequestMapping(value="/user/member/login/memLogin.do")
-	public String memLogin(HttpSession session, MemLoginUserVO  vo) throws Exception {
+	public String memLogin(HttpSession session, MemLoginUserVO  vo,HttpServletResponse response) throws Exception {
 		int result=memLoginUserService.loginCheck(vo);
 		String url="user/main/main";
 		if(result==1) {
 			MemLoginUserVO user=memLoginUserService.user(vo);
 			session.setAttribute("user", user);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('로그인되었습니다.');</script>");
+			writer.flush();
 			url="user/main/main";
 		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('아이디 또는 비밀번호를 확인해주세요.');</script>");
+			writer.flush();
 			url="user/member/login/memLoginForm";
 		}	
 		return url;
@@ -54,10 +61,15 @@ public class MemLoginUserController {
 	
 	/*개인 로그아웃*/
 	@RequestMapping(value="/user/member/login/memLogout.do")
-	public String memLogout(HttpSession session) {
+	public void memLogout(HttpSession session,HttpServletResponse response) throws Exception {
 		session.invalidate();
-		return "user/main/main";
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		writer.println("<script>alert('로그아웃되었습니다.');</script>");
+		writer.println("<script>location.href='/user/main/main.do';</script>");
+		writer.flush();
 	}
+	
 	/*개인 아이디 찾기 폼*/
 	@RequestMapping(value="/user/member/login/memFindIdForm.do")
 	public String memFindIdForm() throws Exception{
@@ -79,9 +91,10 @@ public class MemLoginUserController {
 
 	
 	/*개인 비밀번호 찾기 - 메일 보내기*/
-	
 	@RequestMapping(value="/user/member/login/memFindPass.do")
-	public String memFindPass(@RequestParam(value="email")String email,HttpServletResponse response, Model model) throws Exception {
+	public String memFindPass(@RequestParam(value="email")String email,HttpServletResponse response, Model model,MemLoginUserVO vo) throws Exception {
+		int result=memLoginUserService.memPassCheck(vo);
+		if(result==1) {
 		System.out.println("member mail sending..");
 		String setfrom="tkddk0119@gmail.com";
 		String title="<jobara> 비밀번호 찾기 인증 이메일입니다.";
@@ -114,6 +127,13 @@ public class MemLoginUserController {
 		writer.flush();
 		
 		return "/user/member/login/memPassEmail";
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('아이디 또는 이메일을 확인해주세요.');</script>");
+			writer.flush();
+			return "/user/member/login/memFindPassForm";
+		}
 	}
 	
 	/*개인 비밀번호 찾기 - 인증번호 입력 후 확인버튼 누르면 실행*/ 
@@ -147,7 +167,7 @@ public class MemLoginUserController {
 	
 	/*개인 비밀번호 찾기 - 변경할 비밀번호 입력 후 확인 시 */ 
 	@RequestMapping(value="/user/member/login/memPassChange.do",method=RequestMethod.POST)
-	public ModelAndView memPassChange(@RequestParam(value="email") String email, @RequestParam(value="pass") String pass, MemLoginUserVO vo, HttpServletResponse response)throws Exception{
+	public String memPassChange(@RequestParam(value="email") String email, @RequestParam(value="pass") String pass, MemLoginUserVO vo, HttpServletResponse response)throws Exception{
 		vo.setEmail(email);
 		vo.setPass(pass);
 		
@@ -156,9 +176,7 @@ public class MemLoginUserController {
 		map.put("pass", vo.getPass());
 		
 		memLoginUserService.memPassChange(map,vo);
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("/user/member/login/memPassChangeResult");
-		return mv;
+		return "/user/member/login/memPassChangeResult";
 	}
 	
 	

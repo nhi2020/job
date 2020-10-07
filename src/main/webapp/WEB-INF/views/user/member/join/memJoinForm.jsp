@@ -31,8 +31,8 @@ function check(){
 		success : function(data) {
 				if (data == 1) {
 					alert("중복된 아이디가 존재합니다.");
+					document.frm.id.value="";
 				} else if (data == 0) {
-					$("#id").attr("value", "Y");
 					alert("사용가능한 아이디입니다.");
 				}
 			},
@@ -41,6 +41,25 @@ function check(){
 			}
 		});
 
+	}
+	function joinMem() {
+		var mp=$('#m_pwcheck').text();
+		var mp2=$('#m_pwcheck2').text();
+		if(mp2=='비밀번호 형식이 일치하지 않습니다.'){
+			alert('비밀번호 형식이 일치하지 않습니다.');
+			document.frm.pass.value="";
+			document.frm.pass.focus();
+			return false;
+		}
+		if(mp=='비밀번호가 일치하지 않습니다.'){
+			alert('비밀번호가 일치하지 않습니다.');
+			document.frm.pass2.value="";
+			document.frm.pass2.focus();
+			return false;
+		}
+		
+		document.frm.action="/user/member/join/memJoin.do";
+		document.frm.submit();
 	}
 	
 
@@ -69,8 +88,10 @@ function check(){
 	    		data:{pass:pass},
 	    		success:function(result){
 	    			if(result==true){
+	    				alert="비밀번호 사용가능합니다.";
 	    				m_pwcheck2.innerHTML="비밀번호 사용가능합니다.";
 	    			}else{
+	    				alert="비밀번호 형식이 일치하지 않습니다.zz";
 	    				m_pwcheck2.innerHTML="비밀번호 형식이 일치하지 않습니다.";
 	    			}
 	    		},
@@ -84,7 +105,7 @@ function check(){
 
 
  <div class="container" style="margin-top:30px">
-	<form method="post" action="/user/member/join/memJoin.do" enctype="multipart/form-data" >
+	<form method="post" name="frm" >
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
@@ -152,7 +173,7 @@ function check(){
 				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
-				<button class="btn btn-primary px-3" id="reg_submit">
+				<button class="btn btn-primary px-3" id="reg_submit" onclick="joinMem();">
 					<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
 				</button>
 			</div>

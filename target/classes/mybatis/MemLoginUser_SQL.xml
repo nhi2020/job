@@ -43,6 +43,15 @@
 				where  email=#{email} and name=#{name} and phone=#{phone} and del_yn='N'
 		]]>
 	</select>
+	
+	<!-- 개인 비밀번호 변경을 위한 아이디, 이메일 일치 여부 -->
+	<select id="memPassCheck" resultType="int">
+		<![CDATA[
+				select count(*)
+				from   member
+				where  id=#{id} and email=#{email}
+		]]>
+	</select>
 
 	<!-- 개인  비밀번호 변경 -->
 	<update id="memPassChange" parameterType="hashMap">

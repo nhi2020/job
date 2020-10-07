@@ -37,6 +37,43 @@ function pwCheck(pass){
 		}
 	});
 }
+
+function passChangeBiz() {
+	var bp=$('#b_pwcheck').text();
+	var bp2=$('#b_pwcheck2').text();
+	if(bp2=='비밀번호 형식이 일치하지 않습니다.'){
+		alert('비밀번호 형식이 일치하지 않습니다.');
+		document.frm.pass.value="";
+		document.frm.pass.focus();
+		return false;
+	}
+	if(bp=='비밀번호가 일치하지 않습니다.'){
+		alert('비밀번호가 일치하지 않습니다.');
+		document.frm.pass2.value="";
+		document.frm.pass2.focus();
+		return false;
+	}
+	
+	document.frm.action="/user/biz/login/bizPassChange.do";
+	document.frm.submit();
+}
+
+/* 비밀번호 확인 */
+$(document).ready(function() {
+	$('#pass').keyup(function() {
+		$('b_pwcheck').text('');
+	});
+	$('#pass2').keyup(function() {
+		if ($('#pass').val() != $('#pass2').val()) {
+
+			$('#b_pwcheck').text('');
+			$('#b_pwcheck').html("비밀번호가 일치하지 않습니다.");
+		} else {
+			$('#b_pwcheck').text('');
+			$('#b_pwcheck').html("비밀번호가 일치합니다.");
+		}
+	});
+});
 </script>
 
 </head>
@@ -45,7 +82,7 @@ function pwCheck(pass){
 <div class="container" style="margin-top: 30px">
 	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 변경할 비밀번호를 입력하세요. </h3>
 	<br><br>
-	<form  method="post" action="/user/biz/login/bizPassChange.do">
+	<form  method="post" name="frm">
 		<input type="hidden" name="email" value="${email}"/>
 		<div class="row">
 			<div class="col">
@@ -55,7 +92,12 @@ function pwCheck(pass){
 					<p id="b_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 				</div>
 				<div class="form-group">
-					<input type="submit" value="확인" class="btn btn-danger px-3">
+					<label for="pass2">변경할 비밀번호  다시 입력</label>
+					<input type="password" name="pass2" id="pass2"  class="form-control" maxlength="18" placeholder="비밀번호를 다시 입력하세요">
+					<p id="b_pwcheck" style="color: #FF6600; margin: 0; font-weight: bold"></p>
+				</div>
+				<div class="form-group">
+				    <input type="button" value="변경하기" onclick="javascript:passChangeBiz();" class="btn btn-danger px-3"/>
 				</div>
 			</div>
 		

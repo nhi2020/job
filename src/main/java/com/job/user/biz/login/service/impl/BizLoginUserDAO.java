@@ -31,6 +31,13 @@ public class BizLoginUserDAO {
 		return sqlSessionTemplate.selectOne("bizLogin.findBsmno", vo);
 	}
 	
+	/*기업 비밀번호 변경을 위한 사업자 번호, 이메일 일치 여부*/
+	public int bizPassCheck(BizLoginUserVO vo)throws Exception{
+		int result=sqlSessionTemplate.selectOne("bizLogin.bizPassCheck", vo);
+		return result;
+	}
+	
+	
 	/*기업 비밀번호 찾기 후 변경*/
 	public void bizPassChange(Map<String, Object> map, BizLoginUserVO vo) throws Exception{
 		map.get("pass");

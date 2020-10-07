@@ -43,6 +43,17 @@
 	
 	</select>
 	
+	<!-- 기업 비밀번호 변경을 위한 사업자 번호, 이메일 일치 여부 -->
+	<select id="bizPassCheck" resultType="int">
+		<![CDATA[
+				select count(*)
+				from   biz
+				where  bsmno=#{bsmno} and email=#{email} and del_yn='N' 
+		]]>
+	</select>
+	
+	
+	
 	<!-- 기업 비밀번호 변경 -->
 	<update id="bizPassChange" parameterType="hashMap">
 		<![CDATA[
@@ -50,8 +61,6 @@
 				set    pass=#{pass}
 				where  email=#{email} and del_yn='N' 
 		]]>
-		
-	
 	</update>
 
 </mapper>
