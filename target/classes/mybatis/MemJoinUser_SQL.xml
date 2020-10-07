@@ -18,5 +18,14 @@
 			where  id=#{id} and del_yn='N'
 	]]>
 	</select>
+	
+	<!-- 개인 이미지 넣기 -->
+<!-- 	<insert id="insertMemImage" parameterType="JobFileVO">
+		<![CDATA[
+				insert
+				into member()
+				values ()
+		]]>
+	</insert> -->
 
 </mapper>
