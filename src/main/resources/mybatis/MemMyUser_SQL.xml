@@ -53,7 +53,9 @@
 		PHONE =
 		#{phone},
 		CAREER =
-		#{career}
+		#{career},
+		UP_DATE =
+		sysdate
 		WHERE
 		ID
 		=
@@ -64,7 +66,8 @@
 	<update id="memMyDelete">
 		UPDATE MEMBER
 		SET
-		DEL_YN='Y'
+		DEL_YN='Y',
+		DEL_DATE = sysdate
 		WHERE ID = #{id}
 		AND PASS = #{pass}
 	</update>

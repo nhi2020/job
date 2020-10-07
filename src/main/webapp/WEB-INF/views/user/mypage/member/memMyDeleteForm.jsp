@@ -21,12 +21,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
+<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* 취소 버튼 */
 		$(".cencle").on("click", function() {
 
-			location.href = "/user/main/main.do";			
+			location.href = "/user/main/main.do";
 			/* 	/user/member/login/memLoginForm.do */
 		})
 
@@ -43,7 +44,7 @@
 				data : $("#delForm").serializeArray(),
 				success : function(data) {
 					if (data == 0) {
-						alert("패스워드가 틀렸습니다.");
+						alert("비밀번호가 틀렸습니다.");
 						return;
 					} else {
 						if (confirm("회원탈퇴하시겠습니까?")) {
@@ -59,17 +60,19 @@
 	})
 </script>
 <body>
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
+
+	<h3>회원탈퇴</h3>
 	<form action="/user/mypage/member/memMyDelete.do" method="post"
-		id="delForm">
+		name="delForm" id="delForm">
 		<div class="form-group has-feedback">
 			<label class="control-label" for="id">아이디</label> <input
 				class="form-control" type="text" name="id" id="id"
 				value="${sessionScope.user.id}" readonly="readonly" />
 		</div>
 		<div class="form-group has-feedback">
-			<label class="control-label" for="pass">패스워드</label> <input
-				class="form-control" type="password" name="pass" id="pass" required="required" />
+			<label class="control-label" for="pass">비밀번호</label> <input
+				class="form-control" type="password" name="pass" id="pass"
+				required="required" />
 		</div>
 		<div class="form-group has-feedback">
 			<label class="control-label" for="name">성명</label> <input
@@ -81,11 +84,6 @@
 			<button class="cencle btn btn-danger" type="button">취소</button>
 		</div>
 	</form>
-	<div>
-		<c:if test="${msg == false}">
-					비밀번호가 맞지 않습니다.
-				</c:if>
-	</div>
 
 
 </body>
