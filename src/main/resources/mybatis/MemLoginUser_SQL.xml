@@ -15,7 +15,7 @@
 				        phone,
 				        birthday,
 				        career,
-				        image,
+				        attachid,
 				        reg_date,
 				        up_date,
 				        del_date,

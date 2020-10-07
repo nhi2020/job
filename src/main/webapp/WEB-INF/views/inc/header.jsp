@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 폰트 어썸 -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <title>Insert title here</title>
 <!-- <style type="text/css">
 	li{
@@ -15,10 +18,10 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> <a class="navbar-brand" href="/user/main/main.do">Logo</a>
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-		<span class="navbar-toggler-icon"></span>
+		<span class="navbar-toggler-icon" ></span>
 	</button>
 
-	<div class="collapse navbar-collapse" id="navb">
+	<div class="collapse navbar-collapse" id="navb" >
 		
 		<ul class="navbar-nav" id="main-menu">
 			<c:choose>
@@ -41,6 +44,7 @@
 				<c:otherwise>
 					<c:if test="${!empty sessionScope.user.id}">
 					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link"><i class="fas fa-user-alt"></i>  ${sessionScope.user.name}님 환영합니다.</a></li>
 						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
 						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
 					</ul>
@@ -58,6 +62,7 @@
 					</li>
 					</c:if>
 					<c:if test="${!empty sessionScope.b_user.bsmno}">
+					<li class="nav-item"><a class="nav-link"><i class="fas fa-user-alt"></i>  ${sessionScope.b_user.company}님 환영합니다.</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 						<div class="dropdown-menu">
