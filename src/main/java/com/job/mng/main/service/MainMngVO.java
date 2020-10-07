@@ -12,7 +12,7 @@ public class MainMngVO {
 	private String b_phone; 
 	private String field; 
 	private String addr; 
-	private String attachid;
+	private int attachid;
 	private String b_reg_date; 
 	private String b_up_date; 
 	private String b_del_date; 
@@ -28,7 +28,7 @@ public class MainMngVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String m_attachid;
+	private int m_attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
@@ -109,12 +109,7 @@ public class MainMngVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getAttachid() {
-		return attachid;
-	}
-	public void setAttachid(String attachid) {
-		this.attachid = attachid;
-	}
+	
 	public String getB_reg_date() {
 		return b_reg_date;
 	}
@@ -199,10 +194,17 @@ public class MainMngVO {
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public String getM_attachid() {
+	
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
+	public int getM_attachid() {
 		return m_attachid;
 	}
-	public void setM_attachid(String m_attachid) {
+	public void setM_attachid(int m_attachid) {
 		this.m_attachid = m_attachid;
 	}
 	public String getReg_date() {

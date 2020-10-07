@@ -2,15 +2,16 @@ package com.job.util;
 
 public class JodFileVO {
 
-	private String attachid;
+	private int attachid;
 	private String originalfilename;
 	private String storedfilename;
-	private int filesize;
+	private long filesize;
 	
-	public String getAttachid() {
+
+	public int getAttachid() {
 		return attachid;
 	}
-	public void setAttachid(String attachid) {
+	public void setAttachid(int attachid) {
 		this.attachid = attachid;
 	}
 	public String getOriginalfilename() {
@@ -25,12 +26,13 @@ public class JodFileVO {
 	public void setStoredfilename(String storedfilename) {
 		this.storedfilename = storedfilename;
 	}
-	public int getFilesize() {
+	public long getFilesize() {
 		return filesize;
 	}
-	public void setFilesize(int filesize) {
+	public void setFilesize(long filesize) {
 		this.filesize = filesize;
 	}
+
 	
 	
 	

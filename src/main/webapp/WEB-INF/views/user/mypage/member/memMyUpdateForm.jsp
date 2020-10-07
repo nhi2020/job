@@ -37,35 +37,35 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" name="name" required="required"
+				<td><input type="text" name="name" id="name" required="required"
 					value="${sessionScope.user.name }"></td>
 			</tr>
 			<tr>
-				<th>이메일</th>
-				<td><input type="text" name="email" required="required"
+				<th>이메일</th> 
+				<td><input type="text" name="email" id="email" required="required"
 					value="${sessionScope.user.email }"></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="phone" required="required"
+				<td><input type="text" name="phone" id="phone" required="required"
 					value="${sessionScope.user.phone }"></td>
 			</tr>
-			<%-- <tr>
-				<th>생일</th>
-				<td>
-					<input type="hidden" name="birthday" value="${user.birthday}" readonly="readonly">
-				</td>
-			</tr> --%>
+			
 			<tr>
 				<th>경력</th>
-				<td><input type="text" name="career" required="required"
+				<td><input type="text" name="career" id="career" required="required"
 					value="${sessionScope.user.career }"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="확인"></td>
+				<td colspan="2"><input type="submit" id="submit" value="확인"></td>
 			</tr>
 
 		</table>
+		
+		<div class="form-group">
+			<label for="image">사진 업로드</label>
+				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+		</div> 
 	</form>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>

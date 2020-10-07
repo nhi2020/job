@@ -1,9 +1,10 @@
 package com.job.user.member.mypage.web;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -84,22 +85,27 @@ public class MemMyUserController {
 
 	/* 개인회원 탈퇴 */
 	@RequestMapping(value = "/user/mypage/member/memMyDelete.do", method = RequestMethod.POST)
-	public String memMyDelete(MemMyUserVO vo, HttpSession session, MemLoginUserVO loginVO, RedirectAttributes rttr)
+	public void memMyDelete(MemMyUserVO vo, HttpSession session, MemLoginUserVO loginVO, HttpServletResponse response)
 			throws Exception {
 		MemLoginUserVO user = (MemLoginUserVO) session.getAttribute("user");
 		String sessionMyPass = user.getPass();
 		String voPass = vo.getPass();
 		if (!(sessionMyPass.equals(voPass))) {
-			rttr.addFlashAttribute("msg", false);
-			return "redirect:memMyDeleteForm.do";
+			/*rttr.addFlashAttribute("msg", false);*/
+		response.sendRedirect("/user/mypage/member/memMyDeleteForm.do");
 
 		}
 		int result = memMyUserService.memMyDelete(vo);
 		if(result ==1 ) {
-			session.invalidate();
+			 
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('탈퇴되었습니다.');</script>");
+			writer.println("<script>location.href='/user/main/main.do';</script>");
+			writer.flush();
+			
 		}
 				
-		return "user/member/login/memLoginForm";
 	}
 
 	/* 패스워드 체크 */
@@ -122,13 +128,32 @@ public class MemMyUserController {
 
 	
 	/* 패스워드 변경 */
-	@ResponseBody
 	@RequestMapping(value = "/user/mypage/member/myUpdatePassChng.do")
-	public int myUpdatePassChng(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO) {
-		System.out.println(vo.getPchange());
-		int result = memMyUserService.myUpdatePassChng(vo);
-		return result;
+	public void myUpdatePassChng(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO, HttpServletResponse response) throws Exception {
 		
+		int result=0;
+		int passCheck=memMyUserService.myPassChk(vo);
+		
+		if(passCheck==1) {
+			result = memMyUserService.myUpdatePassChng(vo);
+			if(result==0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer=response.getWriter();
+				writer.println("<script>alert('비밀번호 변경이 실패 했습니다.');  history.back();</script>");
+				writer.flush();
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer=response.getWriter();
+				writer.println("<script>alert('비밀번호 변경 되었습니다.');</script>");
+				writer.println("<script>location.href='/user/main/main.do';</script>");
+				writer.flush();
+			}
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('비밀번호가 일치하지 않습니다.');  history.back();</script>");
+			writer.flush();
+		}
 		
 	}
 	

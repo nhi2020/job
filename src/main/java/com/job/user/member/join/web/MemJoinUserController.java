@@ -33,7 +33,7 @@ public class MemJoinUserController {
 	@RequestMapping(value="/user/member/join/memJoin.do")
 	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{
 		int result=memJoinUserService.m_check(vo);
-		jobFileUtils.parseInsertFileInfo(request);
+		jobFileUtils.parseInsertFileInfo(request, null);
 		try {
 			if(result==1) {
 				return "user/member/join/memJoinForm";

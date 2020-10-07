@@ -12,7 +12,7 @@ public class BizUserVO {
 	private String phone; 
 	private String field; 
 	private String addr; 
-	private String attachid;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
@@ -20,10 +20,11 @@ public class BizUserVO {
 	
 	
 	
-	public String getAttachid() {
+	
+	public int getAttachid() {
 		return attachid;
 	}
-	public void setAttachid(String attachid) {
+	public void setAttachid(int attachid) {
 		this.attachid = attachid;
 	}
 	public String getBsmno() {

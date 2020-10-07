@@ -12,7 +12,7 @@ public class MemUserVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String attachid;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
@@ -20,10 +20,10 @@ public class MemUserVO {
 	
 	
 	
-	public String getAttachid() {
+	public int getAttachid() {
 		return attachid;
 	}
-	public void setAttachid(String attachid) {
+	public void setAttachid(int attachid) {
 		this.attachid = attachid;
 	}
 	public String getCareer() {
