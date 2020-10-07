@@ -3,10 +3,8 @@ package com.job.util;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,18 +17,21 @@ import org.apache.commons.io.FileUtils;
 @Component("jobFileUtils")
 public class JobFileUtils {
 	
-	public List<Map<String, Object>> parseInsertFileInfo(HttpServletRequest request)
+	public List<JodFileVO> parseInsertFileInfo(HttpServletRequest request,String path)
 			throws Exception {
 		String url=this.getClass().getResource("").getPath();
-		String rootPath=url.substring(1,url.indexOf(".metadata"))+"log/src/main/webapp/WEB-INF/views/upload/";
+		String rootPath=url.substring(1,url.indexOf(".metadata"))+path;
+		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> listMap = null;
+		
+		List<JodFileVO> list = new ArrayList<JodFileVO>();
+		JodFileVO vo=new JodFileVO();
+		
 		File file = new File(rootPath);
 		if (file.exists() == false) {
 			file.mkdirs();
@@ -43,11 +44,10 @@ public class JobFileUtils {
 				storedFileName = CommonUtils.getRandomString() + originalFileExtension;
 				file = new File(rootPath + storedFileName);
 				multipartFile.transferTo(file);
-				listMap = new HashMap<String, Object>();
-				listMap.put("ORIGINAL_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName);
-				listMap.put("FILE_SIZE", multipartFile.getSize());
-				list.add(listMap);
+				vo.setOriginalfilename(originalFileName);
+				vo.setStoredfilename(storedFileName);
+				vo.setFilesize(multipartFile.getSize());
+				list.add(vo);
 			}
 		}
 		return list;

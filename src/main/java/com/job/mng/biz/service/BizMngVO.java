@@ -12,12 +12,20 @@ public class BizMngVO {
 	private String phone; 
 	private String field; 
 	private String addr; 
-	private String attachid;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
 	
+	
+	
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getBsmno() {
 		return bsmno;
 	}
@@ -78,12 +86,7 @@ public class BizMngVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getAttachid() {
-		return attachid;
-	}
-	public void setAttachid(String attachid) {
-		this.attachid = attachid;
-	}
+	
 	public String getReg_date() {
 		return reg_date;
 	}
