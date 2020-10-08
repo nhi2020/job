@@ -1,3 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.ReviewMng"></mapper>
+<mapper namespace="reviewMng">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+				<choose>
+						<when test="type == 'N'.toString()">
+							bsmno like '%'||#{keyword}|| '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							company like '%'||#{keyword}|| '%'
+						</when>
+						<when test="type == 'E'.toString()">
+							ceo like '%'||#{keyword}|| '%'
+						</when>
+					</choose>
+		</trim>
+	</sql>
+	<select id="MngRevList" resultType="ReviewMngVO">
+		<![CDATA[
+		select rnum, company, review, id, reg_date, up_date, del_date, del_yn
+		from (select /*+ INDEX_DESC(review pk_review) */
+			   rownum rn, rnum, r.bsmno, b.company, r.review, r.id, r.reg_date, r.up_date, r.del_date, r.del_yn
+			  from review r, biz b
+			  where r.bsmno = b.bsmno and
+			  review is not null and
+		]]>
+		
+		<include refid="criteria"/>
+	
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+	</select>
+	<select id="MngSalList" resultType="ReviewMngVO">
+		<![CDATA[
+		select rnum, bsmno, company, sal, spot, id, reg_date, up_date, del_date, del_yn
+		from (select /*+ INDEX_DESC(review pk_review) */
+			  rownum rn, rnum, r.bsmno, b.company, sal, spot, r.id, r.reg_date, r.up_date, r.del_date, r.del_yn
+			  from review r, biz b
+			  where r.bsmno = b.bsmno and
+			  sal is not null and
+		]]>
+		
+		<include refid="criteria"/>
+	
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+	</select>
+	<select id="MngMRevList" resultType="ReviewMngVO">
+		<![CDATA[
+		select rnum, company, mreview, m_status, m_difficultly, m_date, id, reg_date, up_date, del_date, del_yn 
+		from (select /*+ INDEX_DESC(review pk_review) */
+			  rownum rn, r.rnum, b.company, r.mreview, r.m_status, r.m_difficultly, r.m_date, r.id, r.reg_date, r.up_date, r.del_date, r.del_yn
+			  from review r, biz b
+			  where r.bsmno = b.bsmno and
+			  mreview is not null and
+		]]>
+		
+		<include refid="criteria"/>
+	
+	<![CDATA[
+		
+		rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+	</select>
+	<select id="reviewViewOne" parameterType="int" resultType="ReviewMngVO">
+		select * from review where rnum = #{rnum}
+	</select>
+	<select id="MngSalTotal" resultType="int">
+		select count(*) from review  where
+		
+		<include refid="criteria"/>
+		
+		sal is not null and
+		rnum > 0
+		
+	</select>
+	<select id="MngMrevTotal" resultType="int">
+		select count(*) from review  where
+		
+		<include refid="criteria"/>
+		mreview is not null and
+		rnum > 0
+		
+	</select>
+	<select id="MngRevTotal" resultType="int">
+		select count(*) from review  where
+		
+		<include refid="criteria"/>
+		
+		review is not null and
+		rnum > 0
+		
+	</select>
+	<delete id="reviewMngRemove">
+		delete from review
+		where rnum = #{rnum}
+	</delete>
+
+</mapper>
