@@ -101,7 +101,7 @@
 	</script>
 
  <div class="container" style="margin-top:30px">
-	<form method="post" name="frm">
+	<form method="post" name="frm" enctype="multipart/form-data">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
@@ -157,7 +157,10 @@
 			<label for="addr">주소</label>
 				<input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요" required="required">
 		</div>
-
+		<div class="form-group">
+			<label for="file">기업 로고</label>
+				<input type="file" class="form-control" id="file" name="file" placeholder="기업 로고를 넣으세요." required="required">
+		</div> 
 		<div class="reg_button">
 				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기

@@ -14,7 +14,7 @@
 		                phone,
 		                field,
 		                addr,
-		                logo,
+		                attachid,
 		                reg_date,
 		                up_date,
 		                del_date,

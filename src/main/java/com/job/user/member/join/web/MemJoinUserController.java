@@ -1,11 +1,13 @@
 package com.job.user.member.join.web;
 
+import java.io.PrintWriter;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,20 +34,25 @@ public class MemJoinUserController {
 	
 	/*개인회원가입 post*/
 	@RequestMapping(value="/user/member/join/memJoin.do")
-	public String memJoin(HttpServletRequest request,MemJoinUserVO vo)throws Exception{
+	public String memJoin(HttpServletRequest request,MemJoinUserVO vo,HttpServletResponse response)throws Exception{
 		int result=memJoinUserService.m_check(vo);
-		jobFileUtils.parseInsertFileInfo(request, "job\\src\\main\\webapp\\resources\\images\\upload\\member\\");
+		String path="job\\src\\main\\webapp\\resources\\images\\upload\\member\\";
+		List<JobFileVO> list= jobFileUtils.parseInsertFileInfo(request, path);
 		try {
 			if(result==1) {
 				return "user/member/join/memJoinForm";
 			}else if(result==0) {
+				memJoinUserService.insertMemImage(list.get(0));
 				memJoinUserService.insertJoin(vo);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
 		System.out.println("MemJoinUserController join start...");
-		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		writer.println("<script>alert('회원가입되었습니다.');</script>");
+		writer.flush();
 		return "user/member/login/memLoginForm";
 	}
 	/*아이디 중복체크*/

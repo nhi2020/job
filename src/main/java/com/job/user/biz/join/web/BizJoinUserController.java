@@ -1,9 +1,13 @@
 package com.job.user.biz.join.web;
 
+import java.io.PrintWriter;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.user.biz.join.service.BizJoinUserService;
 import com.job.user.biz.join.service.BizJoinUserVO;
+import com.job.util.JobFileUtils;
+import com.job.util.JobFileVO;
 
 @Controller
 public class BizJoinUserController {
 
 	@Resource(name = "bizJoinUserService")
 	private BizJoinUserService bizJoinUserService;
+	
+	@Resource(name="jobFileUtils")
+	private JobFileUtils jobFileUtils;
 
 	/*기업회원가입 폼*/
 	@RequestMapping(value="/user/biz/join/bizJoinForm.do")
@@ -26,18 +35,25 @@ public class BizJoinUserController {
 	
 	/* 기업회원가입 post*/
 	@RequestMapping(value="/user/biz/join/bizJoin.do")
-	public String bizJoin(BizJoinUserVO vo) throws Exception{
+	public String bizJoin(BizJoinUserVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		int result=bizJoinUserService.bsm_no_check(vo);
+		String path="job\\src\\main\\webapp\\resources\\images\\upload\\biz\\";
+		List<JobFileVO> list=jobFileUtils.parseInsertFileInfo(request, path);
 		try {
 			if(result==1) {
 				return"user/biz/join/bizJoinForm";
 			}else if(result==0) {
+				bizJoinUserService.insertBizImage(list.get(0));
 				bizJoinUserService.insertJoin(vo);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
 		System.out.println("BizJoinUserController join start...");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		writer.println("<script>alert('회원가입되었습니다.');</script>");
+		writer.flush();
 		return "user/biz/login/bizLoginForm";
 	}
 	
