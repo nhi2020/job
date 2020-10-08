@@ -15,8 +15,18 @@
 		<![CDATA[
 				 select count(*) 
 		         from   biz 
-		         where  bsmno=#{bsmno} and del_yn='N']]>
+		         where  bsmno=#{bsmno} and del_yn='N'
+		         ]]>
 	</select>
+	<!-- 이메일 중복체크 -->
+	<select id="bsm_no_e_check" resultType="int">
+		<![CDATA[
+				select count(*)
+				from biz
+				where email=#{email} and del_yn='N'
+		]]>
+	</select>
+	
 	
 	<!-- 기업 이미지 넣기 -->
 	<insert id="insertBizImage" parameterType="JobFileVO">

@@ -63,6 +63,16 @@ public class BizJoinUserController {
 	@RequestMapping(value="/bsm_no_check.do")
 	public int bsm_no_check(BizJoinUserVO vo)throws Exception {
 		int result=bizJoinUserService.bsm_no_check(vo);
+		System.out.println("사업자번호 중복체크");
+		return result;
+	}
+	
+	/*이메일 중복체크*/
+	@ResponseBody
+	@RequestMapping(value="/bsm_no_e_check.do")
+	public int bsm_no_e_check(BizJoinUserVO vo)throws Exception{
+		int result=bizJoinUserService.bsm_no_e_check(vo);
+		System.out.println("이메일 중복체크 : " +result);
 		return result;
 	}
 	

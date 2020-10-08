@@ -19,6 +19,13 @@
 	]]>
 	</select>
 	
+	<!-- 이메일 중복체크 -->
+	<select id="e_check" resultType="int">
+			select count(*)
+			from member
+			where email=#{email} and del_yn='N'
+	</select>
+	
 	<!-- 개인 이미지 넣기 -->
 	<insert id="insertMemImage" parameterType="JobFileVO">
 		<![CDATA[
@@ -27,5 +34,6 @@
 				values ((SELECT NVL(MAX(attachid)+1, 1) FROM image),#{originalfilename},#{storedfilename},#{filesize})
 		]]>
 	</insert>
+	
 
 </mapper>

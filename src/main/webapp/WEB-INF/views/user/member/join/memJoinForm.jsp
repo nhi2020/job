@@ -23,6 +23,7 @@
 <script type="text/javascript">
 /* 아이디 중복체크 */
 function check(){
+	if(document.frm.id.value!=""){
 	$.ajax({
 		url:'<%=context%>/m_check.do',
 		type : 'POST',
@@ -42,6 +43,41 @@ function check(){
 		});
 
 	}
+	else{
+		alert("아이디를 입력해주세요.")
+	}
+}
+
+/* 이메일 중복체크 */
+function e_check(){
+	if(document.frm.email.value==""){
+		alert('이메일을 입력해주세요.');
+		document.frm.email.value="";
+		document.frm.email.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/e_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"email" : $("#email").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 이메일이 존재합니다.");
+				document.frm.email.value="";
+				document.frm.email.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 이메일입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+
 	function joinMem() {
 		var mp=$('#m_pwcheck').text();
 		var mp2=$('#m_pwcheck2').text();
@@ -142,6 +178,11 @@ function check(){
 			<label for="email">이메일</label>
 				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required="required">
 		</div> 
+		<div class="form-group">
+			<!-- <button class="btn btn-warning" id="eeecheck" type="button" onclick="javascript:eeecheck();">
+			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button> -->
+			<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
+		</div>
 		
 		<div class="form-group">
 			<label for="phone">전화번호 ('-'를 포함한 연락처를 입력해주세요)</label>

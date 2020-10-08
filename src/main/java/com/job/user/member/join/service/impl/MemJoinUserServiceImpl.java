@@ -28,12 +28,21 @@ public class MemJoinUserServiceImpl implements MemJoinUserService {
 		return result;
 	}
 	
+	/*이메일 중복체크*/
+	@Override
+	public int e_check(MemJoinUserVO vo) throws Exception {
+		int result=memJoinUserDAO.e_check(vo);
+		return result;
+	}
+
+	
 	/*개인 이미지 넣기*/
 	@Override
 	public int insertMemImage(JobFileVO vo) throws Exception {
 		int result=memJoinUserDAO.insertMemImage(vo);
 		return result;
 	}
+
 
 
 }
