@@ -5,23 +5,27 @@
 	<!-- 개인 로그인 -->
 	<select id="user" parameterType="MemLoginUserVO" resultType="MemLoginUserVO" >
 		<![CDATA[
-				 select id, 
-				        pass, 
-				        mnum,
-				        type,
-				        name,
-				        gender,
-				        email,
-				        phone,
-				        birthday,
-				        career,
-				        attachid,
-				        reg_date,
-				        up_date,
-				        del_date,
-				        del_yn
-		         from   member 
-		         where  id=#{id} and pass=#{pass} and del_yn='N'
+				 select m.id, 
+				        m.pass, 
+				        m.mnum,
+				        m.type,
+				        m.name,
+				        m.gender,
+				        m.email,
+				        m.phone,
+				        m.birthday,
+				        m.career,
+				        m.attachid,
+				        m.reg_date,
+				        m.up_date,
+				        m.del_date,
+				        m.del_yn,
+				        m.attachid,
+				        i.originalfilename,
+				        i.storedfilename,
+				        i.filesize
+		         from   member m, image i
+		         where  id=#{id} and pass=#{pass} and del_yn='N' and m.attachid=i.attachid
 		]]>
 		
 	</select>

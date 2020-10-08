@@ -64,6 +64,16 @@ public class MemJoinUserController {
 		return result;
 		
 	}
+	
+	/*이메일 중복체크*/
+	@ResponseBody
+	@RequestMapping(value="/e_check.do")
+	public int e_check(MemJoinUserVO vo) throws Exception{
+		int result=memJoinUserService.e_check(vo);
+		System.out.println("이메일 중복체크:"+result);
+		return result;
+	}
+	
 	/*패스워드 유효성 검사*/
 	@ResponseBody
 	@RequestMapping(value="/memPwCheck.do")

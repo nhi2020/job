@@ -23,6 +23,18 @@
 <script type="text/javascript">
 /* 사업자번호 중복체크 */
 	function check(){
+		if(document.frm.bsmno.value!="" && isNaN(document.frm.bsmno.value)){
+			alert("숫자만 입력해 주세요.");
+			document.frm.bsmno.value="";
+			document.frm.bsmno.focus();
+			return false;
+		}
+		if(document.frm.bsmno.value.length!=10){
+			alert("사업자번호는 10자리 입니다.");
+			document.frm.bsmno.value="";
+			document.frm.bsmno.focus();
+			return false;
+		}
 		$.ajax({
 			url:'<%=context%>/bsm_no_check.do',
 			type : 'POST',
@@ -32,6 +44,8 @@
 				if (data == 1) {
 					alert("중복된 사업자번호가 존재합니다.");
 					document.frm.bsmno.value="";
+					document.frm.bsmno.focus();
+					return false;
 				} else if (data == 0) {
 					alert("사용가능한 사업자 번호입니다.");
 				}
@@ -40,8 +54,40 @@
 
 			}
 		});
-
 	}
+	
+	
+/* 이메일 중복체크 */
+function e_check(){
+	if(document.frm.email.value==""){
+		alert('이메일을 입력해주세요.');
+		document.frm.email.value="";
+		document.frm.email.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/bsm_no_e_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"email" : $("#email").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 이메일이 존재합니다.");
+				document.frm.email.value="";
+				document.frm.email.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 이메일입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+ 
+ 
 	function joinBiz(){
 		var bp=$('#b_pwcheck').text();
 		var bp2=$('#b_pwcheck2').text();
@@ -105,8 +151,8 @@
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
-			<label for="bsmno">사업자 번호 ('-'를 포함한 사업자 번호를 입력해주세요)</label>
-				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="12" required="required">
+			<label for="bsmno">사업자 번호 (사업자 번호를 입력해주세요)</label>
+				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="10" required="required">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="b_check" type="button" onclick="check();">
@@ -131,6 +177,11 @@
 			<label for="email">이메일</label>
 				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required="required">
 		</div> 
+		<div class="form-group">
+			<!-- <button class="btn btn-warning" id="eeecheck" type="button" onclick="javascript:eeecheck();">
+			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button> -->
+			<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
+		</div>
 		<div class="form-group">
 			<label for="ceo">대표자</label>
 				<input type="text" class="form-control" id="ceo" name="ceo" placeholder="대표자를 입력하세요" required="required">
