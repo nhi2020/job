@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,8 @@ import com.job.user.member.login.service.MemLoginUserService;
 import com.job.user.member.login.service.MemLoginUserVO;
 import com.job.user.member.mypage.service.MemMyUserService;
 import com.job.user.member.mypage.service.MemMyUserVO;
+import com.job.util.JobFileUtils;
+import com.job.util.JobFileVO;
 
 @Controller
 public class MemMyUserController {
@@ -28,9 +31,12 @@ public class MemMyUserController {
 	@Resource(name = "memLoginUserService")
 	private MemLoginUserService memLoginUserService;
 
+	@Resource(name = "jobFileUtils")
+	private JobFileUtils jobFileUtils;
+
 	/* 개인회원 리스트 */
 	@RequestMapping(value = "/user/mypage/member/memMyList.do")
-	public String memMyList(Model model) {
+	public String memMyList(Model model) throws Exception {
 		List<MemMyUserVO> memMyList = memMyUserService.memMyList();
 		model.addAttribute("list", memMyList);
 		return "user/mypage/member/memMyList";
@@ -50,7 +56,7 @@ public class MemMyUserController {
 
 	/* 개인정보 업데이트 */
 	@RequestMapping(value = "/user/mypage/member/memMyUpdateForm.do")
-	public String memmyUpdate(Model model) {
+	public String memmyUpdate(Model model) throws Exception {
 		/*
 		 * MemMyUserVO user =memMyUserService.memMySelect(vo);
 		 * model.addAttribute("user",user);
@@ -58,10 +64,13 @@ public class MemMyUserController {
 		return "user/mypage/member/memMyUpdateForm";
 	}
 
-	/* 개인정보 업데이트1 */
+	/* 개인정보 업데이트1 이미지수정 */
 	@RequestMapping(value = "/user/mypage/member/myUpdate.do")
-	public String myupdate(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO) {
+	public String myupdate(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO,
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		int result = memMyUserService.myUpdate(vo);
+		String path = "job\\src\\main\\webapp\\resources\\images\\upload\\member\\";
+		List<JobFileVO> list = jobFileUtils.parseInsertFileInfo(request, path);
 		if (result == 1) {
 			try {
 				session.removeAttribute("user");
@@ -69,6 +78,10 @@ public class MemMyUserController {
 				loginVO.setPass(vo.getPass());
 				MemLoginUserVO user = memLoginUserService.user(loginVO);
 				session.setAttribute("user", user);
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('수정되었습니다.');</script>");
+				writer.flush();
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -91,34 +104,34 @@ public class MemMyUserController {
 		String sessionMyPass = user.getPass();
 		String voPass = vo.getPass();
 		if (!(sessionMyPass.equals(voPass))) {
-			/*rttr.addFlashAttribute("msg", false);*/
-		response.sendRedirect("/user/mypage/member/memMyDeleteForm.do");
+			/* rttr.addFlashAttribute("msg", false); */
+			response.sendRedirect("/user/mypage/member/memMyDeleteForm.do");
 
+		} else {
+			int result = memMyUserService.memMyDelete(vo);
+			if (result == 1) {
+				session.invalidate();
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('탈퇴되었습니다.');</script>");
+				writer.println("<script>location.href='/user/main/main.do';</script>");
+				writer.flush();
+			}
 		}
-		int result = memMyUserService.memMyDelete(vo);
-		if(result ==1 ) {
-			 
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
-			writer.println("<script>alert('탈퇴되었습니다.');</script>");
-			writer.println("<script>location.href='/user/main/main.do';</script>");
-			writer.flush();
-			
-		}
-				
+
 	}
 
-	/* 패스워드 체크 */
+	/* 비밀번호 체크 */
 	@ResponseBody
 	@RequestMapping(value = "/user/mypage/member/myPassChk.do")
 	public int myPassChk(MemMyUserVO vo) throws Exception {
 		int result = memMyUserService.myPassChk(vo);
 		return result;
 	}
-		
-	/* 패스워드 변경화면 */
+
+	/* 비밀번호 변경화면 */
 	@RequestMapping(value = "/user/mypage/member/memMyPassForm.do")
-	public String memMyPassForm(Model model) {
+	public String memMyPassForm(Model model) throws Exception {
 		/*
 		 * MemMyUserVO user =memMyUserService.memMySelect(vo);
 		 * model.addAttribute("user",user);
@@ -126,37 +139,35 @@ public class MemMyUserController {
 		return "user/mypage/member/memMyPassForm";
 	}
 
-	
-	/* 패스워드 변경 */
+	/* 비밀번호 업데이트 */
 	@RequestMapping(value = "/user/mypage/member/myUpdatePassChng.do")
-	public void myUpdatePassChng(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO, HttpServletResponse response) throws Exception {
-		
-		int result=0;
-		int passCheck=memMyUserService.myPassChk(vo);
-		
-		if(passCheck==1) {
+	public void myUpdatePassChng(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO,
+			HttpServletResponse response) throws Exception {
+
+		int result = 0;
+		int passCheck = memMyUserService.myPassChk(vo);
+
+		if (passCheck == 1) {
 			result = memMyUserService.myUpdatePassChng(vo);
-			if(result==0) {
+			if (result == 0) {
 				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter writer=response.getWriter();
+				PrintWriter writer = response.getWriter();
 				writer.println("<script>alert('비밀번호 변경이 실패 했습니다.');  history.back();</script>");
 				writer.flush();
-			}else {
+			} else {
 				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter writer=response.getWriter();
+				PrintWriter writer = response.getWriter();
 				writer.println("<script>alert('비밀번호 변경 되었습니다.');</script>");
 				writer.println("<script>location.href='/user/main/main.do';</script>");
 				writer.flush();
 			}
-		}else {
+		} else {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
+			PrintWriter writer = response.getWriter();
 			writer.println("<script>alert('비밀번호가 일치하지 않습니다.');  history.back();</script>");
 			writer.flush();
 		}
-		
+
 	}
-	
-	
-	
+
 }

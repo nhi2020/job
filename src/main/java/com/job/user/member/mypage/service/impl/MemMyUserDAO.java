@@ -14,14 +14,14 @@ public class MemMyUserDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/* 개인회원 리스트 */
-	public List<MemMyUserVO> memMyList() {
+	public List<MemMyUserVO> memMyList() throws Exception {
 		List<MemMyUserVO> memMylist = sqlSessionTemplate.selectList("MemMyUser.memMyList");
 		return memMylist;
 
 	}
 
 	/* 개인정보 */
-	public MemMyUserVO memMySelect(MemMyUserVO vo) {
+	public MemMyUserVO memMySelect(MemMyUserVO vo)throws Exception  {
 		// String id = "aaa12";
 		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelect", vo);
 		return user;
@@ -35,7 +35,7 @@ public class MemMyUserDAO {
 	}
 
 	/* 개인정보 업데이트1 */
-	public int myupdate(MemMyUserVO vo) {
+	public int myupdate(MemMyUserVO vo) throws Exception {
 		int result = (Integer) sqlSessionTemplate.update("MemMyUser.myUpdate", vo);
 		return result;
 	}
@@ -54,7 +54,7 @@ public class MemMyUserDAO {
 	}
 
 	/* 비밀번호 업데이트 */
-	public int myUpdatePassChng(MemMyUserVO vo) {
+	public int myUpdatePassChng(MemMyUserVO vo) throws Exception {
 		int result = (Integer) sqlSessionTemplate.update("MemMyUser.myUpdatePassChng", vo);
 		return result;
 	}

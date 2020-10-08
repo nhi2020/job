@@ -1,6 +1,7 @@
 package com.job.util;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 
 @Component("jobFileUtils")
 public class JobFileUtils {
-	
+	/*이미지 업로드*/
 	public List<JobFileVO> parseInsertFileInfo(HttpServletRequest request,String path)
 			throws Exception {
 		String url=this.getClass().getResource("").getPath();
@@ -52,7 +53,7 @@ public class JobFileUtils {
 		}
 		return list;
 	}
-	
+	/*이미지 다운로드*/
 	public void downloadFile(String storedFileName, String originalFileName, HttpServletResponse response) throws Exception {
 		String url = this.getClass().getResource("").getPath();
 		String rootPath = url.substring(1, url.indexOf(".metadata")) + "log/src/main/webapp/WEB-INF/views/upload/";
@@ -64,5 +65,26 @@ public class JobFileUtils {
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
+	}
+	
+	/*이미지 삭제*/
+	public void myDeleteImage(JobFileVO vo , MultipartFile file, String path, HttpServletResponse response)  throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		if(vo.getStoredfilename() != null && vo.getStoredfilename() != "") {
+			String url=this.getClass().getResource("").getPath();
+			
+			String rootPath=url.substring(1,url.indexOf(".metadata"))+path;
+			new File(rootPath + vo.getStoredfilename()).delete();
+			new File(rootPath + file.getSize()).delete();
+			writer.println("<script>alert('파일삭제 성공.');</script>");
+			writer.flush();
+		
+		}else {
+			
+			writer.println("<script>alert('파일삭제 실패.');</script>");
+			writer.flush();
+		
+		}
 	}
 }

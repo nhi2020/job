@@ -17,14 +17,14 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 
 	/* 개인회원 리스트 */
 	@Override
-	public List<MemMyUserVO> memMyList() {
+	public List<MemMyUserVO> memMyList()throws Exception  {
 		System.out.println("start service");
 		return memMyUserDAO.memMyList();
 	}
 
 	/* 개인정보 */
 	@Override
-	public MemMyUserVO memMySelect(MemMyUserVO vo) {
+	public MemMyUserVO memMySelect(MemMyUserVO vo)throws Exception  {
 		return memMyUserDAO.memMySelect(vo);
 	}
 
@@ -37,7 +37,7 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 
 	/* 개인정보 업데이트1 */
 	@Override
-	public int myUpdate(MemMyUserVO vo) {
+	public int myUpdate(MemMyUserVO vo)throws Exception  {
 		return memMyUserDAO.myupdate(vo);
 	}
 	
@@ -57,7 +57,7 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 	
 	/* 비밀번호 업데이트 */
 	@Override
-	public int myUpdatePassChng(MemMyUserVO vo) {
+	public int myUpdatePassChng(MemMyUserVO vo)throws Exception  {
 		int result = memMyUserDAO.myUpdatePassChng(vo);
 		return result;
 	}
