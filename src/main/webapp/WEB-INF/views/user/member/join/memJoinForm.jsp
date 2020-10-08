@@ -88,10 +88,8 @@ function check(){
 	    		data:{pass:pass},
 	    		success:function(result){
 	    			if(result==true){
-	    				alert="비밀번호 사용가능합니다.";
 	    				m_pwcheck2.innerHTML="비밀번호 사용가능합니다.";
 	    			}else{
-	    				alert="비밀번호 형식이 일치하지 않습니다.zz";
 	    				m_pwcheck2.innerHTML="비밀번호 형식이 일치하지 않습니다.";
 	    			}
 	    		},
