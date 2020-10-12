@@ -5,22 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <title>Insert title here</title>
-<!-- <style type="text/css">
-	li{
-		float: right;
-	}
-</style> -->
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> 
 		<a class="navbar-brand" href="/user/main/main.do">
-    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+    		<img src="/resources/images/upload/member/logo.png" alt="Logo" style="width:70px;height:40px;"/>
   		</a>
 	
 		<div class="collapse navbar-collapse" id="navb">
@@ -49,12 +39,12 @@
 						</c:when>
 						<c:otherwise>
 							<c:if test="${!empty sessionScope.user.id}">
-								<a class="navbar-brand" href="#">
-						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+								<a class="navbar-brand">
+						    		<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="rounded-circle" alt="Logo" style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item"><a class="nav-link">${sessionScope.user.name}님 환영합니다.</a></li>
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+									<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">마이페이지 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a>
 										<a class="dropdown-item" href="">활동내역</a>
@@ -66,7 +56,7 @@
 							</c:if>
 							<c:if test="${!empty sessionScope.b_user.bsmno}">
 								<a class="navbar-brand" href="#">
-						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+						    		<img src="/resources/images/upload/biz/" alt="Logo" style="width:40px;height:40px;"/>
 						  		</a>
 								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
