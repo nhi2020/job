@@ -64,8 +64,15 @@
 				set    pass=#{pass}
 				where  email=#{email} and del_yn='N'
 		]]>
-		
-		
 	</update>
+	<!-- 
+	<select id="bizlogin" parameterType="String" resultType="String">
+		<![CDATA[
+				select id
+				from member
+				where 		
+		
+		]]>
+	</select> -->
 	
 </mapper>

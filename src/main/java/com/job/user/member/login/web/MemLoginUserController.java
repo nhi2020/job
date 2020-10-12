@@ -41,21 +41,26 @@ public class MemLoginUserController {
 	public String memLogin(HttpSession session, MemLoginUserVO  vo,HttpServletResponse response) throws Exception {
 		int result=memLoginUserService.loginCheck(vo);
 		String url="user/main/main";
+		String ad=vo.getId();
 		if(result==1) {
+			if(ad.equals("admin")) {
+				url="mng/main/main";
+			}else {
+				url="user/main/main";
+			}
 			MemLoginUserVO user=memLoginUserService.user(vo);
 			session.setAttribute("user", user);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('로그인되었습니다.');</script>");
 			writer.flush();
-			url="user/main/main";
-		}else {
+		}else{
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('아이디 또는 비밀번호를 확인해주세요.');</script>");
 			writer.flush();
 			url="user/member/login/memLoginForm";
-		}	
+		}
 		return url;
 	}
 	

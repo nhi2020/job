@@ -43,7 +43,9 @@ public class BizJoinUserController {
 			if(result==1) {
 				return"user/biz/join/bizJoinForm";
 			}else if(result==0) {
+				System.out.println("11111111111111111111");
 				bizJoinUserService.insertBizImage(list.get(0));
+				System.out.println("222222222222222222");
 				bizJoinUserService.insertJoin(vo);
 			}
 		} catch (Exception e) {
@@ -75,6 +77,16 @@ public class BizJoinUserController {
 		System.out.println("이메일 중복체크 : " +result);
 		return result;
 	}
+	
+	/*전화번호 중복체크*/
+	@ResponseBody
+	@RequestMapping(value="/bsm_no_p_check.do")
+	public int bsm_no_p_check(BizJoinUserVO vo)throws Exception{
+		int result=bizJoinUserService.bsm_no_p_check(vo);
+		System.out.println("전화번호 중복체크 : "+result);
+		return result;
+	}
+	
 	
 	/*패스워드 유효성 검사*/
 	@ResponseBody

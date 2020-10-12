@@ -9,7 +9,8 @@ public interface MemJoinUserService {
 	public int m_check(MemJoinUserVO vo) throws Exception;
 	/*이메일 중복체크*/
 	public int e_check(MemJoinUserVO vo) throws Exception;
-	
+	/*전화번호 중복체크*/
+	public int p_check(MemJoinUserVO vo) throws Exception;
 	/*개인 이미지 넣기*/
 	public int insertMemImage(JobFileVO vo) throws Exception;
 }

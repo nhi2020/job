@@ -74,6 +74,16 @@ public class MemJoinUserController {
 		return result;
 	}
 	
+	/*전화번호 중복체크*/
+	@ResponseBody
+	@RequestMapping(value="/p_check.do")
+	public int p_check(MemJoinUserVO vo) throws Exception{
+		int result=memJoinUserService.p_check(vo);
+		System.out.println("전화번호 중복체크 :"+result);
+		return result;
+	}
+	
+	
 	/*패스워드 유효성 검사*/
 	@ResponseBody
 	@RequestMapping(value="/memPwCheck.do")

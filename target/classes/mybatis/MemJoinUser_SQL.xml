@@ -26,6 +26,13 @@
 			where email=#{email} and del_yn='N'
 	</select>
 	
+	<!-- 전화번호 중복체크 -->
+	<select id="p_check" resultType="int">
+			select count(*)
+			from member
+			where phone=#{phone} and del_yn='N'
+	</select>
+	
 	<!-- 개인 이미지 넣기 -->
 	<insert id="insertMemImage" parameterType="JobFileVO">
 		<![CDATA[
