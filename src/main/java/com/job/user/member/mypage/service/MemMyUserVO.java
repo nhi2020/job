@@ -1,6 +1,7 @@
 package com.job.user.member.mypage.service;
 
 public class MemMyUserVO {
+	/*MEMBER*/
 	private String id;
 	private String pass; 
 	private int mnum; 
@@ -17,6 +18,7 @@ public class MemMyUserVO {
 	private String del_date; 
 	private String del_yn;
 	
+	/*REVIEW*/
 	private int rnum; 
 	private String r_id; 
 	private String bsmno; 

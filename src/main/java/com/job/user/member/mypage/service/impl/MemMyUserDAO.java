@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.job.user.member.mypage.service.MemMyUserVO;
+import com.job.util.JobFileVO;
 
 @Repository("memMyUserDAO")
 public class MemMyUserDAO {
@@ -21,15 +22,13 @@ public class MemMyUserDAO {
 	}
 
 	/* 개인정보 */
-	public MemMyUserVO memMySelect(MemMyUserVO vo)throws Exception  {
-		// String id = "aaa12";
-		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelect", vo);
+	public MemMyUserVO memMySelectList(MemMyUserVO vo)throws Exception  {
+		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelectList", vo);
 		return user;
 	}
 
 	/* 개인정보 업데이트 */
 	public int memMyUpdate(MemMyUserVO vo) throws Exception {
-		// String id = "aaa12";
 		int result = (Integer) sqlSessionTemplate.update("MemMyUser.memMyUpdate", vo);
 		return result;
 	}
@@ -46,7 +45,7 @@ public class MemMyUserDAO {
 		return result;
 	}
 
-	/* 패스워드 체크 */
+	/* 비밀번호 체크 */
 	public int myPassChk(MemMyUserVO vo) throws Exception {
 		int result = sqlSessionTemplate.selectOne("MemMyUser.myPassChk", vo);
 		return result;
@@ -59,4 +58,9 @@ public class MemMyUserDAO {
 		return result;
 	}
 
+	/*이미지 업데이트*/
+	public int myUpdateImage(JobFileVO jobVO) throws Exception{
+		int result =sqlSessionTemplate.update("MemMyUser.myUpdateImage", jobVO);
+		return result;
+	}
 }

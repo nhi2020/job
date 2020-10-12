@@ -18,8 +18,9 @@
 	</select>
 
 	<!--개인정보 -->
-	<select id="memMySelect" resultType="MemMyUserVO" parameterType="MemMyUserVO">
-		SELECT id,
+	<select id="memMySelectList" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		ID,
 		PASS,
 		MNUM,
 		TYPE,
@@ -47,8 +48,6 @@
 	<update id="myUpdate" parameterType="MemMyUserVO">
 		UPDATE MEMBER
 		SET
-		NAME = 
-		#{name},
 		EMAIL =
 		#{email},
 		PHONE =
@@ -69,7 +68,8 @@
 		SET
 		DEL_YN ='Y',
 		DEL_DATE = sysdate
-		WHERE ID
+		WHERE
+		ID
 		= #{id}
 		AND PASS = #{pass}
 	</update>
@@ -83,16 +83,6 @@
 	</select>
 
 	<!-- 비밀번호 변경 -->
-	<update id="memMyPass" parameterType="MemMyUserVO">
-		UPDATE MEMBER
-		SET
-		PASS
-		= #{pass}
-		WHERE ID = #{id}
-
-	</update>
-
-	<!-- 비밀번호 변경 -->
 	<update id="myUpdatePassChng" parameterType="MemMyUserVO">
 		UPDATE MEMBER
 		SET
@@ -100,16 +90,15 @@
 		WHERE ID = #{id}
 	</update>
 
-	<!-- 이미지 수정 -->
+	<!-- 이미지 업데이트 -->
 	<update id="myUpdateImage" parameterType="JobFileVO">
-		<![CDATA[ 	
-		 			UPDATE IMAGE
-		 			SET
-		 			ORIGINALFILENAME = #{originalfilename}
-		 			STOREDFILENAME = #{storedfilename}
-		 			FILESIZE = #{filesize}
-		 			WHERE ATTACHID = #{attachid}
-		 			
-		]]>
+		UPDATE IMAGE
+		SET					
+		ORIGINALFILENAME = #{originalfilename},
+		STOREDFILENAME = #{storedfilename},
+		FILESIZE = #{filesize}
+		WHERE ATTACHID = #{attachid}
+
 	</update>
+
 </mapper>
