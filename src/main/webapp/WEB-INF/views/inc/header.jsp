@@ -71,7 +71,7 @@
 								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="">내 프로필</a> 
+										<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
 										<a class="dropdown-item" href="">활동내역</a> <a class="dropdown-item" href="">탈퇴</a>
 									</div>
 								</li>
