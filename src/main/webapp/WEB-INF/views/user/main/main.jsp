@@ -10,55 +10,27 @@
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-	<%-- <c:if test="${!empty sessionScope.user.id}">
-		<div class="row">
-			<div class="col-sm-3">
-				${sessionScope.user.name}님 환영합니다.
-			</div>
-		</div>
-	</c:if>
-	<c:if test="${!empty sessionScope.b_user.bsmno}">
-		<div class="row">
-			<div class="col-sm-3">
-				${sessionScope.b_user.company}님 환영합니다.
-			</div>
-		</div>
-	</c:if> --%>
 	<h2><strong>오늘의 추천 기업</strong></h2>
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" /></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal"><span class="font-weight-normal">IT서비스</span></span></p>
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-sm-3">
+				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
+				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
+			</div>
+			<div class="col-sm-3">
+				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
+				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
+			</div>
+			<div class="col-sm-3">
+				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
+				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
+			</div>
+			<div class="col-sm-3">
+				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
+				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
+			</div>
+			<hr class="d-sm-none">
 		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/20191012230041_uxazviga.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<div class="col-sm-3">
-			<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="img-thumbnail" width="304" height="236"/></div>
-			<p class="font-weight-bold">(주)싱아&nbsp;<span class="font-weight-normal">IT서비스</span></p>
-		</div>
-		<hr class="d-sm-none">
 	</div>
 	<h2><strong>기업 리뷰</strong></h2>
 	<div class="row">
