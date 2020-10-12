@@ -17,31 +17,31 @@ public class ReviewMngDAO {
 	
 	public ReviewMngVO reviewView(int rnum) {
 
-		return sessionTemplate.selectOne("reviewMng.reviewMngOne", rnum);
+		return sessionTemplate.selectOne("ReviewMngVO.reviewMngOne", rnum);
 	}
 
 	public int salTotalCount(Criteria cri) {
-		return sessionTemplate.selectOne("reviewMng.MngSalTotal", cri);
+		return sessionTemplate.selectOne("ReviewMngVO.MngSalTotal", cri);
 	}
 
 	public int mrevTotalCount(Criteria cri) {
-		return sessionTemplate.selectOne("reviewMng.MngMrevTotal", cri);
+		return sessionTemplate.selectOne("ReviewMngVO.MngMrevTotal", cri);
 	}
 
 	public int revTotalCount(Criteria cri) {
-		return sessionTemplate.selectOne("reviewMng.MngRevTotal", cri);
+		return sessionTemplate.selectOne("ReviewMngVO.MngRevTotal", cri);
 	}
 
 	public List<ReviewMngVO> getSalList(Criteria cri) {
-		return sessionTemplate.selectList("reviewMng.MngSalList", cri);
+		return sessionTemplate.selectList("ReviewMngVO.MngSalList", cri);
 	}
 
 	public List<ReviewMngVO> getRevList(Criteria cri) {
-		return sessionTemplate.selectList("reviewMng.MngRevList", cri);
+		return sessionTemplate.selectList("ReviewMngVO.MngRevList", cri);
 	}
 
 	public List<ReviewMngVO> getMRevList(Criteria cri) {
-		return sessionTemplate.selectList("reviewMng.MngMRevList", cri);
+		return sessionTemplate.selectList("ReviewMngVO.MngMRevList", cri);
 	}
 
 }

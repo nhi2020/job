@@ -16,20 +16,20 @@ public class BizMngDAO {
 	private SqlSessionTemplate sessionTemplate;
 
 	public List<BizMngVO> getList(Criteria cri) {
-		return sessionTemplate.selectList("bizMng.mngSelectBizList", cri);
+		return sessionTemplate.selectList("BizMngVO.mngSelectBizList", cri);
 	}
 
 	public int getTotalCount(Criteria cri) {
 		
-		return sessionTemplate.selectOne("bizMng.mngBizTotal", cri);
+		return sessionTemplate.selectOne("BizMngVO.mngBizTotal", cri);
 	}
 
 	public BizMngVO bizView(int bnum) {
-		return sessionTemplate.selectOne("bizMng.bizViewOne", bnum);
+		return sessionTemplate.selectOne("BizMngVO.bizViewOne", bnum);
 	}
 
 	public boolean update(BizMngVO biz) {
-		if (sessionTemplate.update("bizMng.bizMngUpdate", biz) == 1) {
+		if (sessionTemplate.update("BizMngVO.bizMngUpdate", biz) == 1) {
 			return true;
 		} else {
 			return false;
@@ -39,12 +39,12 @@ public class BizMngDAO {
 
 	public void insert(BizMngVO biz) {
 
-		sessionTemplate.insert("bizMng.bizMngInsert", biz);
+		sessionTemplate.insert("BizMngVO.bizMngInsert", biz);
 		
 	}
 
 	public boolean remove(int bnum) {
-		if (sessionTemplate.delete("bizMng.bizMngRemove", bnum) == 1) {
+		if (sessionTemplate.delete("BizMngVO.bizMngRemove", bnum) == 1) {
 			return true;
 		} else {
 			return false;
@@ -53,7 +53,7 @@ public class BizMngDAO {
 
 	public List<BizMngVO> selectedList(String choice) {
 
-		return sessionTemplate.selectList("bizMng.bizMngselectedList", choice);
+		return sessionTemplate.selectList("BizMngVO.bizMngselectedList", choice);
 	}
 	
 	

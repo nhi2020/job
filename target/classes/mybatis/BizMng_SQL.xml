@@ -1,3 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.BizMng_SQL"></mapper>
+<mapper namespace="BizMngVO">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+				<choose>
+						<when test="type == 'N'.toString()">
+							bsmno like '%'||#{keyword}|| '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							company like '%'||#{keyword}|| '%'
+						</when>
+						<when test="type == 'E'.toString()">
+							ceo like '%'||#{keyword}|| '%'
+						</when>
+					</choose>
+		</trim>
+	</sql>
+
+
+	<select id="mngSelectBizList" parameterType="com.job.mng.main.service.Criteria"
+		resultType="BizMngVO">
+	<![CDATA[
+		select /*+ INDEX_DESC(biz pk_biz) */ rn, b.*
+		from (select 
+			  rownum rn, bi.*
+			  from biz bi
+			  where 
+		]]>
+
+		<include refid="criteria" />
+	
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount}) b
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+
+	</select>
+	<select id="mngBizTotal" parameterType="com.job.mng.main.service.Criteria"
+		resultType="int">
+		select count(*) from biz where
+		<include refid="criteria" />
+		bnum > 0
+	</select>
+
+	<select id="bizViewOne" parameterType="int" resultType="BizMngVO">
+		select * from biz where bnum = #{bnum}
+	</select>
+	<update id="bizMngUpdate">
+		update biz
+		set pass = #{pass}, company=#{company}, email = #{email},
+		ceo = #{ceo}, phone = #{phone}, field=#{field},
+		addr = #{addr}, up_date=sysdate
+		where bnum = #{bnum}
+	</update>
+	<insert id="bizMngInsert">
+		insert into biz (bsmno, pass, bnum, company, email, ceo, phone, field, addr,
+		reg_date, del_yn)
+		values (#{bsmno}, '1234abcd!', biz_seq.nextval, #{company}, #{email},
+		#{ceo}, #{phone}, #{field}, #{addr}, sysdate, 'n')
+	</insert>
+	<delete id="bizMngRemove">
+		delete from biz
+		where bnum = #{bnum}
+	</delete>
+</mapper>

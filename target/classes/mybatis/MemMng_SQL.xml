@@ -1,3 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.MemMng_SQL"></mapper>
+<mapper namespace="MemMngVO">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+					<choose>
+						<when test="type == 'I'.toString()">
+							id like '%'||#{keyword}|| '%'
+						</when>
+						<when test="type == 'N'.toString()">
+							name like '%'||#{keyword}|| '%'
+						</when>
+					</choose>
+		</trim>
+	</sql>
+	<select id="mngSelectMemList" parameterType="com.job.mng.main.service.Criteria" resultType="MemMngVO">
+	<![CDATA[
+		select /*+ INDEX_DESC(member pk_member) */ *
+		from (select 
+			  rownum rn, id, pass, mnum, type, name, gender, email, phone, birthday, career, reg_date, del_date, del_yn
+			  from member 
+			  where 
+		]]>
+		
+	<include refid="criteria"/>
+	
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+	</select>
+	<select id="mngMemTotal"  resultType="int">
+		select count(*) from member  where
+		<include refid="criteria"/>
+		
+		mnum > 0
+		
+	</select>
+	<select id="memViewOne" parameterType="int" resultType="MemMngVO">
+		select *
+		from member
+		where mnum = #{mnum}
+	</select>
+	<update id="memMngUpdate">
+		update member
+		set pass=#{pass}, 
+			email=#{email}, 
+			phone=#{phone}, 
+			career=#{career}, 
+			up_date=sysdate
+		where mnum=#{mnum}
+	</update>
+	
+	<delete id="memMngRemove">
+		delete from member
+		where mnum = #{mnum}
+	</delete>
+	
+	<insert id="memMngInsert">
+		insert into member (id, pass, mnum, type, name, gender, email, phone, birthday, career, reg_date, del_yn ) 
+		values (#{id}, 'abcd1234!', member_seq.nextval, 'P', #{name}, #{gender}, #{email}, #{phone}, #{birthday}, #{career}, sysdate, 'n')
+	</insert>
+	
+</mapper>

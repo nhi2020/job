@@ -17,22 +17,22 @@ public class MemMngDAO {
 
 	public List<MemMngVO> getList(Criteria cri) {
 		System.out.println("memMngDao.....getList()");
-		return sessionTemplate.selectList("MemMng.mngSelectMemList", cri);
+		return sessionTemplate.selectList("MemMngVO.mngSelectMemList", cri);
 	}
 
 	public int getTotalCount(Criteria cri) {
 		System.out.println("memMngDao.....getTotalCount()");
-		return sessionTemplate.selectOne("MemMng.mngMemTotal", cri);
+		return sessionTemplate.selectOne("MemMngVO.mngMemTotal", cri);
 	}
 
 	public MemMngVO memView(int mnum) {
 		System.out.println("memMngDao ..... memView()");
-		return sessionTemplate.selectOne("MemMng.memViewOne", mnum);
+		return sessionTemplate.selectOne("MemMngVO.memViewOne", mnum);
 	}
 
 	public boolean update(MemMngVO member) {
 
-		if (sessionTemplate.update("MemMng.memMngUpdate", member) == 1) {
+		if (sessionTemplate.update("MemMngVO.memMngUpdate", member) == 1) {
 			return true;
 		} else {
 			return false;
@@ -40,7 +40,7 @@ public class MemMngDAO {
 	}
 
 	public boolean remove(int mnum) {
-		if (sessionTemplate.delete("MemMng.memMngRemove", mnum) == 1) {
+		if (sessionTemplate.delete("MemMngVO.memMngRemove", mnum) == 1) {
 			return true;
 		} else {
 			return false;
@@ -50,7 +50,7 @@ public class MemMngDAO {
 	public void insert(MemMngVO member) {
 		
 		System.out.println("memmngDao insert()");
-		sessionTemplate.insert("MemMng.memMngInsert", member);
+		sessionTemplate.insert("MemMngVO.memMngInsert", member);
 	}
 	
 }
