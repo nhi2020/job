@@ -54,7 +54,7 @@ public class MemMyUserController {
 		return "user/mypage/member/memMySelectList";
 	}
 
-	/* 개인정보 업데이트 */
+	/* 개인정보 업데이트 폼 */
 	@RequestMapping(value = "/user/mypage/member/memMyUpdateForm.do")
 	public String memmyUpdate(Model model) throws Exception {
 		/*
@@ -64,10 +64,11 @@ public class MemMyUserController {
 		return "user/mypage/member/memMyUpdateForm";
 	}
 
-	/* 개인정보 업데이트1 이미지수정 */
+	/* 개인정보 업데이트,이미지 업데이트 */
 	@RequestMapping(value = "/user/mypage/member/myUpdate.do")
-	public String myupdate(MemMyUserVO vo, Model model, HttpSession session, MemLoginUserVO loginVO,
+	public String myupdate(MemMyUserVO vo, JobFileVO jobVO, MemLoginUserVO loginVO, Model model, HttpSession session,
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
+		session = request.getSession();
 		int result = memMyUserService.myUpdate(vo);
 		String path = "job\\src\\main\\webapp\\resources\\images\\upload\\member\\";
 		List<JobFileVO> list = jobFileUtils.parseInsertFileInfo(request, path);
@@ -77,17 +78,50 @@ public class MemMyUserController {
 				loginVO.setId(vo.getId());
 				loginVO.setPass(vo.getPass());
 				MemLoginUserVO user = memLoginUserService.user(loginVO);
+				jobVO.setAttachid(user.getAttachid());
+				jobVO.setOriginalfilename(list.get(0).getOriginalfilename());
+				jobVO.setFilesize(list.get(0).getFilesize());
+				jobVO.setStoredfilename(list.get(0).getStoredfilename());
+				memMyUserService.myUpdateImage(jobVO);
+				user.setOriginalfilename(list.get(0).getOriginalfilename());
+				user.setStoredfilename(list.get(0).getStoredfilename());
+				user.setFilesize(list.get(0).getFilesize());
+				session.removeAttribute("user");
 				session.setAttribute("user", user);
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter writer = response.getWriter();
-				writer.println("<script>alert('수정되었습니다.');</script>");
-				writer.flush();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		writer.println("<script>alert('수정되었습니다.');</script>");
+		writer.flush();
 		return "forward:memMySelectList.do";
+	}
+
+	/* 이미지 삭제 */
+	@RequestMapping(value = "/user/mypage/member/myImageDel.do")
+	public String myImageDel(JobFileVO vo, HttpServletRequest request, HttpServletResponse response, Model model)
+			throws Exception {
+		String path = "job/src/main/webapp/resources/images/upload/member/";
+		int result = jobFileUtils.myDeleteImage(vo, path, response);
+		if (result == 1) {
+			// 파일 디비 삭제(NULL값 받기)
+			HttpSession session = request.getSession();
+			MemLoginUserVO user = (MemLoginUserVO) session.getAttribute("user");
+			session.removeAttribute("user");
+			user.setOriginalfilename("");
+			user.setStoredfilename("");
+			user.setFilesize(0);
+			session.setAttribute("user", user);
+			vo.setFilesize(0);
+			vo.setOriginalfilename("");
+			vo.setStoredfilename("");
+			vo.setAttachid(user.getAttachid());
+			memMyUserService.myUpdateImage(vo);
+
+		}
+		return "user/mypage/member/memMyUpdateForm";
 	}
 
 	/* 개입회원 탈퇴화면 */
