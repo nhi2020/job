@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import com.job.user.member.mypage.service.MemMyUserService;
 import com.job.user.member.mypage.service.MemMyUserVO;
+import com.job.util.JobFileVO;
 
 @Service("memMyUserService")
 public class MemMyUserServiceImpl implements MemMyUserService {
@@ -24,8 +25,8 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 
 	/* 개인정보 */
 	@Override
-	public MemMyUserVO memMySelect(MemMyUserVO vo)throws Exception  {
-		return memMyUserDAO.memMySelect(vo);
+	public MemMyUserVO memMySelectList(MemMyUserVO vo)throws Exception  {
+		return memMyUserDAO.memMySelectList(vo);
 	}
 
 	/* 개인정보 업데이트 */
@@ -59,6 +60,13 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 	@Override
 	public int myUpdatePassChng(MemMyUserVO vo)throws Exception  {
 		int result = memMyUserDAO.myUpdatePassChng(vo);
+		return result;
+	}
+
+	/*이미지 업데이트*/
+	@Override
+	public int myUpdateImage(JobFileVO jobVO) throws Exception {
+		int result =memMyUserDAO.myUpdateImage(jobVO);
 		return result;
 	}
 	

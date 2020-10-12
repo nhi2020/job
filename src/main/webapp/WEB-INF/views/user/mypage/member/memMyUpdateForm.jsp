@@ -25,11 +25,13 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<h2>회원정보 상세</h2>
-	<form action="/user/mypage/member/myUpdate.do" method="post"
-		id="upForm">
+	<form action="/user/mypage/member/myUpdate.do" method="post" 
+		id="upForm" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${sessionScope.user.id}">
 		<input type="hidden" name="pass" value="${sessionScope.user.pass}">
-
+		<c:if test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">
+			<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="img-fluid" width="30%" height="30%"/>
+		</c:if>
 		<table border="1" width="400">
 			<tr>
 				<th>아이디</th>
@@ -50,7 +52,6 @@
 				<td><input type="text" name="phone" id="phone" required="required"
 					value="${sessionScope.user.phone }"></td>
 			</tr>
-			
 			<tr>
 				<th><i class="fas fa-star-of-life" style="color: red;"></i>경력</th>
 				<td><input type="text" name="career" id="career" required="required"
@@ -61,11 +62,20 @@
 			</tr>
 
 		</table>
-		
-		<div class="form-group">
-			<label for="image"><i class="fas fa-star-of-life" style="color: red;"></i>사진 업로드</label>
-				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
-		</div> 
+		<c:choose>
+			<c:when test="${sessionScope.user.originalfilename eq '' or sessionScope.user.originalfilename == null}">
+				<div class="form-group">
+					<label for="image"><i class="fas fa-star-of-life" style="color: red;"></i>사진 업로드</label>
+					<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+				</div> 
+			</c:when>
+			<c:otherwise>
+				<div class="form-group">
+					${sessionScope.user.originalfilename}
+					<a href="/user/mypage/member/myImageDel.do?storedfilename=${sessionScope.user.storedfilename}&filesize=${sessionScope.user.filesize}&attachid=${sessionScope.user.attachid}">삭제</a>
+				</div> 
+			</c:otherwise>
+		</c:choose>
 	</form>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>

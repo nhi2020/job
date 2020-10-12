@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.job.util.JobFileVO;
+
 public interface MemMyUserService {
 
 	/* 개인회원 리스트 */
 	public List<MemMyUserVO> memMyList() throws Exception;
 
 	/* 개인정보 */
-	public MemMyUserVO memMySelect(MemMyUserVO vo) throws Exception;
+	public MemMyUserVO memMySelectList(MemMyUserVO vo) throws Exception;
 
 	/* 개인정보 업데이트 */
 	public int memMyUpdate(MemMyUserVO vo) throws Exception;
@@ -27,4 +29,6 @@ public interface MemMyUserService {
 	/* 비밀번호 업데이트 */
 	public int myUpdatePassChng(MemMyUserVO vo) throws Exception;
 
+	/* 이미지 업데이트 */
+	public int myUpdateImage(JobFileVO jobVO) throws Exception;
 }

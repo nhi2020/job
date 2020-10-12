@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <title>Insert title here</title>
 <!-- <style type="text/css">
 	li{
@@ -16,108 +18,72 @@
 </style> -->
 </head>
 <body>
- 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> <a class="navbar-brand" href="/user/main/main.do">Logo</a>
-	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-		<span class="navbar-toggler-icon" ></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navb" >
-		
-		<ul class="navbar-nav" id="main-menu">
-			<c:choose>
-				<c:when test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/user/member/login/memLoginForm.do">개인 로그인</a> 
-							<a class="dropdown-item" href="/user/biz/login/bizLoginForm.do">기업 로그인</a> 
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 회원가입 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/user/member/join/memJoinForm.do">개인 회원가입</a> 
-							<a class="dropdown-item" href="/user/biz/join/bizJoinForm.do">기업 회원가입</a> 
-						</div>
-					</li>
-				</c:when>
-				<c:otherwise>
-					<c:if test="${!empty sessionScope.user.id}">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link"><i class="fas fa-user-alt"></i>  ${sessionScope.user.name}님 환영합니다.</a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
-						<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
-					</ul>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a> 
-							<a class="dropdown-item" href="">활동내역</a> 
-							<a class="dropdown-item" href="/user/mypage/member/memMyPassForm.do">비밀번호변경</a> 
-							<a class="dropdown-item" href="/user/mypage/member/memMyDeleteForm.do">탈퇴</a> 
-						</div> 
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
-					</li>
-					</c:if>
-					<c:if test="${!empty sessionScope.b_user.bsmno}">
-					<li class="nav-item"><a class="nav-link"><i class="fas fa-user-alt"></i>  ${sessionScope.b_user.company}님 환영합니다.</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="">내 프로필</a> 
-							<a class="dropdown-item" href="">활동내역</a> 
-							<a class="dropdown-item" href="">탈퇴</a> 
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a>
-					</li>
-					</c:if>
-				</c:otherwise>
-			</c:choose>
-		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text" placeholder="기업을 검색해 보세요.">
-			<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
-		</form> 
-	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> 
+		<a class="navbar-brand" href="/user/main/main.do">
+    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+  		</a>
+	
+		<div class="collapse navbar-collapse" id="navb">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
+				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<ul class="navbar-nav mr-auto">
+					<c:choose>
+						<c:when	test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/user/member/login/memLoginForm.do">개인 로그인</a>
+									<a class="dropdown-item" href="/user/biz/login/bizLoginForm.do">기업 로그인</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 회원가입 </a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/user/member/join/memJoinForm.do">개인 회원가입</a> 
+									<a class="dropdown-item" href="/user/biz/join/bizJoinForm.do">기업 회원가입</a>
+								</div>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<c:if test="${!empty sessionScope.user.id}">
+								<a class="navbar-brand" href="#">
+						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+						  		</a>
+								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a>
+										<a class="dropdown-item" href="">활동내역</a>
+										<a class="dropdown-item" href="/user/mypage/member/memMyPassForm.do">비밀번호변경</a> 
+										<a class="dropdown-item" href="/user/mypage/member/memMyDeleteForm.do">탈퇴</a>
+									</div>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>
+							</c:if>
+							<c:if test="${!empty sessionScope.b_user.bsmno}">
+								<a class="navbar-brand" href="#">
+						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+						  		</a>
+								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="">내 프로필</a> 
+										<a class="dropdown-item" href="">활동내역</a> <a class="dropdown-item" href="">탈퇴</a>
+									</div>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+				<input class="form-control mr-sm-2" type="text" placeholder="기업을 검색해 보세요.">
+				<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+			</form>
+		</div>
 	</nav>
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Jobara</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> -->
 </body>
 </html>

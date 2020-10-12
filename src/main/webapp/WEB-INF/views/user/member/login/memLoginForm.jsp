@@ -27,7 +27,7 @@
 	function findPass(){
 		document.frm.action="/user/member/login/memFindPassForm.do";
 		document.frm.submit();
-	}
+	},
 </script>
 </head>
 <body>
