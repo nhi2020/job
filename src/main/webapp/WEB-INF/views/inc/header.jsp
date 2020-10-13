@@ -56,9 +56,9 @@
 							</c:if>
 							<c:if test="${!empty sessionScope.b_user.bsmno}">
 								<a class="navbar-brand" href="#">
-						    		<img src="/resources/images/upload/biz/" alt="Logo" style="width:40px;height:40px;"/>
+						    		<img src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}" alt="Logo" style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.b_user.company}님 환영합니다.</a></li>
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
