@@ -34,6 +34,7 @@ public class MemMyUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	
 	private String pchange;
 	
 	
