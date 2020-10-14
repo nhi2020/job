@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
 
-		 	
+	response.sendRedirect("mng/main/main.do");
 
-
+%>
 </body>
 </html>

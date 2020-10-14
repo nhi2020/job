@@ -3,17 +3,44 @@
 <mapper namespace="memJoin">
 	<!-- 개인회원가입 -->
 	<insert id="insertMemJoin" parameterType="MemUserVO">
-	<![CDATA[
-		insert into member(id,pass,mnum,type,name,gender,email,phone,birthday,career,reg_date)
-		         values(#{id},#{pass},(SELECT NVL(MAX(mnum)+1, 1) FROM member),'M',#{name},#{gender},
-		         #{email},#{phone},#{birthday},#{career},to_date(sysdate,'YYYY-MM-DD'))
-	]]>
+		<![CDATA[
+				insert 
+				into member(id,pass,mnum,type,name,gender,email,phone,birthday,career,reg_date,del_yn,attachid)
+		 	    values(#{id},#{pass},(SELECT NVL(MAX(mnum)+1, 1) FROM member),'M',#{name},#{gender},
+		         #{email},#{phone},#{birthday},#{career},sysdate,'N',(SELECT MAX(attachid) FROM image))
+		]]>
 	</insert>
 	<!-- 아이디  중복체크 -->
 	<select id="m_check" resultType="int">
 	<![CDATA[
-		select count(*) from member where id=#{id}
+			select count(*) 
+			from   member 
+			where  id=#{id} and del_yn='N'
 	]]>
 	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="e_check" resultType="int">
+			select count(*)
+			from member
+			where email=#{email} and del_yn='N'
+	</select>
+	
+	<!-- 전화번호 중복체크 -->
+	<select id="p_check" resultType="int">
+			select count(*)
+			from member
+			where phone=#{phone} and del_yn='N'
+	</select>
+	
+	<!-- 개인 이미지 넣기 -->
+	<insert id="insertMemImage" parameterType="JobFileVO">
+		<![CDATA[
+				insert
+				into image(attachid,originalfilename,storedfilename,filesize)
+				values ((SELECT NVL(MAX(attachid)+1, 1) FROM image),#{originalfilename},#{storedfilename},#{filesize})
+		]]>
+	</insert>
+	
 
 </mapper>

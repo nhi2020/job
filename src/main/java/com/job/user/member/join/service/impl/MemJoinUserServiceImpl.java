@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.job.user.member.join.service.MemJoinUserService;
 import com.job.user.member.join.service.MemJoinUserVO;
+import com.job.util.JobFileVO;
 
 @Service("memJoinUserService")
 public class MemJoinUserServiceImpl implements MemJoinUserService {
@@ -26,5 +27,30 @@ public class MemJoinUserServiceImpl implements MemJoinUserService {
 		int result=memJoinUserDAO.m_check(vo);
 		return result;
 	}
+	
+	/*이메일 중복체크*/
+	@Override
+	public int e_check(MemJoinUserVO vo) throws Exception {
+		int result=memJoinUserDAO.e_check(vo);
+		return result;
+	}
+
+	/*전화번호 중복체크*/
+	@Override
+	public int p_check(MemJoinUserVO vo) throws Exception {
+		int result=memJoinUserDAO.p_check(vo);
+		return result;
+	}
+
+	
+	/*개인 이미지 넣기*/
+	@Override
+	public int insertMemImage(JobFileVO vo) throws Exception {
+		int result=memJoinUserDAO.insertMemImage(vo);
+		return result;
+	}
+
+	
+
 
 }

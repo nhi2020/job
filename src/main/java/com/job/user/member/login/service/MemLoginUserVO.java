@@ -12,24 +12,46 @@ public class MemLoginUserVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String image;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
+	private String originalfilename;
+	private String storedfilename;
+	private long filesize;
 	
+	public String getOriginalfilename() {
+		return originalfilename;
+	}
+	public void setOriginalfilename(String originalfilename) {
+		this.originalfilename = originalfilename;
+	}
+	public String getStoredfilename() {
+		return storedfilename;
+	}
+	public void setStoredfilename(String storedfilename) {
+		this.storedfilename = storedfilename;
+	}
+	public long getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
+	}
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getCareer() {
 		return career;
 	}
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 	public int getMnum() {
 		return mnum;
 	}

@@ -18,8 +18,9 @@
 	</select>
 
 	<!--개인정보 -->
-	<select id="memMySelect" resultType="MemMyUserVO" parameterType="MemMyUserVO">
-		SELECT id,
+	<select id="memMySelectList" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		ID,
 		PASS,
 		MNUM,
 		TYPE,
@@ -47,13 +48,14 @@
 	<update id="myUpdate" parameterType="MemMyUserVO">
 		UPDATE MEMBER
 		SET
-		NAME=#{name},
 		EMAIL =
 		#{email},
 		PHONE =
 		#{phone},
 		CAREER =
-		#{career}
+		#{career},
+		UP_DATE =
+		sysdate
 		WHERE
 		ID
 		=
@@ -61,34 +63,42 @@
 	</update>
 
 	<!--개인회원 탈퇴 -->
-	<delete id="memMyDelete">
-		DELETE FROM MEMBER
-		WHERE ID = #{id}
+	<update id="memMyDelete">
+		UPDATE MEMBER
+		SET
+		DEL_YN ='Y',
+		DEL_DATE = sysdate
+		WHERE
+		ID
+		= #{id}
 		AND PASS = #{pass}
-	</delete>
+	</update>
 
-	<!-- 패스워드 체크 -->
+	<!-- 비밀번호 체크 -->
 	<select id="myPassChk" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		WHERE ID=#{id}
-		AND PASS=#{pass}
+		WHERE ID = #{id}
+		AND PASS = #{pass}
 	</select>
 
-	<!-- 패스워드 변경 -->
-	<update id="memMyPass" parameterType="MemMyUserVO">
-		update member
-		set
-		pass =#{pass}
-		where id =#{id}
+	<!-- 비밀번호 변경 -->
+	<update id="myUpdatePassChng" parameterType="MemMyUserVO">
+		UPDATE MEMBER
+		SET
+		PASS = #{pchange}
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 이미지 업데이트 -->
+	<update id="myUpdateImage" parameterType="JobFileVO">
+		UPDATE IMAGE
+		SET					
+		ORIGINALFILENAME = #{originalfilename},
+		STOREDFILENAME = #{storedfilename},
+		FILESIZE = #{filesize}
+		WHERE ATTACHID = #{attachid}
 
 	</update>
-	
-	<!-- 패스워드 변경 -->
-	<update id="myUpdatePassChng" parameterType="MemMyUserVO">
-		update member
-		set
-		pass = #{pchange}
-		where id = #{id}
-	</update>
+
 </mapper>

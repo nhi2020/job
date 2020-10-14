@@ -17,7 +17,14 @@ public class ReviewUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	private String title;
 
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	private String search;   private String keyword;
 	private String pageNum;  
 	private int start; 		 private int end;

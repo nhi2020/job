@@ -13,7 +13,7 @@
 
 	<h2>마이페이지</h2>
 	<form name="form1" method="post"
-		action="/user/member/mypage/memMyUpdateForm.do">
+		action="/user/mypage/member/memMyUpdateForm.do">
 		<%-- <input type="hidden" name="id" value="${sessionScope.user.id}"/>
 	<input type="hidden" name="name" value="${sessionScope.user.name}"/> --%>
 			<table border="1" width="400">

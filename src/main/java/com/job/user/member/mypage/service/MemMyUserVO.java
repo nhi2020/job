@@ -1,6 +1,7 @@
 package com.job.user.member.mypage.service;
 
 public class MemMyUserVO {
+	/*MEMBER*/
 	private String id;
 	private String pass; 
 	private int mnum; 
@@ -11,12 +12,13 @@ public class MemMyUserVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String image;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
 	
+	/*REVIEW*/
 	private int rnum; 
 	private String r_id; 
 	private String bsmno; 
@@ -32,9 +34,18 @@ public class MemMyUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	
 	private String pchange;
 	
 	
+	
+	
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getPchange() {
 		return pchange;
 	}
@@ -137,12 +148,7 @@ public class MemMyUserVO {
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 	public int getMnum() {
 		return mnum;
 	}
