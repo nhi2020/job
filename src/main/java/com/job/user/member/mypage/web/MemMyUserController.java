@@ -44,7 +44,7 @@ public class MemMyUserController {
 
 	/* 개인정보 */
 	@RequestMapping(value = "/user/mypage/member/memMySelectList.do")
-	public String memMySelectList(Model model) {
+	public String memMySelectList(Model model) throws Exception {
 		/*
 		 * HttpSession session=request.getSession(); MemLoginUserVO
 		 * loginUser=(MemLoginUserVO)session.getAttribute("user");
@@ -79,14 +79,15 @@ public class MemMyUserController {
 				loginVO.setPass(vo.getPass());
 				MemLoginUserVO user = memLoginUserService.user(loginVO);
 				jobVO.setAttachid(user.getAttachid());
-				jobVO.setOriginalfilename(list.get(0).getOriginalfilename());
-				jobVO.setFilesize(list.get(0).getFilesize());
-				jobVO.setStoredfilename(list.get(0).getStoredfilename());
-				memMyUserService.myUpdateImage(jobVO);
-				user.setOriginalfilename(list.get(0).getOriginalfilename());
-				user.setStoredfilename(list.get(0).getStoredfilename());
-				user.setFilesize(list.get(0).getFilesize());
-				session.removeAttribute("user");
+				if(list.size() > 0) {
+					jobVO.setOriginalfilename(list.get(0).getOriginalfilename());
+					jobVO.setFilesize(list.get(0).getFilesize());
+					jobVO.setStoredfilename(list.get(0).getStoredfilename());
+					memMyUserService.myUpdateImage(jobVO);
+					user.setOriginalfilename(list.get(0).getOriginalfilename());
+					user.setStoredfilename(list.get(0).getStoredfilename());
+					user.setFilesize(list.get(0).getFilesize());
+				}
 				session.setAttribute("user", user);
 			} catch (Exception e) {
 				e.printStackTrace();

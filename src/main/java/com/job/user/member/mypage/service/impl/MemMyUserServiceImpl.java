@@ -49,7 +49,7 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 		
 	}
 
-	/*패스워드 체크*/
+	/*비밀번호 체크*/
 	@Override
 	public int myPassChk(MemMyUserVO vo) throws Exception {
 		int result = memMyUserDAO.myPassChk(vo);
