@@ -15,8 +15,20 @@
 	
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
-				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
+				<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 기업 </a>
+						<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">IT/인터넷</a>
+						<a class="dropdown-item" href="#">경영/기획/컨설팅</a>
+						<a class="dropdown-item" href="#">교육</a>
+						<a class="dropdown-item" href="#">금융/재무</a>
+						<a class="dropdown-item" href="#">디자인</a>
+						<a class="dropdown-item" href="#">마케팅/시장조사</a>
+						<a class="dropdown-item" href="#">미디어/홍보</a>
+						<a class="dropdown-item" href="#">생산/제조</a>
+						</div>
+				</li>
+				<!-- <li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li> -->
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<ul class="navbar-nav mr-auto">
