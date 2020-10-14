@@ -86,11 +86,49 @@ function e_check(){
 	});
 
 }
+
+/* 전화번호 중복체크 */
+function p_check(){
+	if(document.frm.phone.value==""){
+		alert('연락처를 입력해주세요.');
+		document.frm.phone.value="";
+		document.frm.phone.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/bsm_no_p_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"phone" : $("#phone").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 연락처가 존재합니다.");
+				document.frm.phone.value="";
+				document.frm.phone.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 연락처입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
  
  
 	function joinBiz(){
 		var bp=$('#b_pwcheck').text();
 		var bp2=$('#b_pwcheck2').text();
+		var f=document.frm;
+		if(f.bsmno.value==""){
+			alert('사업자번호를 입력해 주세요.');
+			document.frm.bsmno.value="";
+			document.frm.bsmno.focus();
+			return false;
+		}
+		
 		if(bp2=='비밀번호 형식이 일치하지 않습니다.'){
 			alert('비밀번호 형식이 일치하지 않습니다.');
 			document.frm.pass.value="";
@@ -104,6 +142,63 @@ function e_check(){
 			document.frm.pass2.focus();
 			return false;
 		}
+		
+		if(f.pass.value==""){
+			alert('비밀번호를 입력해 주세요.');
+			document.frm.pass.value="";
+			document.frm.pass.focus();
+			return false;
+		}
+		if(f.pass2.value==""){
+			alert('비밀번호 확인을 입력해 주세요.');
+			document.frm.pass2.value="";
+			document.frm.pass2.focus();
+			return false;
+		}
+		if(f.company.value==""){
+			alert('기업명을 입력해 주세요.');
+			document.frm.company.value="";
+			document.frm.company.focus();
+			return false;
+		}
+		if(f.email.value==""){
+			alert('이메일을 입력해 주세요.');
+			document.frm.email.value="";
+			document.frm.email.focus();
+			return false;
+		}
+		if(f.ceo.value==""){
+			alert('대표자를 입력해 주세요.');
+			document.frm.ceo.value="";
+			document.frm.ceo.focus();
+			return false;
+		}
+		if(f.phone.value==""){
+			alert('대표자 연락처를 입력해 주세요.');
+			document.frm.phone.value="";
+			document.frm.phone.focus();
+			return false;
+		}
+		if(f.field.value==""){
+			alert('업종을 입력해 주세요.');
+			document.frm.field.value="";
+			document.frm.field.focus();
+			return false;
+		}
+		if(f.addr.value==""){
+			alert('주소을 입력해 주세요.');
+			document.frm.addr.value="";
+			document.frm.addr.focus();
+			return false;
+		}
+		if(f.file.value==""){
+			alert('기업로고를 입력해 주세요.');
+			document.frm.file.value="";
+			document.frm.file.focus();
+			return false;
+		}
+		
+		
 		
 		document.frm.action="/user/biz/join/bizJoin.do";
 		document.frm.submit();
@@ -156,7 +251,7 @@ function e_check(){
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="b_check" type="button" onclick="check();">
-			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button>
+			 중복체크</button>
 		</div>
 		<div class="form-group">
 			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
@@ -178,8 +273,6 @@ function e_check(){
 				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required="required">
 		</div> 
 		<div class="form-group">
-			<!-- <button class="btn btn-warning" id="eeecheck" type="button" onclick="javascript:eeecheck();">
-			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button> -->
 			<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
 		</div>
 		<div class="form-group">
@@ -190,6 +283,9 @@ function e_check(){
 			<label for="phone">대표자 연락처 ('-'를 포함한 연락처를 입력해주세요)</label>
 				<input type="text" class="form-control" id="phone" name="phone" placeholder="대표자 연락처를 입력하세요" required="required">
 		</div> 
+		<div class="form-group">
+			<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
+		</div>
 		<div class="form-group">
 			<label for="field">업종</label>
 				<select class="form-control" name="field" id="field" required="required">

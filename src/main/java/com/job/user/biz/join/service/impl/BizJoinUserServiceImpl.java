@@ -34,6 +34,13 @@ public class BizJoinUserServiceImpl implements BizJoinUserService {
 		int result=bizJoinUserDAO.bsm_no_e_check(vo);
 		return result;
 	}
+	
+	/*전화번호 중복체크*/
+	@Override
+	public int bsm_no_p_check(BizJoinUserVO vo) throws Exception {
+		int result=bizJoinUserDAO.bsm_no_p_check(vo);
+		return result;
+	}
 
 	/*기업 이미지 넣기*/
 	@Override
@@ -41,6 +48,8 @@ public class BizJoinUserServiceImpl implements BizJoinUserService {
 		int result=bizJoinUserDAO.insertBizImage(vo);
 		return result;
 	}
+
+	
 
 	
 

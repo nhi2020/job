@@ -5,28 +5,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <title>Insert title here</title>
-<!-- <style type="text/css">
-	li{
-		float: right;
-	}
-</style> -->
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> 
 		<a class="navbar-brand" href="/user/main/main.do">
-    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+    		<img src="/resources/images/upload/member/logo.png" alt="Logo" style="width:70px;height:40px;"/>
   		</a>
 	
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li>
-				<li class="nav-item"><a class="nav-link" href="javascript:void(0)">리뷰</a></li>
+				<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 기업 </a>
+						<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">IT/인터넷</a>
+						<a class="dropdown-item" href="#">경영/기획/컨설팅</a>
+						<a class="dropdown-item" href="#">교육</a>
+						<a class="dropdown-item" href="#">금융/재무</a>
+						<a class="dropdown-item" href="#">디자인</a>
+						<a class="dropdown-item" href="#">마케팅/시장조사</a>
+						<a class="dropdown-item" href="#">미디어/홍보</a>
+						<a class="dropdown-item" href="#">생산/제조</a>
+						</div>
+				</li>
+				<!-- <li class="nav-item"><a class="nav-link" href="javascript:void(0)">기업</a></li> -->
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<ul class="navbar-nav mr-auto">
@@ -49,12 +51,12 @@
 						</c:when>
 						<c:otherwise>
 							<c:if test="${!empty sessionScope.user.id}">
-								<a class="navbar-brand" href="#">
-						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+								<a class="navbar-brand">
+						    		<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="rounded-circle" alt="Logo" style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item"><a class="nav-link">${sessionScope.user.name}님 환영합니다.</a></li>
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+									<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">마이페이지 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a>
 										<a class="dropdown-item" href="">활동내역</a>
@@ -66,13 +68,15 @@
 							</c:if>
 							<c:if test="${!empty sessionScope.b_user.bsmno}">
 								<a class="navbar-brand" href="#">
-						    		<img src="/resources/images/upload/member/3b7150b453ca425ab08e2c3e09120936.jpg" alt="Logo" style="width:40px;height:40px;"/>
+						    		<img src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}" alt="Logo" style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.b_user.company}님 환영합니다.</a></li>
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="">내 프로필</a> 
-										<a class="dropdown-item" href="">활동내역</a> <a class="dropdown-item" href="">탈퇴</a>
+											<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
+										<a class="dropdown-item" href="">활동내역</a> 
+										<a class="dropdown-item" href="/user/mypage/biz/bizMyPassForm.do">비밀번호변경</a> 
+										<a class="dropdown-item" href="/user/mypage/biz/bizMyDeleteForm.do">탈퇴</a>
 									</div>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>

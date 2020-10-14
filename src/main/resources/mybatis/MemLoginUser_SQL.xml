@@ -64,8 +64,6 @@
 				set    pass=#{pass}
 				where  email=#{email} and del_yn='N'
 		]]>
-		
-		
 	</update>
 	
 </mapper>

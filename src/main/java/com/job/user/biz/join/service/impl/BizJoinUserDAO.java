@@ -31,6 +31,11 @@ public class BizJoinUserDAO {
 		return result;
 	}
 	
+	/*전화번호 중복체크*/
+	public int bsm_no_p_check(BizJoinUserVO vo)throws Exception{
+		int result=sqlSessionTemplate.selectOne("bizJoin.bsm_no_p_check", vo);
+		return result;
+	}
 	
 	/*기업 이미지 넣기*/
 	public int insertBizImage(JobFileVO vo)throws Exception{

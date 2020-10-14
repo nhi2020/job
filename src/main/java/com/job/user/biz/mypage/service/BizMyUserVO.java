@@ -17,7 +17,14 @@ public class BizMyUserVO {
 	private String del_date; 
 	private String del_yn;
 	
+	private String bpchange;
 	
+	public String getBpchange() {
+		return bpchange;
+	}
+	public void setBpchange(String bpchange) {
+		this.bpchange = bpchange;
+	}
 	public int getAttachid() {
 		return attachid;
 	}

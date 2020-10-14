@@ -4,23 +4,26 @@
 	<!-- 기업로그인 -->
 	<select id="b_Login"  resultType="BizLoginUserVO">
 		<![CDATA[
-		         select bsmno, 
-		                pass,
-		                bnum,
-		                type,
-		                company,
-		                email,
-		                ceo,
-		                phone,
-		                field,
-		                addr,
-		                attachid,
-		                reg_date,
-		                up_date,
-		                del_date,
-		                del_yn
-		         from   biz 
-		         where  bsmno=#{bsmno} and pass=#{pass} and del_yn='N'
+		         select b.bsmno, 
+		                b.pass,
+		                b.bnum,
+		                b.type,
+		                b.company,
+		                b.email,
+		                b.ceo,
+		                b.phone,
+		                b.field,
+		                b.addr,
+		                b.attachid,
+		                b.reg_date,
+		                b.up_date,
+		                b.del_date,
+		                b.del_yn,
+		                i.originalfilename,
+				        i.storedfilename,
+				        i.filesize
+		         from   biz b,image i
+		         where  bsmno=#{bsmno} and pass=#{pass} and del_yn='N' and b.attachid=i.attachid
 		]]>
 	</select>
 	

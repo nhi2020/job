@@ -31,6 +31,11 @@ public class MemJoinUserDAO {
 		return result;
 	}
 	
+	/*전화번호 중복체크*/
+	public int p_check(MemJoinUserVO vo)throws Exception{
+		int result=sqlSessionTemplate.selectOne("memJoin.p_check", vo);
+		return result;
+	}
 	
 	/*개인 이미지 넣기*/
 	public int insertMemImage(JobFileVO vo)throws Exception{

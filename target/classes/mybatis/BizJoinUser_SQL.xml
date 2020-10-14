@@ -27,6 +27,14 @@
 		]]>
 	</select>
 	
+	<!-- 전화번호 중복체크 -->
+	<select id="bsm_no_p_check" resultType="int">
+		<![CDATA[
+				select count(*)
+				from biz
+				where phone=#{phone} and del_yn='N'
+		]]>
+	</select>
 	
 	<!-- 기업 이미지 넣기 -->
 	<insert id="insertBizImage" parameterType="JobFileVO">
