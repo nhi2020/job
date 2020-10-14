@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.BizUser_SQL"></mapper>
+<mapper namespace="bizInfo">
+
+	<select id="b_Info" resultType="BizUserVO" parameterType="BizUserVO">
+		<![CDATA[
+			SELECT 
+				BSMNO,
+				PASS,
+				BNUM,
+				TYPE,
+				COMPANY,
+				EMAIL,
+				CEO,
+				PHONE,
+				FIELD,
+				ADDR,
+				LOGO,
+				TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
+				TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
+				TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
+				DEL_YN
+			FROM   BIZ
+			WHERE  1=1
+		]]>
+		<if test="bsmno != null">
+		    AND BSMNO = #{bsmno}
+		</if>
+	</select>
+</mapper>
