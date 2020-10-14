@@ -12,24 +12,27 @@ public class MemUserVO {
 	private String phone; 
 	private String birthday; 
 	private String career;
-	private String image;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
 	
+	
+	
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getCareer() {
 		return career;
 	}
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 	public int getMnum() {
 		return mnum;
 	}

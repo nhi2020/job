@@ -3,7 +3,7 @@
 <mapper namespace="MemMyUser">
 
 
-	<!-- 회원정보 리스트 -->
+	<!--개인회원 리스트 -->
 	<select id="memMyList" resultType="MemMyUserVO">
 		SELECT
 		ID,
@@ -17,36 +17,88 @@
 		ORDER BY ID
 	</select>
 
-	<!-- 개인정보 -->
-	<select id="memMySelect" resultType="MemMyUserVO" parameterType="MemMyUserVO">
-		SELECT
-			ID
-			, PASS
-			, MNUM
-			, TYPE
-			, NAME
-			, GENDER
-			, EMAIL
-			, PHONE
-			, BIRTHDAY
-			, CAREER
-			, DEL_YN
+	<!--개인정보 -->
+	<select id="memMySelectList" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		ID,
+		PASS,
+		MNUM,
+		TYPE,
+		NAME,
+		GENDER,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		CAREER,
+		IMAGE,
+		REG_DATE,
+		UP_DATE,
+		DEL_DATE,
+		DEL_YN
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
 
-	<!--회원수정  -->
+	<!--개인정보 업데이트 -->
 	<select id="memMyUpdate" parameterType="MemMyUserVO" resultType="MemMyUserVO">
-		select * from member where id = #{id}
+		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 
-	<!--회원정보 수정 1-->
+	<!--개인정보 업데이트1 -->
 	<update id="myUpdate" parameterType="MemMyUserVO">
 		UPDATE MEMBER
 		SET
-		NAME = #{name}
+		EMAIL =
+		#{email},
+		PHONE =
+		#{phone},
+		CAREER =
+		#{career},
+		UP_DATE =
+		sysdate
 		WHERE
-		ID = #{id}
+		ID
+		=
+		#{id}
+	</update>
+
+	<!--개인회원 탈퇴 -->
+	<update id="memMyDelete">
+		UPDATE MEMBER
+		SET
+		DEL_YN ='Y',
+		DEL_DATE = sysdate
+		WHERE
+		ID
+		= #{id}
+		AND PASS = #{pass}
+	</update>
+
+	<!-- 비밀번호 체크 -->
+	<select id="myPassChk" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ID = #{id}
+		AND PASS = #{pass}
+	</select>
+
+	<!-- 비밀번호 변경 -->
+	<update id="myUpdatePassChng" parameterType="MemMyUserVO">
+		UPDATE MEMBER
+		SET
+		PASS = #{pchange}
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 이미지 업데이트 -->
+	<update id="myUpdateImage" parameterType="JobFileVO">
+		UPDATE IMAGE
+		SET					
+		ORIGINALFILENAME = #{originalfilename},
+		STOREDFILENAME = #{storedfilename},
+		FILESIZE = #{filesize}
+		WHERE ATTACHID = #{attachid}
+
 	</update>
 
 </mapper>

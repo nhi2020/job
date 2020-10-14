@@ -13,6 +13,8 @@ public interface ReviewUserService {
 	  
 	  public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO);
 	  public int total3();
+	  
+	  public int reviewWriteForm(ReviewUserVO reviewUserVO);
 
 		
 }

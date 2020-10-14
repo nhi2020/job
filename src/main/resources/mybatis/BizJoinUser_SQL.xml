@@ -3,16 +3,46 @@
 <mapper namespace="bizJoin">
 	<insert id="insertBizJoin" parameterType="BizJoinUserVO">
 		<!-- 기업회원가입 -->
-		<![CDATA[insert into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date)
+		<![CDATA[
+				 insert 
+				 into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date,del_yn,attachid)
 		         values(#{bsmno},#{pass},(SELECT NVL(MAX(bnum)+1, 1) FROM biz),'B',
-		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},to_date(sysdate,'YYYY-MM-DD'))
+		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},sysdate,'N',(SELECT MAX(attachid) FROM image))
 		         ]]>
 	</insert>
 		<!-- 사업자번호 중복체크 -->
 	<select id="bsm_no_check" resultType="int">
-		<![CDATA[select count(*) 
-		         from biz 
-		         where bsmno=#{bsmno}]]>
+		<![CDATA[
+				 select count(*) 
+		         from   biz 
+		         where  bsmno=#{bsmno} and del_yn='N'
+		         ]]>
 	</select>
+	<!-- 이메일 중복체크 -->
+	<select id="bsm_no_e_check" resultType="int">
+		<![CDATA[
+				select count(*)
+				from biz
+				where email=#{email} and del_yn='N'
+		]]>
+	</select>
+	
+	<!-- 전화번호 중복체크 -->
+	<select id="bsm_no_p_check" resultType="int">
+		<![CDATA[
+				select count(*)
+				from biz
+				where phone=#{phone} and del_yn='N'
+		]]>
+	</select>
+	
+	<!-- 기업 이미지 넣기 -->
+	<insert id="insertBizImage" parameterType="JobFileVO">
+		<![CDATA[
+				insert
+				into image(attachid,originalfilename,storedfilename,filesize)
+				values ((SELECT NVL(MAX(attachid)+1, 1) FROM image),#{originalfilename},#{storedfilename},#{filesize})
+		]]>
+	</insert>
 
 </mapper>

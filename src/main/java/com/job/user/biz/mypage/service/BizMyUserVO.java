@@ -11,12 +11,26 @@ public class BizMyUserVO {
 	private String phone; 
 	private String field; 
 	private String addr; 
-	private String logo;
+	private int attachid;
 	private String reg_date; 
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
 	
+	private String bpchange;
+	
+	public String getBpchange() {
+		return bpchange;
+	}
+	public void setBpchange(String bpchange) {
+		this.bpchange = bpchange;
+	}
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getBsmno() {
 		return bsmno;
 	}
@@ -77,12 +91,7 @@ public class BizMyUserVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getLogo() {
-		return logo;
-	}
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
+	
 	public String getReg_date() {
 		return reg_date;
 	}

@@ -5,23 +5,27 @@
 	<!-- 개인 로그인 -->
 	<select id="user" parameterType="MemLoginUserVO" resultType="MemLoginUserVO" >
 		<![CDATA[
-				 select id, 
-				        pass, 
-				        mnum,
-				        type,
-				        name,
-				        gender,
-				        email,
-				        phone,
-				        birthday,
-				        career,
-				        image,
-				        reg_date,
-				        up_date,
-				        del_date,
-				        del_yn
-		         from   member 
-		         where  id=#{id} and pass=#{pass}
+				 select m.id, 
+				        m.pass, 
+				        m.mnum,
+				        m.type,
+				        m.name,
+				        m.gender,
+				        m.email,
+				        m.phone,
+				        m.birthday,
+				        m.career,
+				        m.attachid,
+				        m.reg_date,
+				        m.up_date,
+				        m.del_date,
+				        m.del_yn,
+				        m.attachid,
+				        i.originalfilename,
+				        i.storedfilename,
+				        i.filesize
+		         from   member m, image i
+		         where  id=#{id} and pass=#{pass} and del_yn='N' and m.attachid=i.attachid
 		]]>
 		
 	</select>
@@ -31,7 +35,7 @@
 		<![CDATA[
 			     select count(*)
 			     from   member
-			     where  id=#{id} and pass=#{pass}		
+			     where  id=#{id} and pass=#{pass} and del_yn='N'		
 		]]>
 	</select>
 	
@@ -39,9 +43,27 @@
 	<select id="findId" parameterType="String" resultType="String">
 		<![CDATA[
 				select id
-				from member
-				where email=#{email} and name=#{name} and phone=#{phone}
+				from   member
+				where  email=#{email} and name=#{name} and phone=#{phone} and del_yn='N'
+		]]>
+	</select>
+	
+	<!-- 개인 비밀번호 변경을 위한 아이디, 이메일 일치 여부 -->
+	<select id="memPassCheck" resultType="int">
+		<![CDATA[
+				select count(*)
+				from   member
+				where  id=#{id} and email=#{email}
 		]]>
 	</select>
 
+	<!-- 개인  비밀번호 변경 -->
+	<update id="memPassChange" parameterType="hashMap">
+		<![CDATA[
+				update member
+				set    pass=#{pass}
+				where  email=#{email} and del_yn='N'
+		]]>
+	</update>
+	
 </mapper>

@@ -23,6 +23,7 @@
 <script type="text/javascript">
 /* 아이디 중복체크 */
 function check(){
+	if(document.frm.id.value!=""){
 	$.ajax({
 		url:'<%=context%>/m_check.do',
 		type : 'POST',
@@ -31,8 +32,8 @@ function check(){
 		success : function(data) {
 				if (data == 1) {
 					alert("중복된 아이디가 존재합니다.");
+					document.frm.id.value="";
 				} else if (data == 0) {
-					$("#id").attr("value", "Y");
 					alert("사용가능한 아이디입니다.");
 				}
 			},
@@ -41,6 +42,153 @@ function check(){
 			}
 		});
 
+	}
+	else{
+		alert("아이디를 입력해주세요.")
+	}
+}
+
+/* 이메일 중복체크 */
+function e_check(){
+	if(document.frm.email.value==""){
+		alert('이메일을 입력해주세요.');
+		document.frm.email.value="";
+		document.frm.email.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/e_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"email" : $("#email").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 이메일이 존재합니다.");
+				document.frm.email.value="";
+				document.frm.email.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 이메일입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+
+/* 전화번호 중복체크 */
+function p_check(){
+	if(document.frm.phone.value==""){
+		alert('전화번호를 입력해주세요.');
+		document.frm.phone.value="";
+		document.frm.phone.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/p_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"phone" : $("#phone").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 전화번호가 존재합니다.");
+				document.frm.phone.value="";
+				document.frm.phone.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 전화번호입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+
+	function joinMem() {
+		var mp=$('#m_pwcheck').text();
+		var mp2=$('#m_pwcheck2').text();
+		var f=document.frm;
+		if(f.id.value==""){
+			alert('아이디를 입력해 주세요.');
+			document.frm.id.value="";
+			document.frm.id.focus();
+			return false;
+		}
+		
+		if(mp2=='비밀번호 형식이 일치하지 않습니다.'){
+			alert('비밀번호 형식이 일치하지 않습니다.');
+			document.frm.pass.value="";
+			document.frm.pass.focus();
+			return false;
+		}
+		if(mp=='비밀번호가 일치하지 않습니다.'){
+			alert('비밀번호가 일치하지 않습니다.');
+			document.frm.pass2.value="";
+			document.frm.pass2.focus();
+			return false;
+		}
+		
+		if(f.pass.value==""){
+			alert('비밀번호를 입력해 주세요.');
+			document.frm.pass.value="";
+			document.frm.pass.focus();
+			return false;
+		}
+		if(f.pass2.value==""){
+			alert('비밀번호 확인을 입력해 주세요.');
+			document.frm.pass2.value="";
+			document.frm.pass2.focus();
+			return false;
+		}
+		if(f.name.value==""){
+			alert('이름을 입력해 주세요.');
+			document.frm.name.value="";
+			document.frm.name.focus();
+			return false;
+		}
+		if(f.gender.value==""){
+			alert('성별을 입력해 주세요.');
+			document.frm.gender.value="";
+			document.frm.gender.focus();
+			return false;
+		}
+		if(f.email.value==""){
+			alert('이메일을 입력해 주세요.');
+			document.frm.email.value="";
+			document.frm.email.focus();
+			return false;
+		}
+		if(f.phone.value==""){
+			alert('전화번호를 입력해 주세요.');
+			document.frm.phone.value="";
+			document.frm.phone.focus();
+			return false;
+		}
+		if(f.birthday.value==""){
+			alert('생년월일을 입력해 주세요.');
+			document.frm.birthday.value="";
+			document.frm.birthday.focus();
+			return false;
+		}
+		if(f.career.value==""){
+			alert('총 경력을 입력해 주세요.');
+			document.frm.career.value="";
+			document.frm.career.focus();
+			return false;
+		}
+		if(f.file.value==""){
+			alert('내 이미지를 입력해 주세요.');
+			document.frm.file.value="";
+			document.frm.file.focus();
+			return false;
+		}
+		
+		document.frm.action="/user/member/join/memJoin.do";
+		document.frm.submit();
 	}
 	
 
@@ -84,7 +232,7 @@ function check(){
 
 
  <div class="container" style="margin-top:30px">
-	<form method="post" action="/user/member/join/memJoin.do" enctype="multipart/form-data" >
+	<form method="post" name="frm" enctype="multipart/form-data">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
@@ -93,7 +241,7 @@ function check(){
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="m_check" type="button" onclick="check();">
-			<i class="far fa-check-circle" aria-hidden="true"></i> 중복체크</button>
+			 중복체크</button>
 		</div>
 		<div class="form-group">
 			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
@@ -123,11 +271,17 @@ function check(){
 			<label for="email">이메일</label>
 				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required="required">
 		</div> 
+		<div class="form-group">
+			<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
+		</div>
 		
 		<div class="form-group">
 			<label for="phone">전화번호 ('-'를 포함한 연락처를 입력해주세요)</label>
 				<input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력하세요" required="required">
 		</div> 
+		<div class="form-group">
+			<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
+		</div>
 			<div class="form-group">
 			<label for="birthday">생년월일</label>
 				<input type="date" class="form-control" id="birthday" name="birthday" required="required" >
@@ -145,14 +299,14 @@ function check(){
 			
 		</div>
 		<div class="form-group">
-			<label for="image">사진 업로드</label>
-				<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+			<label for="file">내 이미지</label>
+				<input type="file" class="form-control" id="file" name="file" placeholder="내 이미지를 넣으세요." required="required">
 		</div> 
 		<div class="reg_button">
-				<a class="btn btn-danger px-3" href="javascript:location.href=history.back();">
+				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
-				<button class="btn btn-primary px-3" id="reg_submit">
+				<button class="btn btn-primary px-3" id="reg_submit" onclick="joinMem();">
 					<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
 				</button>
 			</div>

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="/WEB-INF/views/inc/top.jsp" %>
+<%@ include file="../../inc/top.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/inc/header.jsp" %>
+<%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
 	<div class="container mt-3">
 		<c:forEach var="result1" items="${list1}">
@@ -35,9 +35,11 @@
 	      <c:forEach var="result1" items="${list1}">
       		<p>	
       			${result1.reg_date }<br/>
-      			${result1.review}
+      			${result1.id }<br/>
+      			${result1.title}
       		</p>
 	      </c:forEach>
+	      <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/reviewWriteForm.do'">
 	      <c:if test="${pg1.startPage > pg1.pageBlock }">
 				<a href="list.do?currentPage=${pg1.startPage-pg1.pageBlock}">[이전]</a>
 			</c:if>
@@ -53,6 +55,7 @@
 	      <c:forEach var="result2" items="${list2}">
 	      	<p> 
 	      		${result2.reg_date }<br/>
+	      		${result1.id }<br/>
 	      		${result2.sal }
 	      	</p>
 	      </c:forEach>
@@ -71,9 +74,11 @@
 	      	<c:forEach var="result3" items="${list3}">
 	      	 <p>
 		      	${result3.reg_date }<br/>
-		      	${result3.mreview}
+		      	${result3.id }<br/>		     
+		      	${result3.title}
 		     </p>
-		    </c:forEach>
+		    </c:forEach>	
+		     <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/reviewWriteForm.do'">
 		    <c:if test="${pg3.startPage > pg3.pageBlock }">
 				<a href="list.do?currentPage=${pg3.startPage-pg3.pageBlock}">[이전]</a>
 			</c:if>
@@ -85,8 +90,7 @@
 			</c:if>
 	    </div>
 	  </div>
-	</div>
-	
+	</div>	
 	<script>
 	$(document).ready(function(){
 	  $(".nav-tabs a").click(function(){
@@ -95,6 +99,7 @@
 	});
 	</script>
 </div>
-<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
+<br>
+<%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>

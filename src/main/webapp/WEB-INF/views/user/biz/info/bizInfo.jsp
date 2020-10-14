@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-		 	
-
-
+${bizInfo.bsmno }
+${bizInfo.pass }
+${bizInfo.bnum }
 </body>
 </html>

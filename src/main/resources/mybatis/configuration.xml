@@ -20,6 +20,7 @@
 		<typeAlias alias="MemMyUserVO"      type="com.job.user.member.mypage.service.MemMyUserVO" />
 		<typeAlias alias="MemUserVO"      	type="com.job.user.member.service.MemUserVO" />
 		<typeAlias alias="ReviewUserVO"     type="com.job.user.review.service.ReviewUserVO" />
+		<typeAlias alias="JobFileVO"        type="com.job.util.JobFileVO"/>
 	
 	</typeAliases>
 	

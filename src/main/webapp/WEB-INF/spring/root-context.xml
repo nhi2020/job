@@ -56,4 +56,21 @@
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* service.*Service.*(..))"/>
 		<!-- service 패키지의 Service 포함하는 모든 클래스,인터페이스의 모든 메서드를 포인트 컷 한다. -->
 	</aop:config>
+	
+	<!-- 메일보내기 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="jobarakr1@gmail.com" />
+		<property name="password" value="choongang1969" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	
 </beans>
