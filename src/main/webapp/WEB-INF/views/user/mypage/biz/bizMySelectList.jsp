@@ -12,39 +12,47 @@
 	<div class="container" style="margin-top: 30px"></div>
 
 	<h2>마이페이지</h2>
-	<form name="form1" method="post" action="/user/mypage/biz/bizMyUpdateForm.do">
+	<form name="form1" method="post"
+		action="/user/mypage/biz/bizMyUpdateForm.do">
 		<table border="1" width="400">
 			<tr>
-				<td>사업자번호</td>
+				<th>사업자번호</th>
 				<td>${sessionScope.b_user.bsmno}</td>
 			</tr>
 
 			<tr>
-				<td>기업명</td>
+				<th>기업명</th>
 				<td>${sessionScope.b_user.company}</td>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>${sessionScope.b_user.email}</td>
 			</tr>
 
 			<tr>
-				<td>대표자</td>
+				<th>대표자</th>
 				<td>${sessionScope.b_user.ceo}</td>
 			</tr>
 
 			<tr>
-				<td>대표자 연락처</td>
+				<th>대표자 연락처</th>
 				<td>${sessionScope.b_user.phone}</td>
 			</tr>
 
 			<tr>
-				<td>업종</td>
+				<th>업종</th>
 				<td>${sessionScope.b_user.field}</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td>${sessionScope.b_user.addr}</td>
+			</tr>
+
+			<tr>
+				<th>이미지</th>
+				<td><img
+					src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
+					class="img-fluid" width="30%" height="30%" /></td>
 			</tr>
 
 		</table>
