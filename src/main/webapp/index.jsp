@@ -10,4 +10,5 @@
    response.sendRedirect("/user/main/main.do");
 %>
 </body>
+
 </html> 
