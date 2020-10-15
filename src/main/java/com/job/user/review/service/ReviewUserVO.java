@@ -4,7 +4,7 @@ public class ReviewUserVO {
 	
 	private int rnum; 
 	private String id; 
-	private int bsmno; 
+	private String bsmno; 
 	private String mreview;
 	private String review;
 	private String sal;
@@ -17,14 +17,7 @@ public class ReviewUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
-	private String title;
 
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	private String search;   private String keyword;
 	private String pageNum;  
 	private int start; 		 private int end;
@@ -52,9 +45,7 @@ public class ReviewUserVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getBsmno() {
-		return bsmno;
-	}
+
 	public String getMreview() {
 		return mreview;
 	}
@@ -86,7 +77,11 @@ public class ReviewUserVO {
 	public void setB_cnt(int b_cnt) {
 		this.b_cnt = b_cnt;
 	}
-	public void setBsmno(int bsmno) {
+
+	public String getBsmno() {
+		return bsmno;
+	}
+	public void setBsmno(String bsmno) {
 		this.bsmno = bsmno;
 	}
 	public String getReg_date() {
