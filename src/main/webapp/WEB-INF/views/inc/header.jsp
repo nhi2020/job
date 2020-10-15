@@ -8,15 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;"> 
+<div class="container">
+	<nav class="navbar navbar-expand"> 
 		<a class="navbar-brand" href="/user/main/main.do">
-    		<img src="/resources/images/upload/member/logo.png" alt="Logo" style="width:70px;height:40px;"/>
+    		<img src="/resources/images/upload/member/logo1.png" alt="Logo" style="width:70px;height:40px;"/>
   		</a>
 	
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 기업 </a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 기업 </a>
 						<div class="dropdown-menu">
 						<a class="dropdown-item" href="#">IT/인터넷</a>
 						<a class="dropdown-item" href="#">경영/기획/컨설팅</a>
@@ -35,14 +36,14 @@
 					<c:choose>
 						<c:when	test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 로그인 </a>
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 로그인 </a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/user/member/login/memLoginForm.do">개인 로그인</a>
 									<a class="dropdown-item" href="/user/biz/login/bizLoginForm.do">기업 로그인</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 회원가입 </a>
+								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 회원가입 </a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/user/member/join/memJoinForm.do">개인 회원가입</a> 
 									<a class="dropdown-item" href="/user/biz/join/bizJoinForm.do">기업 회원가입</a>
@@ -54,9 +55,9 @@
 								<a class="navbar-brand">
 						    		<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="rounded-circle" alt="Logo" style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link">${sessionScope.user.name}님 환영합니다.</a></li>
+								<li class="nav-item"><a class="nav-link" style="color: black">${sessionScope.user.name}님 환영합니다.</a></li>
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">마이페이지 </a>
+									<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" style="color: black">마이페이지 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a>
 										<a class="dropdown-item" href="">활동내역</a>
@@ -70,8 +71,8 @@
 								<a class="navbar-brand" href="#">
 						    		<img src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}" alt="Logo" class="rounded-circle"  style="width:30px;height:30px;"/>
 						  		</a>
-								<li class="nav-item"><a class="nav-link" href="#">${sessionScope.b_user.company}님 환영합니다.</a></li>
-								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 마이페이지 </a>
+								<li class="nav-item"><a class="nav-link" style="color: black">${sessionScope.b_user.company}님 환영합니다.</a></li>
+								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 마이페이지 </a>
 									<div class="dropdown-menu">
 											<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
 										<a class="dropdown-item" href="">활동내역</a> 
@@ -79,7 +80,7 @@
 										<a class="dropdown-item" href="/user/mypage/biz/bizMyDeleteForm.do">탈퇴</a>
 									</div>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>
+								<li class="nav-item"><a class="nav-link" href="/user/member/login/memLogout.do" style="color: black">로그아웃</a></li>
 							</c:if>
 						</c:otherwise>
 					</c:choose>
@@ -89,5 +90,8 @@
 			</form>
 		</div>
 	</nav>
+
+	<div style="height:auto;border-top: 2px solid #64cd3c;"></div>
+		</div>
 </body>
 </html>
