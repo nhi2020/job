@@ -16,43 +16,50 @@
 		action="/user/mypage/member/memMyUpdateForm.do">
 		<%-- <input type="hidden" name="id" value="${sessionScope.user.id}"/>
 	<input type="hidden" name="name" value="${sessionScope.user.name}"/> --%>
-			<table border="1" width="400">
+		<table border="1" width="400">
 			<tr>
-				<td>아이디</td>
+				<th>아이디</th>
 				<td>${sessionScope.user.id}</td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<th>이름</th>
 				<td>${sessionScope.user.name}</td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<c:if test="${sessionScope.user.gender ==1 }">	
-				<td>남자</td>
+				<c:if test="${sessionScope.user.gender ==1 }">
+					<td>남자
+					</th>
 				</c:if>
-				<c:if test="${sessionScope.user.gender ==2 }">	
-				<td>여자</td>
+				<c:if test="${sessionScope.user.gender ==2 }">
+					<td>여자</td>
 				</c:if>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>${sessionScope.user.email }</td>
 			</tr>
 			<tr>
-				<td>폰번호</td>
+				<th>폰번호</th>
 				<td>${sessionScope.user.phone }</td>
 			</tr>
 			<tr>
-				<td>생일</td>
+				<th>생일</th>
 				<td>${sessionScope.user.birthday }</td>
 			</tr>
 			<tr>
-				<td>경력</td>
+				<th>경력</th>
 				<td>${user.career }</td>
+			</tr>
+			<tr>
+				<th>이미지</th>
+				<td><img
+					src="/resources/images/upload/member/${sessionScope.user.storedfilename}"
+					class="img-fluid" width="30%" height="30%" /></td>
 			</tr>
 
 		</table>
-		<input type="submit" value="수정"/>
+		<input type="submit" value="수정" />
 	</form>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>

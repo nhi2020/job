@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
-<title>글쓰기</title>
+<title>기업리뷰쓰기</title>
 <script>
 $(document).ready(function() {
 	  $('#summernote').summernote({
@@ -22,27 +22,23 @@ $(document).ready(function() {
 	        focus: true, 
 	        lang : 'ko-KR'
 	  });
+	  $("#summernote").summernote('code',  '${review.review}');
 	});
-</script>
-<script>
+
 function goWrite(frm) {
-	var title = frm.title.value;
-	var writer = frm.writer.value;
-	var content = frm.content.value;
+	var review = frm.review.value;
 	
-	if (title.trim() == ''){
-		alert("제목을 입력해주세요");
-		return false;
-	}
-	if (writer.trim() == ''){
-		alert("아이디를 입력해주세요");
-		return false;
-	}
-	if (content.trim() == ''){
+	if (review.trim() == ''){
 		alert("내용을 입력해주세요");
 		return false;
 	}
-	frm.submit();
+	if(confirm ("글 등록 하시겠습니까?") === true){
+		alert("글 등록완료");
+		document.frm.submit();
+	} else {
+		alert("등록취소");
+		return false;
+		}	
 }
 </script>	
 </head>
@@ -50,11 +46,11 @@ function goWrite(frm) {
 <h2 style="text-align: center;">글 작성</h2><br><br><br>
 
 <div style="width: 60%; margin: auto;">
-	<form method="post" action="/write">
-		<input type="text" name="writer" style="width: 20%;" placeholder="아이디"/><br>
-		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
-		<br><br> 
-		<textarea id="summernote" name="content"></textarea>
+	<form method="post" action="/user/review/write.do" name="frm">
+		<p>사업자번호 : <input type="text" name="bsmno" style="width: 20%;" value="${review.bsmno }" readonly="readonly"/><br></p>
+		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${review.id }" readonly="readonly"/><br></p>
+		<br>
+		<textarea id="summernote" name="review"></textarea>
 		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
 	</form>
 </div>
