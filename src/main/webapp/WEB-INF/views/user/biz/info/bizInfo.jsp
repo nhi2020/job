@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/inc/header.jsp" %>
+<c:forEach items="${bizInfo}" var="result">
+${result.bsmno }
+${result.pass }
+${result.bnum }
+</c:forEach>
+<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>

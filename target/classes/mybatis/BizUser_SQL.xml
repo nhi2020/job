@@ -1,3 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.BizUser_SQL"></mapper>
+<mapper namespace="bizInfo">
+
+<!-- 기업 정보 보기 -->
+	<select id="b_Info" resultType="BizUserVO" parameterType="BizUserVO">
+		<![CDATA[
+			SELECT 
+				BSMNO,
+				PASS,
+				BNUM,
+				TYPE,
+				COMPANY,
+				EMAIL,
+				CEO,
+				PHONE,
+				FIELD,
+				ADDR,
+				TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
+				TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
+				TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
+				DEL_YN
+			FROM   BIZ
+			WHERE  1=1
+		]]>
+	</select>
+		<!-- 기업 검색 -->
+	<select id="findBizByCompany" resultType="String" parameterType="String" >
+		<![CDATA[
+			SELECT	*
+			FROM	BIZ
+			WHERE	NAME LIKE #{company}
+		]]>
+	</select>
+	<select id="findBizByField" resultType="String" parameterType="String" >
+		<![CDATA[
+			SELECT	*
+			FROM	BIZ
+			WHERE	NAME LIKE #{field}
+		]]>
+	</select>
+	<select id="findBizByAddr" resultType="String" parameterType="String" >
+		<![CDATA[
+			SELECT	*
+			FROM	BIZ
+			WHERE	NAME LIKE #{addr}
+		]]>
+	</select>
+</mapper>

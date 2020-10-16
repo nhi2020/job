@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewUser">
-
+	<!-- 리뷰리스트 -->
 	<select id="reviewList1" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
 		select 
@@ -13,8 +13,8 @@
 				, RNUM
 				, ID
 				, BSMNO
-				, MREVIEW
 				, REVIEW
+				, MREVIEW
 				, SAL
 				, SPOT
 				, B_CNT
@@ -25,25 +25,23 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
-				, TITLE
 			from (
 				select 
 					RNUM
 					, ID
 					, BSMNO
-					, MREVIEW
 					, REVIEW
+					, MREVIEW
 					, SAL
 					, SPOT
 					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
 					, DEL_YN
 					, M_STATUS
 					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
-					, TITLE
+					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -67,8 +65,8 @@
 				, RNUM
 				, ID
 				, BSMNO
-				, MREVIEW
 				, REVIEW
+				, MREVIEW
 				, SAL
 				, SPOT
 				, B_CNT
@@ -79,7 +77,6 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
-				, TITLE
 			from (
 				select 
 					RNUM
@@ -90,14 +87,13 @@
 					, SAL
 					, SPOT
 					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
 					, DEL_YN
 					, M_STATUS
 					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
-					, TITLE
+					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -113,7 +109,7 @@
 	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
 		select 
-			*
+		*
 		from 
 		(
 			select 
@@ -133,7 +129,6 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
-				, TITLE
 			from (
 				select 
 					RNUM
@@ -144,14 +139,13 @@
 					, SAL
 					, SPOT
 					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE
+					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
 					, DEL_YN
 					, M_STATUS
 					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYYMMDD') AS M_DATE
-					, TITLE
+					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -167,7 +161,7 @@
 	<select id="total1" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null
 	</select>
-	
+		
 	<select id="total2" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and SAL is not null
 	</select>
@@ -176,12 +170,78 @@
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null
 	</select>
 	
-	<insert id="reviewWriteForm" parameterType="ReviewUserVO">
-
-	<selectKey keyProperty="B_CNT" order="BEFORE" resultType="int">
-		SELECT REVIEW_B_CNT.NEXTVAL FROM DUAL
-	</selectKey>
-	INSERT INTO BOARD (b_cnt, id, title, review)
-				VALUES (#{b_cnt}, #{id}, #{title}, #{review})
+	<!-- 글 작성 -->
+	<insert id="reviewWrite" parameterType="ReviewUserVO">
+			INSERT INTO REVIEW (rnum, bsmno, id, review, b_cnt, reg_date, up_date, del_yn)
+				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{review}, 0, sysdate, sysdate, 'N')
 	</insert>
+	<insert id="mreviewWrite" parameterType="ReviewUserVO">
+			INSERT INTO REVIEW (rnum, bsmno, id, m_status, m_difficultly, mreview, b_cnt, reg_date, up_date, del_yn)
+				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{m_status}, #{m_difficultly}, #{mreview}, 0, sysdate, sysdate, 'N')
+	</insert>
+	<insert id="salWrite" parameterType="ReviewUserVO">
+			INSERT INTO REVIEW (rnum, bsmno, id, spot, sal, reg_date, up_date, del_yn)
+				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{spot}, #{sal}, sysdate, sysdate, 'N')
+	</insert>
+	
+	<!-- 글 상세조회 -->
+	<select id="reviewDetail" resultType="ReviewUserVO" parameterType="ReviewUserVO">
+	  SELECT rownum rn
+	  			, RNUM
+	  			, ID
+	  			, BSMNO
+	  			, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, REG_DATE
+				, UP_DATE
+				, DEL_DATE
+				, DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE 
+				FROM REVIEW WHERE RNUM = #{rnum}
+	</select>
+	
+	<!-- 조회수 +1-->
+	<update id="plusBcnt" parameterType="int">
+		UPDATE REVIEW SET B_CNT = B_CNT + 1 WHERE rnum = #{rnum}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="reviewUpdate" parameterType="ReviewUserVO">
+		UPDATE REVIEW 
+		SET 
+			  REVIEW = #{review},
+			  UP_DATE = sysdate		
+		WHERE RNUM = #{rnum}
+	</update>
+	<update id="salUpdate" parameterType="ReviewUserVO">
+		UPDATE REVIEW 
+		SET 
+			   SAL = #{sal}, 
+			   SPOT = #{spot},
+			   UP_DATE = sysdate	
+		WHERE  RNUM = #{rnum}
+	</update>
+ 	<update id="mreviewUpdate" parameterType="ReviewUserVO">
+		UPDATE REVIEW 
+		SET 
+				MREVIEW = #{mreview},
+				M_DATE = to_date(#{m_date},'YYYY-MM-DD'),
+				M_STATUS = #{m_status},
+				M_DIFFICULTLY = #{m_difficultly},
+				UP_DATE = sysdate
+		WHERE RNUM = #{rnum}
+	</update> 
+	
+	<!-- 리뷰 삭제 -->
+	<update id="reviewDelete" parameterType="int">
+		UPDATE REVIEW SET DEL_YN = 'Y' WHERE RNUM = #{rnum}
+	</update>
+	
+	
+	
 </mapper>

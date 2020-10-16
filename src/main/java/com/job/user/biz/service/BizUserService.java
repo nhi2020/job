@@ -1,5 +1,9 @@
 package com.job.user.biz.service;
 
-public interface BizUserService {
+import java.util.List;
 
+public interface BizUserService {
+	
+	public List<BizUserVO> b_info(BizUserVO vo)throws Exception;
+	
 }
