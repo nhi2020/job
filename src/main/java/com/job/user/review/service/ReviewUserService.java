@@ -11,6 +11,8 @@ public interface ReviewUserService {
 	/*-기업연봉*/  
 	public List<ReviewUserVO> reviewSelectList2(ReviewUserVO reviewUserVO);
 	public int total2();
+	public int reviewSalChk(ReviewUserVO reviewUserVO);
+	public int salChkUpdate(ReviewUserVO reviewUserVO);
 	/*-면접후기*/  
 	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO);
 	public int total3();
