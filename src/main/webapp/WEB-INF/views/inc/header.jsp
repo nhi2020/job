@@ -16,7 +16,7 @@
 	
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link font-weight-bold" href="javascript:void(0)" >기업</a></li>
+				<li class="nav-item"><a class="nav-link font-weight-bold" href="/user/biz/info/bizInfo.do" >기업</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<ul class="navbar-nav mr-auto">

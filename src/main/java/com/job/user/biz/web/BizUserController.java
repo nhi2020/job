@@ -1,5 +1,7 @@
 package com.job.user.biz.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ public class BizUserController {
 	
 	@RequestMapping(value="/user/biz/info/bizInfo.do")
 	public String bizInfo(Model model, BizUserVO vo) throws Exception {
-		BizUserVO bizInfo=bizUserService.b_info(vo);
+		List<BizUserVO> bizInfo=bizUserService.b_info(vo);
 		model.addAttribute("bizInfo", bizInfo);
 		return "user/biz/info/bizInfo";
 	}
