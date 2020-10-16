@@ -1,5 +1,7 @@
 package com.job.user.biz.service.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,8 +14,8 @@ public class BizUserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public BizUserVO b_info(BizUserVO vo)throws Exception {
-		return sqlSessionTemplate.selectOne("bizInfo.b_Info", vo);
+	public List<BizUserVO> b_info(BizUserVO vo)throws Exception {
+		return sqlSessionTemplate.selectList("bizInfo.b_Info", vo);
 		
 		
 	}
