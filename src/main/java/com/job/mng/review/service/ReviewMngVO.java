@@ -5,7 +5,7 @@ public class ReviewMngVO {
 	private int rnum; 
 	private String id; 
 	private String bsmno; 
-	private String rev_type;
+	private String mreview;
 	private String review;
 	private String sal;
 	private String spot;
@@ -17,7 +17,20 @@ public class ReviewMngVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	private String company;
 	
+	public String getMreview() {
+		return mreview;
+	}
+	public void setMreview(String mreview) {
+		this.mreview = mreview;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 	public int getRnum() {
 		return rnum;
 	}
@@ -36,12 +49,6 @@ public class ReviewMngVO {
 	}
 	public void setBsmno(String bsmno) {
 		this.bsmno = bsmno;
-	}
-	public String getRev_type() {
-		return rev_type;
-	}
-	public void setRev_type(String rev_type) {
-		this.rev_type = rev_type;
 	}
 	public String getReview() {
 		return review;

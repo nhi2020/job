@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +50,16 @@
 						<td><c:out value="${member.email }"/></td>
 						<td><c:out value="${member.birthday }"/></td>
 						<td><c:out value="${member.career }"/></td>
-						<td><c:out value="${member.reg_date }"/></td>
+						<td> 
+							<c:set var="regdate" value="${member.reg_date }"/>
+							<c:out value="${ regdate.substring(0,10) }"/>
+						</td>
 						<td>
 							<c:choose>
-							<c:when test="${member.del_yn == 'y' }">
+							<c:when test="${member.del_yn == 'N' }">
 								활동 회원
 							</c:when>
-							<c:when test="${member.del_yn == 'n' }">
+							<c:when test="${member.del_yn == 'Y' }">
 								삭제된 회원
 							</c:when>
 							</c:choose>
@@ -67,20 +71,28 @@
 			<div class="row">
 				<div class="col-lg-12">
 				<form id="searchForm" action="/mng/member/memSelectList.do" method="get">
-					<select name="type">
+					<div class="input-group mb-3" style="align-self: center;">
+					<div>
+					<select name="type" class="form-control">
 						<option value="">--</option>
 						<option value="I">ID명</option>
 						<option value="N">회원명</option>
 					</select>
-					<input type="text" name="keyword"/>
-					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+					</div>
+					<div>
+					<input type="text" name="keyword" class="form-control"/>
+					</div>
+					<div>
 					<button id="query" class="btn btn-dark">조회</button>
 					<button id="searchreset" class="btn btn-dark">초기화</button>
+					</div>
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				</div>
 					</form>
 				</div>
 			</div>
-			<div class="pull-right">
+			<div>
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.prev }">
 						<li class="paginate_button previous"><a class="page-link" href="${pageMaker.startPage-1}">이전</a></li>					

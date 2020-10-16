@@ -49,6 +49,14 @@ public class Criteria {
 		
 	}
 	
+	public Criteria(int pageNum, int amount, String keyword, String type) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.keyword = keyword;
+		this.type = type;
+		
+	}
+	
 	
 	
 }
