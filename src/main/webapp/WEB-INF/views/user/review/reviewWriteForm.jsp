@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="../../inc/top.jsp" %>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -43,16 +44,20 @@ function goWrite(frm) {
 </script>	
 </head>
 <body>
-<h2 style="text-align: center;">글 작성</h2><br><br><br>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
+<h2 style="text-align: center;">글 작성</h2><br>
 
 <div style="width: 60%; margin: auto;">
 	<form method="post" action="/user/review/write.do" name="frm">
 		<p>사업자번호 : <input type="text" name="bsmno" style="width: 20%;" value="${review.bsmno }" readonly="readonly"/><br></p>
-		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${review.id }" readonly="readonly"/><br></p>
-		<br>
+		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${sessionScope.user.id}" readonly="readonly"/><br></p>
 		<textarea id="summernote" name="review"></textarea>
 		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
 	</form>
 </div>
+</div>
+<br>
+<%@ include file="../../inc/footer.jsp" %>
 </body>
 </html>

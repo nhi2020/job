@@ -2,9 +2,13 @@ package com.job.user.review.web;
 
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.job.user.member.login.service.MemLoginUserVO;
 import com.job.user.review.service.Paging;
 import com.job.user.review.service.ReviewUserService;
 import com.job.user.review.service.ReviewUserVO;
@@ -24,7 +28,8 @@ public class ReviewUserController {
 		reviewUserVO.setEnd(pg1.getEnd());     // 시작시 10 
 		List<ReviewUserVO> reviewSelectList1 = reviewUserService.reviewSelectList1(reviewUserVO);
 		model.addAttribute("list1", reviewSelectList1);
-		model.addAttribute("pg1",pg1);		
+		model.addAttribute("total1",total1);
+		model.addAttribute("pg1",pg1);
 		/*기업연봉*/
 		int total2 = reviewUserService.total2();	
 		Paging pg2 = new Paging(total2, currentPage);
@@ -32,6 +37,7 @@ public class ReviewUserController {
 		reviewUserVO.setEnd(pg2.getEnd());     // 시작시 10 
 		List<ReviewUserVO> reviewSelectList2 = reviewUserService.reviewSelectList2(reviewUserVO);
 		model.addAttribute("list2", reviewSelectList2);
+		model.addAttribute("total2",total2);
 		model.addAttribute("pg2",pg2);
 		/*면접후기*/
 		int total3 = reviewUserService.total3();	
@@ -40,6 +46,7 @@ public class ReviewUserController {
 		reviewUserVO.setEnd(pg3.getEnd());     // 시작시 10 
 		List<ReviewUserVO> reviewSelectList3 = reviewUserService.reviewSelectList3(reviewUserVO);
 		model.addAttribute("list3", reviewSelectList3);
+		model.addAttribute("total3",total3);
 		model.addAttribute("pg3",pg3);
 		System.out.println("controller total3");
 		return "user/review/reviewSelectList";

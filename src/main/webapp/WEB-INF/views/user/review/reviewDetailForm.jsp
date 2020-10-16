@@ -4,23 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="../../inc/top.jsp" %>
 <title>글 상세보기</title>
 <style>
 h2 {text-align: center;}
 table {width: 100%;}
 textarea {width: 100%;}
 #outter {display: block;
-	     width: 30%;
+	     width: 70%;
 		 margin: auto;}
 </style>
 </head>
 <body>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
 	<form action="/user/review/reviewUpdate.do" name="frm">
 		<br><br>
 		<h2>게시판</h2>
 		<br><br>
 		<div id="outter">
-			<table border="1">
+			<table border="1" style="height: 100px; width: 800px;">
 				<tr>
 					<td>글번호: ${review.rnum }</td>	
 				</tr>	
@@ -33,7 +36,7 @@ textarea {width: 100%;}
 				<tr>
 					<td>
 						<div style="height: 300px; margin: 10px; display: inline-block">
-							<textarea class="updateReview" name="review" cols="73" rows="17" required>${review.review }</textarea>
+							<textarea class="updateReview" name="review" cols="100" rows="15" required>${review.review }</textarea>
 						</div>
 					</td>
 				</tr>
@@ -81,8 +84,10 @@ textarea {width: 100%;}
 		} else {
 			alert("삭제취소");
 		}
-	}
-	
+	}	
 </script>
+</div>
+<br>
+<%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>
