@@ -204,5 +204,10 @@ public class MemMyUserController {
 		}
 
 	}
+	/*개인리뷰*/
+	@RequestMapping(value= "/user/mypage/member/memMyReview.do")
+	public String r(Model model) {
+		return "user/mypage/member/memMyReview";
+	}
 
 }

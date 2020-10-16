@@ -59,16 +59,19 @@
           <label>등록일</label> <input class="form-control" name='reg_date'
             value='<c:out value="${member.reg_date }"/>' readonly="readonly">
         </div>
+        <c:if test="${biz.del_yn == 'Y' }">
         <div class="form-group">
-          <label>삭제 여부</label> <input class="form-control" name='del_yn'
-            value='<c:out value="${member.del_yn }"/>' readonly="readonly">
+        <label>삭제 일자</label> <input class="form-control" name='del_date'
+            value='<c:out value="${biz.del_date }"/>' readonly="readonly">
         </div>
+        </c:if>
+        <c:if test="${biz.del_yn == 'N' }">
         <div class="form-group">
-          <label>삭제 일자</label> <input class="form-control" name='del_yn'
-            value='<c:out value="${member.del_date }"/>' readonly="readonly">
+          활동 회원
         </div>
-		<button data-oper='modify' class="btn btn-default">수정</button>
-		<button data-oper='list' class="btn btn-info">목록</button>
+        </c:if>
+		<button data-oper='modify' class="btn btn-warning">수정/삭제</button>
+		<button data-oper='list' class="btn btn-success">목록</button>
 
 	<form id='operForm' action="/mng/member/memMngUpdateForm.do" method="get">
   		<input type='hidden' id='mnum' name='mnum' value='<c:out value="${member.mnum}"/>'>

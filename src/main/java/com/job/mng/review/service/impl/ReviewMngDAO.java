@@ -15,11 +15,6 @@ public class ReviewMngDAO {
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
 	
-	public ReviewMngVO reviewView(int rnum) {
-
-		return sessionTemplate.selectOne("ReviewMngVO.reviewMngOne", rnum);
-	}
-
 	public int salTotalCount(Criteria cri) {
 		return sessionTemplate.selectOne("ReviewMngVO.MngSalTotal", cri);
 	}
@@ -44,4 +39,11 @@ public class ReviewMngDAO {
 		return sessionTemplate.selectList("ReviewMngVO.MngMRevList", cri);
 	}
 
+	public ReviewMngVO getReviewViewOne(int rnum) {
+		return sessionTemplate.selectOne("ReviewMngVO.reviewViewOne", rnum);
+	}
+
+	public int reviewMngRemove(int rnum) {
+		return sessionTemplate.update("ReviewMngVO.reviewMngRemove", rnum);
+	}
 }
