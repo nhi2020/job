@@ -21,6 +21,9 @@ public class ReviewUserController {
 	/*리뷰리스트*/
 	@RequestMapping(value="/user/review/reviewSelectList.do")
 	public String reviewSelectList(ReviewUserVO reviewUserVO, String currentPage, Model model) {
+		/*기업정보*/
+		ReviewUserVO bizInfo=reviewUserService.reviewBizInfo(reviewUserVO);
+		model.addAttribute("bizInfo", bizInfo);
 		/*기업리뷰*/
 		int total1 = reviewUserService.total1();	
 		Paging pg1 = new Paging(total1, currentPage);

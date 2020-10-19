@@ -60,8 +60,9 @@
 	})
 </script>
 <body>
-
-	<h3>회원탈퇴</h3>
+ <div class="container" style="margin-top:30px">
+	<h3 style="font-weight: bold;"><i class="fas fa-external-link-alt"></i> 개인회원 탈퇴</h3>
+	<br><br>
 	<form action="/user/mypage/member/memMyDelete.do" method="post"
 		name="delForm" id="delForm">
 		<div class="form-group has-feedback">
@@ -85,7 +86,7 @@
 		</div>
 	</form>
 
-
+</div>
 </body>
 
 </html>

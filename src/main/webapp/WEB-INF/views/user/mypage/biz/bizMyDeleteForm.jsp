@@ -60,7 +60,9 @@
 	})
 </script>
 <body>
-	<h3>회원탈퇴</h3>
+ <div class="container" style="margin-top:30px">
+	<h3 style="font-weight: bold;"><i class="fas fa-external-link-alt"></i> 기업회원 탈퇴</h3>
+	<br><br>
 	<form action="/user/mypage/biz/bizMyDelete.do" method="post"
 		name="delForm" id="delForm">
 		<div class="form-group has-feedback">
@@ -80,8 +82,10 @@
 		</div>
 		<div class="form-group has-feedback">
 			<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
+			&emsp;&emsp;
 			<button class="cencle btn btn-danger" type="button">취소</button>
 		</div>
 	</form>
+</div>
 </body>
 </html>
