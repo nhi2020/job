@@ -31,8 +31,8 @@
         <div class="top_bhr_box">
           <div class="company_info_sec">
             <div class="company_logo_box">
-              	<a class="thumb_wrap" href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">
-              		<span class="img_wrap"><img src="https://jpassets.jobplanet.co.kr/production/uploads/company/logo/7774/thumb_7774.jpg" alt="케이비신용정보(주)"></span>
+              	<a class="thumb_wrap" href="#">
+              		<span class="img_wrap"><img src="/resources/images/upload/member/${bizInfo.storedfilename}" alt="${bizInfo.company}"></span>
 				</a>            
 			</div>
             <div class="company_info_box">
@@ -86,13 +86,13 @@
 		  </c:if>
 			<div class="text-center">
 			    <c:if test="${pg1.startPage > pg1.pageBlock }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg1.startPage-pg1.pageBlock}&pg=pg1">[이전]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg1.startPage-pg1.pageBlock}&pg=pg1&bsmno=${param.bsmno}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${pg1.startPage }" end="${pg1.endPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg1">[${i}]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg1&bsmno=${param.bsmno}">[${i}]</a>
 				</c:forEach>
 				<c:if test="${pg1.endPage < pg1.totalPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg1.startPage+pg1.pageBlock}&pg=pg1">[다음]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg1.startPage+pg1.pageBlock}&pg=pg1&bsmno=${param.bsmno}">[다음]</a>
 				</c:if>
 			</div>
 	    </div>
@@ -118,13 +118,13 @@
 	      <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
 	      	<div class="text-center">
 		       <c:if test="${pg2.startPage > pg2.pageBlock }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage-pg2.pageBlock}&pg=pg2">[이전]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage-pg2.pageBlock}&pg=pg2&bsmno=${param.bsmno}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${pg2.startPage }" end="${pg2.endPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg2">[${i}]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg2&bsmno=${param.bsmno}">[${i}]</a>
 				</c:forEach>
 				<c:if test="${pg2.endPage < pg2.totalPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage+pg2.pageBlock}&pg=pg2">[다음]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage+pg2.pageBlock}&pg=pg2&bsmno=${param.bsmno}">[다음]</a>
 				</c:if>
 			</div>
 	    </div>
@@ -153,13 +153,13 @@
 		    <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
 		    <div class="text-center">
 			    <c:if test="${pg3.startPage > pg3.pageBlock }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage-pg3.pageBlock}&pg=pg3">[이전]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage-pg3.pageBlock}&pg=pg3&bsmno=${param.bsmno}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${pg3.startPage }" end="${pg3.endPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg3">[${i}]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${i}&pg=pg3&bsmno=${param.bsmno}">[${i}]</a>
 				</c:forEach>
 				<c:if test="${pg3.endPage < pg3.totalPage }">
-					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage+pg3.pageBlock}&pg=pg3">[다음]</a>
+					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage+pg3.pageBlock}&pg=pg3&bsmno=${param.bsmno}">[다음]</a>
 				</c:if>
 			</div>
 	    </div>

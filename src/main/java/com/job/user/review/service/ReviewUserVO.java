@@ -20,7 +20,14 @@ public class ReviewUserVO {
 	private String company;
 	private String field;
 	private int attachid;
+	private String storedfilename;
 	
+	public String getStoredfilename() {
+		return storedfilename;
+	}
+	public void setStoredfilename(String storedfilename) {
+		this.storedfilename = storedfilename;
+	}
 	public int getAttachid() {
 		return attachid;
 	}
