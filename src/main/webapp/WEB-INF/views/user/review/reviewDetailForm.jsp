@@ -42,10 +42,11 @@ textarea {width: 100%;}
 				</tr>
 			</table>
 			<input type="hidden" name="rnum" value="${review.rnum }" />
+			<input type="hidden" name="bsmno" value="${review.bsmno }">
 			<div style="float: right;">
 				<input class="updateBtn" type="button" value="수정"> 
 				<input class="deleteBtn" type="button" value="삭제"> 
-				<input type="button" value="글 목록"onclick="location.href='/user/review/reviewSelectList.do'">
+				<input type="button" value="글 목록"onclick="location.href='/user/review/reviewSelectList.do?bsmno=${review.bsmno}'">
 			</div>
 		</div>
 	</form>
@@ -80,7 +81,7 @@ textarea {width: 100%;}
 	function deleteCheck() {
 		if(confirm ("정말 삭제하시겠습니까?") === true){
 			alert("삭제완료");
-			location.href='/user/review/reviewDeleteForm.do?rnum=${review.rnum}';
+			location.href='/user/review/reviewDeleteForm.do?rnum=${review.rnum}&bsmno=${review.bsmno}';
 		} else {
 			alert("삭제취소");
 		}

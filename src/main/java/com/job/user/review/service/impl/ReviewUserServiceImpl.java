@@ -26,9 +26,9 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 		return reviewUserDAO.reviewSelectList1(reviewUserVO);
 	}
 	@Override
-	public int total1() {
+	public int total1(String bsmno) {
 		System.out.println("ReviewUserServiceImpl total1");
-		return reviewUserDAO.total1();
+		return reviewUserDAO.total1(bsmno);
 	}
 	
 	/*-기업연봉*/ 
@@ -38,8 +38,8 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 		return reviewUserDAO.reviewSelectList2(reviewUserVO);
 	}
 	@Override
-	public int total2() {
-		return reviewUserDAO.total2();
+	public int total2(String bsmno) {
+		return reviewUserDAO.total2(bsmno);
 	}
 	
 	/*-면접후기*/ 
@@ -49,8 +49,8 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 		return reviewUserDAO.reviewSelectList3(reviewUserVO);
 	}
 	@Override
-	public int total3() {
-		return reviewUserDAO.total3();
+	public int total3(String bsmno) {
+		return reviewUserDAO.total3(bsmno);
 	}
 	@Override
 	public int reviewSalChk(ReviewUserVO reviewUserVO) {

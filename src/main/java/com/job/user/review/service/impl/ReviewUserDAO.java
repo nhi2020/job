@@ -26,8 +26,9 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList1", reviewUserVO);
 		return reviewSelectList;
 	}	
-	public int total1() {
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1");
+	public int total1(String bsmno) {
+		System.out.println("ReviewUserDAO total1");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1", bsmno);
 		return total;		
 	}
 	
@@ -37,8 +38,9 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList2", reviewUserVO);
 		return reviewSelectList;
 	}	
-	public int total2() {
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2");
+	public int total2(String bsmno) {
+		System.out.println("ReviewUserDAO total2");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2", bsmno);
 		return total;		
 	}
 	public int reviewSalChk(ReviewUserVO reviewUserVO) {
@@ -55,9 +57,9 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList3", reviewUserVO);
 		return reviewSelectList;
 	}
-	public int total3() {
-		System.out.println("reviewUserServiceDAO total3");
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3");
+	public int total3(String bsmno) {
+		System.out.println("ReviewUserDAO total3");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3", bsmno);
 		return total;		
 	}
 	
