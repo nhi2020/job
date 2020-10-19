@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMngVO">
 	<sql id="criteria">
-		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-				<choose>
-						<when test="type == 'N'.toString()">
-							bsmno like '%'||#{keyword}|| '%'
-						</when>
-						<when test="type == 'C'.toString()">
-							company like '%'||#{keyword}|| '%'
-						</when>
-						<when test="type == 'E'.toString()">
-							ceo like '%'||#{keyword}|| '%'
-						</when>
-					</choose>
+		<trim suffix=" AND" prefixOverrides="AND">
+			<choose>
+				<when test="type == 'CN'.toString()">
+					b.company like '%'||#{keyword}|| '%'
+				</when>
+				<when test="type == 'UI'.toString()">
+					id like '%'||#{keyword}|| '%'
+				</when>
+				<when test="type == 'RE'.toString()">
+					review like '%'||#{keyword}|| '%'
+				</when>
+				<when test="type == 'MR'.toString()">
+					mreview like '%'||#{keyword}|| '%'
+				</when>
+			</choose>
 		</trim>
 	</sql>
 	<select id="MngRevList" resultType="ReviewMngVO">
@@ -25,7 +28,6 @@
 			  where r.bsmno = b.bsmno and
 			  review is not null and
 		]]>
-		
 		<include refid="criteria"/>
 	
 	<![CDATA[
@@ -68,38 +70,40 @@
 		where rn > (#{pageNum}-1) * #{amount}
 	]]>
 	</select>
-	<select id="reviewViewOne" parameterType="int" resultType="ReviewMngVO">
-		select * from review where rnum = #{rnum}
+	<select id="reviewViewOne" resultType="ReviewMngVO">
+		select r.*, b.company from review r, biz b where rnum = #{rnum} and r.bsmno=b.bsmno 
 	</select>
 	<select id="MngSalTotal" resultType="int">
-		select count(*) from review  where
+		select count(*) from review r, biz b  where
 		
 		<include refid="criteria"/>
-		
+		r.bsmno=b.bsmno and
 		sal is not null and
 		rnum > 0
 		
 	</select>
 	<select id="MngMrevTotal" resultType="int">
-		select count(*) from review  where
+		select count(*) from review r, biz b  where
 		
 		<include refid="criteria"/>
+		r.bsmno=b.bsmno and
 		mreview is not null and
 		rnum > 0
 		
 	</select>
 	<select id="MngRevTotal" resultType="int">
-		select count(*) from review  where
+		select count(*) from review r, biz b  where
 		
 		<include refid="criteria"/>
-		
+		r.bsmno=b.bsmno and
 		review is not null and
 		rnum > 0
 		
 	</select>
-	<delete id="reviewMngRemove">
-		delete from review
+	<update id="reviewMngRemove">
+		update review
+		set del_yn = 'Y',
+			del_date = SYSDATE
 		where rnum = #{rnum}
-	</delete>
-
+	</update>
 </mapper>

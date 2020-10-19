@@ -68,9 +68,9 @@
             value='<c:out value="${biz.addr }"/>'>
         </div>
 
-  <button type="submit" data-oper='modify' class="btn btn-default">수정</button>
+  <button type="submit" data-oper='modify' class="btn btn-secondary">수정</button>
   <button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
-  <button type="submit" data-oper='list' class="btn btn-info">목록</button>
+  <button type="submit" data-oper='list' class="btn btn-primary">목록</button>
 </form>
 
 

@@ -79,14 +79,20 @@ public class ReviewUserController {
 	}	
 	/*연봉*/
 	@RequestMapping("/user/review/salWriteForm.do")
-	public String salWriteForm(ReviewUserVO reviewUserVO, Model model) {			
+	public String salWriteForm(ReviewUserVO reviewUserVO, Model model) {
 		model.addAttribute("review", reviewUserVO);
 		return "user/review/salWriteForm";
 	}
 	/*연봉 추가*/
 	@RequestMapping("/user/review/sWrite.do")
 	public String sal(ReviewUserVO reviewUserVO) {
-		reviewUserService.sWrite(reviewUserVO);
+		int chk=reviewUserService.reviewSalChk(reviewUserVO);
+		if(chk > 0){
+			reviewUserService.salChkUpdate(reviewUserVO);
+		}else{
+			reviewUserService.sWrite(reviewUserVO);
+		}
+		
 		return "redirect:/user/review/reviewSelectList.do";
 	}
 	

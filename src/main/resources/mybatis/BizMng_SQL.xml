@@ -57,7 +57,7 @@
 		insert into biz (bsmno, pass, bnum, company, email, ceo, phone, field, addr,
 		reg_date, del_yn)
 		values (#{bsmno}, '1234abcd!', biz_seq.nextval, #{company}, #{email},
-		#{ceo}, #{phone}, #{field}, #{addr}, sysdate, 'n')
+		#{ceo}, #{phone}, #{field}, #{addr}, sysdate, 'N')
 	</insert>
 	<delete id="bizMngRemove">
 		delete from biz

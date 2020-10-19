@@ -35,7 +35,14 @@ public class ReviewUserDAO {
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2");
 		return total;		
 	}
-	
+	public int reviewSalChk(ReviewUserVO reviewUserVO) {
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.reviewSalChk",reviewUserVO);
+		return total;		
+	}
+	public int salChkUpdate(ReviewUserVO reviewUserVO) {
+		int total = (Integer)sessionTemplate.update("reviewUser.salChkUpdate",reviewUserVO);
+		return total;		
+	}
 	/*-면접후기*/ 
 	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO) {
 		System.out.println("StartDAO3");

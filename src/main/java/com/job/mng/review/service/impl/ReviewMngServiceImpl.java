@@ -19,12 +19,6 @@ public class ReviewMngServiceImpl implements ReviewMngService {
 	private ReviewMngDAO rmd;
 	
 	@Override
-	public ReviewMngVO reviewView(int rnum) {
-
-		return rmd.reviewView(rnum);
-	}
-
-	@Override
 	public int getSalTotalCount(Criteria cri) {
 		return rmd.salTotalCount(cri);
 	}
@@ -53,6 +47,18 @@ public class ReviewMngServiceImpl implements ReviewMngService {
 	@Override
 	public List<ReviewMngVO> getRevList(Criteria cri) {
 		return rmd.getRevList(cri);
+	}
+
+	@Override
+	public ReviewMngVO reviewViewOne(int rnum) {
+
+		return rmd.getReviewViewOne(rnum);
+	}
+
+	@Override
+	public int reviewMngRemove(int rnum) {
+
+		return rmd.reviewMngRemove(rnum);
 	}
 
 
