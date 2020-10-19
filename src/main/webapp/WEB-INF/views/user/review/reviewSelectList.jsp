@@ -63,7 +63,7 @@
 	      </c:forEach>
 	      <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/reviewWriteForm.do?id=user01&bsmno=111-100'"> -->
 	      <c:if test="${user.id != null }">
-			<input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
+			<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
 		  </c:if>
 			<div class="text-center">
 			    <c:if test="${pg1.startPage > pg1.pageBlock }">
@@ -96,7 +96,7 @@
 	      </c:forEach>
 	      </c:if>
 	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
-	      <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
+	      <input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
 	      	<div class="text-center">
 		       <c:if test="${pg2.startPage > pg2.pageBlock }">
 					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage-pg2.pageBlock}&pg=pg2&bsmno=${param.bsmno}">[이전]</a>
@@ -131,7 +131,7 @@
 				</div>
 		    </c:forEach>	
 		     <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/mreviewWriteForm.do?id=user01&bsmno=111-100'"> -->
-		    <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
+		    <input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
 		    <div class="text-center">
 			    <c:if test="${pg3.startPage > pg3.pageBlock }">
 					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage-pg3.pageBlock}&pg=pg3&bsmno=${param.bsmno}">[이전]</a>
