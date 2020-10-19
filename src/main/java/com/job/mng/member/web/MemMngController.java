@@ -23,6 +23,7 @@ public class MemMngController {
 	@Resource(name = "memMngService")
 	private MemMngService mms;
 	
+	// 개인 회원 목록
 	@RequestMapping("/memSelectList.do")
 	private String memSelectList(Criteria cri, Model model) {
 		System.out.println("memMngController .... memSeletList()");
@@ -35,6 +36,8 @@ public class MemMngController {
 		
 	}
 	
+	
+	//개인 회원 세부 내역
 	@RequestMapping(value="/memView.do")
 	private String memMngView(int mnum, @ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -45,6 +48,7 @@ public class MemMngController {
 		
 	}
 	
+	// 개인 회원 수정 폼
 	@RequestMapping(value="/memMngUpdateForm.do")
 	private String updateForm(int mnum, @ModelAttribute("cri") Criteria cri, Model model) {
 		MemMngVO member = mms.memView(mnum);
@@ -53,6 +57,7 @@ public class MemMngController {
 	}
 	
 	
+	//개인 회원 수정 동작
 	@RequestMapping(value="/memMngUpdate.do", method=RequestMethod.POST)
 	private String memMngUpdate(MemMngVO member, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
@@ -66,11 +71,13 @@ public class MemMngController {
 		return "redirect:/mng/member/memSelectList.do";
 	}
 	
+	//개인 회원 관리자 입력
 	@RequestMapping(value="/memInsertForm.do")
 	private void memInsertForm() {
 
 	}
 	
+	// 개인 회원 관리자 입력 동작
 	@RequestMapping(value="/memMngInsert.do")
 	private String memMngInsert(MemMngVO member, RedirectAttributes rttr) {
 		
@@ -80,6 +87,7 @@ public class MemMngController {
 		return "redirect:/mng/member/memSelectList.do";
 	}
 	
+	// 개인 회원 관리자 삭제
 	@RequestMapping(value="/remove.do", method=RequestMethod.POST)
 	public String remove(@RequestParam("mnum") int mnum, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		System.out.println("remove..." + mnum);

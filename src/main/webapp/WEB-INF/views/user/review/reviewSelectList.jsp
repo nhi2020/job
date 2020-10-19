@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../../inc/top.jsp" %>
 <title>후기 리스트</title>
+<style>
+ .border {
+   margin: 6px;
+ }
+</style>
 <script type="text/javascript">
 	function reviewWrite(url, bsmno){
 		var userid='${sessionScope.user.id}';
@@ -22,23 +27,21 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-<div class="jply_wrap w_fixed">
+	<div class="jply_wrap w_fixed">
         <div class="top_bhr_box">
           <div class="company_info_sec">
             <div class="company_logo_box">
-              <a class="thumb_wrap" href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">
-              <span class="img_wrap"><img src="https://jpassets.jobplanet.co.kr/production/uploads/company/logo/7774/thumb_7774.jpg" alt="케이비신용정보(주)"></span>
-</a>            </div>
+              	<a class="thumb_wrap" href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">
+              		<span class="img_wrap"><img src="https://jpassets.jobplanet.co.kr/production/uploads/company/logo/7774/thumb_7774.jpg" alt="케이비신용정보(주)"></span>
+				</a>            
+			</div>
             <div class="company_info_box">
+              <span><h3>-${sessionScope.b_user.field}</h3></span>                 
               <div class="company_name">
-                <h1 class="name"><a href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">케이비신용정보(주)</a></h1>
+                <h1 class="name"><a href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">${sessionScope.b_user.company}</a></h1>
               </div>
               <div class="about_company">
-                <div class="grade jply_ico_star">
-                </div>
                 <div class="info">
-                  <span>서비스업</span>
-                  <span class="dot">·</span>
                     <a class="link_to" href="https://www.kbci.co.kr" rel="nofollow" target="_blank">https://www.kbci.co.kr</a>
                 </div>
               </div>
@@ -47,7 +50,7 @@
           <div class="company_badge_sec">
           </div>
         </div>
-      </div>
+	</div>
     <div class="container mt-3">
 		<c:forEach var="result1" items="${list1}">
 	 	 <h2></h2>
@@ -70,13 +73,12 @@
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
 	      <h3>기업리뷰</h3>
 	      <c:forEach var="result1" items="${list1}">
-			<ul class="list-group">
-				<li class="list-group-item list-group-item-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</li>
-				<li class="list-group-item list-group-item-info">
-					<pre><a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a></pre>
-				</li>
-			</ul>
-			<br/>
+			<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
+  			<div class="p-5 border border-success">
+				<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">
+					${result1.review }
+				</a>
+  			</div>
 	      </c:forEach>
 	      <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/reviewWriteForm.do?id=user01&bsmno=111-100'"> -->
 			<input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
@@ -95,10 +97,15 @@
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
 	      <h3>연봉</h3>
 	      <c:forEach var="result2" items="${list2}">
-	      	<p> 
-	      		직위 : ${result2.spot }<br/>
-	      		<p>평균연봉 : <a href="/user/review/salDetailForm.do?rnum=${result2.rnum}"><fmt:formatNumber value="${result2.sal }" pattern="#,###.##"/>만원</a></p><br>
-	      	</p>
+	      	<div class="container p-3 my-3 border">
+		      	<p> 
+		      		직위 : ${result2.spot }<br/><fmt:formatNumber value="${result2.min_sal }" pattern="#,###.##"/>만원 ~ <fmt:formatNumber value="${result2.max_sal }" pattern="#,###.##"/>만원
+		      		평균연봉 : <fmt:formatNumber value="${result2.avg_sal }" pattern="#,###.##"/>만원
+		      	</p>
+				<div class="progress">
+					<div class="progress-bar bg-success" style="width:${result2.per_sal}">${result2.per_sal}</div>
+				</div>
+			</div>
 	      </c:forEach>
 	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
 	      <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
@@ -117,16 +124,20 @@
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
 	      <h3>면접후기</h3>
 	      	<c:forEach var="result3" items="${list3}">
-	      	 <p>
-	      	 	글번호 : ${result3.rnum }<br/>
-	      	 	조회수 : ${result3.b_cnt }<br/>
-	      	 	면접일자 : ${result3.m_date }<br/>
-	      	 	면접상태 : ${result3.m_status }<br/>
-	      	 	면접난이도 : ${result3.m_difficultly }<br/>
-		      	${result3.reg_date }<br/>
-		      	${result3.id }<br/>	
-		      	<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>	     
-		     </p>
+	      	 	<%-- <div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }</div> --%>
+	      	 	<div class="row p-3 my-3 border">
+	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
+				  	글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
+				  </div> 
+				  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
+				  	면접일자 : ${result3.m_date }<br/>
+		      	 	면접상태 : ${result3.m_status }<br/>
+		      	 	면접난이도 : ${result3.m_difficultly }
+				  </div>
+				  <div class="col-7">
+				  	<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>
+				  </div> 
+				</div>
 		    </c:forEach>	
 		     <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/mreviewWriteForm.do?id=user01&bsmno=111-100'"> -->
 		    <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>

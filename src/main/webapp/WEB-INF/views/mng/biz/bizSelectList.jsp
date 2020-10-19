@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-	String context = request.getContextPath();
-    System.out.println("context->"+context);
-%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -46,17 +42,19 @@
 					<td><c:out value="${biz.field }"/></td>
 					<td><c:out value="${biz.ceo }"/></td>
 					<td><c:out value="${biz.email }"/></td>
-					<td><c:out value="${biz.reg_date }"/></td>
 					<td>
-							<c:choose>
-							<c:when test="${biz.del_yn == 'y' }">
+						<c:set var="regdate" value="${biz.reg_date }"/>
+						<c:out value="${ regdate.substring(0,10) }"/></td>
+					<td>
+						<c:choose>
+							<c:when test="${biz.del_yn == 'Y' }">
 								삭제된 회원
 							</c:when>
-							<c:when test="${biz.del_yn == 'n' }">
+							<c:when test="${biz.del_yn == 'N' }">
 								활동 회원
 							</c:when>
-							</c:choose>
-						</td>
+						</c:choose>
+					</td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -85,7 +83,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="pull-right">
+			<div>
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.prev }">
 						<li class="paginate_button previous"><a class="page-link" href="${pageMaker.startPage-1}">이전</a></li>					

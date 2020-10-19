@@ -41,8 +41,18 @@ function goWrite(frm) {
 	<form method="post" action="/user/review/sWrite.do" name="frm">
 		<p>사업자번호 : <input type="text" name="bsmno" style="width: 20%;" value="${review.bsmno }" readonly="readonly"/><br></p>
 		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${review.id }" readonly="readonly"/><br></p>
-		<p>직위 : <input type="text" name="spot" style="width: 20%;" value="${review.spot }" /><br></p>
-		<p>연봉 : <input type="text" name="sal" style="width: 20%;" value="${review.sal }" /><br></p>
+		<p>직위 : 
+			<select name="spot">
+				<option value="신입">신입</option>
+				<option value="대리">대리</option>
+				<option value="과장">과장</option>
+				<option value="차장">차장</option>
+				<option value="부장">부장</option>
+				<option value="상무">상무</option>
+				<option value="이사">이사</option>
+			</select> 
+		</p>
+		<p>연봉 : <input type="text" name="sal" style="width: 20%;" value="" /><br></p>
 		<br>
 		<input id="subBtn" type="button" value="연봉 추가" style="float: right;" onclick="goWrite(this.form)"/>
 	</form>

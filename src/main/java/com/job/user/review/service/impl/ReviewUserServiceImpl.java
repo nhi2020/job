@@ -23,7 +23,7 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	}
 	@Override
 	public int total1() {
-		// TODO Auto-generated method stub
+		System.out.println("ReviewUserServiceImpl total1");
 		return reviewUserDAO.total1();
 	}
 	
@@ -35,7 +35,6 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	}
 	@Override
 	public int total2() {
-		// TODO Auto-generated method stub
 		return reviewUserDAO.total2();
 	}
 	
@@ -47,11 +46,16 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	}
 	@Override
 	public int total3() {
-		
-		// TODO Auto-generated method stub
 		return reviewUserDAO.total3();
 	}
-	
+	@Override
+	public int reviewSalChk(ReviewUserVO reviewUserVO) {
+		return reviewUserDAO.reviewSalChk(reviewUserVO);
+	}
+	@Override
+	public int salChkUpdate(ReviewUserVO reviewUserVO) {
+		return reviewUserDAO.salChkUpdate(reviewUserVO);
+	}
 	/*글작성*/
 	@Override
 	public int Write(ReviewUserVO reviewUserVO) {

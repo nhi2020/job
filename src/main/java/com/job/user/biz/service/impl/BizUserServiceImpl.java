@@ -17,9 +17,19 @@ public class BizUserServiceImpl implements BizUserService{
 	
 	
 	@Override
-	public List<BizUserVO> b_info(BizUserVO vo) throws Exception {
-		
+	public List<BizUserVO> b_info(BizUserVO vo) throws Exception {		
 		return bizUserDAO.b_info(vo);
+	}
+
+	@Override
+	public List<BizUserVO> selectBiz(BizUserVO vo) {
+		return bizUserDAO.selectBiz(vo);
+	}
+
+
+	@Override
+	public int total() {
+		return bizUserDAO.total();
 	}
 
 }
