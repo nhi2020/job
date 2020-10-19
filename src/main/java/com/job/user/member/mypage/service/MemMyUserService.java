@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.job.user.review.service.ReviewUserVO;
 import com.job.util.JobFileVO;
 
 public interface MemMyUserService {
@@ -31,4 +32,15 @@ public interface MemMyUserService {
 
 	/* 이미지 업데이트 */
 	public int myUpdateImage(JobFileVO jobVO) throws Exception;
+
+	/*기업리뷰*/
+	public List<MemMyUserVO> memMyReviewList1(MemMyUserVO memMyUserVO);
+	public int memMyReviewCnt1(MemMyUserVO memMyUserVO);
+	/*기업연봉*/  
+	public List<MemMyUserVO> memMyReviewList2(MemMyUserVO memMyUserVO);
+	public int memMyReviewCnt2(MemMyUserVO memMyUserVO );
+	/*면접후기*/  
+	public List<MemMyUserVO> memMyReviewList3(MemMyUserVO memMyUserVO);
+	public int memMyReviewCnt3(MemMyUserVO memMyUserVO);
+
 }

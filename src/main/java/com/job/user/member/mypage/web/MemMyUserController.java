@@ -19,6 +19,9 @@ import com.job.user.member.login.service.MemLoginUserService;
 import com.job.user.member.login.service.MemLoginUserVO;
 import com.job.user.member.mypage.service.MemMyUserService;
 import com.job.user.member.mypage.service.MemMyUserVO;
+import com.job.user.review.service.Paging;
+import com.job.user.review.service.ReviewUserService;
+import com.job.user.review.service.ReviewUserVO;
 import com.job.util.JobFileUtils;
 import com.job.util.JobFileVO;
 
@@ -79,7 +82,7 @@ public class MemMyUserController {
 				loginVO.setPass(vo.getPass());
 				MemLoginUserVO user = memLoginUserService.user(loginVO);
 				jobVO.setAttachid(user.getAttachid());
-				if(list.size() > 0) {
+				if (list.size() > 0) {
 					jobVO.setOriginalfilename(list.get(0).getOriginalfilename());
 					jobVO.setFilesize(list.get(0).getFilesize());
 					jobVO.setStoredfilename(list.get(0).getStoredfilename());
@@ -204,10 +207,43 @@ public class MemMyUserController {
 		}
 
 	}
-	/*개인리뷰*/
-	@RequestMapping(value= "/user/mypage/member/memMyReview.do")
-	public String r(Model model) {
-		return "user/mypage/member/memMyReview";
+
+		/* 기업리뷰 */
+	@RequestMapping(value = "/user/mypage/member/memMyReviewList.do")
+	public String memMyReviewList(Model model, String currentPage, MemMyUserVO memMyUserVO, HttpSession session) {
+		MemLoginUserVO user = (MemLoginUserVO) session.getAttribute("user");
+		System.out.println("id " + user.getId());
+		memMyUserVO.setR_id(user.getId());
+		int total1 = memMyUserService.memMyReviewCnt1(memMyUserVO);
+		Paging pg1 = new Paging(total1, currentPage);
+		memMyUserVO.setStart(pg1.getStart()); // 시작시 1
+		memMyUserVO.setEnd(pg1.getEnd()); // 시작시 10
+		
+		List<MemMyUserVO> memMyReviewList1 = memMyUserService.memMyReviewList1(memMyUserVO);
+		model.addAttribute("list1", memMyReviewList1);
+		model.addAttribute("total1", total1);
+		model.addAttribute("pg1", pg1);
+
+		/* 기업연봉 */
+		int total2 = memMyUserService.memMyReviewCnt2(memMyUserVO);
+		Paging pg2 = new Paging(total2, currentPage);
+		memMyUserVO.setStart(pg2.getStart()); // 시작시 1
+		memMyUserVO.setEnd(pg2.getEnd()); // 시작시 10
+		List<MemMyUserVO> memMyReviewList2 = memMyUserService.memMyReviewList2(memMyUserVO);
+		model.addAttribute("list2", memMyReviewList2);
+		model.addAttribute("total2", total2);
+		model.addAttribute("pg2", pg2);
+
+		/* 면접후기 */
+		int total3 = memMyUserService.memMyReviewCnt3(memMyUserVO);
+		Paging pg3 = new Paging(total3, currentPage);
+		memMyUserVO.setStart(pg3.getStart()); // 시작시 1
+		memMyUserVO.setEnd(pg3.getEnd()); // 시작시 10
+		List<MemMyUserVO> memMyReviewList3 = memMyUserService.memMyReviewList3(memMyUserVO);
+		model.addAttribute("list3", memMyReviewList3);
+		model.addAttribute("total3", total3);
+		model.addAttribute("pg3", pg3);
+		return "user/mypage/member/memMyReviewList";
 	}
 
 }

@@ -19,6 +19,8 @@
 		                b.up_date,
 		                b.del_date,
 		                b.del_yn,
+		                b.addr1,
+		                b.addr3,
 		                i.originalfilename,
 				        i.storedfilename,
 				        i.filesize

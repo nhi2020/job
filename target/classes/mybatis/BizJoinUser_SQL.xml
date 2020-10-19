@@ -5,9 +5,9 @@
 		<!-- 기업회원가입 -->
 		<![CDATA[
 				 insert 
-				 into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date,del_yn,attachid)
+				 into biz(bsmno,pass,bnum,type,company,email,ceo,phone,field,addr,reg_date,del_yn,addr1,addr3,attachid)
 		         values(#{bsmno},#{pass},(SELECT NVL(MAX(bnum)+1, 1) FROM biz),'B',
-		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},sysdate,'N',(SELECT MAX(attachid) FROM image))
+		         #{company},#{email},#{ceo},#{phone},#{field},#{addr},sysdate,'N',#{addr1},#{addr3},(SELECT MAX(attachid) FROM image))
 		         ]]>
 	</insert>
 		<!-- 사업자번호 중복체크 -->

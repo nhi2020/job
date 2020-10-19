@@ -5,20 +5,22 @@
 	<!-- 기업개인정보 -->
 	<select id="bizMySelect" resultType="BizMyUserVO" parameterType="BizMyUserVO">
 		SELECT
-		BSMNO,
-		PASS,
-		BNUM,
-		TYPE,
-		COMPANY,
-		EMAIL,
-		CEO,
-		PHONE,
-		FIELD,
-		ADDR,
-		REG_DATE,
-		UP_DATE,
-		DEL_DATE,
-		DEL_YN
+		  BSMNO
+		, PASS
+		, BNUM
+		, TYPE
+		, COMPANY
+		, EMAIL
+		, CEO
+		, PHONE
+		, FIELD
+		, ADDR
+		, REG_DATE
+		, UP_DATE
+		, DEL_DATE
+		, DEL_YN
+		, ADDR1
+		, ADDR3
 		FROM BIZ
 		WHERE BSMNO = #{bsmno}
 	</select>
@@ -32,21 +34,26 @@
 	<!-- 기업정보 업데이트1 -->
 	<update id="bizMyUpdate" parameterType="BizMyUserVO">
 		UPDATE BIZ
-		SET
-		COMPANY =
-		#{company},
-		EMAIL =
-		#{email},
-		CEO =
-		#{ceo},
-		PHONE =
-		#{phone},
-		FIELD =
-		#{field},
-		ADDR =
-		#{addr},
-		UP_DATE =
-		sysdate
+			SET
+			COMPANY =
+			#{company},
+			EMAIL =
+			#{email},
+			CEO =
+			#{ceo},
+			PHONE =
+			#{phone},
+			FIELD =
+			#{field},
+			ADDR =
+			#{addr},
+			UP_DATE =
+			sysdate,
+			ADDR1=
+			#{addr1},
+			ADDR3=
+			#{addr3}
+		
 		WHERE
 		BSMNO
 		=

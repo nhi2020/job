@@ -47,7 +47,7 @@
 									<a class="nav-link dropdown-toggle font-weight-bold" id="navbardrop" data-toggle="dropdown" style="color: black">마이페이지 </a>
 									<div class="dropdown-menu">
 										<a class="dropdown-item" href="/user/mypage/member/memMySelectList.do">내 프로필</a>
-										<a class="dropdown-item" href="">활동내역</a>
+										<a class="dropdown-item" href="/user/mypage/member/memMyReviewList.do">활동내역</a>
 										<a class="dropdown-item" href="/user/mypage/member/memMyPassForm.do">비밀번호변경</a> 
 										<a class="dropdown-item" href="/user/mypage/member/memMyDeleteForm.do">탈퇴</a>
 									</div>

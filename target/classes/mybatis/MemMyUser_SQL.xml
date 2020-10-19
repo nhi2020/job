@@ -6,35 +6,36 @@
 	<!--개인회원 리스트 -->
 	<select id="memMyList" resultType="MemMyUserVO">
 		SELECT
-		ID,
-		NAME,
-		GENDER,
-		EMAIL,
-		PHONE,
-		BIRTHDAY,
-		CAREER
+			ID,
+			NAME,
+			GENDER,
+			EMAIL,
+			PHONE,
+			BIRTHDAY,
+			CAREER
 		FROM MEMBER
 		ORDER BY ID
 	</select>
 
 	<!--개인정보 -->
-	<select id="memMySelectList" resultType="MemMyUserVO" parameterType="MemMyUserVO">
-		SELECT 
-		ID,
-		PASS,
-		MNUM,
-		TYPE,
-		NAME,
-		GENDER,
-		EMAIL,
-		PHONE,
-		BIRTHDAY,
-		CAREER,
-		IMAGE,
-		REG_DATE,
-		UP_DATE,
-		DEL_DATE,
-		DEL_YN
+	<select id="memMySelectList" resultType="MemMyUserVO"
+		parameterType="MemMyUserVO">
+		SELECT
+			ID,
+			PASS,
+			MNUM,
+			TYPE,
+			NAME,
+			GENDER,
+			EMAIL,
+			PHONE,
+			BIRTHDAY,
+			CAREER,
+			IMAGE,
+			REG_DATE,
+			UP_DATE,
+			DEL_DATE,
+			DEL_YN
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
@@ -47,15 +48,15 @@
 	<!--개인정보 업데이트1 -->
 	<update id="myUpdate" parameterType="MemMyUserVO">
 		UPDATE MEMBER
-		SET
-		EMAIL =
-		#{email},
-		PHONE =
-		#{phone},
-		CAREER =
-		#{career},
-		UP_DATE =
-		sysdate
+			SET
+			EMAIL =
+			#{email},
+			PHONE =
+			#{phone},
+			CAREER =
+			#{career},
+			UP_DATE =
+			sysdate
 		WHERE
 		ID
 		=
@@ -65,9 +66,9 @@
 	<!--개인회원 탈퇴 -->
 	<update id="memMyDelete">
 		UPDATE MEMBER
-		SET
-		DEL_YN ='Y',
-		DEL_DATE = sysdate
+			SET
+			DEL_YN ='Y',
+			DEL_DATE = sysdate
 		WHERE
 		ID
 		= #{id}
@@ -93,12 +94,139 @@
 	<!-- 이미지 업데이트 -->
 	<update id="myUpdateImage" parameterType="JobFileVO">
 		UPDATE IMAGE
-		SET					
-		ORIGINALFILENAME = #{originalfilename},
-		STOREDFILENAME = #{storedfilename},
-		FILESIZE = #{filesize}
+			SET
+			ORIGINALFILENAME = #{originalfilename},
+			STOREDFILENAME =
+			#{storedfilename},
+			FILESIZE = #{filesize}
 		WHERE ATTACHID = #{attachid}
 
 	</update>
 
+	<!-- 활동내역 -->
+	<select id="memMyReviewList1" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		  *
+		FROM(
+			SELECT
+				ROWNUM RN
+				, RNUM
+				, ID AS R_ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS R_REG_DATE
+				, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS R_UP_DATE
+				, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS R_DEL_DATE
+				, DEL_YN AS R_DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			FROM REVIEW
+			WHERE 1=1
+			AND DEL_YN='N'
+			AND ID=#{r_id}
+			AND REVIEW IS NOT NULL
+			ORDER BY RNUM
+		) A
+		WHERE 1=1 
+		AND RN BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="memMyReviewCnt1" resultType="int" parameterType="MemMyUserVO">
+		SELECT
+			COUNT(RNUM)
+		FROM REVIEW
+		WHERE 1=1
+		AND DEL_YN='N'
+		AND ID=#{r_id}
+		AND REVIEW IS NOT NULL
+	</select>
+	
+	<select id="memMyReviewList2" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		  *
+		FROM(
+			SELECT
+				ROWNUM RN
+				, RNUM
+				, ID AS R_ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS R_REG_DATE
+				, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS R_UP_DATE
+				, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS R_DEL_DATE
+				, DEL_YN AS R_DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			FROM REVIEW
+			WHERE 1=1
+			AND DEL_YN='N'
+			AND ID=#{r_id}
+			AND SAL IS NOT NULL
+			ORDER BY RNUM
+		) A
+		WHERE 1=1 
+		AND RN BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="memMyReviewCnt2" resultType="int" parameterType="MemMyUserVO">
+		SELECT
+			COUNT(RNUM)
+		FROM REVIEW
+		WHERE 1=1
+		AND DEL_YN='N'
+		AND ID=#{r_id}
+		AND SAL IS NOT NULL
+	</select>
+	
+	<select id="memMyReviewList3" resultType="MemMyUserVO" parameterType="MemMyUserVO">
+		SELECT 
+		  *
+		FROM(
+			SELECT
+				ROWNUM RN
+				, RNUM
+				, ID AS R_ID
+				, BSMNO
+				, MREVIEW
+				, REVIEW
+				, SAL
+				, SPOT
+				, B_CNT
+				, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS R_REG_DATE
+				, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS R_UP_DATE
+				, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS R_DEL_DATE
+				, DEL_YN AS R_DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+			FROM REVIEW
+			WHERE 1=1
+			AND DEL_YN='N'
+			AND ID=#{r_id}
+			AND MREVIEW IS NOT NULL
+			ORDER BY RNUM
+		) A
+		WHERE 1=1 
+		AND RN BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="memMyReviewCnt3" resultType="int" parameterType="MemMyUserVO">
+		SELECT
+			COUNT(RNUM)
+		FROM REVIEW
+		WHERE 1=1
+		AND DEL_YN='N'
+		AND ID=#{r_id}
+		AND MREVIEW IS NOT NULL
+	</select>
 </mapper>
