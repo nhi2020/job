@@ -23,7 +23,7 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	}
 	@Override
 	public int total1() {
-		// TODO Auto-generated method stub
+		System.out.println("ReviewUserServiceImpl total1");
 		return reviewUserDAO.total1();
 	}
 	

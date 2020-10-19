@@ -140,6 +140,7 @@
 		and rn between #{start} and #{end}
 		]]>
 	</select>
+	
 	<select id="total1" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null
 	</select>
