@@ -5,43 +5,23 @@
 <!-- 기업 정보 보기 -->
 	<select id="b_Info" resultType="BizUserVO" parameterType="BizUserVO">
 		<![CDATA[
-<<<<<<< HEAD
-			SELECT 
-				BSMNO,
-				PASS,
-				BNUM,
-				TYPE,
-				COMPANY,
-				EMAIL,
-				CEO,
-				PHONE,
-				FIELD,
-				ADDR,
-				TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
-				TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
-				TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
-				DEL_YN
-			FROM   BIZ
-			WHERE  1=1 
-=======
 		select 
-		rn,
-		BSMNO,
-		ATTACHID,
-		PASS,
-		BNUM,
-		TYPE,
-		COMPANY,
-		EMAIL,
-		CEO,
-		PHONE,
-		FIELD,
-		ADDR,
-		TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
-		TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
-		TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
-		DEL_YN
-		
+			rn,
+			BSMNO,
+			ATTACHID,
+			PASS,
+			BNUM,
+			TYPE,
+			COMPANY,
+			EMAIL,
+			CEO,
+			PHONE,
+			FIELD,
+			ADDR,
+			TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
+			TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
+			TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
+			DEL_YN
 		from 
 		(select 
 			rownum rn,
@@ -50,7 +30,6 @@
 			where rownum < #{end})
 		where 1=1  
 		and rn between #{start} and #{end}
->>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 		]]>
 		<if test="keyword !=null and keyword != ''">
 			AND COMPANY LIKE '%'||#{keyword}||'%'
