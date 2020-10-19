@@ -25,6 +25,8 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, COMPANY
+				, FIELD
 			from (
 				select 
 					RNUM
@@ -42,6 +44,8 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -77,6 +81,8 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, COMPANY
+				, FIELD
 			from (
 				select 
 					RNUM
@@ -94,6 +100,8 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -129,6 +137,8 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, COMPANY
+				, FIELD
 			from (
 				select 
 					RNUM
@@ -146,6 +156,8 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -155,6 +167,7 @@
 		) a, biz b
 		where 1=1 
 		and a.bsmno=b.bsmno 
+		and a.
 		and rn between #{start} and #{end}
 		]]>
 	</select>

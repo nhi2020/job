@@ -17,6 +17,21 @@ public class ReviewUserVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	private String company;
+	private String field;
+	
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
 
 	private String search;   private String keyword;
 	private String pageNum;  
