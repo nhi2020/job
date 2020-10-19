@@ -16,22 +16,12 @@
 	<h2><strong><i class="far fa-thumbs-up" style="color: green;"></i> 오늘의 추천 기업</strong></h2>
 	<div class="jumbotron">
 		<div class="row">
+		<c:forEach var="name" items="${list}">
 			<div class="col-sm-3">
-				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
-				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
+				<h4><span class="badge badge-success">${name.company}&nbsp;</span><span class="badge badge-light">${name.field}</span></h4>
+				<div class="fakeimg"><img src="/resources/images/upload/biz/${name.storedfilename }" class="rounded" width="250" height="200"/></div>
 			</div>
-			<div class="col-sm-3">
-				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
-				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
-			</div>
-			<div class="col-sm-3">
-				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
-				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
-			</div>
-			<div class="col-sm-3">
-				<h4><span class="badge badge-success">(주)싱아&nbsp;</span><span class="badge badge-light">IT서비스</span></h4>
-				<div class="fakeimg"><img src="/resources/images/upload/biz/img_chania.jpg" class="rounded" width="250" height="200"/></div>
-			</div>
+		</c:forEach>
 			<hr class="d-sm-none">
 		</div>
 	</div>

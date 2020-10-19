@@ -12,12 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.job.user.biz.service.BizUserService;
 import com.job.user.biz.service.BizUserVO;
 import com.job.user.review.service.Paging;
-import com.job.user.review.service.ReviewUserVO;
 
 import org.json.simple.JSONArray;
 
@@ -41,6 +39,7 @@ public class BizUserController {
 		return "user/biz/info/bizInfo";
 	}
 	
+	/*자동검색기능*/
 	@ResponseBody
 	@RequestMapping(value="/autocomplete.do")
 	public void autocomplete(HttpServletRequest request,HttpServletResponse response,BizUserVO vo)throws Exception{

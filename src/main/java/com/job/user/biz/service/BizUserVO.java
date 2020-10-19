@@ -18,12 +18,20 @@ public class BizUserVO {
 	private String del_date; 
 	private String del_yn;
 	private String keyword;
+	private String storedfilename;
 	
 	private String search;   
 	private String pageNum;  
 	private int start; 		 
 	private int end;
 	
+	
+	public String getStoredfilename() {
+		return storedfilename;
+	}
+	public void setStoredfilename(String storedfilename) {
+		this.storedfilename = storedfilename;
+	}
 	public String getSearch() {
 		return search;
 	}
