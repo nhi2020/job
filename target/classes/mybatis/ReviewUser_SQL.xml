@@ -4,12 +4,12 @@
 	<!-- 리뷰리스트 -->
 	<select id="reviewList1" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-		select 
+		SELECT 
 			*
-		from 
+		FROM 
 		(
-			select 
-				rownum rn
+			SELECT 
+				ROWNUM RN
 				, RNUM
 				, ID
 				, BSMNO
@@ -25,45 +25,48 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
-			from (
-				select 
-					RNUM
-					, ID
-					, BSMNO
-					, REVIEW
-					, MREVIEW
-					, SAL
-					, SPOT
-					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
-					, DEL_YN
-					, M_STATUS
-					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
-					, COMPANY
-					, FIELD
-				from review 
-				where 1=1
-				and DEL_YN='N'
-				and REVIEW is not null
-				order by rnum
-			) a
-		) a, biz b
-		where 1=1 
-		and a.bsmno=b.bsmno
-		and rn between #{start} and #{end}
+				, COMPANY
+				, FIELD
+			FROM (
+				SELECT 
+					A.RNUM
+					, A.ID
+					, A.BSMNO
+					, A.REVIEW
+					, A.MREVIEW
+					, A.SAL
+					, A.SPOT
+					, A.B_CNT
+					, TO_CHAR(A.REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(A.UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(A.DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
+					, A.DEL_YN
+					, A.M_STATUS
+					, A.M_DIFFICULTLY
+					, TO_CHAR(A.M_DATE,'YYYY/MM/DD') AS M_DATE
+					, B.COMPANY
+					, B.FIELD
+				FROM REVIEW A, BIZ B
+				WHERE 1=1
+				AND A.DEL_YN='N'
+				AND A.REVIEW IS NOT NULL
+				AND A.BSMNO=B.BSMNO
+				ORDER BY A.RNUM
+			) A
+		) A, BIZ B
+		WHERE 1=1 
+		AND A.BSMNO=B.BSMNO
+		AND RN BETWEEN #{start} AND #{end}
 		]]>
 	</select>
 	<select id="reviewList2" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-		select 
+		SELECT 
 			*
-		from 
+		FROM 
 		(
-			select 
-				rownum rn
+			SELECT 
+				ROWNUM RN
 				, RNUM
 				, ID
 				, BSMNO
@@ -81,45 +84,46 @@
 				, M_DATE
 				, COMPANY
 				, FIELD
-			from (
-				select 
-					RNUM
-					, ID
-					, BSMNO
-					, MREVIEW
-					, REVIEW
-					, SAL
-					, SPOT
-					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
-					, DEL_YN
-					, M_STATUS
-					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
-					, COMPANY
-					, FIELD
-				from review 
-				where 1=1
-				and DEL_YN='N'
-				and SAL is not null
-				order by rnum
-			) a
-		) a, biz b
-		where 1=1 
-		and a.bsmno=b.bsmno 
-		and rn between #{start} and #{end}
+			FROM (
+				SELECT 
+					A.RNUM
+					, A.ID
+					, A.BSMNO
+					, A.MREVIEW
+					, A.REVIEW
+					, A.SAL
+					, A.SPOT
+					, A.B_CNT
+					, TO_CHAR(A.REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(A.UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(A.DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
+					, A.DEL_YN
+					, A.M_STATUS
+					, A.M_DIFFICULTLY
+					, TO_CHAR(A.M_DATE,'YYYY/MM/DD') AS M_DATE
+					, B.COMPANY
+					, B.FIELD
+				FROM REVIEW A, BIZ B
+				WHERE 1=1
+				AND A.DEL_YN='N'
+				AND A.SAL IS NOT NULL
+				AND A.BSMNO=B.BSMNO
+				ORDER BY A.RNUM
+			) A
+		) A, BIZ B
+		WHERE 1=1 
+		AND A.BSMNO=B.BSMNO 
+		AND RN BETWEEN #{start} AND #{end}
 		]]>
 	</select>
 	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-		select 
+		SELECT 
 		*
-		from 
+		FROM 
 		(
-			select 
-				rownum rn
+			SELECT 
+				ROWNUM RN
 				, RNUM
 				, ID
 				, BSMNO
@@ -137,8 +141,8 @@
 				, M_DATE
 				, COMPANY
 				, FIELD
-			from (
-				select 
+			FROM (
+				SELECT 
 					RNUM
 					, ID
 					, BSMNO
@@ -156,17 +160,18 @@
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
 					, COMPANY
 					, FIELD
-				from review 
-				where 1=1
-				and DEL_YN='N'
-				and MREVIEW is not null
-				order by rnum
-			) a
-		) a, biz b
-		where 1=1 
-		and a.bsmno=b.bsmno 
-		and a.
-		and rn between #{start} and #{end}
+				FROM REVIEW A, BIZ B
+				WHERE 1=1
+				AND DEL_YN='N'
+				AND MREVIEW IS NOT NULL
+				AND A.BSMNO=B.BSMNO
+				ORDER BY RNUM
+			) A
+		) A, BIZ B
+		WHERE 1=1 
+		AND A.BSMNO=B.BSMNO 
+		AND A.
+		AND RN BETWEEN #{start} AND #{end}
 		]]>
 	</select>
 	
