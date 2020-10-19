@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-7">
 				<p class="font-weight-bold">기업명 : <a href="/user/review/reviewSelectList.do?bsmno=${result.bsmno}">${result.company }</a></p>
-				<p><span class="badge badge-secondary">${result.field}</span>${result.review} 기업리뷰 |   ${result.sal} 기업연봉 | ${result.mreview}면접후기 </p>
+				<p><span class="badge badge-success">${result.field}</span>${result.review} 기업리뷰 |   ${result.sal} 기업연봉 | ${result.mreview}면접후기 </p>
 			</div>
 		</div>
 	</c:forEach>
