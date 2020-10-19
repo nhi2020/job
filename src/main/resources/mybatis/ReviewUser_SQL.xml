@@ -53,9 +53,8 @@
 				AND A.BSMNO=B.BSMNO
 				ORDER BY A.RNUM
 			) A
-		) A, BIZ B
+		) A
 		WHERE 1=1 
-		AND A.BSMNO=B.BSMNO
 		AND RN BETWEEN #{start} AND #{end}
 		]]>
 	</select>
@@ -66,12 +65,46 @@
 		FROM 
 		(
 			SELECT 
+				ID
+				, BSMNO
+				, AVG_SAL
+				, SPOT
+				, MAX_SAL
+				, MIN_SAL
+				, PER_SAL
+			FROM (
+				SELECT 
+					MAX(ID) AS ID
+					, BSMNO
+					, AVG(SAL) AS AVG_SAL
+					, MAX(SPOT) AS SPOT
+		          	, MAX(SAL) AS MAX_SAL
+		          	, MIN(SAL) AS MIN_SAL
+		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
+				FROM REVIEW 
+				WHERE 1=1
+				AND DEL_YN='N'
+				AND SAL IS NOT NULL
+		        GROUP BY SPOT, BSMNO
+			) A
+		) A, BIZ B
+		WHERE 1=1 
+		AND A.BSMNO=B.BSMNO 
+		]]>
+	</select>
+	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
+		<![CDATA[
+		SELECT 
+		*
+		FROM 
+		(
+			SELECT 
 				ROWNUM RN
 				, RNUM
 				, ID
 				, BSMNO
-				, REVIEW
 				, MREVIEW
+				, REVIEW
 				, SAL
 				, SPOT
 				, B_CNT
@@ -106,71 +139,12 @@
 				FROM REVIEW A, BIZ B
 				WHERE 1=1
 				AND A.DEL_YN='N'
-				AND A.SAL IS NOT NULL
+				AND A.MREVIEW IS NOT NULL
 				AND A.BSMNO=B.BSMNO
 				ORDER BY A.RNUM
 			) A
-		) A, BIZ B
+		) A
 		WHERE 1=1 
-		AND A.BSMNO=B.BSMNO 
-		AND RN BETWEEN #{start} AND #{end}
-		]]>
-	</select>
-	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
-		<![CDATA[
-		SELECT 
-		*
-		FROM 
-		(
-			SELECT 
-				ROWNUM RN
-				, RNUM
-				, ID
-				, BSMNO
-				, MREVIEW
-				, REVIEW
-				, SAL
-				, SPOT
-				, B_CNT
-				, REG_DATE
-				, UP_DATE
-				, DEL_DATE
-				, DEL_YN
-				, M_STATUS
-				, M_DIFFICULTLY
-				, M_DATE
-				, COMPANY
-				, FIELD
-			FROM (
-				SELECT 
-					RNUM
-					, ID
-					, BSMNO
-					, MREVIEW
-					, REVIEW
-					, SAL
-					, SPOT
-					, B_CNT
-					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
-					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
-					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
-					, DEL_YN
-					, M_STATUS
-					, M_DIFFICULTLY
-					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
-					, COMPANY
-					, FIELD
-				FROM REVIEW A, BIZ B
-				WHERE 1=1
-				AND DEL_YN='N'
-				AND MREVIEW IS NOT NULL
-				AND A.BSMNO=B.BSMNO
-				ORDER BY RNUM
-			) A
-		) A, BIZ B
-		WHERE 1=1 
-		AND A.BSMNO=B.BSMNO 
-		AND A.
 		AND RN BETWEEN #{start} AND #{end}
 		]]>
 	</select>
@@ -180,7 +154,36 @@
 	</select>
 		
 	<select id="total2" resultType="int">
-		select count(*) from REVIEW where 1=1 and DEL_YN='N' and SAL is not null
+		SELECT 
+			COUNT(*)
+		FROM 
+		(
+			SELECT 
+				ID
+				, BSMNO
+				, AVG_SAL
+				, SPOT
+				, MAX_SAL
+				, MIN_SAL
+				, PER_SAL
+			FROM (
+				SELECT 
+					MAX(ID) AS ID
+					, BSMNO
+					, AVG(SAL) AS AVG_SAL
+					, MAX(SPOT) AS SPOT
+		          	, MAX(SAL) AS MAX_SAL
+		          	, MIN(SAL) AS MIN_SAL
+		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
+				FROM REVIEW 
+				WHERE 1=1
+				AND DEL_YN='N'
+				AND SAL IS NOT NULL
+		        GROUP BY SPOT, BSMNO
+			) A
+		) A, BIZ B
+		WHERE 1=1 
+		AND A.BSMNO=B.BSMNO 
 	</select>
 	
 	<select id="total3" resultType="int">
