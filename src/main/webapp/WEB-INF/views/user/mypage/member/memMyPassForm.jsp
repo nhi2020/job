@@ -191,63 +191,47 @@
 </script>
 
 <body>
+	<div class="container" style="margin-top: 30px">
+		<h3 style="font-weight: bold;">
+			<i class="fab fa-expeditedssl"></i> 비밀번호 변경
+		</h3>
+		<br>
+		<br>
+		<form action="/user/mypage/member/memMyPassForm.do" name="passForm"
+			id="passForm" method="post">
+			<input type="hidden" name="id" id="id"
+				value="${sessionScope.user.id}">
 
-	<h3>비밀번호 변경 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</h3>
-	<form action="/user/mypage/member/memMyPassForm.do" name="passForm"
-		id="passForm" method="post">
-		<input type="hidden" name="id" id="id" value="${sessionScope.user.id}">
+			<div class="form-group has-feedback">
+				<label class="control-label" for="pass">현재비밀번호</label> <input
+					class="form-control" type="password" name="pass" id="pass"
+					placeholder="현재 비밀번호를 입력하세요" required="required" />
+			</div>
 
-		<div class="form-group has-feedback">
-			<label class="control-label" for="pass">현재비밀번호</label> <input
-				class="form-control" type="password" name="pass" id="pass"
-				placeholder="현재 비밀번호를 입력하세요" required="required" />
-		</div>
-
-		<div class="form-group has-feedback">
-			<label class="control-label" for="pchange">변경 비밀번호</label> <input
-				class="form-control" type="password" name="pchange" id="pchange"
-				oninput="pwCheck1(this.value)" maxlength="18"
-				placeholder="변경 비밀번호를 입력하세요" required="required" />
-			<p id="m_pwcheck2"
-				style="color: #FF6600; margin: 0; font-weight: bold"></p>
-		</div>
-
-		<div class="form-group has-feedback">
-			<label class="control-label" for="pchange1">비밀번호 확인</label> <input
-				class="form-control" type="password" name="pchange1" id="pchange1"
-				placeholder="비밀번호를 다시 입력하세요" required="required" />
-			<p id="m_pwcheck"
-				style="color: #FF6600; margin: 0; font-weight: bold"></p>
-		</div>
-		<div class="form-group has-feedback">
-			<button class="btn btn-success" type="submit" id="submit "
-				onclick="joinMem();">변경</button>
-		</div>
-
-		<!-- 	<table border="1" width="400"> -->
-		<!-- 	<tr>
-				<th>현재비밀번호</th>
-				<td><input type="password" name="pass" id="pass"
-					placeholder="현재 비밀번호를 입력하세요" required="required"></td>
-			</tr> -->
-		<!-- 	<tr>
-				<th>변경 비밀번호</th>
-				<td><input type="password" name="pchange" id="pchange"
-					oninput="pwCheck(pass.value)" maxlength="18"
-					placeholder="비밀번호를 입력하세요" required="required"></td>
+			<div class="form-group has-feedback">
+				<label class="control-label" for="pchange">변경 비밀번호</label> <input
+					class="form-control" type="password" name="pchange" id="pchange"
+					oninput="pwCheck1(this.value)" maxlength="18"
+					placeholder="변경 비밀번호를 입력하세요 . (영문,숫자,특수기호 포함 6~18자리)"
+					required="required" />
 				<p id="m_pwcheck2"
 					style="color: #FF6600; margin: 0; font-weight: bold"></p>
-			</tr> -->
-		<!-- 	<tr>
-				<th>비밀번호 확인</th>
-				<td><input type="password" name="pchange1" id="pchange1"
-					placeholder="비밀번호를 다시 입력하세요" required="required"></td>
-			</tr> -->
-		<!-- <tr>
-				<td colspan="2"><input type="submit" id="submit" value="변경"></td>
+			</div>
 
-			</tr>
-		</table> -->
-	</form>
+			<div class="form-group has-feedback">
+				<label class="control-label" for="pchange1">비밀번호 확인</label> <input
+					class="form-control" type="password" name="pchange1" id="pchange1"
+					placeholder="비밀번호를 다시 입력하세요" required="required" />
+				<p id="m_pwcheck"
+					style="color: #FF6600; margin: 0; font-weight: bold"></p>
+			</div>
+			<div class="form-group has-feedback">
+				<button class="btn btn-success" type="submit" id="submit "
+					onclick="joinMem();">변경</button>
+			</div>
+
+
+		</form>
+	</div>
 </body>
 </html>
