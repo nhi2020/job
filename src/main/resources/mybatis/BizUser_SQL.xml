@@ -26,7 +26,7 @@
 		from 
 		(select 
 			rownum rn,
-			b.*
+			b.*, i.STOREDFILENAME
 			from biz b, image i
 			where 1=1
 			and b.ATTACHID=i.ATTACHID
