@@ -32,7 +32,7 @@
           <div class="company_info_sec">
             <div class="company_logo_box">
               	<a class="thumb_wrap" href="#">
-              		<span class="img_wrap"><img src="/resources/images/upload/member/${bizInfo.storedfilename}" alt="${bizInfo.company}"></span>
+              		<span class="img_wrap"><img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}"></span>
 				</a>            
 			</div>
             <div class="company_info_box">
