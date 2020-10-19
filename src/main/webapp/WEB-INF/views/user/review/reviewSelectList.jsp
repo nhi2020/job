@@ -37,7 +37,7 @@
 			</div>
             <div class="company_info_box">
               <div class="company_name font-weight-bold">
-                <h1 class="name"><a href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">${bizInfo.company}</a></h1>
+                <h1 class="name">${bizInfo.company}</h1>
               </div>
               <div class="about_company">
                 <div class="info">
@@ -71,16 +71,19 @@
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
 	      <h3>기업리뷰</h3>
+	      <c:if test="${total1 == 0 }">
+	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
+	      </c:if>
 	      <c:forEach var="result1" items="${list1}">
 			<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
   			<div class="p-5 border border-success">
-				<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">
-					${result1.review }
-				</a>
+				<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
   			</div>
 	      </c:forEach>
 	      <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/reviewWriteForm.do?id=user01&bsmno=111-100'"> -->
+	      <c:if test="${user.id != null }">
 			<input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
+		  </c:if>
 			<div class="text-center">
 			    <c:if test="${pg1.startPage > pg1.pageBlock }">
 					<a href="/user/review/reviewSelectList.do?currentPage=${pg1.startPage-pg1.pageBlock}&pg=pg1">[이전]</a>
@@ -95,6 +98,10 @@
 	    </div>
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
 	      <h3>연봉</h3>
+	      <c:if test="${total2 == 0 }">
+	      	<p style="color: grey">등록된 연봉이 없습니다</p>
+	      </c:if>
+	      <c:if test="${total2 != 0 }">
 	      <c:forEach var="result2" items="${list2}">
 	      	<div class="container p-3 my-3 border">
 		      	<p> 
@@ -106,6 +113,7 @@
 				</div>
 			</div>
 	      </c:forEach>
+	      </c:if>
 	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
 	      <input type="button" value="글쓰기" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
 	      	<div class="text-center">
@@ -122,6 +130,9 @@
 	    </div>
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
 	      <h3>면접후기</h3>
+	      <c:if test="${total3 == 0 }">
+	      	<p style="color: grey">등록된 후기가 없습니다</p>
+	      </c:if>
 	      	<c:forEach var="result3" items="${list3}">
 	      	 	<%-- <div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }</div> --%>
 	      	 	<div class="row p-3 my-3 border">

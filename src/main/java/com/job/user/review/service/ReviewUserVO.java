@@ -19,7 +19,14 @@ public class ReviewUserVO {
 	private String m_date;
 	private String company;
 	private String field;
+	private int attachid;
 	
+	public int getAttachid() {
+		return attachid;
+	}
+	public void setAttachid(int attachid) {
+		this.attachid = attachid;
+	}
 	public String getCompany() {
 		return company;
 	}
