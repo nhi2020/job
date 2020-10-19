@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글 상세보기</title>
+<%@ include file="../../inc/top.jsp" %>
+<title>연봉 상세보기</title>
 <style>
 h2 {text-align: center;}
 table {width: 100%;}
@@ -15,10 +16,12 @@ textarea {width: 100%;}
 </style>
 </head>
 <body>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
 	<form action="/user/review/salUpdate.do" name="frm">
 		<br><br>
-		<h2>게시판</h2>
-		<br><br>
+		<h2>연봉 게시판</h2>
+		<br>
 		<div id="outter">
 			<table border="1">
 				<tr>
@@ -39,6 +42,7 @@ textarea {width: 100%;}
 			</div>
 		</div>
 	</form>
+	<br>
 	<script>
 	const updateBtn = document.querySelector(".updateBtn");
 	const deleteBtn = document.querySelector(".deleteBtn");
@@ -75,7 +79,9 @@ textarea {width: 100%;}
 			alert("삭제취소");
 		}
 	}
-	
 </script>
+</div>
+<br>
+<%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>

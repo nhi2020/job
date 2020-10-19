@@ -1,5 +1,7 @@
 package com.job.user.biz.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class BizUserServiceImpl implements BizUserService{
 	
 	
 	@Override
-	public BizUserVO b_info(BizUserVO vo) throws Exception {
+	public List<BizUserVO> b_info(BizUserVO vo) throws Exception {
 		
 		return bizUserDAO.b_info(vo);
 	}

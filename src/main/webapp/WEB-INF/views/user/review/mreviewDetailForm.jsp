@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="../../inc/top.jsp" %>
 <title>글 상세보기</title>
 <style>
 h2 {text-align: center;}
@@ -15,6 +16,8 @@ textarea {width: 100%;}
 </style>
 </head>
 <body>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
 	<form action="/user/review/mreviewUpdate.do" name="frm">
 		<br><br>
 		<h2>게시판</h2>
@@ -104,8 +107,10 @@ textarea {width: 100%;}
 		} else {
 			alert("삭제취소");
 		}
-	}
-	
+	}	
 </script>
+</div>
+<br>
+<%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>

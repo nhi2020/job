@@ -7,8 +7,6 @@ import com.job.mng.main.service.ReviewPageDTO;
 
 public interface ReviewMngService {
 
-	ReviewMngVO reviewView(int rnum);
-
 	int getSalTotalCount(Criteria cri);
 
 	int getMRevTotalCount(Criteria cri);
@@ -20,6 +18,10 @@ public interface ReviewMngService {
 	List<ReviewMngVO> getMRevList(Criteria cri);
 
 	List<ReviewMngVO> getRevList(Criteria cri);
+
+	ReviewMngVO reviewViewOne(int rnum);
+
+	int reviewMngRemove(int rnum);
 
 	
 	

@@ -22,9 +22,10 @@ public class BizMngController {
 	@Resource(name="bizMngService")
 	private BizMngService bms;
 	
+	
+	// 기업 회원 목록
 	@RequestMapping("/bizSelectList.do")
 	private String bizSelectList(Criteria cri, Model model) {
-		System.out.println("bizMngController... bizSelectList()");
 		model.addAttribute("list", bms.getList(cri));
 		int total = bms.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
@@ -33,15 +34,16 @@ public class BizMngController {
 		
 	}
 	
+	// 기업 회원 세부 내역 페이지
 	@RequestMapping(value="/bizView.do")
 	private String bizMngView(int bnum, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		System.out.println("bizMngController .... bizMngView. .." + bnum);
 		model.addAttribute("biz", bms.bizView(bnum));
 		
 		return "/mng/biz/bizView";
 	}
 	
+	// 기업 회원 수정 폼
 	@RequestMapping(value="/bizMngUpdateForm.do")
 	private String updateForm(int bnum, @ModelAttribute("cri") Criteria cri, Model model) {
 		
@@ -51,6 +53,7 @@ public class BizMngController {
 		
 	}
 	
+	// 기업회원 수정 동작
 	@RequestMapping(value="/bizMngUpdate.do", method=RequestMethod.POST)
 	private String bizMngUpdate(BizMngVO biz, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
@@ -64,11 +67,14 @@ public class BizMngController {
 		return "redirect:/mng/biz/bizSelectList.do";
 	}
 	
+	// 기업회원 입력
 	@RequestMapping(value="/bizInsertForm.do")
 	private void bizInsertForm() {
 		
 	}
 	
+	
+	//기업회원 정보 입력 동작
 	@RequestMapping(value="/bizMngInsert.do")
 	private String bizMngInsert(BizMngVO biz, RedirectAttributes rttr) {
 		
@@ -79,6 +85,7 @@ public class BizMngController {
 		
 	}
 	
+	//기업회원 삭제
 	@RequestMapping(value="/remove.do", method=RequestMethod.POST)
 	public String remove(@RequestParam("bnum") int bnum, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		System.out.println("remove .... " + bnum);
@@ -91,7 +98,5 @@ public class BizMngController {
 		return "redirect:/mng/biz/bizSelectList.do";
 		
 	}
-	
-	
 	
 }
