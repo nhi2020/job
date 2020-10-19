@@ -16,7 +16,29 @@ public class BizJoinUserVO {
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
+	private String addr1;
+	private String addr3;
 	
+	
+	
+	
+	
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr3() {
+		return addr3;
+	}
+
+	public void setAddr3(String addr3) {
+		this.addr3 = addr3;
+	}
 
 	public int getAttachid() {
 		return attachid;

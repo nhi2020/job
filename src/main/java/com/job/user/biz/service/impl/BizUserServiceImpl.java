@@ -17,15 +17,26 @@ public class BizUserServiceImpl implements BizUserService{
 	
 	
 	@Override
-	public List<BizUserVO> b_info(BizUserVO vo) throws Exception {
-		
+	public List<BizUserVO> b_info(BizUserVO vo) throws Exception {		
 		return bizUserDAO.b_info(vo);
 	}
 
+<<<<<<< HEAD
 	/*검색자동완성*/
 	@Override
 	public List<BizUserVO> autocomplete(BizUserVO vo) throws Exception {
 		return bizUserDAO.autocomplete(vo);
+=======
+	@Override
+	public List<BizUserVO> selectBiz(BizUserVO vo) {
+		return bizUserDAO.selectBiz(vo);
+	}
+
+
+	@Override
+	public int total() {
+		return bizUserDAO.total();
+>>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 	}
 
 }

@@ -19,14 +19,49 @@ public class BizUserVO {
 	private String del_yn;
 	private String keyword;
 	
+	private String search;   private String keyword;
+	private String pageNum;  
+	private int start; 		 private int end;
 	
 	
+<<<<<<< HEAD
 	
 	public String getKeyword() {
 		return keyword;
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+=======
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(String pageNum) {
+		this.pageNum = pageNum;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+>>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 	}
 	public int getAttachid() {
 		return attachid;

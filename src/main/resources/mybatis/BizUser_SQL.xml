@@ -5,6 +5,7 @@
 <!-- 기업 정보 보기 -->
 	<select id="b_Info" resultType="BizUserVO" parameterType="BizUserVO">
 		<![CDATA[
+<<<<<<< HEAD
 			SELECT 
 				BSMNO,
 				PASS,
@@ -22,6 +23,34 @@
 				DEL_YN
 			FROM   BIZ
 			WHERE  1=1 
+=======
+		select 
+		rn,
+		BSMNO,
+		ATTACHID,
+		PASS,
+		BNUM,
+		TYPE,
+		COMPANY,
+		EMAIL,
+		CEO,
+		PHONE,
+		FIELD,
+		ADDR,
+		TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
+		TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
+		TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
+		DEL_YN
+		
+		from 
+		(select 
+			rownum rn,
+			b.*
+			from biz b
+			where rownum < #{end})
+		where 1=1  
+		and rn between #{start} and #{end}
+>>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 		]]>
 		<if test="keyword !=null and keyword != ''">
 			AND COMPANY LIKE '%'||#{keyword}||'%'
@@ -61,5 +90,46 @@
 			FROM	BIZ
 			WHERE	NAME LIKE #{addr}
 		]]>
+	</select>
+	
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBiz" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) FROM BIZ
+		]]>
+	</select>
+
+	<!-- 페이징 처리 후 기업 조회 -->
+	<select id="selectBiz" resultType="BizUserVO">
+		<![CDATA[
+		SELECT 
+			 BSMNO,
+			 ATTACHID,
+				PASS,
+				BNUM,
+				TYPE,
+				COMPANY,
+				EMAIL,
+				CEO,
+				PHONE,
+				FIELD,
+				ADDR,
+				REG_DATE,
+				UP_DATE,
+				DEL_DATE,
+				DEL_YN
+			FROM (
+				SELECT BSMNO RN, A.* 
+					FROM (
+							SELECT * 
+							FROM BIZ 
+							ORDER BY SEQ DESC 
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+		]]>
+	</select>
+	<select id="total" resultType="int">
+		select count(*) from Biz where 1=1 and DEL_YN='N' and bsmno is not null
 	</select>
 </mapper>

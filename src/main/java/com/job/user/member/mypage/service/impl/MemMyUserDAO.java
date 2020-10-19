@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.job.user.member.mypage.service.MemMyUserVO;
+import com.job.user.review.service.ReviewUserVO;
 import com.job.util.JobFileVO;
 
 @Repository("memMyUserDAO")
@@ -22,7 +23,7 @@ public class MemMyUserDAO {
 	}
 
 	/* 개인정보 */
-	public MemMyUserVO memMySelectList(MemMyUserVO vo)throws Exception  {
+	public MemMyUserVO memMySelectList(MemMyUserVO vo) throws Exception {
 		MemMyUserVO user = sqlSessionTemplate.selectOne("MemMyUser.memMySelectList", vo);
 		return user;
 	}
@@ -58,9 +59,42 @@ public class MemMyUserDAO {
 		return result;
 	}
 
-	/*이미지 업데이트*/
-	public int myUpdateImage(JobFileVO jobVO) throws Exception{
-		int result =sqlSessionTemplate.update("MemMyUser.myUpdateImage", jobVO);
+	/* 이미지 업데이트 */
+	public int myUpdateImage(JobFileVO jobVO) throws Exception {
+		int result = sqlSessionTemplate.update("MemMyUser.myUpdateImage", jobVO);
 		return result;
+	}
+
+	/* 기업리뷰 */
+	public List<MemMyUserVO> memMyReviewList1(MemMyUserVO memMyUserVO) {
+		List<MemMyUserVO> memMyReviewList1 = sqlSessionTemplate.selectList("MemMyUser.memMyReviewList1", memMyUserVO);
+		return memMyReviewList1;
+	}
+
+	public int memMyReviewCnt1(MemMyUserVO memMyUserVO) {
+		int total1 = (Integer) sqlSessionTemplate.selectOne("MemMyUser.memMyReviewCnt1",memMyUserVO);
+		return total1;
+	}
+
+	/* 기업연봉 */
+	public List<MemMyUserVO> memMyReviewList2(MemMyUserVO memMyUserVO) {
+		List<MemMyUserVO> memMyReviewList2 = sqlSessionTemplate.selectList("MemMyUser.memMyReviewList2", memMyUserVO);
+		return memMyReviewList2;
+	}
+
+	public int memMyReviewCnt2(MemMyUserVO memMyUserVO) {
+		int tota2 = (Integer) sqlSessionTemplate.selectOne("MemMyUser.memMyReviewCnt2",memMyUserVO);
+		return tota2;
+	}
+
+	/* 면접후기 */
+	public List<MemMyUserVO> memMyReviewList3(MemMyUserVO memMyUserVO) {
+		List<MemMyUserVO> memMyReviewList3 = sqlSessionTemplate.selectList("MemMyUser.memMyReviewList3", memMyUserVO);
+		return memMyReviewList3;
+	}
+
+	public int memMyReviewCnt3(MemMyUserVO memMyUserVO) {
+		int tota3 = (Integer) sqlSessionTemplate.selectOne("MemMyUser.memMyReviewCnt3",memMyUserVO);
+		return tota3;
 	}
 }

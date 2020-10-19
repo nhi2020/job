@@ -69,6 +69,42 @@ public class MemMyUserServiceImpl implements MemMyUserService {
 		int result =memMyUserDAO.myUpdateImage(jobVO);
 		return result;
 	}
+
+	@Override
+	public List<MemMyUserVO> memMyReviewList1(MemMyUserVO memMyUserVO) {
+
+		return memMyUserDAO.memMyReviewList1(memMyUserVO);
+	}
+
+	@Override
+	public int memMyReviewCnt1(MemMyUserVO memMyUserVO) {
+	
+		return memMyUserDAO.memMyReviewCnt1(memMyUserVO);
+	}
+
+	@Override
+	public List<MemMyUserVO> memMyReviewList2(MemMyUserVO memMyUserVO) {
+	
+		return memMyUserDAO.memMyReviewList2(memMyUserVO);
+	}
+
+	@Override
+	public int memMyReviewCnt2(MemMyUserVO memMyUserVO) {
+	
+		return memMyUserDAO.memMyReviewCnt2(memMyUserVO);
+	}
+
+	@Override
+	public List<MemMyUserVO> memMyReviewList3(MemMyUserVO memMyUserVO) {
+	
+		return memMyUserDAO.memMyReviewList3(memMyUserVO);
+	}
+
+	@Override
+	public int memMyReviewCnt3(MemMyUserVO memMyUserVO) {
+		
+		return memMyUserDAO.memMyReviewCnt3(memMyUserVO);
+	}
 	
 
 }

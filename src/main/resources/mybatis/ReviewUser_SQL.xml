@@ -42,6 +42,8 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -56,36 +58,58 @@
 	</select>
 	<select id="reviewList2" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-		SELECT 
+		select 
 			*
-		FROM 
+		from 
 		(
-			SELECT 
-				ID
+			select 
+				rownum rn
+				, RNUM
+				, ID
 				, BSMNO
-				, AVG_SAL
+				, REVIEW
+				, MREVIEW
+				, SAL
 				, SPOT
-				, MAX_SAL
-				, MIN_SAL
-				, PER_SAL
-			FROM (
-				SELECT 
-					MAX(ID) AS ID
+				, B_CNT
+				, REG_DATE
+				, UP_DATE
+				, DEL_DATE
+				, DEL_YN
+				, M_STATUS
+				, M_DIFFICULTLY
+				, M_DATE
+				, COMPANY
+				, FIELD
+			from (
+				select 
+					RNUM
+					, ID
 					, BSMNO
-					, AVG(SAL) AS AVG_SAL
-					, MAX(SPOT) AS SPOT
-		          	, MAX(SAL) AS MAX_SAL
-		          	, MIN(SAL) AS MIN_SAL
-		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
-				FROM REVIEW 
-				WHERE 1=1
-				AND DEL_YN='N'
-				AND SAL IS NOT NULL
-		        GROUP BY SPOT, BSMNO
-			) A
-		) A, BIZ B
-		WHERE 1=1 
-		AND A.BSMNO=B.BSMNO 
+					, MREVIEW
+					, REVIEW
+					, SAL
+					, SPOT
+					, B_CNT
+					, TO_CHAR(REG_DATE,'YYYY/MM/DD') AS REG_DATE
+					, TO_CHAR(UP_DATE,'YYYY/MM/DD') AS UP_DATE
+					, TO_CHAR(DEL_DATE,'YYYY/MM/DD') AS DEL_DATE
+					, DEL_YN
+					, M_STATUS
+					, M_DIFFICULTLY
+					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
+				from review 
+				where 1=1
+				and DEL_YN='N'
+				and SAL is not null
+				order by rnum
+			) a
+		) a, biz b
+		where 1=1 
+		and a.bsmno=b.bsmno 
+		and rn between #{start} and #{end}
 		]]>
 	</select>
 	<select id="reviewList3" parameterType="ReviewUserVO" resultType="ReviewUserVO">
@@ -111,6 +135,8 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, M_DATE
+				, COMPANY
+				, FIELD
 			from (
 				select 
 					RNUM
@@ -128,6 +154,8 @@
 					, M_STATUS
 					, M_DIFFICULTLY
 					, TO_CHAR(M_DATE,'YYYY/MM/DD') AS M_DATE
+					, COMPANY
+					, FIELD
 				from review 
 				where 1=1
 				and DEL_YN='N'
@@ -137,62 +165,21 @@
 		) a, biz b
 		where 1=1 
 		and a.bsmno=b.bsmno 
+		and a.
 		and rn between #{start} and #{end}
 		]]>
 	</select>
+	
 	<select id="total1" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null
 	</select>
 		
 	<select id="total2" resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM 
-		(
-			SELECT 
-				ID
-				, BSMNO
-				, AVG_SAL
-				, SPOT
-				, MAX_SAL
-				, MIN_SAL
-				, PER_SAL
-			FROM (
-				SELECT 
-					MAX(ID) AS ID
-					, BSMNO
-					, AVG(SAL) AS AVG_SAL
-					, MAX(SPOT) AS SPOT
-		          	, MAX(SAL) AS MAX_SAL
-		          	, MIN(SAL) AS MIN_SAL
-		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
-				FROM REVIEW 
-				WHERE 1=1
-				AND DEL_YN='N'
-				AND SAL IS NOT NULL
-		        GROUP BY SPOT, BSMNO
-			) A
-		) A, BIZ B
-		WHERE 1=1 
-		AND A.BSMNO=B.BSMNO 
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and SAL is not null
 	</select>
 	
 	<select id="total3" resultType="int">
 		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null
-	</select>
-	
-	<select id="reviewSalChk" parameterType="ReviewUserVO" resultType="int">
-		<![CDATA[
-			SELECT 
-				COUNT(ID)
-			FROM REVIEW 
-			WHERE 1=1
-			AND DEL_YN='N'
-			AND SAL IS NOT NULL
-			AND ID=#{id}
-			AND BSMNO=#{bsmno}
-			AND SPOT=#{spot}			
-		]]>
 	</select>
 	
 	<!-- 글 작성 -->
@@ -250,16 +237,6 @@
 			   SPOT = #{spot},
 			   UP_DATE = sysdate	
 		WHERE  RNUM = #{rnum}
-	</update>
-	<update id="salChkUpdate" parameterType="ReviewUserVO">
-		UPDATE REVIEW 
-		SET 
-			SAL = #{sal}, 
-			UP_DATE = sysdate	
-		WHERE 1=1
-		AND ID=#{id}
-		AND BSMNO=#{bsmno}
-		AND SPOT=#{spot}	
 	</update>
  	<update id="mreviewUpdate" parameterType="ReviewUserVO">
 		UPDATE REVIEW 

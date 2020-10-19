@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.job.user.biz.service.BizUserVO;
+import com.job.user.review.service.ReviewUserVO;
 
 @Repository("bizUserDAO")
 public class BizUserDAO {
@@ -18,10 +19,23 @@ public class BizUserDAO {
 		return sqlSessionTemplate.selectList("bizInfo.b_Info", vo);
 		
 	}
+<<<<<<< HEAD
 	
 	/*검색자동완성*/
 	public List<BizUserVO> autocomplete(BizUserVO vo)throws Exception{
 		return sqlSessionTemplate.selectList("bizInfo.autocomplete", vo);
 	}
 	
+=======
+
+	public List<BizUserVO> selectBiz(BizUserVO vo) {
+		List<BizUserVO> selectBiz = sqlSessionTemplate.selectList("bizInfo.bizList", vo);
+		return selectBiz;
+	}
+
+	public int total() {
+		int total = (Integer)sqlSessionTemplate.selectOne("bizInfo.total");
+		return total;
+	}
+>>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 }
