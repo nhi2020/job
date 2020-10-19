@@ -19,9 +19,30 @@ public class ReviewUserVO {
 	private String m_date;
 	private String company;
 	private String field;
+	private String addr;
+	private String ceo;
+	private String phone;
 	private int attachid;
 	private String storedfilename;
 	
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getCeo() {
+		return ceo;
+	}
+	public void setCeo(String ceo) {
+		this.ceo = ceo;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getStoredfilename() {
 		return storedfilename;
 	}

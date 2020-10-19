@@ -27,34 +27,15 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-	<div class="jply_wrap w_fixed">
-        <div class="top_bhr_box">
-          <div class="company_info_sec">
-            <div class="company_logo_box">
-              	<a class="thumb_wrap" href="#">
-              		<span class="img_wrap"><img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%"></span>
-				</a>            
-			</div>
-            <div class="company_info_box">
-              <div class="company_name font-weight-bold">
-                <h1 class="name">${bizInfo.company}</h1>
-              </div>
-              <div class="about_company">
-                <div class="info">
-                    <span class="badge badge-success">${bizInfo.field}</span>   
-                </div>
-              </div>
+            <div class="p-5 border">
+           		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
+                <h2>${bizInfo.company}</h2>
+                <p class="badge badge-success">${bizInfo.field}</p>
+                <p>대표: ${bizInfo.ceo}</p>
+                <p>주소: ${bizInfo.addr}</p>
+                <p>전화번호: ${bizInfo.phone}</p>
             </div>
-          </div>
-          <div class="company_badge_sec">
-          </div>
-        </div>
-	</div>
     <div class="container mt-3">
-		<c:forEach var="result1" items="${list1}">
-	 	 <h2></h2>
-		</c:forEach> 
-	  <br>
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs">
 	    <li class="nav-item">
