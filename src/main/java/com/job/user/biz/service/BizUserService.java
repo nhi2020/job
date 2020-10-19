@@ -6,4 +6,8 @@ public interface BizUserService {
 	
 	public List<BizUserVO> b_info(BizUserVO vo)throws Exception;
 	
+	// 페이징 처리 게시글 조회
+	public List<BizUserVO> selectBiz(BizUserVO vo);
+	public int total();
+	
 }
