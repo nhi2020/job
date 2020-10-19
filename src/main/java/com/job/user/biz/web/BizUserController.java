@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
-=======
 import org.springframework.web.bind.annotation.RequestMethod;
->>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 
 import com.job.user.biz.service.BizUserService;
 import com.job.user.biz.service.BizUserVO;

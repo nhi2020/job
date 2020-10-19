@@ -19,14 +19,12 @@ public class BizUserDAO {
 		return sqlSessionTemplate.selectList("bizInfo.b_Info", vo);
 		
 	}
-<<<<<<< HEAD
 	
 	/*검색자동완성*/
 	public List<BizUserVO> autocomplete(BizUserVO vo)throws Exception{
 		return sqlSessionTemplate.selectList("bizInfo.autocomplete", vo);
 	}
 	
-=======
 
 	public List<BizUserVO> selectBiz(BizUserVO vo) {
 		List<BizUserVO> selectBiz = sqlSessionTemplate.selectList("bizInfo.bizList", vo);
@@ -37,5 +35,4 @@ public class BizUserDAO {
 		int total = (Integer)sqlSessionTemplate.selectOne("bizInfo.total");
 		return total;
 	}
->>>>>>> branch 'master' of https://github.com/nhi2020/job.git
 }
