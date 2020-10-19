@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface ReviewUserService {
 	/*리뷰리스트*/
+	/*-기업정보*/
+	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO);
 	/*-기업리뷰*/
 	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO);
 	public int total1();
