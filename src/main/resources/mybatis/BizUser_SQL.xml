@@ -21,9 +21,25 @@
 				TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
 				DEL_YN
 			FROM   BIZ
-			WHERE  1=1
+			WHERE  1=1 
 		]]>
+		<if test="keyword !=null and keyword != ''">
+			AND COMPANY LIKE '%'||#{keyword}||'%'
+			ORDER BY BNUM DESC, REG_DATE DESC
+		</if>
 	</select>
+	
+	
+	<!-- 검색자동완성-->
+	<select id="autocomplete" resultType="BizUserVO">
+		SELECT COMPANY
+		FORM   BIZ
+		WHERE  COMPANY LIKE '%'||#{keyword}||'%'
+		ORDER BY BNUM DESC, REG_DATE DESC
+	</select>
+	
+	
+	
 		<!-- 기업 검색 -->
 	<select id="findBizByCompany" resultType="String" parameterType="String" >
 		<![CDATA[

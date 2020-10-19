@@ -17,6 +17,11 @@ public class BizUserDAO {
 	public List<BizUserVO> b_info(BizUserVO vo)throws Exception {
 		return sqlSessionTemplate.selectList("bizInfo.b_Info", vo);
 		
-		
 	}
+	
+	/*검색자동완성*/
+	public List<BizUserVO> autocomplete(BizUserVO vo)throws Exception{
+		return sqlSessionTemplate.selectList("bizInfo.autocomplete", vo);
+	}
+	
 }

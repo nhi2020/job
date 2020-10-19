@@ -1,5 +1,9 @@
 package com.job.user.main.service.impl;
 
-public class MainUserDAO {
 
+import org.springframework.stereotype.Repository;
+
+@Repository("mainUserDAO")
+public class MainUserDAO {
+	
 }

@@ -6,6 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#keyword").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : "/autocomplete.do",
+				type : "post",
+				dataType : "json",
+				data: {keyWord : $("#keyword").val()},
+				success : function(data) {
+					var result = data;
+					response(result);
+				},
+			     error:function(request,status,error){
+			        alert("code = "+ request.status + " error = " + error); // 실패 시 처리
+			     },
+			     complete : function(data) {
+			        //  실패했어도 완료가 되었을 때 처리
+			     }
+			});
+		}
+	});
+});
+</script>
 </head>
 <body>
 <div class="container">
@@ -18,7 +42,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link font-weight-bold" href="/user/biz/info/bizInfo.do" >기업</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="form-inline my-2 my-lg-0" action="/user/biz/info/bizInfo.do">
 				<ul class="navbar-nav mr-auto">
 					<c:choose>
 						<c:when	test="${empty sessionScope.b_user.bsmno and empty sessionScope.user.id}">
@@ -72,8 +96,8 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				<input class="form-control mr-sm-2 font-weight-bold" type="text" placeholder="기업을 검색해 보세요.">
-				<button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+				<input class="form-control mr-sm-2 font-weight-bold" type="text" id="keyword" name="keyword" placeholder="기업을 검색해 보세요.">
+				<button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>

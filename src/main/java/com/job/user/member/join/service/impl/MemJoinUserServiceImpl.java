@@ -12,7 +12,7 @@ import com.job.util.JobFileVO;
 public class MemJoinUserServiceImpl implements MemJoinUserService {
 
 	@Resource(name = "memJoinUserDAO")
-	MemJoinUserDAO memJoinUserDAO;
+	private MemJoinUserDAO memJoinUserDAO;
 
 	/*개인회원가입*/
 	@Override

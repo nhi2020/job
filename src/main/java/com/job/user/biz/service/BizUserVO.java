@@ -17,10 +17,17 @@ public class BizUserVO {
 	private String up_date; 
 	private String del_date; 
 	private String del_yn;
+	private String keyword;
 	
 	
 	
 	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public int getAttachid() {
 		return attachid;
 	}

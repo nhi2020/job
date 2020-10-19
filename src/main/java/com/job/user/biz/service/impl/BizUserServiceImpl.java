@@ -22,4 +22,10 @@ public class BizUserServiceImpl implements BizUserService{
 		return bizUserDAO.b_info(vo);
 	}
 
+	/*검색자동완성*/
+	@Override
+	public List<BizUserVO> autocomplete(BizUserVO vo) throws Exception {
+		return bizUserDAO.autocomplete(vo);
+	}
+
 }

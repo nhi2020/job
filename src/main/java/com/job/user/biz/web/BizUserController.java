@@ -1,15 +1,22 @@
 package com.job.user.biz.web;
 
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.job.user.biz.service.BizUserService;
 import com.job.user.biz.service.BizUserVO;
+
+import org.json.simple.JSONArray;
 
 @Controller
 public class BizUserController {
@@ -23,4 +30,25 @@ public class BizUserController {
 		model.addAttribute("bizInfo", bizInfo);
 		return "user/biz/info/bizInfo";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/autocomplete.do")
+	public void autocomplete(HttpServletRequest request,HttpServletResponse response,BizUserVO vo)throws Exception{
+		  request.setCharacterEncoding("UTF-8");
+	      response.setCharacterEncoding("UTF-8");
+		try {
+			List<BizUserVO> autocomplete=bizUserService.autocomplete(vo);
+			if(autocomplete!=null) {
+			JSONArray ja=new JSONArray();
+			for(int i=0;i<autocomplete.size();i++) {
+				ja.add(autocomplete.get(i).getCompany());
+			}
+			PrintWriter out=response.getWriter();
+			out.print(ja.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

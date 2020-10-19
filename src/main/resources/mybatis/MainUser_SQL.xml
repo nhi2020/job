@@ -8,4 +8,6 @@
 	<select id="selectBizList" resultType="BizUserVO">
 		SELECT * FROM BIZ
 	</select>
+
+	
 </mapper>
