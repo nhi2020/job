@@ -9,5 +9,15 @@
 		SELECT * FROM BIZ
 	</select>
 
+	<!-- 기업 추천  -->
+	<select id="selectRecommand" resultType="BizUserVO">
+		<![CDATA[
+		SELECT b.COMPANY,b.FIELD,i.STOREDFILENAME,(SELECT COUNT(*) FROM REVIEW r,BIZ b WHERE b.BSMNO=r.BSMNO) a
+		FROM   BIZ b,IMAGE i
+   		WHERE  b.ATTACHID=i.ATTACHID
+   		AND    rownum<=4 
+    	ORDER by a desc
+    	]]>
+	</select>
 	
 </mapper>

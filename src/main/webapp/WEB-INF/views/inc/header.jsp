@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -14,7 +16,7 @@ $(document).ready(function() {
 				url : "/autocomplete.do",
 				type : "post",
 				dataType : "json",
-				data: {keyWord : $("#keyword").val()},
+				data: {keyword : $("#keyword").val()},
 				success : function(data) {
 					var result = data;
 					response(result);
@@ -30,6 +32,35 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+.ui-menu {
+        list-style:none;
+        padding: 10px;
+        margin: 0;
+        display:block;
+        width:227px;
+        background-color : white;
+}
+.ui-menu .ui-menu {
+        margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+        width: 200px;
+}
+.ui-menu .ui-menu-item a {
+        text-decoration:none;
+        display:block;
+        padding:.2em .4em;
+        line-height:1.5;
+        zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -103,6 +134,6 @@ $(document).ready(function() {
 	</nav>
 
 	<div style="height:auto;border-top: 2px solid #64cd3c;"></div>
-		</div>
+</div>
 </body>
 </html>

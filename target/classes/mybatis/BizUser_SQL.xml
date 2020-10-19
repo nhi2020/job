@@ -21,13 +21,16 @@
 			TO_CHAR(REG_DATE,'YYYYMMDD') AS REG_DATE,
 			TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
 			TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
-			DEL_YN
+			DEL_YN,
+      		STOREDFILENAME
 		from 
 		(select 
 			rownum rn,
 			b.*
-			from biz b
-			where rownum < #{end})
+			from biz b, image i
+			where 1=1
+			and b.ATTACHID=i.ATTACHID
+			and rownum < #{end})
 		where 1=1  
 		and rn between #{start} and #{end}
 		]]>
@@ -41,7 +44,7 @@
 	<!-- 검색자동완성-->
 	<select id="autocomplete" resultType="BizUserVO">
 		SELECT COMPANY
-		FORM   BIZ
+		FROM   BIZ
 		WHERE  COMPANY LIKE '%'||#{keyword}||'%'
 		ORDER BY BNUM DESC, REG_DATE DESC
 	</select>
