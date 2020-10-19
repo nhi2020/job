@@ -36,13 +36,12 @@
 				</a>            
 			</div>
             <div class="company_info_box">
-              <span><h3>-${sessionScope.b_user.field}</h3></span>                 
-              <div class="company_name">
-                <h1 class="name"><a href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">${sessionScope.b_user.company}</a></h1>
+              <div class="company_name font-weight-bold">
+                <h1 class="name"><a href="/companies/7774/info/%EC%BC%80%EC%9D%B4%EB%B9%84%EC%8B%A0%EC%9A%A9%EC%A0%95%EB%B3%B4">${bizInfo.company}</a></h1>
               </div>
               <div class="about_company">
                 <div class="info">
-                    <a class="link_to" href="https://www.kbci.co.kr" rel="nofollow" target="_blank">https://www.kbci.co.kr</a>
+                    <span class="badge badge-success">${bizInfo.field}</span>   
                 </div>
               </div>
             </div>

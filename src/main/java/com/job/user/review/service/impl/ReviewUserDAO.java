@@ -15,6 +15,12 @@ public class ReviewUserDAO {
 	private SqlSessionTemplate sessionTemplate;
 	/*리뷰리스트*/
 	/*-기업리뷰*/
+	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO) {
+		System.out.println("StartDAO1");
+		ReviewUserVO reviewBizInfo = sessionTemplate.selectOne("reviewUser.reviewBizInfo", reviewUserVO);
+		return reviewBizInfo;
+	}	
+	/*-기업리뷰*/
 	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO) {
 		System.out.println("StartDAO1");
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList1", reviewUserVO);
