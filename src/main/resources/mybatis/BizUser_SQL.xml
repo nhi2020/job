@@ -22,7 +22,27 @@
 			TO_CHAR(UP_DATE,'YYYYMMDD') AS UP_DATE,
 			TO_CHAR(DEL_DATE,'YYYYMMDD') AS DEL_DATE,
 			DEL_YN,
-      		STOREDFILENAME
+      		STOREDFILENAME,
+		      (select count(*) from REVIEW r where 1=1 and DEL_YN='N' and REVIEW is not null and r.bsmno=a.bsmno) as REVIEW,
+		      (SELECT 
+		        COUNT(*)
+		      FROM 
+		      (
+		        SELECT 
+		         BSMNO
+		        FROM (
+		          SELECT 
+		            BSMNO
+		          FROM REVIEW
+		          WHERE 1=1
+		          AND DEL_YN='N'
+		          AND SAL IS NOT NULL
+		              GROUP BY SPOT, BSMNO
+		        ) c
+		      ) c
+		      WHERE 1=1
+		      and c.bsmno=a.bsmno) as sal,
+		      (select count(*) from REVIEW r where 1=1 and DEL_YN='N' and MREVIEW is not null and r.bsmno=a.bsmno) as MREVIEW
 		from 
 		(select 
 			rownum rn,
@@ -30,7 +50,7 @@
 			from biz b, image i
 			where 1=1
 			and b.ATTACHID=i.ATTACHID
-			and rownum < #{end})
+			and rownum < #{end}) a
 		where 1=1  
 		and rn between #{start} and #{end}
 		]]>
@@ -51,7 +71,7 @@
 	
 	
 	
-		<!-- 기업 검색 -->
+	<!-- 기업 검색 -->
 	<select id="findBizByCompany" resultType="String" parameterType="String" >
 		<![CDATA[
 			SELECT	*
@@ -73,6 +93,7 @@
 			WHERE	NAME LIKE #{addr}
 		]]>
 	</select>
+	
 	
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countBiz" resultType="int">
