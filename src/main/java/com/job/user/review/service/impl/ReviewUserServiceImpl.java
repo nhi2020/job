@@ -15,6 +15,10 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	@Resource(name="reviewUserDAO")
 	private ReviewUserDAO reviewUserDAO;
 	/*리뷰리스트*/
+	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO) {
+		ReviewUserVO reviewBizInfo = reviewUserDAO.reviewBizInfo(reviewUserVO);
+		return reviewBizInfo;
+	}
 	/*-기업리뷰*/
 	@Override
 	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO) {

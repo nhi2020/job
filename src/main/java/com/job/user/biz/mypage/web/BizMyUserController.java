@@ -22,7 +22,6 @@ import com.job.user.biz.mypage.service.BizMyUserVO;
 import com.job.util.JobFileUtils;
 import com.job.util.JobFileVO;
 
-
 @Controller
 public class BizMyUserController {
 
@@ -62,8 +61,8 @@ public class BizMyUserController {
 				loginVO.setPass(vo.getPass());
 				BizLoginUserVO b_user = bizLoginUserService.b_login(loginVO);
 				jobVO.setAttachid(b_user.getAttachid());
-				System.out.println("list.size() : "+list.size());
-				if(list.size() > 0) {
+				System.out.println("list.size() : " + list.size());
+				if (list.size() > 0) {
 					jobVO.setOriginalfilename(list.get(0).getOriginalfilename());
 					jobVO.setFilesize(list.get(0).getFilesize());
 					jobVO.setStoredfilename(list.get(0).getStoredfilename());
@@ -138,6 +137,7 @@ public class BizMyUserController {
 			}
 		}
 	}
+
 	/* 비밀번호 체크 */
 	@ResponseBody
 	@RequestMapping(value = "/user/mypage/biz/bizPassChk.do")
