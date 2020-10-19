@@ -32,6 +32,35 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+.ui-menu {
+        list-style:none;
+        padding: 10px;
+        margin: 0;
+        display:block;
+        width:227px;
+        background-color : white;
+}
+.ui-menu .ui-menu {
+        margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+        width: 200px;
+}
+.ui-menu .ui-menu-item a {
+        text-decoration:none;
+        display:block;
+        padding:.2em .4em;
+        line-height:1.5;
+        zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -105,6 +134,6 @@ $(document).ready(function() {
 	</nav>
 
 	<div style="height:auto;border-top: 2px solid #64cd3c;"></div>
-		</div>
+</div>
 </body>
 </html>
