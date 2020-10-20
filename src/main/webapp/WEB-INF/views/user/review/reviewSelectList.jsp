@@ -18,7 +18,7 @@
 			//location.href=url+"?id="+userid+"&bsmno="+bsmno;
 			location.href=url+"?id="+userid+"&bsmno=111-100";
 		}else{
-			alert('로그인 해주세요.');
+			alert('개인회원만 작성이 가능합니다.');
 			return false;
 		}
 	}
