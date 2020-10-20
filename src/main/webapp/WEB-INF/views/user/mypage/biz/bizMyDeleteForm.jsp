@@ -60,7 +60,7 @@
 	})
 </script>
 <body>
- <div class="container" style="margin-top:30px">
+ <div class="container" style="margin-top:30px; background-color :#ffffff; border-radius: 2em;">
 	<h3 style="font-weight: bold;"><i class="fas fa-external-link-alt"></i> 기업회원 탈퇴</h3>
 	<br><br>
 	<form action="/user/mypage/biz/bizMyDelete.do" method="post"
@@ -86,6 +86,9 @@
 			<button class="cencle btn btn-danger" type="button">취소</button>
 		</div>
 	</form>
+	
 </div>
+<br><br><br>
+<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>

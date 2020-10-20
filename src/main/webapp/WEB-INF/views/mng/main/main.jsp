@@ -27,15 +27,12 @@ $(document).ready(function() {
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container" style="margin-top: 30px">
-
-		<div class="row align-items-center">
-			<div class="card-group">
-				<div class="px-3 py-5 bg-primary text-white" id="cardlink1"><h3 align="center">  기업정보 관리  </h3></div>
-				<div class="px-3 py-5 bg-warning text-white" id="cardlink2"><h3 align="center">  회원정보 관리  </h3></div>
-				<div class="px-3 py-5 bg-info text-white" id="cardlink3"><h3 align="center">  리뷰정보 관리  </h3></div>
-				</div>
-			</div>
+		<div class="text-center">
+			<div class="px-3 py-5 bg-primary text-white" id="cardlink1"><h3 align="center">  기업정보 관리  </h3></div>
+			<div class="px-3 py-5 bg-warning text-white" id="cardlink2"><h3 align="center">  회원정보 관리  </h3></div>
+			<div class="px-3 py-5 bg-info text-white" id="cardlink3"><h3 align="center">  리뷰정보 관리  </h3></div>
 		</div>
+	</div>
 <br>
 <br>
 <br>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.job.user.biz.service.BizUserService;
 import com.job.user.biz.service.BizUserVO;
 import com.job.user.review.service.Paging;
+import com.job.user.review.service.ReviewUserService;
 
 import org.json.simple.JSONArray;
 

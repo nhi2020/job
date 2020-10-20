@@ -26,59 +26,70 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<h2>회원정보 상세</h2>
-	<form action="/user/mypage/member/myUpdate.do" method="post" 
-		id="upForm" enctype="multipart/form-data">
-		<input type="hidden" name="id" value="${sessionScope.user.id}">
-		<input type="hidden" name="pass" value="${sessionScope.user.pass}">
-		<c:if test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">
-			<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="img-fluid" width="30%" height="30%"/>
-		</c:if>
-		<table border="1" width="400">
-			<tr>
-				<th>아이디</th>
-				<td>${sessionScope.user.id}</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><%-- <input type="text" name="name" id="name" required="required"
-					value=" --%>${sessionScope.user.name }<!-- "> --></td>
-			</tr>
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>이메일</th> 
-				<td><input type="text" name="email" id="email" required="required"
-					value="${sessionScope.user.email }"></td>
-			</tr>
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>  전화번호</th>
-				<td><input type="text" name="phone" id="phone" required="required"
-					value="${sessionScope.user.phone }"></td>
-			</tr>
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>경력</th>
-				<td><input type="text" name="career" id="career" required="required"
-					value="${sessionScope.user.career }"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" id="submit" value="확인"></td>
-			</tr>
-
-		</table>
-		<c:choose>
-			<c:when test="${sessionScope.user.originalfilename eq '' or sessionScope.user.originalfilename == null}">
-				<div class="form-group">
-					<label for="image"><i class="fas fa-star-of-life" style="color: red;"></i>사진 업로드</label>
-					<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
-				</div> 
-			</c:when>
-			<c:otherwise>
-				<div class="form-group">
-					${sessionScope.user.originalfilename}
-					<a href="/user/mypage/member/myImageDel.do?storedfilename=${sessionScope.user.storedfilename}&filesize=${sessionScope.user.filesize}&attachid=${sessionScope.user.attachid}">삭제</a>
-				</div> 
-			</c:otherwise>
-		</c:choose>
-	</form>
+	<div class="container pt-3">
+	
+		<form action="/user/mypage/member/myUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.user.id}">
+			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
+			<h2>회원정보 상세</h2>
+			<ul class="list-group text-center">
+				<li class="list-group-item"> 
+					<c:if test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">
+						<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="img-fluid" width="30%" height="30%"/>
+					</c:if>
+				</li>
+			</ul>
+			<div class="form-group">
+			    <label for="id">아이디:</label> ${sessionScope.user.id}
+			</div>
+			<div class="form-group">
+			    <label for="id">이름:</label> ${sessionScope.user.name}
+			</div>
+			<div class="form-group">
+			    <label for="id">성별:</label> 
+				<c:if test="${sessionScope.user.gender ==1 }">
+					남자
+				</c:if>
+				<c:if test="${sessionScope.user.gender ==2 }">
+					여자
+				</c:if>
+			</div>
+			<div class="form-group">
+			  <label for="email">이메일:</label>
+			  <input type="text" name="email" class="form-control" id="email" required="required" value="${sessionScope.user.email }">
+			</div>
+			<div class="form-group">
+			  <label for="phone">폰번호:</label>
+			  <input type="text" name="phone" class="form-control" id="phone" required="required" value="${sessionScope.user.phone }">
+			</div>
+			<div class="form-group">
+			    <label for="birthday">생일:</label> ${sessionScope.user.birthday }
+			</div>
+			<div class="form-group">
+			  <label for="pwd">경력:</label>
+			  <input type="text" name="career" class="form-control" id="career" required="required" value="${sessionScope.user.career }">
+			</div>
+			<div class="form-group">
+			  <label for="pwd">이미지 업로드:</label>
+				<c:choose>
+					<c:when test="${sessionScope.user.originalfilename eq '' or sessionScope.user.originalfilename == null}">
+						<div class="form-group">
+							<label for="image"><i class="fas fa-star-of-life" style="color: red;"></i>사진 업로드</label>
+							<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+						</div> 
+					</c:when>
+					<c:otherwise>
+						<div class="form-group">
+							${sessionScope.user.originalfilename}
+							<a href="/user/mypage/member/myImageDel.do?storedfilename=${sessionScope.user.storedfilename}&filesize=${sessionScope.user.filesize}&attachid=${sessionScope.user.attachid}">삭제</a>
+						</div> 
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<input type="submit" class="btn btn-success float-right" value="확인" />
+		</form>
+	
+	</div>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>
