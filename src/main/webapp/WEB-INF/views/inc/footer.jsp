@@ -10,9 +10,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
+
 <body>
-<div class="jumbotron text-centeri container">
-<footer class="w3-container w3-center w3-light w3-xlarge">
+<div class=" text-centeri container">
+<div style="height:auto;border-top: 2px solid #64cd3c;"></div>
+<footer class="w3-container p-5 w3-center  w3-xlarge">
   <i class="fa fa-facebook-official w3-hover-opacity"></i>
   <i class="fa fa-instagram w3-hover-opacity"></i>
   <i class="fa fa-snapchat w3-hover-opacity"></i>
