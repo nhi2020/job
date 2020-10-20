@@ -20,12 +20,33 @@ public class BizUserVO {
 	private String keyword;
 	private String storedfilename;
 	
+	private String review;   
+	private String mreview;   
+	private String sal;   
+	
 	private String search;   
 	private String pageNum;  
 	private int start; 		 
 	private int end;
 	
-	
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	public String getMreview() {
+		return mreview;
+	}
+	public void setMreview(String mreview) {
+		this.mreview = mreview;
+	}
+	public String getSal() {
+		return sal;
+	}
+	public void setSal(String sal) {
+		this.sal = sal;
+	}
 	public String getStoredfilename() {
 		return storedfilename;
 	}

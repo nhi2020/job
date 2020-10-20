@@ -9,15 +9,15 @@ public interface ReviewUserService {
 	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO);
 	/*-기업리뷰*/
 	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO);
-	public int total1();
+	public int total1(String bsmno);
 	/*-기업연봉*/  
 	public List<ReviewUserVO> reviewSelectList2(ReviewUserVO reviewUserVO);
-	public int total2();
+	public int total2(String bsmno);
 	public int reviewSalChk(ReviewUserVO reviewUserVO);
 	public int salChkUpdate(ReviewUserVO reviewUserVO);
 	/*-면접후기*/  
 	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO);
-	public int total3();
+	public int total3(String bsmno);
 	
 	/*글작성*/
 	public int Write(ReviewUserVO reviewUserVO);	
