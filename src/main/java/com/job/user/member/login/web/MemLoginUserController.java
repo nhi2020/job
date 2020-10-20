@@ -38,30 +38,29 @@ public class MemLoginUserController {
 	
 	/*개인 로그인 & 체크*/
 	@RequestMapping(value="/user/member/login/memLogin.do")
-	public String memLogin(HttpSession session, MemLoginUserVO  vo,HttpServletResponse response) throws Exception {
+	public void memLogin(HttpSession session, MemLoginUserVO  vo,HttpServletResponse response) throws Exception {
 		int result=memLoginUserService.loginCheck(vo);
-		String url="user/main/main";
 		String ad=vo.getId();
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
 		if(result==1) {
 			if(ad.equals("admin")) {
-				url="mng/main/main";
+				writer.println("<script>alert('로그인되었습니다.');</script>");
+				writer.println("<script>location.href='/mng/main/main.do';</script>");
+				writer.flush();
 			}else {
-				url="user/main/main";
+				MemLoginUserVO user=memLoginUserService.user(vo);
+				session.setAttribute("user", user);
+				
+				writer.println("<script>alert('로그인되었습니다.');</script>");
+				writer.println("<script>location.href='/user/main/main.do';</script>");
+				writer.flush();
 			}
-			MemLoginUserVO user=memLoginUserService.user(vo);
-			session.setAttribute("user", user);
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
-			writer.println("<script>alert('로그인되었습니다.');</script>");
-			writer.flush();
 		}else{
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('아이디 또는 비밀번호를 확인해주세요.');</script>");
+			writer.println("<script>location.href='/user/member/login/memLoginForm.do';</script>");
 			writer.flush();
-			url="user/member/login/memLoginForm";
 		}
-		return url;
 	}
 	
 	/*개인 로그아웃*/
