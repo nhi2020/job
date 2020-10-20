@@ -20,4 +20,14 @@
     	]]>
 	</select>
 	
+	<!-- 리뷰 추천 -->
+	<select id="selectLatest" resultType="MainUserVO">
+		<![CDATA[
+			SELECT R.REG_DATE, R.ID, R.REVIEW, B.COMPANY 
+			FROM   REVIEW R,BIZ B
+            WHERE  ROWNUM<=4
+            AND    R.BSMNO=B.BSMNO
+			ORDER  BY R.REG_DATE DESC
+		]]>
+	</select>
 </mapper>

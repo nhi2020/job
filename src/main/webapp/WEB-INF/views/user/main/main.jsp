@@ -26,15 +26,18 @@
 		</div>
 	</div>
 	<h2><strong><!-- <i class="far fa-edit" style="color: green;"></i> --><i class="fas fa-edit" style="color: green;"></i> 기업 리뷰</strong></h2>
-	<div class="row">
-		<div class="col-sm-5">
-      		<h5>TITLE HEADING</h5>
-      	</div>
-      	<div class="col-sm-5">
-      		<h5>TITLE HEADING</h5>
-      	</div>
+	<div class="jumbotron">
+		<div class="row">
+      	<c:forEach var="frm" items="${list2}">
+			<div class="col-sm-3">
+				<h4><span class="badge badge-success">${frm.company}&nbsp;</span><span class="badge badge-light">${frm.id}</span></h4>
+				${frm.review}
+			</div>
+		</c:forEach>
+			<hr class="d-sm-none">
+		</div>
 	</div>
-</div>
 <%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
+</div>
 </body>
 </html>
