@@ -6,39 +6,72 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp"%>
 <title>업데이트</title>
-
+<style type="text/css">
+li {
+	font-weight: bold;
+}
+</style>
 </head>
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container p-3">
-	
-		<form action="/user/mypage/member/myUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
+
+		<form action="/user/mypage/member/myUpdate.do" method="post"
+			id="upForm" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}">
 			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
 			<h3 style="font-weight: bold;">
 				<i class="fas fa-user-edit"></i> 마이페이지 수정
 			</h3>
-			
+
 			<ul class="list-group">
-				<li class="list-group-item " style="background-color: #64cd3c;">
-					<c:if test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">
-						<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="img-fluid" width="100px" height="100px"/>
+				<li class="list-group-item" style="background-color: #64cd3c;">
+					<label for="id">아이디:</label> ${sessionScope.user.id}</li>
+
+				<li class="list-group-item " style="background-color: #eef5df;">이미지:
+					<c:if
+						test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">
+						<img
+							src="/resources/images/upload/member/${sessionScope.user.storedfilename}"
+							class="img-fluid" width="100px" height="100px" />
 					</c:if>
 				</li>
+
+
+				<li class="list-group-item" style="background-color: #e3f5bc;">
+
+					<label for="pwd"></label> <c:choose>
+						<c:when
+							test="${sessionScope.user.originalfilename eq '' or sessionScope.user.originalfilename == null}">
+							<div class="form-group">
+								<label for="image"><i class="fas fa-star-of-life"
+									style="color: red;"></i>이미지 업로드</label> <input type="file"
+									class="form-control" id="file" name="file"
+									placeholder="이름을 입력하세요">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="form-group">
+								${sessionScope.user.originalfilename} <a class="btn btn-success" 
+									href="/user/mypage/member/myImageDel.do?storedfilename=${sessionScope.user.storedfilename}&filesize=${sessionScope.user.filesize}&attachid=${sessionScope.user.attachid}">삭제</a>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</li>
+
+
+
+
+
 				<li class="list-group-item" style="background-color: #eef5df;">
 					<div class="form-group">
-					    <label for="id">아이디:</label> ${sessionScope.user.id}
+						<label for="id">이름:</label> ${sessionScope.user.name}
 					</div>
 				</li>
-				<li class="list-group-item" style="background-color: #64cd3c;">
+				<li class="list-group-item" style="background-color: #e3f5bc;">
 					<div class="form-group">
-					    <label for="id">이름:</label> ${sessionScope.user.name}
-					</div>
-				</li>
-				<li class="list-group-item" style="background-color: #eef5df;">
-					<div class="form-group">
-					    <label for="id">성별:</label> 
+						<label for="id">성별:</label>
 						<c:if test="${sessionScope.user.gender ==1 }">
 							남자
 						</c:if>
@@ -47,49 +80,37 @@
 						</c:if>
 					</div>
 				</li>
-				<li class="list-group-item" style="background-color: #64cd3c;">
-					<div class="form-group">
-					  <label for="email">이메일:</label>
-					  <input type="text" name="email" class="form-control" id="email" required="required" value="${sessionScope.user.email }">
-					</div>
-				</li>
 				<li class="list-group-item" style="background-color: #eef5df;">
 					<div class="form-group">
-					  <label for="phone">폰번호:</label>
-					  <input type="text" name="phone" class="form-control" id="phone" required="required" value="${sessionScope.user.phone }">
-					</div>
-				</li>
-				<li class="list-group-item" style="background-color: #64cd3c;">
-					<div class="form-group">
-					    <label for="birthday">생일:</label> ${sessionScope.user.birthday }
-					</div>
-				</li>
-				<li class="list-group-item" style="background-color: #eef5df;">
-					<div class="form-group">
-					  <label for="pwd">경력:</label>
-					  <input type="text" name="career" class="form-control" id="career" required="required" value="${sessionScope.user.career }">
-					</div>
-				</li>
-				<li class="list-group-item" style="background-color: #64cd3c;">
-					<div class="form-group">
-					  <label for="pwd">이미지 업로드:</label>
-						<c:choose>
-							<c:when test="${sessionScope.user.originalfilename eq '' or sessionScope.user.originalfilename == null}">
-								<div class="form-group">
-									<label for="image"><i class="fas fa-star-of-life" style="color: red;"></i>사진 업로드</label>
-									<input type="file" class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
-								</div> 
-							</c:when>
-							<c:otherwise>
-								<div class="form-group">
-									${sessionScope.user.originalfilename}
-									<a href="/user/mypage/member/myImageDel.do?storedfilename=${sessionScope.user.storedfilename}&filesize=${sessionScope.user.filesize}&attachid=${sessionScope.user.attachid}">삭제</a>
-								</div> 
-							</c:otherwise>
-						</c:choose>
+					<i class="fas fa-star-of-life" style="color: red;"></i>
+						<label for="email">이메일:</label> <input type="text" name="email"
+							class="form-control" id="email" required="required"
+							value="${sessionScope.user.email }">
 					</div>
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">
+					<div class="form-group">
+					<i class="fas fa-star-of-life" style="color: red;"></i>
+						<label for="phone">폰번호:</label> <input type="text" name="phone"
+							class="form-control" id="phone" required="required"
+							value="${sessionScope.user.phone }">
+					</div>
+				</li>
+				<li class="list-group-item" style="background-color: #eef5df;">
+					<div class="form-group">
+						<label for="birthday">생일:</label> ${sessionScope.user.birthday }
+					</div>
+				</li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">
+					<div class="form-group">
+					<i class="fas fa-star-of-life" style="color: red;"></i>
+						<label for="pwd">경력:</label> <input type="text" name="career"
+							class="form-control" id="career" required="required"
+							value="${sessionScope.user.career }">
+					</div>
+				</li>
+
+				<li class="list-group-item" style="background-color: #eef5df;">
 					<input type="submit" class="btn btn-success float-right" value="확인" />
 				</li>
 			</ul>

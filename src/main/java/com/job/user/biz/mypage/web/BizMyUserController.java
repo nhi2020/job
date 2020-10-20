@@ -51,14 +51,19 @@ public class BizMyUserController {
 	public String bizMyUpdate(BizMyUserVO vo, JobFileVO jobVO, BizLoginUserVO loginVO, Model model, HttpSession session,
 			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		session = request.getSession();
+		System.out.println("1111111111111111111");
 		int result = bizMyUserServuice.bizMyUpdate(vo);
+		System.out.println("1111111111111111111 : " + result);
 		String path = "job\\src\\main\\webapp\\resources\\images\\upload\\biz\\";
 		List<JobFileVO> list = jobFileUtils.parseInsertFileInfo(request, path);
+		System.out.println("2222222222222222222 : ");
 		if (result == 1) {
 			try {
+				System.out.println("333333333333333333333333 : ");
 				session.removeAttribute("b_user");
 				loginVO.setBsmno(vo.getBsmno());
 				loginVO.setPass(vo.getPass());
+				System.out.println("4444444444444444444444444 : ");
 				BizLoginUserVO b_user = bizLoginUserService.b_login(loginVO);
 				jobVO.setAttachid(b_user.getAttachid());
 				System.out.println("list.size() : " + list.size());
