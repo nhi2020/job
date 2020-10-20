@@ -19,12 +19,9 @@ li {
 		<form name="form1" method="post"
 			action="/user/mypage/member/memMyUpdateForm.do">
 
-
 			<h3 style="font-weight: bold;">
 				<i class="fas fa-user-friends"></i> 마이페이지
 			</h3>
-			<br> <br>
-
 
 			<ul class="list-group">
 				<li class="list-group-item " style="background-color: #64cd3c;">아이디: ${sessionScope.user.id}</li>
