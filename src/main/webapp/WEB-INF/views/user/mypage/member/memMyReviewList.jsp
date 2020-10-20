@@ -41,7 +41,7 @@
 	  <!-- Tab panes -->
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
-	      <h3>기업리뷰</h3>
+	     <h3 style="font-weight: bold;">기업리뷰</h3>
 	      <c:forEach var="result1" items="${list1}">
 				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
 				<div class="p-5 border border-success">
@@ -62,7 +62,7 @@
 			</div>
 	    </div>
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
-	      <h3>연봉</h3>
+	      <h3 style="font-weight: bold;">연봉</h3>
 	      <c:forEach var="result2" items="${list2}">
 	      	<div class="container p-3 my-3 border">
 		      	<p> 
@@ -84,7 +84,7 @@
 			</div>
 	    </div>
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
-	      <h3>면접후기</h3>
+	      <h3 style="font-weight: bold;">면접후기</h3>
 	      	<c:forEach var="result3" items="${list3}">
 	      		<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">

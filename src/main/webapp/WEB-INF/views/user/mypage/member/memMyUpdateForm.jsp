@@ -18,7 +18,7 @@
 			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
 			
 				<h3 style="font-weight: bold;">
-				<i class="fas fa-user-edit"></i> 개인정보 수정
+				<i class="fas fa-user-edit"></i> 마이페이지 수정
 			</h3>
 			<br> <br>
 			

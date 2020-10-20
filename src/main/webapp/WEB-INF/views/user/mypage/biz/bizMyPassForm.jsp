@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp"%>
-<title>기업 비밀번호변경</title>
+<title>기업비밀번호 변경</title>
 
 </head>
 <%@ include file="/WEB-INF/views/inc/header.jsp"%>

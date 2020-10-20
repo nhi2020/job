@@ -21,29 +21,30 @@ li {
 
 
 			<h3 style="font-weight: bold;">
-				<i class="fab fa-expeditedssl"></i> 마이페이지
+				<i class="fas fa-user-friends"></i> 마이페이지
 			</h3>
 			<br> <br>
 
 
 			<ul class="list-group">
-				<li class="list-group-item active">아이디: ${sessionScope.user.id}</li>
-				<li class="list-group-item">이름: ${sessionScope.user.name}</li>
-				<li class="list-group-item">성별: <c:if
+				<li class="list-group-item " style="background-color: #64cd3c;">아이디: ${sessionScope.user.id}</li>
+				<li class="list-group-item" style="background-color: #eef5df;">이미지: <img
+					src="/resources/images/upload/member/${sessionScope.user.storedfilename}"
+					class="img-fluid" style="width: 100px; height: 100px;" /></li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">이름: ${sessionScope.user.name}</li>
+				<li class="list-group-item" style="background-color: #eef5df;">성별: <c:if
 						test="${sessionScope.user.gender ==1 }">
 						남자
 					</c:if> <c:if test="${sessionScope.user.gender ==2 }">
 						여자
 					</c:if>
 				</li>
-				<li class="list-group-item">이메일: ${sessionScope.user.email }</li>
-				<li class="list-group-item">폰번호: ${sessionScope.user.phone }</li>
-				<li class="list-group-item">생일: ${sessionScope.user.birthday }</li>
-				<li class="list-group-item">경력: ${user.career }</li>
-				<li class="list-group-item">이미지: <img
-					src="/resources/images/upload/member/${sessionScope.user.storedfilename}"
-					class="img-fluid" width="30%" height="30%" /></li>
-				<li class="list-group-item"><input type="submit"
+				<li class="list-group-item" style="background-color: #e3f5bc;">이메일: ${sessionScope.user.email }</li>
+				<li class="list-group-item" style="background-color: #eef5df;">폰번호: ${sessionScope.user.phone }</li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">생일: ${sessionScope.user.birthday }</li>
+				<li class="list-group-item" style="background-color: #eef5df;">경력: ${user.career }</li>
+
+				<li class="list-group-item" style="background-color: #e3f5bc;"><input type="submit"
 					class="btn btn-success float-right" value="수정" /></li>
 			</ul>
 		</form>

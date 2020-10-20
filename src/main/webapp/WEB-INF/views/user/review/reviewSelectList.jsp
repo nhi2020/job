@@ -51,7 +51,7 @@
 	  <!-- Tab panes -->
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
-	      <h3>기업리뷰</h3>
+	      <h3 style="font-weight: bold;">기업리뷰</h3>
 	      <c:if test="${total1 == 0 }">
 	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
 	      </c:if>
@@ -78,7 +78,7 @@
 			</div>
 	    </div>
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
-	      <h3>연봉</h3>
+	      <h3 style="font-weight: bold;">연봉</h3>
 	      <c:if test="${total2 == 0 }">
 	      	<p style="color: grey">등록된 연봉이 없습니다</p>
 	      </c:if>
@@ -110,7 +110,7 @@
 			</div>
 	    </div>
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
-	      <h3>면접후기</h3>
+	    <h3 style="font-weight: bold;">면접후기</h3>
 	      <c:if test="${total3 == 0 }">
 	      	<p style="color: grey">등록된 후기가 없습니다</p>
 	      </c:if>
