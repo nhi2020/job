@@ -9,56 +9,23 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<div class="container" style="margin-top: 30px"></div>
+	<div class="container pt-3">
 
-	<h2>마이페이지</h2>
-	<form name="form1" method="post"
-		action="/user/mypage/biz/bizMyUpdateForm.do">
-		<table border="1" width="400">
-			<tr>
-				<th>사업자번호</th>
-				<td>${sessionScope.b_user.bsmno}</td>
-			</tr>
-
-			<tr>
-				<th>기업명</th>
-				<td>${sessionScope.b_user.company}</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>${sessionScope.b_user.email}</td>
-			</tr>
-
-			<tr>
-				<th>대표자</th>
-				<td>${sessionScope.b_user.ceo}</td>
-			</tr>
-
-			<tr>
-				<th>대표자 연락처</th>
-				<td>${sessionScope.b_user.phone}</td>
-			</tr>
-
-			<tr>
-				<th>업종</th>
-				<td>${sessionScope.b_user.field}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>${sessionScope.b_user.addr}</td>
-			</tr>
-
-			<tr>
-				<th>이미지</th>
-				<td><img
-					src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
-					class="img-fluid" width="30%" height="30%" /></td>
-			</tr>
-
-		</table>
-		<input type="submit" value="수정" />
-	</form>
+		<form name="form1" method="post" action="/user/mypage/biz/bizMyUpdateForm.do">
+			<h2>마이페이지</h2>
+			<ul class="list-group">
+			  <li class="list-group-item active">사업자번호: ${sessionScope.b_user.bsmno}</li>
+			  <li class="list-group-item">기업명: ${sessionScope.b_user.company}</li>
+			  <li class="list-group-item">이메일: ${sessionScope.b_user.email}</li>
+			  <li class="list-group-item">대표자: ${sessionScope.b_user.ceo}</li>
+			  <li class="list-group-item">대표자 연락처: ${sessionScope.b_user.phone}</li>
+			  <li class="list-group-item">업종: ${sessionScope.b_user.field}</li>
+			  <li class="list-group-item">주소: ${sessionScope.b_user.addr}</li>
+			  <li class="list-group-item">이미지: <img src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}" class="img-fluid" width="30%" height="30%" /></li>
+			  <li class="list-group-item"><input type="submit" class="btn btn-success float-right" value="수정" /></li>
+			</ul>
+		</form>
+	</div>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-
 </body>
 </html>
