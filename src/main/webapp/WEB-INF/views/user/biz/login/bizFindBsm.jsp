@@ -32,9 +32,9 @@
 			</div>
 		</div>
 	</form>
+<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </div>
 
 
-<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>
