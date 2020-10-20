@@ -32,7 +32,7 @@
                 <h2>${bizInfo.company}</h2>
                 <p class="badge badge-success">${bizInfo.field}</p>
                 <p>대표: ${bizInfo.ceo}</p>
-                <p>주소: ${bizInfo.addr}</p>
+                <p>주소:${bizInfo.addr1} ${bizInfo.addr} ${bizInfo.addr3}</p>
                 <p>전화번호: ${bizInfo.phone}</p>
             </div>
     <div class="container mt-3">
