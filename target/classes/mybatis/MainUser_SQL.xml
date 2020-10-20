@@ -23,9 +23,9 @@
 	<!-- 리뷰 추천 -->
 	<select id="selectLatest" resultType="MainUserVO">
 		<![CDATA[
-			SELECT R.REG_DATE, R.ID, R.REVIEW, B.COMPANY 
+			SELECT TO_CHAR(R.REG_DATE, 'yyyy-MM-dd') as REG_DATE, R.REVIEW, B.COMPANY 
 			FROM   REVIEW R,BIZ B
-            WHERE  ROWNUM<=4
+            WHERE  ROWNUM<=8
             AND    R.BSMNO=B.BSMNO
 			ORDER  BY R.REG_DATE DESC
 		]]>
