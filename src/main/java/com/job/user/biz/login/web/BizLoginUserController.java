@@ -42,25 +42,22 @@ public class BizLoginUserController {
 	
 	/*기업 로그인 & 체크*/
 	@RequestMapping(value="/user/biz/login/bizLogin.do")
-	public String bizLogin(HttpSession session, BizLoginUserVO vo,HttpServletResponse response) throws Exception{
+	public void bizLogin(HttpSession session, BizLoginUserVO vo,HttpServletResponse response) throws Exception{
 		int result= bizLoginUserService.b_LoginCheck(vo);
-		String url= "user/main/main";
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
 		if(result==1) {
 			BizLoginUserVO b_user=bizLoginUserService.b_login(vo);
 			session.setAttribute("b_user", b_user);
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('로그인되었습니다.');</script>");
+			writer.println("<script>location.href='/user/main/main.do';</script>");
 			writer.flush();
-			url= "user/main/main";
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('사업자 번호 또는 비밀번호를 확인해주세요.');</script>");
+			writer.println("<script>location.href='/user/biz/login/bizLoginForm.do';</script>");
 			writer.flush();
-			url= "user/biz/login/bizLoginForm";
 		}
-		return url;
 	}
 	
 	/*기업 로그아웃*/
