@@ -44,14 +44,14 @@ public class MemLoginUserController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer=response.getWriter();
 		if(result==1) {
+			MemLoginUserVO user=memLoginUserService.user(vo);
+			session.setAttribute("user", user);
+						
 			if(ad.equals("admin")) {
 				writer.println("<script>alert('로그인되었습니다.');</script>");
 				writer.println("<script>location.href='/mng/main/main.do';</script>");
 				writer.flush();
 			}else {
-				MemLoginUserVO user=memLoginUserService.user(vo);
-				session.setAttribute("user", user);
-				
 				writer.println("<script>alert('로그인되었습니다.');</script>");
 				writer.println("<script>location.href='/user/main/main.do';</script>");
 				writer.flush();
