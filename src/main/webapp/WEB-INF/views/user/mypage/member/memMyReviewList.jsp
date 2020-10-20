@@ -43,12 +43,10 @@
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
 	      <h3>기업리뷰</h3>
 	      <c:forEach var="result1" items="${list1}">
-			<ul class="list-group">
-				<li class="list-group-item list-group-item-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</li>
-				<li class="list-group-item list-group-item-info">
-					<pre><a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a></pre>
-				</li>
-			</ul>
+				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
+				<div class="p-5 border border-success">
+					<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
+				</div>
 			<br/>
 	      </c:forEach>
 			<div class="text-center">
@@ -66,10 +64,12 @@
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
 	      <h3>연봉</h3>
 	      <c:forEach var="result2" items="${list2}">
-	      	<p> 
-	      		직위 : ${result2.spot }<br/>
-	      		<p>평균연봉 : <a href="/user/review/salDetailForm.do?rnum=${result2.rnum}"><fmt:formatNumber value="${result2.sal }" pattern="#,###.##"/>만원</a></p><br>
-	      	</p>
+	      	<div class="container p-3 my-3 border">
+		      	<p> 
+		      		직위 : ${result2.spot }<br/>
+		      		평균연봉 : <a href="/user/review/salDetailForm.do?rnum=${result2.rnum}"><fmt:formatNumber value="${result2.sal }" pattern="#,###.##"/>만원</a><br>
+		      	</p>
+		    </div>
 	      </c:forEach>
 	      	<div class="text-center">
 		       <c:if test="${pg2.startPage > pg2.pageBlock }">
@@ -86,16 +86,19 @@
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
 	      <h3>면접후기</h3>
 	      	<c:forEach var="result3" items="${list3}">
-	      	 <p>
-	      	 	글번호 : ${result3.rnum }<br/>
-	      	 	조회수 : ${result3.b_cnt }<br/>
-	      	 	면접일자 : ${result3.m_date }<br/>
-	      	 	면접상태 : ${result3.m_status }<br/>
-	      	 	면접난이도 : ${result3.m_difficultly }<br/>
-		      	${result3.reg_date }<br/>
-		      	${result3.id }<br/>	
-		      	<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>	     
-		     </p>
+	      		<div class="row p-3 my-3 border">
+	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
+	      	 	 	 글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
+				  </div> 
+	      	 	  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
+				  	면접일자 : ${result3.m_date }<br/>
+		      	 	면접상태 : ${result3.m_status }<br/>
+		      	 	면접난이도 : ${result3.m_difficultly }
+				  </div>
+				  <div class="col-7">
+				  	<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>
+				  </div> 
+				</div>    
 		    </c:forEach>	
 		    <div class="text-center">
 			    <c:if test="${pg3.startPage > pg3.pageBlock }">
