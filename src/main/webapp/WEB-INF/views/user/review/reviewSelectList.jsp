@@ -27,14 +27,14 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-            <div class="p-5 border">
-           		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
-                <h2>${bizInfo.company}</h2>
-                <p class="badge badge-success">${bizInfo.field}</p>
-                <p>대표: ${bizInfo.ceo}</p>
-                <p>주소:${bizInfo.addr1} ${bizInfo.addr} ${bizInfo.addr3}</p>
-                <p>전화번호: ${bizInfo.phone}</p>
-            </div>
+    <div class="p-5 border">
+   		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
+        <h2>${bizInfo.company}</h2>
+        <p class="badge badge-success">${bizInfo.field}</p>
+        <p>대표: ${bizInfo.ceo}</p>
+        <p>주소:${bizInfo.addr1} ${bizInfo.addr} ${bizInfo.addr3}</p>
+        <p>전화번호: ${bizInfo.phone}</p>
+    </div>
     <div class="container mt-3">
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs">
