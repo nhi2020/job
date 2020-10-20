@@ -17,6 +17,10 @@ public class MainMngVO {
 	private String b_up_date; 
 	private String b_del_date; 
 	private String b_del_yn;
+	private String addr1;
+	private String addr3;
+	
+	
 	/*개인*/
 	private String id;
 	private String pass; 
@@ -49,6 +53,24 @@ public class MainMngVO {
 	private String m_status;
 	private String m_difficultly;
 	private String m_date;
+	
+	
+	
+	
+	
+	
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr3() {
+		return addr3;
+	}
+	public void setAddr3(String addr3) {
+		this.addr3 = addr3;
+	}
 	public String getBsmno() {
 		return bsmno;
 	}

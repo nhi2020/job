@@ -16,7 +16,13 @@
 		<form action="/user/mypage/member/myUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}">
 			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
-			<h2>회원정보 상세</h2>
+			
+				<h3 style="font-weight: bold;">
+				<i class="fas fa-user-edit"></i> 개인정보 수정
+			</h3>
+			<br> <br>
+			
+			
 			<ul class="list-group text-center">
 				<li class="list-group-item"> 
 					<c:if test="${sessionScope.user.storedfilename ne '' and not empty sessionScope.user.storedfilename}">

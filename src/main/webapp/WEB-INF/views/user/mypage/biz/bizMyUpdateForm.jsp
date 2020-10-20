@@ -58,7 +58,13 @@ function execPostCode() {
 </script>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<h2>기업정보 상세</h2>
+	
+	
+	<h3 style="font-weight: bold;">
+				<i class="fas fa-user-edit"></i> 기업정보 수정
+			</h3>
+			<br> <br>
+	
 	<form action="/user/mypage/biz/bizMyUpdate.do" method="post"
 		id="upForm" enctype="multipart/form-data">
 		<input type="hidden" name="bsmno" value="${sessionScope.b_user.bsmno}">
