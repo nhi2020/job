@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.job.user.biz.service.BizUserVO;
 import com.job.user.main.service.MainUserService;
+import com.job.user.main.service.MainUserVO;
 
 @Controller
 public class MainUserController {
@@ -22,7 +23,9 @@ public class MainUserController {
 	@RequestMapping(value="/user/main/main.do")
 	public String main(Model model) throws Exception {
 		List<BizUserVO> list=mainUserServie.selectRecommand();
+		List<MainUserVO> list2=mainUserServie.selectLatest();
 		model.addAttribute("list",list);
+		model.addAttribute("list2", list2);
 		return  "user/main/main";
 	}
 	

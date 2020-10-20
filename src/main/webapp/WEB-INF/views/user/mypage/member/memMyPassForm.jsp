@@ -232,5 +232,7 @@
 
 		</form>
 	</div>
+	<br><br><br>
+<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>
