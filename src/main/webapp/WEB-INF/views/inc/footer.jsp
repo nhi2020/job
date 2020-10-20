@@ -12,16 +12,16 @@
 </head>
 
 <body>
-<div class=" text-center">
+<div class="container text-center" style="margin-top: 50px;">
 <div style="height:auto;border-top: 2px solid #64cd3c;">
-<footer class="w3-container p-5 w3-center  w3-xlarge">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-</footer>
+	<footer class="w3-container p-5 w3-center  w3-xlarge">
+	  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+	  <i class="fa fa-instagram w3-hover-opacity"></i>
+	  <i class="fa fa-snapchat w3-hover-opacity"></i>
+	  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+	  <i class="fa fa-twitter w3-hover-opacity"></i>
+	  <i class="fa fa-linkedin w3-hover-opacity"></i>
+	</footer>
 </div>
 </div>
 </body>

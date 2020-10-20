@@ -11,7 +11,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<div class="container pt-3">
+	<div class="container p-3">
 	
 		<form action="/user/mypage/member/myUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}">

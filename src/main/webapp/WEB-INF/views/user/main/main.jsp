@@ -34,7 +34,7 @@
 			<hr class="d-sm-none">
 		</div>
 	</div>
-<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </div>
+<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	
 </body>
 </html>
