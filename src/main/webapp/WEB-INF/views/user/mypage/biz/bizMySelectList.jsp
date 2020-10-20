@@ -25,8 +25,9 @@
 			  <li class="list-group-item"><input type="submit" class="btn btn-success float-right" value="수정" /></li>
 			</ul>
 		</form>
+			<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	</div>
 
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+
 </body>
 </html>
