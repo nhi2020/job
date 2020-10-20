@@ -8,12 +8,31 @@
 <title>글 상세보기</title>
 <style>
 h2 {text-align: center;}
-table {width: 100%;}
-textarea {width: 100%;}
-#outter {display: block;
-	     width: 70%;
-		 margin: auto;}
 </style>
+<script>
+	function updateCheck() {
+		if(document.frm.review.value!=''){
+			if(confirm ("수정 하시겠습니까?") === true){
+				alert("수정완료");
+				document.frm.submit();
+			} else {
+				alert("수정취소");
+			}
+		} else {
+			alert("내용을 입력해주세요");
+			document.frm.review.focus();
+		}
+	}	
+		
+	function deleteCheck() {
+		if(confirm ("정말 삭제하시겠습니까?") === true){
+			alert("삭제완료");
+			location.href='/user/review/reviewDeleteForm.do?rnum=${review.rnum}&bsmno=${review.bsmno}';
+		} else {
+			alert("삭제취소");
+		}
+	}	
+</script>
 </head>
 <body>
 <%@ include file="../../inc/header.jsp" %>
@@ -41,37 +60,7 @@ textarea {width: 100%;}
 			<input type="button" class="btn btn-success" value="글 목록" onclick="location.href='/user/review/reviewSelectList.do?bsmno=${review.bsmno}'">
 		</div>
 	</form>
-<script>
-	const updateBtn = document.querySelector(".updateBtn");
-	const deleteBtn = document.querySelector(".deleteBtn");
-	const updateMreview = document.querySelector(".updateMreview");
-	
-	
-	function updateCheck() {
-		if(updateReview.value != ""){
-			if(confirm ("수정 하시겠습니까?") === true){
-				alert("수정완료");
-				document.frm.submit();
-			} else {
-				alert("수정취소");
-			}
-		} else {
-			alert("내용을 입력해주세요");
-			document.frm.review.focus();
-		}
-	}	
-		
-	function deleteCheck() {
-		if(confirm ("정말 삭제하시겠습니까?") === true){
-			alert("삭제완료");
-			location.href='/user/review/reviewDeleteForm.do?rnum=${review.rnum}&bsmno=${review.bsmno}';
-		} else {
-			alert("삭제취소");
-		}
-	}	
-</script>
 </div>
-<br>
 <%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>
