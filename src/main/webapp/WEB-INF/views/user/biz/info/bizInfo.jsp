@@ -13,7 +13,7 @@
 	<c:forEach items="${bizInfo}" var="result">	
 		<div class="row p-2 my-3 border">
 			<div class="col-3 border border-top-0 border-left-0 border-bottom-0">
-				<img src="/resources/images/upload/member/${result.storedfilename}" class="rounded" alt="${result.storedfilename}" style="width:100px;height:100px;">
+				<img src="/resources/images/upload/biz/${result.storedfilename}" class="rounded" alt="${result.storedfilename}" style="width:100px;height:100px;">
 			</div>
 			<div class="col-7">
 				<p class="font-weight-bold">기업명 : <a href="/user/review/reviewSelectList.do?bsmno=${result.bsmno}">${result.company }</a></p>

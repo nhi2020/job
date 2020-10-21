@@ -116,7 +116,6 @@ $(document).ready(function() {
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 마이페이지 </a>
 									<div class="dropdown-menu">
 											<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
-										<a class="dropdown-item" href="">활동내역</a> 
 										<a class="dropdown-item" href="/user/mypage/biz/bizMyPassForm.do">비밀번호변경</a> 
 										<a class="dropdown-item" href="/user/mypage/biz/bizMyDeleteForm.do">탈퇴</a>
 									</div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.job.mng.biz.service.BizMngVO;
 import com.job.mng.main.service.Criteria;
+import com.job.util.JobFileVO;
 
 @Repository("bizMngDAO")
 public class BizMngDAO {
@@ -44,7 +45,7 @@ public class BizMngDAO {
 	}
 
 	public boolean remove(int bnum) {
-		if (sessionTemplate.delete("BizMngVO.bizMngRemove", bnum) == 1) {
+		if (sessionTemplate.update("BizMngVO.bizMngRemove", bnum) == 1) {
 			return true;
 		} else {
 			return false;
@@ -55,6 +56,13 @@ public class BizMngDAO {
 
 		return sessionTemplate.selectList("BizMngVO.bizMngselectedList", choice);
 	}
-	
+
+	public JobFileVO picView(int attachid) {
+		return sessionTemplate.selectOne("BizMngVO.bizimgView", attachid);
+	}
+
+	public BizMngVO bizViewbyAttachId(int attachid) {
+		return sessionTemplate.selectOne("BizMngVO.bizViewbyAttachId", attachid);
+	}
 	
 }

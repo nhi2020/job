@@ -6,18 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp"%>
 <title>업데이트</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+li {
+	font-weight: bold;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -69,120 +62,111 @@ function execPostCode() {
 </script>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<h2>기업정보 상세</h2>
-	<form action="/user/mypage/biz/bizMyUpdate.do" method="post"
-		id="upForm" enctype="multipart/form-data">
+	<div class="container pt-3">
+	<form action="/user/mypage/biz/bizMyUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
 		<input type="hidden" name="bsmno" value="${sessionScope.b_user.bsmno}">
 		<input type="hidden" name="pass" value="${sessionScope.b_user.pass}">
-		<c:if
-			test="${sessionScope.b_user.storedfilename ne '' and not empty sessionScope.b_user.storedfilename}">
-			<img
-				src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
-				class="img-fluid" width="30%" height="30%" />
-		</c:if>
-		<table border="1" width="400">
-
-			<tr>
-				<th>사업자번호</th>
-				<td>${sessionScope.b_user.bsmno}</td>
-			</tr>
-
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>기업명</th>
-				<td><input type="text" name="company" id="company"
-					required="required" value="${sessionScope.b_user.company }"></td>
-			</tr>
-
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>이메일</th>
-				<td><input type="text" name="email" id="email"
-					required="required" value="${sessionScope.b_user.email }"></td>
-			</tr>
-
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>대표자</th>
-				<td><input type="text" name="ceo" id="ceo" required="required"
-					value="${sessionScope.b_user.ceo }"></td>
-			</tr>
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>대표자연락처</th>
-				<td><input type="text" name="phone" id="phone"
-					required="required" value="${sessionScope.b_user.phone }"></td>
-			<tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>업종</th>
-				<td><select class="form-control" name="field" id="field"
-					required="required">
-						<option value=""
-							${sessionScope.b_user.field eq ''? "selected='selected'":""}>업종을 선택하세요.</option>
-						<option value="it"
-							${sessionScope.b_user.field eq 'it'? "selected='selected'":""}>IT/인터넷</option>
-						<option value="management"
-							${sessionScope.b_user.field eq 'management'? "selected='selected'":""}>경영/기획/컨설팅</option>
-						<option value="education"
-							${sessionScope.b_user.field eq 'education'? "selected='selected'":""}>교육</option>
-						<option value="finance"
-							${sessionScope.b_user.field eq 'finance'? "selected='selected'":""}>금융/재무</option>
-						<option value="design"
-							${sessionScope.b_user.field eq 'design'? "selected='selected'":""}>디자인</option>
-						<option value="marketing"
-							${sessionScope.b_user.field eq 'marketing'? "selected='selected'":""}>마케팅/시장조사</option>
-						<option value="media"
-							${sessionScope.b_user.field eq 'media'? "selected='selected'":""}>미디어/홍보</option>
-						<option value="production"
-							${sessionScope.b_user.field eq 'production'? "selected='selected'":""}>생산/제조</option>
-				</select></td>
-			</tr>
-			<!--  <tr>
-				<th><i class="fas fa-star-of-life" style="color: red;"></i>주소</th>
-				<td><input type="text" name="addr" id="addr"
-					required="required" value="${sessionScope.b_user.addr }"></td>
-			</tr>-->
-
-
-			<tr>
-				<td colspan="2"><input type="submit" id="submit" value="확인"></td>
-			</tr>
-		</table>
-
-
-
-		<div class="form-group">
-			<input class="form-control" style="width: 40%; display: inline;"
-				placeholder="우편번호" name="addr1" id="addr1" type="text"
-				readonly="readonly"  value="${sessionScope.b_user.addr1 }">
-			<button type="button" class="btn btn-default"
-				onclick="execPostCode();">
-				<i class="fa fa-search"></i> 우편번호 찾기
-			</button>
-		</div>
-		<div class="form-group">
-			<input class="form-control" style="top: 5px;" placeholder="도로명 주소"
-				name="addr" id="addr" type="text" readonly="readonly" value="${sessionScope.b_user.addr }"/>
-		</div>
-		<div class="form-group">
-			<input class="form-control" placeholder="상세주소" name="addr3"
-				id="addr3" type="text" value="${sessionScope.b_user.addr3 }" />
-		</div>
-
-
-
-		<c:choose>
-			<c:when
-				test="${sessionScope.b_user.originalfilename eq '' or sessionScope.b_user.originalfilename == null}">
+		<h3 style="font-weight: bold;"><i class="fas fa-user-edit"></i>기업정보 수정</h3>
+		<ul class="list-group">
+		<li class="list-group-item" style="background-color: #64cd3c;">사업자번호: ${sessionScope.b_user.bsmno}</li>
+			<li class="list-group-item" style="background-color: #eef5df;">
+				이미지: 	
+				<c:if test="${sessionScope.b_user.storedfilename ne '' and not empty sessionScope.b_user.storedfilename}">
+					<img src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}" class="img-fluid" style="width:100px;height:100px;"  />
+				</c:if>
+			</li>
+					<li class="list-group-item" style="background-color: #e3f5bc;">
+				<c:choose>
+					<c:when
+						test="${sessionScope.b_user.originalfilename eq '' or sessionScope.b_user.originalfilename == null}">
+						<div class="form-group">
+							<label for="image"><i class="fas fa-star-of-life"
+								style="color: red;"></i>이미지 업로드</label> <input type="file"
+								class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="form-group">
+							${sessionScope.b_user.originalfilename} <a class="btn btn-success" 
+								href="/user/mypage/biz/myImageDel.do?storedfilename=${sessionScope.b_user.storedfilename}&filesize=${sessionScope.b_user.filesize}&attachid=${sessionScope.b_user.attachid}">삭제</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</li>
+			
+			<li class="list-group-item" style="background-color: #eef5df;">
+				<i class="fas fa-star-of-life" style="color: red;"></i>
+				<label for="company">기업명:</label>
+				<input type="text" class="form-control" placeholder="Enter company" id="company" name="company" value="${sessionScope.b_user.company }" required="required"/>
+			</li>
+			<li class="list-group-item" style="background-color: #e3f5bc;">
+				<i class="fas fa-star-of-life" style="color: red;"></i>
+				<label for="email">이메일:</label>
+				<input type="text" class="form-control" placeholder="Enter email" id="email" name="email" value="${sessionScope.b_user.email}" required="required"/>
+			</li>
+			<li class="list-group-item" style="background-color: #eef5df;">
+				<i class="fas fa-star-of-life" style="color: red;"></i>
+				<label for="ceo">대표자:</label>
+				<input type="text" class="form-control" placeholder="Enter ceo" id="ceo" name="ceo" value="${sessionScope.b_user.ceo}" required="required"/>
+			</li>
+			<li class="list-group-item" style="background-color: #e3f5bc;">
+				<i class="fas fa-star-of-life" style="color: red;"></i>
+				<label for="phone">대표자연락처:</label>
+				<input type="text" class="form-control" placeholder="Enter phone" id="phone" name="phone" value="${sessionScope.b_user.phone }" required="required"/>
+			</li>
+			<li class="list-group-item" style="background-color: #eef5df;">
 				<div class="form-group">
-					<label for="image"><i class="fas fa-star-of-life"
-						style="color: red;"></i>사진 업로드</label> <input type="file"
-						class="form-control" id="file" name="file" placeholder="이름을 입력하세요">
+				  <label for="field"><i class="fas fa-star-of-life" style="color: red;"></i>업종:</label>
+				  <select class="form-control" name="field" id="field" required="required">
+				    <option value=""
+						${sessionScope.b_user.field eq ''? "selected='selected'":""}>업종을 선택하세요.</option>
+					<option value="it"
+						${sessionScope.b_user.field eq 'it'? "selected='selected'":""}>IT/인터넷</option>
+					<option value="management"
+						${sessionScope.b_user.field eq 'management'? "selected='selected'":""}>경영/기획/컨설팅</option>
+					<option value="education"
+						${sessionScope.b_user.field eq 'education'? "selected='selected'":""}>교육</option>
+					<option value="finance"
+						${sessionScope.b_user.field eq 'finance'? "selected='selected'":""}>금융/재무</option>
+					<option value="design"
+						${sessionScope.b_user.field eq 'design'? "selected='selected'":""}>디자인</option>
+					<option value="marketing"
+						${sessionScope.b_user.field eq 'marketing'? "selected='selected'":""}>마케팅/시장조사</option>
+					<option value="media"
+						${sessionScope.b_user.field eq 'media'? "selected='selected'":""}>미디어/홍보</option>
+					<option value="production"
+						${sessionScope.b_user.field eq 'production'? "selected='selected'":""}>생산/제조</option>
+				  </select>
 				</div>
-			</c:when>
-			<c:otherwise>
+			</li>
+			
+				<li class="list-group-item" style="background-color: #e3f5bc;">
+				<i class="fas fa-star-of-life" style="color: red;"></i>
+				<label for="addr">주소:</label>
 				<div class="form-group">
-					${sessionScope.b_user.originalfilename} <a
-						href="/user/mypage/biz/myImageDel.do?storedfilename=${sessionScope.b_user.storedfilename}&filesize=${sessionScope.b_user.filesize}&attachid=${sessionScope.b_user.attachid}">삭제</a>
+					<input class="form-control" style="width: 40%; display: inline;"
+						placeholder="우편번호" name="addr1" id="addr1" type="text"
+						readonly="readonly"  value="${sessionScope.b_user.addr1 }">
+					<button type="button" class="btn btn-default"
+						onclick="execPostCode();">
+						<i class="fa fa-search"></i> 우편번호 찾기
+					</button>
 				</div>
-			</c:otherwise>
-		</c:choose>
+			</li>
+			<li class="list-group-item" style="background-color: #eef5df;">
+				<div class="form-group">
+					<input class="form-control" style="top: 5px;" placeholder="도로명 주소"	name="addr" id="addr" type="text" readonly="readonly" value="${sessionScope.b_user.addr }"/>
+				</div>
+			</li>
+			<li class="list-group-item" style="background-color: #e3f5bc;">
+				<div class="form-group">
+					<input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text" value="${sessionScope.b_user.addr3 }" />
+				</div>
+			</li>
+	<li class="list-group-item" style="background-color: #eef5df;"><input type="submit" class="btn btn-success float-right" value="확인" /></li>
+		</ul>
 	</form>
+	</div>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>

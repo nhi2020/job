@@ -18,7 +18,7 @@
 			//location.href=url+"?id="+userid+"&bsmno="+bsmno;
 			location.href=url+"?id="+userid+"&bsmno=111-100";
 		}else{
-			alert('로그인 해주세요.');
+			alert('개인회원만 작성이 가능합니다.');
 			return false;
 		}
 	}
@@ -27,14 +27,14 @@
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-            <div class="p-5 border">
-           		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
-                <h2>${bizInfo.company}</h2>
-                <p class="badge badge-success">${bizInfo.field}</p>
-                <p>대표: ${bizInfo.ceo}</p>
-                <p>주소: ${bizInfo.addr}</p>
-                <p>전화번호: ${bizInfo.phone}</p>
-            </div>
+    <div class="p-5 border">
+   		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
+        <h2>${bizInfo.company}</h2>
+        <p class="badge badge-success">${bizInfo.field}</p>
+        <p>대표: ${bizInfo.ceo}</p>
+        <p>주소:${bizInfo.addr1} ${bizInfo.addr} ${bizInfo.addr3}</p>
+        <p>전화번호: ${bizInfo.phone}</p>
+    </div>
     <div class="container mt-3">
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs">
@@ -51,7 +51,7 @@
 	  <!-- Tab panes -->
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
-	      <h3>기업리뷰</h3>
+	      <h3 style="font-weight: bold;">기업리뷰</h3>
 	      <c:if test="${total1 == 0 }">
 	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
 	      </c:if>
@@ -78,7 +78,7 @@
 			</div>
 	    </div>
 	    <div id="tab2" class="container tab-pane ${(param.pg eq 'pg2')?'active':'fade'}"><br>
-	      <h3>연봉</h3>
+	      <h3 style="font-weight: bold;">연봉</h3>
 	      <c:if test="${total2 == 0 }">
 	      	<p style="color: grey">등록된 연봉이 없습니다</p>
 	      </c:if>
@@ -96,7 +96,9 @@
 	      </c:forEach>
 	      </c:if>
 	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
-	      <input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
+	      <c:if test="${user.id != null }">
+	      	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
+	      </c:if>
 	      	<div class="text-center">
 		       <c:if test="${pg2.startPage > pg2.pageBlock }">
 					<a href="/user/review/reviewSelectList.do?currentPage=${pg2.startPage-pg2.pageBlock}&pg=pg2&bsmno=${param.bsmno}">[이전]</a>
@@ -110,7 +112,7 @@
 			</div>
 	    </div>
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
-	      <h3>면접후기</h3>
+	    <h3 style="font-weight: bold;">면접후기</h3>
 	      <c:if test="${total3 == 0 }">
 	      	<p style="color: grey">등록된 후기가 없습니다</p>
 	      </c:if>
@@ -131,7 +133,9 @@
 				</div>
 		    </c:forEach>	
 		     <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/mreviewWriteForm.do?id=user01&bsmno=111-100'"> -->
-		    <input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
+		    <c:if test="${user.id != null }">
+		    	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
+		    </c:if>
 		    <div class="text-center">
 			    <c:if test="${pg3.startPage > pg3.pageBlock }">
 					<a href="/user/review/reviewSelectList.do?currentPage=${pg3.startPage-pg3.pageBlock}&pg=pg3&bsmno=${param.bsmno}">[이전]</a>
