@@ -17,7 +17,7 @@ li {
 </head>
 
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 function btnMyUpdate(){
 	if(document.frm.emailChk.value==''){
 		alert('이메일 체크를 해주세요.');
@@ -87,7 +87,7 @@ function p_check(){
 						return false;
 					} else if (data == 0) {
 						alert("사용가능한 전화번호입니다.");
-						
+
 					}
 				},
 				error : function() {
@@ -105,12 +105,12 @@ function p_check(){
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container p-3">
 
-		<form method="post" name="frm"
-			id="upForm" enctype="multipart/form-data">
+		<form method="post" name="frm" id="upForm"
+			enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}">
 			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
-			<input type="hidden" name="emailChk" value="">
-			<input type="hidden" name="phoneChk" value="">
+			<input type="hidden" name="emailChk" value=""> <input
+				type="hidden" name="phoneChk" value="">
 			<h3 style="font-weight: bold;">
 				<i class="fas fa-user-edit"></i> 마이페이지 수정
 			</h3>
@@ -172,21 +172,21 @@ function p_check(){
 					</div>
 				</li>
 				<li class="list-group-item" style="background-color: #eef5df;">
-					<div class="form-group">
+					
 						<i class="fas fa-star-of-life" style="color: red;"></i> <label
 							for="email">이메일:</label> <input type="text" name="email"
 							class="form-control" id="email" required="required"
-							value="${sessionScope.user.email }">
-							<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
-					</div>
+							value="${sessionScope.user.email }"> <input type="button"
+							value="중복체크" onclick="e_check();" class="btn btn-warning" />
+				
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">
 					<div class="form-group">
 						<i class="fas fa-star-of-life" style="color: red;"></i> <label
 							for="phone">전화번호:</label> <input type="text" name="phone"
 							class="form-control" id="phone" required="required"
-							value="${sessionScope.user.phone }">
-								<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
+							value="${sessionScope.user.phone }"> <input type="button"
+							value="중복체크" onclick="p_check();" class="btn btn-warning" />
 					</div>
 				</li>
 				<li class="list-group-item" style="background-color: #eef5df;">
@@ -196,21 +196,25 @@ function p_check(){
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">
 					<div class="form-group">
-						<i class="fas fa-star-of-life" style="color: red;"></i> 
-						<label for="career">총 경력</label>
-						<select  class="form-control" id="career" name="career" required="required">
-							<option value="" ${sessionScope.user.career eq ''? "selected='selected'":""}>총 경력을 선택하세요.</option>
-			               	<c:forEach begin="1" end="20" var="i">
-			               		<c:set var="rlt" value="${i}년"/>
-			               		<option value="${i}년" ${sessionScope.user.career eq rlt? "selected='selected'":""}>${i}년</option>
-			               	</c:forEach>
-			               	<option value="21년 이상" ${sessionScope.user.career eq '21년 이상'? "selected='selected'":""}>21년 이상</option>
-			            </select>
+						<i class="fas fa-star-of-life" style="color: red;"></i> <label
+							for="career">총 경력</label> <select class="form-control"
+							id="career" name="career" required="required">
+							<option value=""
+								${sessionScope.user.career eq ''? "selected='selected'":""}>총 경력을 선택하세요.</option>
+							<c:forEach begin="1" end="20" var="i">
+								<c:set var="rlt" value="${i}년" />
+								<option value="${i}년"
+									${sessionScope.user.career eq rlt? "selected='selected'":""}>${i}년</option>
+							</c:forEach>
+							<option value="21년 이상"
+								${sessionScope.user.career eq '21년 이상'? "selected='selected'":""}>21년 이상</option>
+						</select>
 					</div>
 				</li>
 
 				<li class="list-group-item" style="background-color: #eef5df;">
-					<input type="button" class="btn btn-success float-right" value="확인" onclick="btnMyUpdate();" />
+					<input type="button" class="btn btn-success float-right" value="확인"
+					onclick="btnMyUpdate();" />
 				</li>
 			</ul>
 		</form>
