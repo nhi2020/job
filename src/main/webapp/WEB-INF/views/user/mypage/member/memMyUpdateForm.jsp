@@ -18,7 +18,20 @@ li {
 
 <body>
 	<script type="text/javascript">
-
+function btnMyUpdate(){
+	if(document.frm.emailChk.value==''){
+		alert('이메일 체크를 해주세요.');
+		document.frm.email.focus();
+		return false;
+	}
+	if(document.frm.phoneChk.value==''){
+		alert('전화번호 체크를 해주세요.');
+		document.frm.phone.focus();
+		return false;
+	}
+	document.frm.action="/user/mypage/member/myUpdate.do";
+	document.frm.submit();
+}
 
 /* 이메일 중복체크 */
 function e_check(){
@@ -36,11 +49,12 @@ function e_check(){
 		success : function(data) {
 			if (data == 1) {
 				alert("중복된 이메일이 존재합니다.");
-				document.frm.email.value="";
+				document.frm.emailChk.value="Y";
 				document.frm.email.focus();
 				return false;
 			} else if (data == 0) {
 				alert("사용가능한 이메일입니다.");
+				document.frm.emailChk.value="Y";
 			}
 		},
 		error : function() {
@@ -68,11 +82,12 @@ function p_check(){
 				success : function(data) {
 					if (data == 1) {
 						alert("중복된 전화번호가 존재합니다.");
-						document.frm.phone.value = "";
+						document.frm.phoneChk.value="Y";
 						document.frm.phone.focus();
 						return false;
 					} else if (data == 0) {
 						alert("사용가능한 전화번호입니다.");
+						document.frm.phoneChk.value="Y";
 					}
 				},
 				error : function() {
@@ -90,10 +105,12 @@ function p_check(){
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container p-3">
 
-		<form action="/user/mypage/member/myUpdate.do" method="post" name="frm"
-			id="upForm" enctype="multipart/form-data">
+		<form method="post" name="frm" id="upForm"
+			enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${sessionScope.user.id}">
 			<input type="hidden" name="pass" value="${sessionScope.user.pass}">
+			<input type="hidden" name="emailChk" value=""> <input
+				type="hidden" name="phoneChk" value="">
 			<h3 style="font-weight: bold;">
 				<i class="fas fa-user-edit"></i> 마이페이지 수정
 			</h3>
@@ -155,21 +172,21 @@ function p_check(){
 					</div>
 				</li>
 				<li class="list-group-item" style="background-color: #eef5df;">
-					<div class="form-group">
+					
 						<i class="fas fa-star-of-life" style="color: red;"></i> <label
 							for="email">이메일:</label> <input type="text" name="email"
 							class="form-control" id="email" required="required"
-							value="${sessionScope.user.email }">
-							<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
-					</div>
+							value="${sessionScope.user.email }"> <input type="button"
+							value="중복체크" onclick="e_check();" class="btn btn-warning" />
+				
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">
 					<div class="form-group">
 						<i class="fas fa-star-of-life" style="color: red;"></i> <label
 							for="phone">전화번호:</label> <input type="text" name="phone"
 							class="form-control" id="phone" required="required"
-							value="${sessionScope.user.phone }">
-								<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
+							value="${sessionScope.user.phone }"> <input type="button"
+							value="중복체크" onclick="p_check();" class="btn btn-warning" />
 					</div>
 				</li>
 				<li class="list-group-item" style="background-color: #eef5df;">
@@ -180,14 +197,24 @@ function p_check(){
 				<li class="list-group-item" style="background-color: #e3f5bc;">
 					<div class="form-group">
 						<i class="fas fa-star-of-life" style="color: red;"></i> <label
-							for="pwd">경력:</label> <input type="text" name="career"
-							class="form-control" id="career" required="required"
-							value="${sessionScope.user.career }">
+							for="career">총 경력</label> <select class="form-control"
+							id="career" name="career" required="required">
+							<option value=""
+								${sessionScope.user.career eq ''? "selected='selected'":""}>총 경력을 선택하세요.</option>
+							<c:forEach begin="1" end="20" var="i">
+								<c:set var="rlt" value="${i}년" />
+								<option value="${i}년"
+									${sessionScope.user.career eq rlt? "selected='selected'":""}>${i}년</option>
+							</c:forEach>
+							<option value="21년 이상"
+								${sessionScope.user.career eq '21년 이상'? "selected='selected'":""}>21년 이상</option>
+						</select>
 					</div>
 				</li>
 
 				<li class="list-group-item" style="background-color: #eef5df;">
-					<input type="submit" class="btn btn-success float-right" value="확인" />
+					<input type="button" class="btn btn-success float-right" value="확인"
+					onclick="btnMyUpdate();" />
 				</li>
 			</ul>
 		</form>
