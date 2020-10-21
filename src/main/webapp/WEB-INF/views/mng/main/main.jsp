@@ -25,6 +25,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<c:choose>
+<c:when test="${sessionScope.user.id eq 'admin'}">
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container" style="margin-top: 30px">
 		<div class="jumbotron jumbotron-fluid">
@@ -41,5 +43,12 @@ $(document).ready(function() {
 	</div>
 
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+</c:when>
+<c:otherwise>
+<%
+   response.sendRedirect("/user/main/main.do");
+%>
+</c:otherwise>
+	</c:choose>
 </body>
 </html>
