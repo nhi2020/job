@@ -41,24 +41,16 @@
 		from member
 		where mnum = #{mnum}
 	</select>
-	<update id="memMngUpdate">
+	<select id="memimgView" parameterType="int" resultType="JobFileVO">
+		select * from image where attachid=#{attachid}
+	</select>
+	<update id="memMngRemove">
 		update member
-		set pass=#{pass}, 
-			email=#{email}, 
-			phone=#{phone}, 
-			career=#{career}, 
-			up_date=sysdate
-		where mnum=#{mnum}
-	</update>
-	
-	<delete id="memMngRemove">
-		delete from member
+		set del_yn='Y',
+			del_date=sysdate
 		where mnum = #{mnum}
-	</delete>
-	
-	<insert id="memMngInsert">
-		insert into member (id, pass, mnum, type, name, gender, email, phone, birthday, career, reg_date, del_yn ) 
-		values (#{id}, 'abcd1234!', member_seq.nextval, 'P', #{name}, #{gender}, #{email}, #{phone}, #{birthday}, #{career}, sysdate, 'N')
-	</insert>
-	
+	</update>
+	<select id="memViewbyAttachId" parameterType="int" resultType="MemMngVO">
+		select * from member where attachid=#{attachid}
+	</select>
 </mapper>
