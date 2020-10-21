@@ -46,21 +46,17 @@
 	<select id="bizViewOne" parameterType="int" resultType="BizMngVO">
 		select * from biz where bnum = #{bnum}
 	</select>
-	<update id="bizMngUpdate">
+	<select id="bizimgView" parameterType="int" resultType="JobFileVO">
+		select * from image where attachid=#{attachid}
+	</select>
+	<update id="bizMngRemove">
 		update biz
-		set pass = #{pass}, company=#{company}, email = #{email},
-		ceo = #{ceo}, phone = #{phone}, field=#{field},
-		addr = #{addr}, up_date=sysdate
+		set del_yn='Y',
+			del_date=sysdate
 		where bnum = #{bnum}
 	</update>
-	<insert id="bizMngInsert">
-		insert into biz (bsmno, pass, bnum, company, email, ceo, phone, field, addr,
-		reg_date, del_yn)
-		values (#{bsmno}, '1234abcd!', biz_seq.nextval, #{company}, #{email},
-		#{ceo}, #{phone}, #{field}, #{addr}, sysdate, 'N')
-	</insert>
-	<delete id="bizMngRemove">
-		delete from biz
-		where bnum = #{bnum}
-	</delete>
+	<select id="bizViewbyAttachId" parameterType="int" resultType="BizMngVO">
+		select * from biz where attachid=#{attachid}
+	</select>
+	
 </mapper>

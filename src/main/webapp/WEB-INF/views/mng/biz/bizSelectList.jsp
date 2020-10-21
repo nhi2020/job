@@ -11,18 +11,20 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
-<div class="container" style="margin-top:30px">
-   <div class="row align-items-center panel panel-default">
-    <div class="col panel-heading"><h1>기업 회원 관리</h1>
-    </div>
+<div class="container" style="margin-top: 30px">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4">기업 회원 정보 관리</h2>
+    <p class="lead">이 곳은 기업 회원 정보 관리하는 공간입니다.</p>
   </div>
-<div class="row">
-	<div>
-		<div>
-			<button id="regBtn" class="btn btn-secondary" style="float: right">기업 회원 등록</button>
-		</div>
-		<p/>
-		<div class="panel-body">
+</div>
+    <div class="row">
+    	<div class="col-sm-9"></div>
+    	<div class="col-sm-3">
+		<button id="regBtn" class="btn btn-secondary" style="float: right">기업 회원 임의 등록</button>
+    	</div>
+    	<div class="col-sm-12"><p></div>
+    	</div>
 			<table class="table table-striped table-bordered table-hover">
 				<thead class="thead-dark">
 				<tr>
@@ -59,11 +61,12 @@
 				</c:forEach>
 			</table>
 			<div class="row">
-				<div class="col-lg-12">
+			<div class="col-lg-3"></div>
+			<div class="col-lg">
 					<form id="searchForm" action="/mng/biz/bizSelectList.do" method="get">
 						<div class="input-group mb-3" style="align-self: center;">
 						<div>
-						<select name="type" class="form-control">
+						<select name="type" class="form-control custom-select">
 							<option value="">--</option>
 							<option value="N">사업자 번호</option>
 							<option value="C">기업명</option>
@@ -82,6 +85,7 @@
 						</div>
 					</form>
 				</div>
+				<div class="col-lg-3"></div>
 			</div>
 			<div>
 				<ul class="pagination justify-content-center">
@@ -116,7 +120,7 @@
 						</div>
 						<div class="modal-body">처리가 완료되었습니다.</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 						</div>
 					</div>
 					<!--  /.modal-content -->
@@ -124,18 +128,11 @@
 				<!--  /.modal-dialog -->
 			</div>
 			<!--  /.modal -->
-		</div>
-		<!--  end panel-body -->
-	</div>
-	<!--  end panel -->
-</div>
-<!--  /. row -->
 <script type="text/javascript">
 
 $(document).ready(function(){
 
 	var result = '<c:out value="${result}"/>'
-	
 
 	checkModal(result);
 
@@ -153,7 +150,7 @@ $(document).ready(function(){
 		}
 	
 		$("#myModal").modal("show");
-	}
+	};
 	
 	$("#regBtn").on("click", function(){
 		self.location ='/mng/biz/bizInsertForm.do';

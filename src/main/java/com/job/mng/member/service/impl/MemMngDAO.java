@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.job.mng.main.service.Criteria;
 import com.job.mng.member.service.MemMngVO;
+import com.job.util.JobFileVO;
 
 @Repository("memMngDAO")
 public class MemMngDAO {
@@ -40,17 +41,19 @@ public class MemMngDAO {
 	}
 
 	public boolean remove(int mnum) {
-		if (sessionTemplate.delete("MemMngVO.memMngRemove", mnum) == 1) {
+		if (sessionTemplate.update("MemMngVO.memMngRemove", mnum) == 1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void insert(MemMngVO member) {
-		
-		System.out.println("memmngDao insert()");
-		sessionTemplate.insert("MemMngVO.memMngInsert", member);
+	public MemMngVO memViewbyAttachId(int attachid) {
+		return sessionTemplate.selectOne("MemMngVO.memViewbyAttachId", attachid);
 	}
-	
+
+	public JobFileVO picView(int attachid) {
+		return sessionTemplate.selectOne("MemMngVO.memimgView", attachid);
+	}
+
 }
