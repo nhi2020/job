@@ -37,7 +37,7 @@ li {
 					</c:if>
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">이메일: ${sessionScope.user.email }</li>
-				<li class="list-group-item" style="background-color: #eef5df;">폰번호: ${sessionScope.user.phone }</li>
+				<li class="list-group-item" style="background-color: #eef5df;">전화번호: ${sessionScope.user.phone }</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">생일: ${sessionScope.user.birthday }</li>
 				<li class="list-group-item" style="background-color: #eef5df;">경력: ${user.career }</li>
 

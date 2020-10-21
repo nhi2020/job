@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String context = request.getContextPath();
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,6 +20,68 @@ li {
 <script src="/resources/js/addressapi.js"></script>
 </head>
 <script type="text/javascript">
+/* 이메일 중복체크 */
+function e_check(){
+	if(document.frm.email.value==""){
+		alert('이메일을 입력해주세요.');
+		document.frm.email.value="";
+		document.frm.email.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/bsm_no_e_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"email" : $("#email").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 이메일이 존재합니다.");
+				document.frm.email.value="";
+				document.frm.email.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 이메일입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+
+/* 전화번호 중복체크 */
+function p_check(){
+	if(document.frm.phone.value==""){
+		alert('연락처를 입력해주세요.');
+		document.frm.phone.value="";
+		document.frm.phone.focus();
+		return false;
+	}
+	$.ajax({
+		url:'<%=context%>/bsm_no_p_check.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {"phone" : $("#phone").val()},
+		success : function(data) {
+			if (data == 1) {
+				alert("중복된 연락처가 존재합니다.");
+				document.frm.phone.value="";
+				document.frm.phone.focus();
+				return false;
+			} else if (data == 0) {
+				alert("사용가능한 연락처입니다.");
+			}
+		},
+		error : function() {
+
+		}
+	});
+
+}
+ 
+
+
 function execPostCode() {
          new daum.Postcode({
              oncomplete: function(data) {
@@ -63,7 +128,7 @@ function execPostCode() {
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container pt-3">
-	<form action="/user/mypage/biz/bizMyUpdate.do" method="post" id="upForm" enctype="multipart/form-data">
+	<form action="/user/mypage/biz/bizMyUpdate.do" method="post" id="upForm" name="frm" enctype="multipart/form-data">
 		<input type="hidden" name="bsmno" value="${sessionScope.b_user.bsmno}">
 		<input type="hidden" name="pass" value="${sessionScope.b_user.pass}">
 		<h3 style="font-weight: bold;"><i class="fas fa-user-edit"></i>기업정보 수정</h3>
@@ -97,22 +162,26 @@ function execPostCode() {
 			<li class="list-group-item" style="background-color: #eef5df;">
 				<i class="fas fa-star-of-life" style="color: red;"></i>
 				<label for="company">기업명:</label>
-				<input type="text" class="form-control" placeholder="Enter company" id="company" name="company" value="${sessionScope.b_user.company }" required="required"/>
+				<input type="text" class="form-control" placeholder=" company" id="company" name="company" value="${sessionScope.b_user.company }" required="required"/>
 			</li>
 			<li class="list-group-item" style="background-color: #e3f5bc;">
 				<i class="fas fa-star-of-life" style="color: red;"></i>
 				<label for="email">이메일:</label>
-				<input type="text" class="form-control" placeholder="Enter email" id="email" name="email" value="${sessionScope.b_user.email}" required="required"/>
+				<input type="text" class="form-control" placeholder=" email" id="email" name="email" value="${sessionScope.b_user.email}" required="required"/>
+		<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
+		
 			</li>
+	
 			<li class="list-group-item" style="background-color: #eef5df;">
 				<i class="fas fa-star-of-life" style="color: red;"></i>
 				<label for="ceo">대표자:</label>
-				<input type="text" class="form-control" placeholder="Enter ceo" id="ceo" name="ceo" value="${sessionScope.b_user.ceo}" required="required"/>
+				<input type="text" class="form-control" placeholder=" ceo" id="ceo" name="ceo" value="${sessionScope.b_user.ceo}" required="required"/>
 			</li>
 			<li class="list-group-item" style="background-color: #e3f5bc;">
 				<i class="fas fa-star-of-life" style="color: red;"></i>
 				<label for="phone">대표자연락처:</label>
-				<input type="text" class="form-control" placeholder="Enter phone" id="phone" name="phone" value="${sessionScope.b_user.phone }" required="required"/>
+				<input type="text" class="form-control" placeholder=" phone" id="phone" name="phone" value="${sessionScope.b_user.phone }" required="required"/>
+				<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
 			</li>
 			<li class="list-group-item" style="background-color: #eef5df;">
 				<div class="form-group">
