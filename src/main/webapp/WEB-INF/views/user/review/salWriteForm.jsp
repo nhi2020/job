@@ -35,14 +35,19 @@ function goWrite(frm) {
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-<h2 style="text-align: center;">연봉 작성</h2><br><br>
-
-<div style="width: 60%; margin: auto;">
 	<form method="post" action="/user/review/sWrite.do" name="frm">
-		<p>사업자번호 : <input type="text" name="bsmno" style="width: 20%;" value="${review.bsmno }" readonly="readonly"/><br></p>
-		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${review.id }" readonly="readonly"/><br></p>
-		<p>직위 : 
-			<select name="spot">
+		<h2>연봉 작성</h2>
+		<div class="form-group">
+	      <label for="bsmno">사업자번호:</label> 
+	      <input type="text" class="form-control" name="bsmno" value="${review.bsmno }" readonly="readonly"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="id">아이디:</label> 
+	      <input type="text" class="form-control" name="id" value="${review.id }" readonly="readonly"/>
+	    </div>
+	    <div class="form-group">
+	      <label for="spot">직위:</label> 
+	      <select class="form-control" name="spot">
 				<option value="신입">신입</option>
 				<option value="대리">대리</option>
 				<option value="과장">과장</option>
@@ -51,12 +56,13 @@ function goWrite(frm) {
 				<option value="상무">상무</option>
 				<option value="이사">이사</option>
 			</select> 
-		</p>
-		<p>연봉 : <input type="text" name="sal" style="width: 20%;" value="" /><br></p>
-		<br>
-		<input id="subBtn" type="button" value="연봉 추가" style="float: right;" onclick="goWrite(this.form)"/>
+	    </div>
+		<div class="form-group">
+	      <label for="sal">연봉:</label> 
+	      <input type="text" class="form-control" name="sal" value="${review.sal }"/>
+	    </div>
+		<input id="subBtn" class="btn btn-success" type="button" value="연봉 추가" style="float: right;" onclick="goWrite(this.form)"/>
 	</form>
-</div>
 </div>
 <br>
 <%@ include file="../../inc/footer.jsp" %>	

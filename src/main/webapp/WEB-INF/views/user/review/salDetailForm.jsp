@@ -14,45 +14,7 @@ textarea {width: 100%;}
 	     width: 30%;
 		 margin: auto;}
 </style>
-</head>
-<body>
-<%@ include file="../../inc/header.jsp" %>
-<div class="container" style="margin-top:30px">
-	<form action="/user/review/salUpdate.do" name="frm">
-		<br><br>
-		<h2>연봉 게시판</h2>
-		<br>
-		<div id="outter">
-			<table border="1">
-				<tr>
-					<td>등록날짜: ${sal.reg_date }</td>
-				</tr>
-				<tr>
-					<td>직위: <input class="updateSpot" type="text" name="spot" value="${sal.spot }"></td>	
-				</tr>	
-				<tr>
-					<td>평균 연봉: <input class="updateSal" type="text" name="sal" value="${sal.sal }"></td>
-				</tr>
-			</table>
-			<input type="hidden" name="rnum" value="${sal.rnum }" />
-			<div style="float: right;">
-				<input class="updateBtn" type="button" value="수정"> 
-				<input class="deleteBtn" type="button" value="삭제"> 
-				<input type="button" value="글 목록"onclick="location.href='/user/review/reviewSelectList.do'">
-			</div>
-		</div>
-	</form>
-	<br>
-	<script>
-	const updateBtn = document.querySelector(".updateBtn");
-	const deleteBtn = document.querySelector(".deleteBtn");
-	const updateSpot = document.querySelector(".updateSpot"); 
-	const updateSal = document.querySelector(".updateSal");
-	
-	updateBtn.addEventListener("click", function(event) {
-		updateCheck();
-	});
-	
+<script>
 	function updateCheck() {
 		if(updateSal.value != ""){
 			if(confirm ("수정 하시겠습니까?") === true){
@@ -80,6 +42,35 @@ textarea {width: 100%;}
 		}
 	}
 </script>
+</head>
+<body>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
+	<form action="/user/review/salUpdate.do" name="frm">
+		<br><br>
+		<h2>연봉 게시판</h2>
+		<br>
+		<div id="outter">
+			<table border="1">
+				<tr>
+					<td>등록날짜: ${sal.reg_date }</td>
+				</tr>
+				<tr>
+					<td>직위: <input class="updateSpot" type="text" name="spot" value="${sal.spot }"></td>	
+				</tr>	
+				<tr>
+					<td>평균 연봉: <input class="updateSal" type="text" name="sal" value="${sal.sal }"></td>
+				</tr>
+			</table>
+			<input type="hidden" name="rnum" value="${sal.rnum }" />
+			<div style="float: right;">
+				<input type="button" class="btn btn-success" value="수정" onclick="updateCheck();"> 
+				<input type="button" class="btn btn-success" value="삭제" onclick="deleteCheck();">  
+				<input type="button" class="btn btn-success" value="글 목록" onclick="location.href='/user/review/reviewSelectList.do?bsmno=${review.bsmno}'">
+			</div>
+		</div>
+	</form>
+	<br>
 </div>
 <br>
 <%@ include file="../../inc/footer.jsp" %>	
