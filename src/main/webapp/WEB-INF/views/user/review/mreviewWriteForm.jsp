@@ -62,28 +62,37 @@ function goWrite(frm) {
 
 <div style="width: 60%; margin: auto;">
 	<form method="post" action="/user/review/mWrite.do" name="frm">
-		<p>사업자번호 : <input type="text" name="bsmno" style="width: 20%;" value="${review.bsmno }" readonly="readonly"/><br></p>
-		<p>아이디 : <input type="text" name="id" style="width: 20%;" value="${review.id }" readonly="readonly"/><br></p>
-		<tr>
-					<td>면접상태 : 
-					<select name="m_status">
-   						<option value="">상태선택</option>
-   						<option value="대기중" >대기중</option>
-   	 					<option value="합격" >합격</option>
-   	 					<option value="탈락" >탈락</option>
-					</select>					
-					면접난이도 : 
-					<select name="m_difficultly">
-   						<option value="">난이도선택</option>
-   						<option value="어려움" >어려움</option>
-   						<option value="보통" >보통</option>
-   						<option value="쉬움" >쉬움</option>
-					</select>
-					</td>
-				</tr>
-		<br><br> 
-		<textarea id="summernote" name="mreview"></textarea>
-		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
+		<div class="form-group">
+		  <label for="bsmno">사업자번호:</label>
+		  <input type="text" class="form-control" name="bsmno" id="bsmno" value="${review.bsmno}" readonly="readonly">
+		</div>
+		<div class="form-group">
+		  <label for="id">아이디:</label>
+		  <input type="text" class="form-control" name="id" id="id" value="${sessionScope.user.id}" readonly="readonly">
+		</div>
+		<div class="form-group">
+		  <label for="m_status">면접상태:</label>
+		  <select class="form-control" name="m_status">
+			<option value="">상태선택</option>
+			<option value="대기중" >대기중</option>
+			<option value="합격" >합격</option>
+			<option value="탈락" >탈락</option>
+		  </select>	
+		</div>
+		<div class="form-group">
+		  <label for="m_status">면접난이도:</label>
+		  <select class="form-control" name="m_difficultly">
+			<option value="">난이도선택</option>
+			<option value="어려움" >어려움</option>
+			<option value="보통" >보통</option>
+			<option value="쉬움" >쉬움</option>
+		  </select>
+		</div>
+		<div class="form-group">
+		  <label for="mreview">글 작성:</label>
+		  <textarea class="form-control" rows="5" id="mreview" name="mreview"></textarea>
+		</div>
+		<input id="subBtn" class="btn btn-success" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
 	</form>
 </div>
 </div>
