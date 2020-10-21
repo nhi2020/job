@@ -15,8 +15,7 @@
 	function reviewWrite(url, bsmno){
 		var userid='${sessionScope.user.id}';
 		if(userid != ''){
-			//location.href=url+"?id="+userid+"&bsmno="+bsmno;
-			location.href=url+"?id="+userid+"&bsmno=111-100";
+			location.href=url+"?id="+userid+"&bsmno="+bsmno;
 		}else{
 			alert('개인회원만 작성이 가능합니다.');
 			return false;
@@ -61,7 +60,6 @@
 				<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
   			</div>
 	      </c:forEach>
-	      <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/reviewWriteForm.do?id=user01&bsmno=111-100'"> -->
 	      <c:if test="${user.id != null }">
 			<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
 		  </c:if>
@@ -95,7 +93,6 @@
 			</div>
 	      </c:forEach>
 	      </c:if>
-	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
 	      <c:if test="${user.id != null }">
 	      	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
 	      </c:if>
@@ -117,7 +114,6 @@
 	      	<p style="color: grey">등록된 후기가 없습니다</p>
 	      </c:if>
 	      	<c:forEach var="result3" items="${list3}">
-	      	 	<%-- <div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }</div> --%>
 	      	 	<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
 				  	글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
@@ -132,7 +128,6 @@
 				  </div> 
 				</div>
 		    </c:forEach>	
-		     <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/mreviewWriteForm.do?id=user01&bsmno=111-100'"> -->
 		    <c:if test="${user.id != null }">
 		    	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
 		    </c:if>
