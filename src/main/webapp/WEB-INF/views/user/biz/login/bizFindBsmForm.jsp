@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top: 30px">
-	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 아이디 찾기</h3>
+	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 사업자번호 찾기</h3>
 	<br><br>
 	<form name="frm" method="post" action="/user/biz/login/bizFindBsm.do">
 		<div class="row">

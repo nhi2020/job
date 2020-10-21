@@ -4,7 +4,12 @@
 
 	<select id="reviewBizInfo" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-			SELECT B.COMPANY, B.FIELD, B.ADDR, B.CEO, B.PHONE, B.ADDR1,B.ADDR3, I.STOREDFILENAME FROM BIZ B, IMAGE I WHERE 1=1 AND B.ATTACHID=I.ATTACHID AND BSMNO=#{bsmno}
+			SELECT 
+				B.COMPANY, B.FIELD, B.ADDR, B.CEO, B.PHONE, B.ADDR1, B.ADDR3, I.STOREDFILENAME 
+			FROM BIZ B, IMAGE I 
+			WHERE 1=1 
+			AND B.ATTACHID=I.ATTACHID 
+			AND BSMNO=#{bsmno}
 		]]>
 	</select>
 	<!-- 리뷰리스트 -->
@@ -229,13 +234,13 @@
 				, SAL
 				, SPOT
 				, B_CNT
-				, REG_DATE
-				, UP_DATE
-				, DEL_DATE
+				, TO_CHAR(REG_DATE,'YYYY-MM-DD') AS REG_DATE
+				, TO_CHAR(UP_DATE,'YYYY-MM-DD') AS UP_DATE
+				, TO_CHAR(DEL_DATE,'YYYY-MM-DD') AS DEL_DATE
 				, DEL_YN
 				, M_STATUS
 				, M_DIFFICULTLY
-				, M_DATE 
+				, TO_CHAR(M_DATE,'YYYY-MM-DD') AS M_DATE
 				FROM REVIEW WHERE RNUM = #{rnum}
 	</select>
 	
@@ -264,7 +269,6 @@
 		UPDATE REVIEW 
 		SET 
 				MREVIEW = #{mreview},
-				M_DATE = to_date(#{m_date},'YYYY-MM-DD'),
 				M_STATUS = #{m_status},
 				M_DIFFICULTLY = #{m_difficultly},
 				UP_DATE = sysdate

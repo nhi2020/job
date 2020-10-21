@@ -144,9 +144,8 @@ public class ReviewUserController {
 	}
 	@RequestMapping("/user/review/mreviewUpdate.do")
 	public String mreviewUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("mreviewUpdate : " + reviewUserVO.getMreview());
-		reviewUserVO.setM_date(reviewUserVO.getM_date().substring(0,10));
+		System.out.println("mreviewUpdate : " + reviewUserVO.getBsmno());
 		reviewUserService.mreviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}
 }
