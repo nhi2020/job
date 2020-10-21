@@ -91,8 +91,8 @@
 	      <c:forEach var="result2" items="${list2}">
 	      	<div class="container p-3 my-3 border">
 		      	<p> 
-		      		직위 : ${result2.spot }<br/><fmt:formatNumber value="${result2.min_sal }" pattern="#,###.##"/>만원 ~ <fmt:formatNumber value="${result2.max_sal }" pattern="#,###.##"/>만원
-		      		평균연봉 : <fmt:formatNumber value="${result2.avg_sal }" pattern="#,###.##"/>만원
+		      		직위 : ${result2.spot }<br/><fmt:formatNumber value="${result2.min_sal }" pattern="#,###.##"/>원 ~ <fmt:formatNumber value="${result2.max_sal }" pattern="#,###.##"/>원
+		      		평균연봉 : <fmt:formatNumber value="${result2.avg_sal }" pattern="#,###.##"/>원
 		      	</p>
 				<div class="progress">
 					<div class="progress-bar bg-success" style="width:${result2.per_sal}">${result2.per_sal}</div>
