@@ -16,8 +16,9 @@ public class ReviewUserDAO {
 	/*리뷰리스트*/
 	/*-기업리뷰*/
 	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO1");
+		System.out.println("StartDAO1 : "+reviewUserVO.getBsmno());
 		ReviewUserVO reviewBizInfo = sessionTemplate.selectOne("reviewUser.reviewBizInfo", reviewUserVO);
+		System.out.println("StartDAO111");
 		return reviewBizInfo;
 	}	
 	/*-기업리뷰*/
@@ -100,17 +101,12 @@ public class ReviewUserDAO {
 	
 	/*리뷰 수정*/
 	public int Update(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update review : " + reviewUserVO.getReview());
-		System.out.println("vo : update mreview : " + reviewUserVO.getMreview());
 		return sessionTemplate.update("reviewUser.reviewUpdate", reviewUserVO);		
 	}
 	public int sUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update sal : " + reviewUserVO.getSal());
 		return sessionTemplate.update("reviewUser.salUpdate", reviewUserVO);		
 	}
 	public int mUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update review : " + reviewUserVO.getReview());
-		System.out.println("vo : update mreview : " + reviewUserVO.getMreview());
 		return sessionTemplate.update("reviewUser.mreviewUpdate", reviewUserVO);		
 	}
 }
