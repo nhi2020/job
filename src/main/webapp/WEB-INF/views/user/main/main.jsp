@@ -17,7 +17,7 @@
 			<div class="col-sm-3">
 				<h4><span class="badge badge-success">${name.company}&nbsp;</span><span class="badge badge-light">${name.field}</span></h4>
 				<div class="fakeimg">
-				<a href="/user/review/reviewSelectList.do?bsmno=${name.bsmno}"  target="_blank">
+				<a href="/user/review/reviewSelectList.do?bsmno=${name.bsmno}" >
 				<img src="/resources/images/upload/biz/${name.storedfilename }" class="rounded" width="250" height="200"/></a></div>
 			</div>
 		</c:forEach>
@@ -30,7 +30,7 @@
       	<c:forEach var="frm" items="${list2}">
 			<div class="col-sm-3">
 				<h4><span class="badge badge-success">${frm.company}&nbsp;</span><span class="badge badge-light">${frm.reg_date}</span></h4>
-				<a href="/user/review/reviewSelectList.do?bsmno=${frm.bsmno}"  target="_blank">${frm.review}</a>
+				<a href="/user/review/reviewSelectList.do?bsmno=${frm.bsmno}">${frm.review}</a>
 			</div>
 		</c:forEach>
 			<hr class="d-sm-none">
