@@ -45,6 +45,7 @@ public class ReviewUserDAO {
 		return total;		
 	}
 	public int reviewSalChk(ReviewUserVO reviewUserVO) {
+		System.out.println("reviewUserVO : "+reviewUserVO.getId()+" , "+reviewUserVO.getBsmno()+" , "+reviewUserVO.getSpot());
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.reviewSalChk",reviewUserVO);
 		return total;		
 	}
