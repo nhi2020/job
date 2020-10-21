@@ -33,7 +33,7 @@ function findPass(){
 			<div class="col">
 				<div class="form-group">
 					<label for="bsmno">사업자 번호</label> 
-					<input type="text" name="bsmno" class="form-control" id="bsmno" placeholder="'-' 를 포함한 사업자 번호를 입력하세요">
+					<input type="text" name="bsmno" class="form-control" id="bsmno" placeholder="사업자 번호를 입력하세요">
 				</div>
 				<div class="form-group">
 					<label for="pass">비밀번호</label> 

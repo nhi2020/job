@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 <div class="container" style="margin-top: 30px">
-	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 입력한 이메일로 받은 인증번호를 입력하세요. </h3>
+	<h3 style="font-weight: bold;"><i class="fas fa-address-card"></i> 비밀번호 변경완료 </h3>
 	<br><br>
 	<form name="frm" method="post" action="/user/member/login/memLoginForm.do">
 		<div class="row">
