@@ -18,13 +18,13 @@
 	function check(){
 		if(document.frm.bsmno.value!="" && isNaN(document.frm.bsmno.value)){
 			alert("숫자만 입력해 주세요.");
-			document.frm.bsmno.value="";
+			document.frm.bsmnoChk.value="Y";
 			document.frm.bsmno.focus();
 			return false;
 		}
 		if(document.frm.bsmno.value.length!=10){
 			alert("사업자번호는 10자리 입니다.");
-			document.frm.bsmno.value="";
+			document.frm.bsmnoChk.value="Y";
 			document.frm.bsmno.focus();
 			return false;
 		}
@@ -41,6 +41,7 @@
 					return false;
 				} else if (data == 0) {
 					alert("사용가능한 사업자 번호입니다.");
+					document.frm.bsmnoChk.value="Y";
 				}
 			},
 			error : function() {
@@ -71,6 +72,7 @@ function e_check(){
 				return false;
 			} else if (data == 0) {
 				alert("사용가능한 이메일입니다.");
+				document.frm.emailChk.value="Y";
 			}
 		},
 		error : function() {
@@ -101,6 +103,7 @@ function p_check(){
 				return false;
 			} else if (data == 0) {
 				alert("사용가능한 연락처입니다.");
+				document.frm.phoneChk.value="Y";
 			}
 		},
 		error : function() {
@@ -115,9 +118,17 @@ function p_check(){
 		var bp=$('#b_pwcheck').text();
 		var bp2=$('#b_pwcheck2').text();
 		var f=document.frm;
+		
 		if(f.bsmno.value==""){
 			alert('사업자번호를 입력해 주세요.');
 			document.frm.bsmno.value="";
+			document.frm.bsmno.focus();
+			return false;
+		}
+		
+
+		if(f.bsmnoChk.value==''){
+			alert('사업자번호 체크를 해주세요.');
 			document.frm.bsmno.focus();
 			return false;
 		}
@@ -160,6 +171,11 @@ function p_check(){
 			document.frm.email.focus();
 			return false;
 		}
+		if(f.emailChk.value==''){
+			alert('이메일 체크를 해주세요.');
+			document.frm.email.focus();
+			return false;
+		}
 		if(f.ceo.value==""){
 			alert('대표자를 입력해 주세요.');
 			document.frm.ceo.value="";
@@ -169,6 +185,12 @@ function p_check(){
 		if(f.phone.value==""){
 			alert('대표자 연락처를 입력해 주세요.');
 			document.frm.phone.value="";
+			document.frm.phone.focus();
+			return false;
+		}
+
+		if(f.phoneChk.value==''){
+			alert('전화번호 체크를 해주세요.');
 			document.frm.phone.focus();
 			return false;
 		}
@@ -190,7 +212,6 @@ function p_check(){
 			document.frm.file.focus();
 			return false;
 		}
-		
 		
 		
 		document.frm.action="/user/biz/join/bizJoin.do";
@@ -279,11 +300,14 @@ function p_check(){
 
  <div class="container" style="margin-top:30px">
 	<form method="post" name="frm" enctype="multipart/form-data">
+	<input type="hidden" name="emailChk" value="">
+	<input type="hidden" name="phoneChk" value="">
+	<input type="hidden" name="bsmnoChk" value="">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 기업 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
 			<label for="bsmno">사업자 번호 (사업자 번호를 입력해주세요)</label>
-				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="10" required="required">
+				<input type="text" class="form-control" id="bsmno" name="bsmno" placeholder="사업자 번호를 입력하세요" maxlength="10" >
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning" id="b_check" type="button" onclick="check();">
@@ -291,40 +315,40 @@ function p_check(){
 		</div>
 		<div class="form-group">
 			<label for="pass">비밀번호 (영문자, 숫자, 특수기호 사용한 6~18자리로 작성해주세요)</label>
-				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" required="required">
+				<input type="password" class="form-control" id="pass" name="pass" oninput="pwCheck(pass.value)" maxlength="18" placeholder="비밀번호를 입력하세요" >
 				<p id="b_pwcheck2" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 		</div>
 		<div class="form-group">
 			<label for="pass2">비밀번호 확인</label>
-				<input type="password" class="form-control" id="pass2" name="pass2" maxlength="18" placeholder="비밀번호를 다시 입력하세요" required="required">
+				<input type="password" class="form-control" id="pass2" name="pass2" maxlength="18" placeholder="비밀번호를 다시 입력하세요" >
 				<p id="b_pwcheck" style="color: #FF6600; margin: 0; font-weight: bold"></p>
 
 		</div>
 		<div class="form-group">
 			<label for="company">기업명</label>
-				<input type="text" class="form-control" id="company" name="company" placeholder="기업명을 입력하세요" required="required">
+				<input type="text" class="form-control" id="company" name="company" placeholder="기업명을 입력하세요" >
 		</div> 
 		<div class="form-group">
 			<label for="email">이메일</label>
-				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required="required">
+				<input type="text" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" >
 		</div> 
 		<div class="form-group">
 			<input type="button" value="중복체크" onclick="e_check();" class="btn btn-warning"/>
 		</div>
 		<div class="form-group">
 			<label for="ceo">대표자</label>
-				<input type="text" class="form-control" id="ceo" name="ceo" placeholder="대표자를 입력하세요" required="required">
+				<input type="text" class="form-control" id="ceo" name="ceo" placeholder="대표자를 입력하세요" >
 		</div> 
 		<div class="form-group">
 			<label for="phone">대표자 연락처 ('-'를 포함한 연락처를 입력해주세요)</label>
-				<input type="text" class="form-control" id="phone" name="phone" placeholder="대표자 연락처를 입력하세요" required="required">
+				<input type="text" class="form-control" id="phone" name="phone" placeholder="대표자 연락처를 입력하세요" >
 		</div> 
 		<div class="form-group">
 			<input type="button" value="중복체크" onclick="p_check();" class="btn btn-warning"/>
 		</div>
 		<div class="form-group">
 			<label for="field">업종</label>
-				<select class="form-control" name="field" id="field" required="required">
+				<select class="form-control" name="field" id="field" >
 					<option value="">업종을 선택하세요.</option>
 			     	<option value="it">IT/인터넷</option>
 			     	<option value="management">경영/기획/컨설팅</option>
@@ -338,7 +362,7 @@ function p_check(){
 		</div>
 		<!-- <div class="form-group">
 			<label for="addr">주소</label>
-				<input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요" required="required">
+				<input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요" >
 		</div> -->
 		
 		
@@ -358,7 +382,7 @@ function p_check(){
 		</div>
 		<div class="form-group">
 			<input class="form-control" placeholder="상세주소" name="addr3"
-				id="addr3" type="text"  required="required" />
+				id="addr3" type="text"   />
 		</div>
 		
 		
@@ -366,17 +390,16 @@ function p_check(){
 		
 		<div class="form-group">
 			<label for="file">기업 로고</label>
-				<input type="file" class="form-control" id="file" name="file" placeholder="기업 로고를 넣으세요." required="required">
+				<input type="file" class="form-control" id="file" name="file" placeholder="기업 로고를 넣으세요." >
 		</div> 
-		<div class="reg_button">
-				<a class="btn btn-danger px-3" href="/user/main/main.do">
-					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
-				</a>&emsp;&emsp;
-				<button class="btn btn-primary px-3" id="reg_submit" onclick="joinBiz();">
-					<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
-				</button>
-			</div>
-	
+		<div class="reg_button text-center">
+			<a class="btn btn-danger px-3" href="/user/main/main.do">
+				<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
+			</a>&emsp;&emsp;
+			<a class="btn btn-primary px-3" id="reg_submit" onclick="joinBiz();">
+				<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
+			</a>
+		</div>
 
 	</form>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp" %>	

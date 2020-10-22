@@ -14,103 +14,86 @@ textarea {width: 100%;}
 	     width: 30%;
 		 margin: auto;}
 </style>
-</head>
-<body>
-<%@ include file="../../inc/header.jsp" %>
-<div class="container" style="margin-top:30px">
-	<form action="/user/review/mreviewUpdate.do" name="frm">
-		<br><br>
-		<h2>게시판</h2>
-		<br><br>
-		<div id="outter">
-			<table border="1">
-				<tr>
-					<td>글번호: ${review.rnum }</td>	
-				</tr>	
-				<tr>
-					<td>등록날짜: ${review.reg_date }</td>
-				</tr>
-				<tr>
-					<td>면접 날짜: ${review.m_date }</td>
-				</tr>
-				<tr>
-					<td>작성 아이디: ${review.id }</td>
-				</tr>
-				<tr>
-					<td>면접상태 : 
-					<select name="m_status">
-   						<option value="">상태선택</option>
-   						<option value="${review.m_status }" selected="selected">${review.m_status }</option>
-   	 					<option value="대기중">대기중</option>
-    					<option value="합격">합격</option>
-   						<option value="탈락">탈락</option>
-					</select>					
-					면접난이도 : 
-					<select name="m_difficultly">
-   						<option value="">난이도선택</option>
-   						<option value="${review.m_difficultly }" selected="selected">${review.m_difficultly }</option>
-   	 					<option value="어려움">어려움</option>
-    					<option value="보통">보통</option>
-   						<option value="쉬움">쉬움</option>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div style="height: 300px; margin: 10px; display: inline-block">
-							<textarea class="updateReview" name="mreview" cols="73" rows="17" required>${review.mreview }</textarea>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<input type="hidden" name="rnum" value="${review.rnum }" />
-			<input type="hidden" name="m_date" value="${review.m_date }" />			
-			<div style="float: right;">
-				<input class="updateBtn" type="button" value="수정"> 
-				<input class="deleteBtn" type="button" value="삭제"> 
-				<input type="button" value="글 목록"onclick="location.href='/user/review/reviewSelectList.do?bsmno=${review.bsmno}'">
-			</div>
-		</div>
-	</form>
-	<script>
-	const updateBtn = document.querySelector(".updateBtn");
-	const deleteBtn = document.querySelector(".deleteBtn");
-	const updateReview = document.querySelector(".updateReview"); 
-	const updateMreview = document.querySelector(".updateMreview");
-	
-	updateBtn.addEventListener("click", function(event) {
-		updateCheck();
-	});
-	
+<script>
 	function updateCheck() {
-		if(updateReview.value != ""){
+		if(document.frm.mreview.value != ""){
 			if(confirm ("수정 하시겠습니까?") === true){
-					alert("수정완료");
-					document.frm.submit();
+				alert("수정완료");
+				document.frm.action='/user/review/mreviewUpdate.do';
+				document.frm.submit();
 			} else {
 				alert("수정취소");
+				return false;
 			}
 		} else {
 			alert("내용을 입력해주세요");
-			updateReview.focus();
+			document.frm.mreview.focus();
+			return false;
 		}
 	}	
 	
-	deleteBtn.addEventListener("click", function(event) {
-		deleteCheck();
-	});
-		
 	function deleteCheck() {
 		if(confirm ("정말 삭제하시겠습니까?") === true){
 			alert("삭제완료");
-			location.href='/user/review/reviewDeleteForm.do?rnum=${review.rnum}&bsmno=${review.bsmno}';
+			document.frm.action='/user/review/reviewDeleteForm.do';
+			document.frm.submit();
 		} else {
 			alert("삭제취소");
 		}
 	}	
+	
+	function selectCheck() {
+		alert("글목록으로 이동합니다.");
+		document.frm.action='/user/review/reviewSelectList.do';
+		document.frm.submit();
+	}	
 </script>
+</head>
+<body>
+<%@ include file="../../inc/header.jsp" %>
+<div class="container" style="margin-top:30px">
+	<form name="frm" method="post">
+		<input type="hidden" name="rnum" value="${review.rnum}" />
+		<input type="hidden" name="bsmno" value="${review.bsmno}" />
+		<h2>게시판</h2>
+		<div class="form-group p-3">
+	      <label for="rnum">글번호:</label> ${review.rnum }
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="reg_date">등록날짜:</label> ${review.reg_date }
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="m_date">면접날짜:</label> ${review.m_date }
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="m_status">면접상태:</label>
+	      <select class="form-control" name="m_status">
+			<option value="" ${review.m_status eq ''?'selected="selected"':''}>상태선택</option>
+			<option value="대기중" ${review.m_status eq '대기중'?'selected="selected"':''}>대기중</option>
+			<option value="합격" ${review.m_status eq '합격'?'selected="selected"':''}>합격</option>
+			<option value="탈락" ${review.m_status eq '탈락'?'selected="selected"':''}>탈락</option>
+		  </select>	
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="m_difficultly">면접난이도:</label>
+	      <select class="form-control" name="m_difficultly">
+			<option value="" ${review.m_difficultly eq ''?'selected="selected"':''}>난이도선택</option>
+			<option value="어려움" ${review.m_difficultly eq '어려움'?'selected="selected"':''}>어려움</option>
+			<option value="보통" ${review.m_difficultly eq '보통'?'selected="selected"':''}>보통</option>
+			<option value="쉬움" ${review.m_difficultly eq '쉬움'?'selected="selected"':''}>쉬움</option>
+		  </select>
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="mreview">면접날짜:</label> 
+	      <textarea class="form-control" name="mreview" cols="73" rows="17" required>${review.mreview }</textarea>
+	    </div>
+		<div class="text-center">
+			<input class="btn btn-success" type="button" value="수정" onclick="updateCheck();"> 
+			<input class="btn btn-success" type="button" value="삭제" onclick="deleteCheck();"> 
+			<input class="btn btn-success" type="button" value="글 목록" onclick="selectCheck();">
+		</div>
+	</form>
 </div>
-<br>
 <%@ include file="../../inc/footer.jsp" %>	
 </body>
 </html>

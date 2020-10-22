@@ -15,8 +15,7 @@
 	function reviewWrite(url, bsmno){
 		var userid='${sessionScope.user.id}';
 		if(userid != ''){
-			//location.href=url+"?id="+userid+"&bsmno="+bsmno;
-			location.href=url+"?id="+userid+"&bsmno=111-100";
+			location.href=url+"?id="+userid+"&bsmno="+bsmno;
 		}else{
 			alert('개인회원만 작성이 가능합니다.');
 			return false;
@@ -28,9 +27,9 @@
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
     <div class="p-5 border">
-   		<img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:5%;height:5%">
-        <h2>${bizInfo.company}</h2>
+   		
         <p class="badge badge-success">${bizInfo.field}</p>
+        <h2>${bizInfo.company} <img src="/resources/images/upload/biz/${bizInfo.storedfilename}" alt="${bizInfo.company}" style="width:10%;height:20%"></h2> 
         <p>대표: ${bizInfo.ceo}</p>
         <p>주소:${bizInfo.addr1} ${bizInfo.addr} ${bizInfo.addr3}</p>
         <p>전화번호: ${bizInfo.phone}</p>
@@ -58,11 +57,17 @@
 	      <c:forEach var="result1" items="${list1}">
 			<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
   			<div class="p-5 border border-success">
-				<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
+  				<c:choose>
+  					<c:when test="${(sessionScope.user.id != null && not empty sessionScope.user.id) && sessionScope.user.id eq result1.id }">
+  						<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
+  					</c:when>
+  					<c:otherwise>
+  						${result1.review }
+  					</c:otherwise>
+  				</c:choose>
   			</div>
 	      </c:forEach>
-	      <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/reviewWriteForm.do?id=user01&bsmno=111-100'"> -->
-	      <c:if test="${user.id != null }">
+	      <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
 			<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
 		  </c:if>
 			<div class="text-center">
@@ -86,8 +91,8 @@
 	      <c:forEach var="result2" items="${list2}">
 	      	<div class="container p-3 my-3 border">
 		      	<p> 
-		      		직위 : ${result2.spot }<br/><fmt:formatNumber value="${result2.min_sal }" pattern="#,###.##"/>만원 ~ <fmt:formatNumber value="${result2.max_sal }" pattern="#,###.##"/>만원
-		      		평균연봉 : <fmt:formatNumber value="${result2.avg_sal }" pattern="#,###.##"/>만원
+		      		직위 : ${result2.spot }<br/><fmt:formatNumber value="${result2.min_sal }" pattern="#,###.##"/>원 ~ <fmt:formatNumber value="${result2.max_sal }" pattern="#,###.##"/>원
+		      		평균연봉 : <fmt:formatNumber value="${result2.avg_sal }" pattern="#,###.##"/>원
 		      	</p>
 				<div class="progress">
 					<div class="progress-bar bg-success" style="width:${result2.per_sal}">${result2.per_sal}</div>
@@ -95,8 +100,7 @@
 			</div>
 	      </c:forEach>
 	      </c:if>
-	      <!-- <input type="button" value="연봉추가" style="float: right;" onclick="location.href='/user/review/salWriteForm.do?id=user01&bsmno=111-100'"> -->
-	      <c:if test="${user.id != null }">
+	      <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
 	      	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
 	      </c:if>
 	      	<div class="text-center">
@@ -117,7 +121,6 @@
 	      	<p style="color: grey">등록된 후기가 없습니다</p>
 	      </c:if>
 	      	<c:forEach var="result3" items="${list3}">
-	      	 	<%-- <div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }</div> --%>
 	      	 	<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
 				  	글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
@@ -128,12 +131,18 @@
 		      	 	면접난이도 : ${result3.m_difficultly }
 				  </div>
 				  <div class="col-7">
-				  	<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>
+				  	<c:choose>
+	  					<c:when test="${sessionScope.user.id != null && not empty sessionScope.user.id && sessionScope.user.id eq result3.id }">
+	  						<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>
+	  					</c:when>
+	  					<c:otherwise>
+	  						${result3.mreview }
+	  					</c:otherwise>
+	  				</c:choose>
 				  </div> 
 				</div>
 		    </c:forEach>	
-		     <!-- <input type="button" value="글쓰기" style="float: right;" onclick="location.href='/user/review/mreviewWriteForm.do?id=user01&bsmno=111-100'"> -->
-		    <c:if test="${user.id != null }">
+		    <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
 		    	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
 		    </c:if>
 		    <div class="text-center">

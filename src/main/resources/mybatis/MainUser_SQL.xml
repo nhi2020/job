@@ -12,7 +12,7 @@
 	<!-- 기업 추천  -->
 	<select id="selectRecommand" resultType="BizUserVO">
 		<![CDATA[
-		SELECT b.COMPANY,b.FIELD,i.STOREDFILENAME,(SELECT COUNT(*) FROM REVIEW r,BIZ b WHERE b.BSMNO=r.BSMNO) a
+		SELECT b.COMPANY,b.FIELD,i.STOREDFILENAME,b.BSMNO,(SELECT COUNT(*) FROM REVIEW r,BIZ b WHERE b.BSMNO=r.BSMNO) a
 		FROM   BIZ b,IMAGE i
    		WHERE  b.ATTACHID=i.ATTACHID
    		AND    rownum<=4 
@@ -23,7 +23,7 @@
 	<!-- 리뷰 추천 -->
 	<select id="selectLatest" resultType="MainUserVO">
 		<![CDATA[
-			SELECT TO_CHAR(R.REG_DATE, 'yyyy-MM-dd') as REG_DATE, R.REVIEW, B.COMPANY 
+			SELECT TO_CHAR(R.REG_DATE, 'yyyy-MM-dd') as REG_DATE, R.REVIEW, B.COMPANY ,B.bsmno
 			FROM   REVIEW R,BIZ B
             WHERE  ROWNUM<=8
             AND    R.BSMNO=B.BSMNO
