@@ -27,7 +27,7 @@ li {
 				<li class="list-group-item " style="background-color: #64cd3c;">아이디: ${sessionScope.user.id}</li>
 				<li class="list-group-item" style="background-color: #eef5df;">이미지: <img
 					src="/resources/images/upload/member/${sessionScope.user.storedfilename}"
-					class="img-fluid" style="width: 100px; height: 100px;" /></li>
+					class="img-fluid" width="100px" height="100px" /></li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">이름: ${sessionScope.user.name}</li>
 				<li class="list-group-item" style="background-color: #eef5df;">성별: <c:if
 						test="${sessionScope.user.gender eq '1' }">
