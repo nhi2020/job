@@ -17,8 +17,8 @@
 			<div class="col-sm-3">
 				<h4><span class="badge badge-success">${name.company}&nbsp;</span><span class="badge badge-light">${name.field}</span></h4>
 				<div class="fakeimg">
-				<a href="/user/review/reviewSelectList.do?bsmno=${name.bsmno}" >
-				<img src="/resources/images/upload/biz/${name.storedfilename }" class="rounded" width="250" height="200"/></a></div>
+				<a href="/user/review/reviewSelectList.do?bsmno=${name.bsmno}" class="img-box">
+				<img src="/resources/images/upload/biz/${name.storedfilename }" class="rounded anima" width="250" height="200"/></a></div>
 			</div>
 		</c:forEach>
 			<hr class="d-sm-none">
