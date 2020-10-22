@@ -244,6 +244,18 @@
 				FROM REVIEW WHERE RNUM = #{rnum}
 	</select>
 	
+	<select id="reviewSalChk" resultType="int" parameterType="ReviewUserVO">
+	  SELECT COUNT(*) FROM REVIEW WHERE BSMNO=#{bsmno} AND ID=#{id} AND SPOT=#{spot}
+	</select>
+	
+	<update id="salChkUpdate" parameterType="ReviewUserVO">
+		UPDATE REVIEW 
+		SET 
+			   SAL = #{sal}, 
+			   UP_DATE = sysdate	
+		WHERE BSMNO=#{bsmno} AND ID=#{id} AND SPOT=#{spot}
+	</update>
+	
 	<!-- 조회수 +1-->
 	<update id="plusBcnt" parameterType="int">
 		UPDATE REVIEW SET B_CNT = B_CNT + 1 WHERE rnum = #{rnum}

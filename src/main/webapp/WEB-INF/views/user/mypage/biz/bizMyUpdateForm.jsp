@@ -84,12 +84,12 @@ function p_check(){
 			success : function(data) {
 				if (data == 1) {
 					alert("중복된 전화번호가 존재합니다.");
-					document.frm.phone.value = "";
+					document.frm.phoneChk.value="Y";
 					document.frm.phone.focus();
 					return false;
 				} else if (data == 0) {
 					alert("사용가능한 전화번호입니다.");
-
+					document.frm.phoneChk.value="Y";
 				}
 			},
 			error : function() {

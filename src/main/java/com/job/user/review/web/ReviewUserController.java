@@ -1,7 +1,10 @@
 package com.job.user.review.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -127,7 +130,7 @@ public class ReviewUserController {
 	@RequestMapping("/user/review/reviewDeleteForm.do")
 	public String reviewDeleteForm(ReviewUserVO reviewUserVO) {
 		reviewUserService.Delete(reviewUserVO.getRnum());
-		return "redirect: /user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
+		return "redirect:/user/mypage/member/memMyReviewList.do";
 	}	
 	
 	/*리뷰 수정*/
@@ -137,10 +140,15 @@ public class ReviewUserController {
 		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}
 	@RequestMapping("/user/review/salUpdate.do")
-	public String sreviewUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("sreviewUpdate : " + reviewUserVO.getSal());
-		reviewUserService.salUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+	public void sreviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
+		int result=reviewUserService.salUpdate(reviewUserVO);
+		if(result==1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('수정 되었습니다.');</script>");
+			writer.println("<script>location.href='/user/review/salDetailForm.do?rnum="+reviewUserVO.getRnum()+"';</script>");
+			writer.flush();
+		}
 	}
 	@RequestMapping("/user/review/mreviewUpdate.do")
 	public String mreviewUpdate(ReviewUserVO reviewUserVO) {
