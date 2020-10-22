@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.job.mng.main.service.Criteria;
 import com.job.mng.member.service.MemMngService;
 import com.job.mng.member.service.MemMngVO;
+import com.job.util.JobFileVO;
 
 @Service("memMngService")
 public class MemMngServiceImpl implements MemMngService{
@@ -32,22 +33,19 @@ public class MemMngServiceImpl implements MemMngService{
 	}
 
 	@Override
-	public boolean update(MemMngVO member) {
-		return mmd.update(member);
-	}
-
-
-	@Override
 	public boolean remove(int mnum) {
 		return mmd.remove(mnum);
 	}
 
 	@Override
-	public void insert(MemMngVO member) {
-
-		mmd.insert(member);
+	public MemMngVO memViewbyAttachId(int attachid) {
+		return mmd.memViewbyAttachId(attachid);
 	}
-	
+
+	@Override
+	public JobFileVO picView(int attachid) {
+		return mmd.picView(attachid);
+	}
 
 	
 	

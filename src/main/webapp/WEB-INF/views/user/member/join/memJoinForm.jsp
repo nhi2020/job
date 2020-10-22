@@ -8,15 +8,6 @@
 <head>
 <%@ include file="/WEB-INF/views/inc/top.jsp" %>
 <title>개인 회원가입</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
@@ -33,8 +24,11 @@ function check(){
 				if (data == 1) {
 					alert("중복된 아이디가 존재합니다.");
 					document.frm.id.value="";
+					document.frm.id.focus();
+					return false;
 				} else if (data == 0) {
 					alert("사용가능한 아이디입니다.");
+					document.frm.idChk.value="Y";
 				}
 			},
 			error : function() {
@@ -69,6 +63,7 @@ function e_check(){
 				return false;
 			} else if (data == 0) {
 				alert("사용가능한 이메일입니다.");
+				document.frm.emailChk.value="Y";
 			}
 		},
 		error : function() {
@@ -99,6 +94,7 @@ function p_check(){
 				return false;
 			} else if (data == 0) {
 				alert("사용가능한 전화번호입니다.");
+				document.frm.phoneChk.value="Y";
 			}
 		},
 		error : function() {
@@ -118,7 +114,11 @@ function p_check(){
 			document.frm.id.focus();
 			return false;
 		}
-		
+		if(f.idChk.value==''){
+			alert('아이디 체크를 해주세요.');
+			document.frm.id.focus();
+			return false;
+		}
 		if(mp2=='비밀번호 형식이 일치하지 않습니다.'){
 			alert('비밀번호 형식이 일치하지 않습니다.');
 			document.frm.pass.value="";
@@ -162,12 +162,26 @@ function p_check(){
 			document.frm.email.focus();
 			return false;
 		}
+		
+		if(f.emailChk.value==''){
+			alert('이메일 체크를 해주세요.');
+			document.frm.email.focus();
+			return false;
+		}
+		
 		if(f.phone.value==""){
 			alert('전화번호를 입력해 주세요.');
 			document.frm.phone.value="";
 			document.frm.phone.focus();
 			return false;
 		}
+		
+		if(f.phoneChk.value==''){
+			alert('전화번호 체크를 해주세요.');
+			document.frm.phone.focus();
+			return false;
+		}
+		
 		if(f.birthday.value==""){
 			alert('생년월일을 입력해 주세요.');
 			document.frm.birthday.value="";
@@ -233,6 +247,9 @@ function p_check(){
 
  <div class="container" style="margin-top:30px">
 	<form method="post" name="frm" enctype="multipart/form-data">
+		<input type="hidden" name="emailChk" value="">
+		<input type="hidden" name="phoneChk" value="">
+		<input type="hidden" name="idChk" value="">
 		<h3 style="font-weight: bold;"><i class="fas fa-file-signature"></i> 개인 회원가입</h3>
 		<br><br>
 		<div class="form-group" >
@@ -302,14 +319,14 @@ function p_check(){
 			<label for="file">내 이미지</label>
 				<input type="file" class="form-control" id="file" name="file" placeholder="내 이미지를 넣으세요." required="required">
 		</div> 
-		<div class="reg_button">
+		<div class="reg_button text-center">
 				<a class="btn btn-danger px-3" href="/user/main/main.do">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 				</a>&emsp;&emsp;
-				<button class="btn btn-primary px-3" id="reg_submit" onclick="joinMem();">
+				<a class="btn btn-primary px-3" id="reg_submit" onclick="joinMem();">
 					<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
-				</button>
-			</div>
+				</a>
+		</div>
 	</form>
 	</div>
 

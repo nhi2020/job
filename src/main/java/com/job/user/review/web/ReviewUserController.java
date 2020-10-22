@@ -1,7 +1,10 @@
 package com.job.user.review.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -22,19 +25,19 @@ public class ReviewUserController {
 	@RequestMapping(value="/user/review/reviewSelectList.do")
 	public String reviewSelectList(ReviewUserVO reviewUserVO, String currentPage, Model model) {
 		/*기업정보*/
-		ReviewUserVO bizInfo=reviewUserService.reviewBizInfo(reviewUserVO);
+		ReviewUserVO bizInfo = reviewUserService.reviewBizInfo(reviewUserVO);
 		model.addAttribute("bizInfo", bizInfo);
 		/*기업리뷰*/
-		int total1 = reviewUserService.total1();	
+		int total1 = reviewUserService.total1(reviewUserVO.getBsmno());
 		Paging pg1 = new Paging(total1, currentPage);
 		reviewUserVO.setStart(pg1.getStart());   // 시작시 1
 		reviewUserVO.setEnd(pg1.getEnd());     // 시작시 10 
 		List<ReviewUserVO> reviewSelectList1 = reviewUserService.reviewSelectList1(reviewUserVO);
 		model.addAttribute("list1", reviewSelectList1);
-		model.addAttribute("total1",total1);
+		model.addAttribute("total1", total1);
 		model.addAttribute("pg1",pg1);
 		/*기업연봉*/
-		int total2 = reviewUserService.total2();	
+		int total2 = reviewUserService.total2(reviewUserVO.getBsmno());	
 		Paging pg2 = new Paging(total2, currentPage);
 		reviewUserVO.setStart(pg2.getStart());   // 시작시 1
 		reviewUserVO.setEnd(pg2.getEnd());     // 시작시 10 
@@ -43,7 +46,7 @@ public class ReviewUserController {
 		model.addAttribute("total2",total2);
 		model.addAttribute("pg2",pg2);
 		/*면접후기*/
-		int total3 = reviewUserService.total3();	
+		int total3 = reviewUserService.total3(reviewUserVO.getBsmno());	
 		Paging pg3 = new Paging(total3, currentPage);
 		reviewUserVO.setStart(pg3.getStart());   // 시작시 1
 		reviewUserVO.setEnd(pg3.getEnd());     // 시작시 10 
@@ -66,7 +69,7 @@ public class ReviewUserController {
 	@RequestMapping("/user/review/write.do")
 	public String write(ReviewUserVO reviewUserVO) {
 		reviewUserService.Write(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}	
 	/*면접후기*/
 	@RequestMapping("/user/review/mreviewWriteForm.do")
@@ -78,7 +81,7 @@ public class ReviewUserController {
 	@RequestMapping("/user/review/mWrite.do")
 	public String mWrite(ReviewUserVO reviewUserVO) {
 		reviewUserService.mWrite(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}	
 	/*연봉*/
 	@RequestMapping("/user/review/salWriteForm.do")
@@ -96,7 +99,7 @@ public class ReviewUserController {
 			reviewUserService.sWrite(reviewUserVO);
 		}
 		
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}
 	
 	/*리뷰상세보기*/
@@ -125,28 +128,32 @@ public class ReviewUserController {
 	
 	/*리뷰 삭제*/
 	@RequestMapping("/user/review/reviewDeleteForm.do")
-	public String reviewDeleteForm(int rnum) {
-		reviewUserService.Delete(rnum);
-		return "redirect: /user/review/reviewSelectList.do";
+	public String reviewDeleteForm(ReviewUserVO reviewUserVO) {
+		reviewUserService.Delete(reviewUserVO.getRnum());
+		return "redirect:/user/mypage/member/memMyReviewList.do";
 	}	
 	
 	/*리뷰 수정*/
 	@RequestMapping("/user/review/reviewUpdate.do")
 	public String reviewUpdate(ReviewUserVO reviewUserVO) {
 		reviewUserService.reviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}
 	@RequestMapping("/user/review/salUpdate.do")
-	public String sreviewUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("sreviewUpdate : " + reviewUserVO.getSal());
-		reviewUserService.salUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+	public void sreviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
+		int result=reviewUserService.salUpdate(reviewUserVO);
+		if(result==1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('수정 되었습니다.');</script>");
+			writer.println("<script>location.href='/user/review/salDetailForm.do?rnum="+reviewUserVO.getRnum()+"';</script>");
+			writer.flush();
+		}
 	}
 	@RequestMapping("/user/review/mreviewUpdate.do")
 	public String mreviewUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("mreviewUpdate : " + reviewUserVO.getMreview());
-		reviewUserVO.setM_date(reviewUserVO.getM_date().substring(0,10));
+		System.out.println("mreviewUpdate : " + reviewUserVO.getBsmno());
 		reviewUserService.mreviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}
 }

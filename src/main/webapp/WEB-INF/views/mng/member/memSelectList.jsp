@@ -10,21 +10,21 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
-<div class="container" style="margin-top:30px">
-   <div class="row align-items-center panel panel-default">
-    <div class="col panel-heading"><h1>개인 회원 관리</h1>
-    </div>
+<div class="container" style="margin-top: 30px">
+	<div class="container mt-3">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4">개인 회원 정보 관리</h2>
+    <p class="lead">이 곳은 개인 회원 정보 관리하는 공간입니다.</p>
   </div>
-<!--  /.row -->
-
-<div class="row">
-	<div>
-		<div>
-			<button id="regBtn" class="btn btn-secondary" style="float: right">개인 회원 등록</button>
-		</div>
-		<p/>
-		<!--  /.panel-heading -->
-		<div>
+</div>
+    <div class="row">
+    	<div class="col-sm-9"></div>
+    	<div class="col-sm-3">
+		<button id="regBtn" class="btn btn-secondary" style="float: right">개인 회원 임의 등록</button>
+    	</div>
+    	<div class="col-sm-12"><p></div>
+    	</div>
 			<table class="table table-striped table-bordered table-hover">
 				<thead class="thead-dark">
 					<tr>
@@ -69,11 +69,12 @@
 			</table>
 			
 			<div class="row">
-				<div class="col-lg-12">
+			<div class="col-lg-3"></div>
+				<div class="col-lg-6">
 				<form id="searchForm" action="/mng/member/memSelectList.do" method="get">
 					<div class="input-group mb-3" style="align-self: center;">
 					<div>
-					<select name="type" class="form-control">
+					<select name="type" class="form-control custom-select">
 						<option value="">--</option>
 						<option value="I">ID명</option>
 						<option value="N">회원명</option>
@@ -91,6 +92,7 @@
 				</div>
 					</form>
 				</div>
+				<div class="col-lg-3"></div>
 			</div>
 			<div>
 				<ul class="pagination justify-content-center">
@@ -119,13 +121,13 @@
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header bg-primary text-white">
 							<h4 class="modal-title" id="myModalLabel">처리 결과</h4>
 							<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
 						<div class="modal-body">처리가 완료되었습니다.</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 						</div>
 					</div>
 					<!--  /.modal-content -->
@@ -135,10 +137,6 @@
 			<!--  /.modal -->
 		</div>
 		<!--  end panel-body -->
-	</div>
-	<!--  end panel -->
-</div>
-<!--  /. row -->
 <script type="text/javascript">
 
 $(document).ready(function(){

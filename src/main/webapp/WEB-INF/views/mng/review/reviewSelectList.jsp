@@ -170,7 +170,8 @@
 					str4 += "</ul></div>";
 					//str5는 검색기능 화면 표시
 					str5 += "<div class='row'>"
-						+ "<div class='col-lg-12'>"
+						+ "<div class='col-lg-3'></div>"
+						+ "<div class='col-lg-6'>"
 						+ "<div class='input-group mb-3'>"
 								+ "<div>"
 								+ "<select name='type' id='type' class='form-control'>"
@@ -181,13 +182,13 @@
 								+ "</select>"
 								+ "</div>"
 								+ "<div>"
-								+ "<input type='text' id='keyword' class='form-control'>"
+								+ "<input type='text' id='keyword1' class='form-control'>"
 								+ "</div>"
 								+ "<div>"
 								+ "<button id='query1' class='btn btn-dark'>조회</button>"
 								+ "</div>"
 								+ "<input type='hidden' name='pageNum' value='" + data.pageMaker.cri.pageNum + "'>"
-								+ "</div>" + "</div>" + "</div><br>";
+								+ "</div>" + "</div><div class='col-lg-3'></div>" + "</div><br>";
 						str += str5;
 						str += str4;
 						$('#revtable1').html(str);
@@ -280,7 +281,8 @@
 						str4 += "</ul></div>";
 						//str5는 검색기능 화면 표시
 						str5 += "<div class='row'>"
-							+ "<div class='col-lg-12'>"
+							+ "<div class='col-lg-3'></div>"
+							+ "<div class='col-lg-6'>"
 							+ "<div class='input-group mb-3'>"
 									+ "<div>"
 									+ "<select id='type2' class='form-control'>"
@@ -296,7 +298,7 @@
 									+ "<button id='query2' class='btn btn-dark'>조회</button>"
 									+ "</div>"
 									+ "<input type='hidden' name='pageNum' value='" + data.pageMaker.cri.pageNum + "'>"
-									+ "</div>" + "</div>" + "</div><br>";
+									+ "</div>" + "</div><div class='col-lg-3'></div>" + "</div><br>";
 							str += str5;
 							str += str4;
 
@@ -400,7 +402,8 @@
 						str4 += "</ul></div>";
 						//str5는 검색기능 화면 표시
 						str5 += "<div class='row'>"
-							+ "<div class='col-lg-12'>"
+							+ "<div class='col-lg-3'></div>"
+							+ "<div class='col-lg-6'>"
 							+ "<div class='input-group mb-3'>"
 									+ "<div>"
 									+ "<select id='type3' class='form-control'>"
@@ -417,7 +420,7 @@
 									+ "<button id='query3' class='btn btn-dark'>조회</button>"
 									+ "</div>"
 									+ "<input type='hidden' name='pageNum' value='" + data.pageMaker.cri.pageNum + "'>"
-									+ "</div>" + "</div>" + "</div><br>";
+									+ "</div>" + "</div><div class='col-lg-3'></div>" + "</div><br>";
 							str += str5;
 							str += str4;
 						$('#revtable3').html(str);
@@ -431,7 +434,7 @@
 	function searchQuery1(pageNum) {
 		
 		var type = $('#type').val();
-		var keyword = $('#keyword').val();
+		var keyword = $('#keyword1').val();
 		sstr = "";
 		sstr2 = "";
 		sstr3 = "";
@@ -439,6 +442,7 @@
 		sstr5 = "";
 		sstr6 = "";
 		
+		alert("keyword : " + keyword);
 		var pageNum = (pageNum == null) ? 1 : pageNum;
 		
 		cri = {
@@ -509,7 +513,8 @@
 					sstr4 += "</ul></div>";
 
 					sstr5 += "<div class='row'>"
-						+ "<div class='col-lg-12'>"
+						+ "<div class='col-lg-10'></div>"
+						+ "<div class='col-lg-2'>"
 						+ "<div class='input-group mb-3'>"
 								+ "<div>"
 								+ "<button id='searchreset1' class='btn btn-dark'>목록으로</button>"
@@ -623,7 +628,8 @@
 					sstr4 += "</ul></div>";
 
 					sstr5 += "<div class='row'>"
-						+ "<div class='col-lg-12'>"
+						+ "<div class='col-lg-10'></div>"
+						+ "<div class='col-lg-2'>"
 						+ "<div class='input-group mb-3'>"
 								+ "<div>"
 								+ "<button id='searchreset2' class='btn btn-dark'>목록으로</button>"
@@ -748,7 +754,8 @@
 					sstr4 += "</ul></div>";
 
 					sstr5 += "<div class='row'>"
-						+ "<div class='col-lg-12'>"
+						+ "<div class='col-lg-10'></div>"
+						+ "<div class='col-lg-2'>"
 						+ "<div class='input-group mb-3'>"
 								+ "<div>"
 								+ "<button id='searchreset3' class='btn btn-dark'>목록으로</button>"
@@ -773,10 +780,12 @@
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<div class="container" style="margin-top: 30px">
-		<div class="container mt-3">
-			<h2>리뷰 글 관리</h2>
-			<br>
-			<p>리뷰는 관리자 수정이 불가하고, 약관 위반이나 기타 법령 위반 게시글을 게시 불가 상태로 변경합니다.</p>
+		<div class="jumbotron jumbotron-fluid">
+  	<div class="container">
+    	<h2 class="display-4">리뷰 글 및 연봉 게시물 관리</h2>
+    	<p class="lead">리뷰는 관리자 수정이 불가하고, 약관 위반이나 기타 법령 위반 게시글을 게시 불가 상태로 변경합니다.</p>
+  	</div>
+  	</div>
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a id="tab1btn" class="nav-link"

@@ -4,7 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -92,6 +91,14 @@ $(document).ready(function() {
 								</div>
 							</li>
 						</c:when>
+						<c:when test="${sessionScope.user.id eq 'admin'}">
+							<a class="navbar-brand">
+					    		<img src="/resources/images/upload/member/${sessionScope.user.storedfilename}" class="rounded-circle" alt="Logo" style="width:30px;height:30px;"/>
+					  		</a>
+							<li class="nav-item"><a class="nav-link font-weight-bold" style="color: black">${sessionScope.user.name}님 환영합니다.</a></li>
+							<li class="nav-item"><a class="nav-link font-weight-bold" style="color: black" href="/mng/main/main.do">관리자 메인</a></li>
+							<li class="nav-item font-weight-bold"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>
+						</c:when>
 						<c:otherwise>
 							<c:if test="${!empty sessionScope.user.id}">
 								<a class="navbar-brand">
@@ -117,7 +124,6 @@ $(document).ready(function() {
 								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbardrop" data-toggle="dropdown" style="color: black"> 마이페이지 </a>
 									<div class="dropdown-menu">
 											<a class="dropdown-item" href="/user/mypage/biz/bizMySelectList.do">내 프로필</a> 
-										<a class="dropdown-item" href="">활동내역</a> 
 										<a class="dropdown-item" href="/user/mypage/biz/bizMyPassForm.do">비밀번호변경</a> 
 										<a class="dropdown-item" href="/user/mypage/biz/bizMyDeleteForm.do">탈퇴</a>
 									</div>

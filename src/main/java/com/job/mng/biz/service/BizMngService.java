@@ -3,6 +3,7 @@ package com.job.mng.biz.service;
 import java.util.List;
 
 import com.job.mng.main.service.Criteria;
+import com.job.util.JobFileVO;
 
 public interface BizMngService {
 
@@ -12,12 +13,12 @@ public interface BizMngService {
 
 	BizMngVO bizView(int bnum);
 
-	boolean update(BizMngVO biz);
-
-	void insert(BizMngVO biz);
-
 	boolean remove(int bnum);
 
 	List<BizMngVO> selectedList(String choice);
+
+	JobFileVO picView(int attachid);
+
+	BizMngVO bizViewbyAttachId(int attachid);
 
 }

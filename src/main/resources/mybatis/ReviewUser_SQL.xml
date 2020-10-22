@@ -4,7 +4,12 @@
 
 	<select id="reviewBizInfo" parameterType="ReviewUserVO" resultType="ReviewUserVO">
 		<![CDATA[
-			SELECT COMPANY, FIELD FROM BIZ WHERE BSMNO=#{bsmno}
+			SELECT 
+				B.COMPANY, B.FIELD, B.ADDR, B.CEO, B.PHONE, B.ADDR1, B.ADDR3, I.STOREDFILENAME 
+			FROM BIZ B, IMAGE I 
+			WHERE 1=1 
+			AND B.ATTACHID=I.ATTACHID 
+			AND BSMNO=#{bsmno}
 		]]>
 	</select>
 	<!-- 리뷰리스트 -->
@@ -33,6 +38,7 @@
 				, M_DATE
 				, COMPANY
 				, FIELD
+				, ATTACHID
 			FROM (
 				SELECT 
 					A.RNUM
@@ -52,9 +58,11 @@
 					, TO_CHAR(A.M_DATE,'YYYY/MM/DD') AS M_DATE
 					, B.COMPANY
 					, B.FIELD
+					, B.ATTACHID
 				FROM REVIEW A, BIZ B
 				WHERE 1=1
 				AND A.DEL_YN='N'
+				AND A.BSMNO=#{bsmno}
 				AND A.REVIEW IS NOT NULL
 				AND A.BSMNO=B.BSMNO
 				ORDER BY A.RNUM
@@ -95,6 +103,7 @@
 			) A
 		) A, BIZ B
 		WHERE 1=1 
+		AND A.BSMNO=#{bsmno}
 		AND A.BSMNO=B.BSMNO 
 		]]>
 	</select>
@@ -123,6 +132,7 @@
 				, M_DATE
 				, COMPANY
 				, FIELD
+				, ATTACHID
 			FROM (
 				SELECT 
 					A.RNUM
@@ -142,9 +152,11 @@
 					, TO_CHAR(A.M_DATE,'YYYY/MM/DD') AS M_DATE
 					, B.COMPANY
 					, B.FIELD
+					, B.ATTACHID
 				FROM REVIEW A, BIZ B
 				WHERE 1=1
 				AND A.DEL_YN='N'
+				AND A.BSMNO=#{bsmno}
 				AND A.MREVIEW IS NOT NULL
 				AND A.BSMNO=B.BSMNO
 				ORDER BY A.RNUM
@@ -156,7 +168,7 @@
 	</select>
 	
 	<select id="total1" resultType="int">
-		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and REVIEW is not null and bsmno=#{bsmno}
 	</select>
 		
 	<select id="total2" resultType="int">
@@ -181,19 +193,20 @@
 		          	, MAX(SAL) AS MAX_SAL
 		          	, MIN(SAL) AS MIN_SAL
 		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
-				FROM REVIEW 
+				FROM REVIEW
 				WHERE 1=1
 				AND DEL_YN='N'
 				AND SAL IS NOT NULL
 		        GROUP BY SPOT, BSMNO
 			) A
 		) A, BIZ B
-		WHERE 1=1 
+		WHERE 1=1
+		and a.bsmno=#{bsmno} 
 		AND A.BSMNO=B.BSMNO 
 	</select>
 	
 	<select id="total3" resultType="int">
-		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null
+		select count(*) from REVIEW where 1=1 and DEL_YN='N' and MREVIEW is not null and bsmno=#{bsmno}
 	</select>
 	
 	<!-- 글 작성 -->
@@ -221,15 +234,27 @@
 				, SAL
 				, SPOT
 				, B_CNT
-				, REG_DATE
-				, UP_DATE
-				, DEL_DATE
+				, TO_CHAR(REG_DATE,'YYYY-MM-DD') AS REG_DATE
+				, TO_CHAR(UP_DATE,'YYYY-MM-DD') AS UP_DATE
+				, TO_CHAR(DEL_DATE,'YYYY-MM-DD') AS DEL_DATE
 				, DEL_YN
 				, M_STATUS
 				, M_DIFFICULTLY
-				, M_DATE 
+				, TO_CHAR(M_DATE,'YYYY-MM-DD') AS M_DATE
 				FROM REVIEW WHERE RNUM = #{rnum}
 	</select>
+	
+	<select id="reviewSalChk" resultType="int" parameterType="ReviewUserVO">
+	  SELECT COUNT(*) FROM REVIEW WHERE BSMNO=#{bsmno} AND ID=#{id} AND SPOT=#{spot}
+	</select>
+	
+	<update id="salChkUpdate" parameterType="ReviewUserVO">
+		UPDATE REVIEW 
+		SET 
+			   SAL = #{sal}, 
+			   UP_DATE = sysdate	
+		WHERE BSMNO=#{bsmno} AND ID=#{id} AND SPOT=#{spot}
+	</update>
 	
 	<!-- 조회수 +1-->
 	<update id="plusBcnt" parameterType="int">
@@ -256,7 +281,6 @@
 		UPDATE REVIEW 
 		SET 
 				MREVIEW = #{mreview},
-				M_DATE = to_date(#{m_date},'YYYY-MM-DD'),
 				M_STATUS = #{m_status},
 				M_DIFFICULTLY = #{m_difficultly},
 				UP_DATE = sysdate

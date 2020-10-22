@@ -5,19 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp"%>
-<title>회원탈퇴</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- 폰트 어썸 -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>기업회원 탈퇴</title>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
@@ -60,7 +49,7 @@
 	})
 </script>
 <body>
- <div class="container" style="margin-top:30px">
+ <div class="container" style="margin-top:30px; background-color :#ffffff; border-radius: 2em;">
 	<h3 style="font-weight: bold;"><i class="fas fa-external-link-alt"></i> 기업회원 탈퇴</h3>
 	<br><br>
 	<form action="/user/mypage/biz/bizMyDelete.do" method="post"
@@ -86,6 +75,9 @@
 			<button class="cencle btn btn-danger" type="button">취소</button>
 		</div>
 	</form>
+	
 </div>
+<br><br><br>
+<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 </body>
 </html>

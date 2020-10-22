@@ -16,8 +16,9 @@ public class ReviewUserDAO {
 	/*리뷰리스트*/
 	/*-기업리뷰*/
 	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO1");
+		System.out.println("StartDAO1 : "+reviewUserVO.getBsmno());
 		ReviewUserVO reviewBizInfo = sessionTemplate.selectOne("reviewUser.reviewBizInfo", reviewUserVO);
+		System.out.println("StartDAO111");
 		return reviewBizInfo;
 	}	
 	/*-기업리뷰*/
@@ -26,8 +27,9 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList1", reviewUserVO);
 		return reviewSelectList;
 	}	
-	public int total1() {
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1");
+	public int total1(String bsmno) {
+		System.out.println("ReviewUserDAO total1");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1", bsmno);
 		return total;		
 	}
 	
@@ -37,11 +39,13 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList2", reviewUserVO);
 		return reviewSelectList;
 	}	
-	public int total2() {
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2");
+	public int total2(String bsmno) {
+		System.out.println("ReviewUserDAO total2");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2", bsmno);
 		return total;		
 	}
 	public int reviewSalChk(ReviewUserVO reviewUserVO) {
+		System.out.println("reviewUserVO : "+reviewUserVO.getId()+" , "+reviewUserVO.getBsmno()+" , "+reviewUserVO.getSpot());
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.reviewSalChk",reviewUserVO);
 		return total;		
 	}
@@ -55,9 +59,9 @@ public class ReviewUserDAO {
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList3", reviewUserVO);
 		return reviewSelectList;
 	}
-	public int total3() {
-		System.out.println("reviewUserServiceDAO total3");
-		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3");
+	public int total3(String bsmno) {
+		System.out.println("ReviewUserDAO total3");
+		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3", bsmno);
 		return total;		
 	}
 	
@@ -98,17 +102,12 @@ public class ReviewUserDAO {
 	
 	/*리뷰 수정*/
 	public int Update(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update review : " + reviewUserVO.getReview());
-		System.out.println("vo : update mreview : " + reviewUserVO.getMreview());
 		return sessionTemplate.update("reviewUser.reviewUpdate", reviewUserVO);		
 	}
 	public int sUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update sal : " + reviewUserVO.getSal());
 		return sessionTemplate.update("reviewUser.salUpdate", reviewUserVO);		
 	}
 	public int mUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("vo : update review : " + reviewUserVO.getReview());
-		System.out.println("vo : update mreview : " + reviewUserVO.getMreview());
 		return sessionTemplate.update("reviewUser.mreviewUpdate", reviewUserVO);		
 	}
 }

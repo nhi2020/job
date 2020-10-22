@@ -5,60 +5,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/WEB-INF/views/inc/top.jsp"%>
-<title>Insert title here</title>
+<title>마이기업 페이지</title>
+<style type="text/css">
+li {
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<div class="container" style="margin-top: 30px"></div>
+	<div class="container pt-3">
 
-	<h2>마이페이지</h2>
-	<form name="form1" method="post"
-		action="/user/mypage/biz/bizMyUpdateForm.do">
-		<table border="1" width="400">
-			<tr>
-				<th>사업자번호</th>
-				<td>${sessionScope.b_user.bsmno}</td>
-			</tr>
-
-			<tr>
-				<th>기업명</th>
-				<td>${sessionScope.b_user.company}</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>${sessionScope.b_user.email}</td>
-			</tr>
-
-			<tr>
-				<th>대표자</th>
-				<td>${sessionScope.b_user.ceo}</td>
-			</tr>
-
-			<tr>
-				<th>대표자 연락처</th>
-				<td>${sessionScope.b_user.phone}</td>
-			</tr>
-
-			<tr>
-				<th>업종</th>
-				<td>${sessionScope.b_user.field}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>${sessionScope.b_user.addr}</td>
-			</tr>
-
-			<tr>
-				<th>이미지</th>
-				<td><img
+		<form name="form1" method="post"
+			action="/user/mypage/biz/bizMyUpdateForm.do">
+			<h3 style="font-weight: bold;">
+				<i class="far fa-building"></i> 마이기업 페이지
+			</h3>
+			<br> <br>
+			<ul class="list-group">
+				<li class="list-group-item" style="background-color: #64cd3c;">사업자번호:
+					${sessionScope.b_user.bsmno}</li>
+					<li class="list-group-item" style="background-color: #eef5df;">이미지:
+					<img
 					src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
-					class="img-fluid" width="30%" height="30%" /></td>
-			</tr>
+					class="img-fluid" style="width:100px;height:100px;" />
+				</li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">기업명:
+					${sessionScope.b_user.company}</li>
+				<li class="list-group-item" style="background-color: #eef5df;">이메일:
+					${sessionScope.b_user.email}</li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">대표자:
+					${sessionScope.b_user.ceo}</li>
+				<li class="list-group-item" style="background-color: #eef5df;">대표자
+					연락처: ${sessionScope.b_user.phone}</li>
+				<li class="list-group-item" style="background-color: #e3f5bc;">업종:
+					${sessionScope.b_user.field}</li>
+				<li class="list-group-item" style="background-color: #eef5df;">주소:
+					${sessionScope.b_user.addr1} ${sessionScope.b_user.addr}
+					${sessionScope.b_user.addr3}</li>
+				
+				<li class="list-group-item" style="background-color: #e3f5bc;"><input
+					type="submit" class="btn btn-success float-right" value="수정" /></li>
+			</ul>
+		</form>
+		<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+	</div>
 
-		</table>
-		<input type="submit" value="수정" />
-	</form>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
 </body>
 </html>

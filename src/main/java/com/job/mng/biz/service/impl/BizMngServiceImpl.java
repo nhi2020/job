@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.job.mng.biz.service.BizMngService;
 import com.job.mng.biz.service.BizMngVO;
 import com.job.mng.main.service.Criteria;
+import com.job.util.JobFileVO;
 
 @Service("bizMngService")
 public class BizMngServiceImpl implements BizMngService{
@@ -32,18 +33,6 @@ public class BizMngServiceImpl implements BizMngService{
 	}
 
 	@Override
-	public boolean update(BizMngVO biz) {
-
-		return bmd.update(biz);
-	}
-
-	@Override
-	public void insert(BizMngVO biz) {
-
-		bmd.insert(biz);
-	}
-
-	@Override
 	public boolean remove(int bnum) {
 		return bmd.remove(bnum);
 	}
@@ -51,6 +40,16 @@ public class BizMngServiceImpl implements BizMngService{
 	@Override
 	public List<BizMngVO> selectedList(String choice) {
 		return bmd.selectedList(choice);
+	}
+
+	@Override
+	public JobFileVO picView(int attachid) {
+		return bmd.picView(attachid);
+	}
+
+	@Override
+	public BizMngVO bizViewbyAttachId(int attachid) {
+		return bmd.bizViewbyAttachId(attachid);
 	}
 	
 	
