@@ -16,3 +16,8 @@
 	border-image-repeat: round;
 	border-image-outset: 0;
 }
+
+.img-box2:hover a{
+	border-style: solid;
+  	border-right-color: coral;
+}

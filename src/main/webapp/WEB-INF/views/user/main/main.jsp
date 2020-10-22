@@ -30,12 +30,12 @@
 	<div class="jumbotron">
 		<div class="row">
       	<c:forEach var="frm" items="${list2}">
-			<div class="col-sm-3">
+			<div class="col-sm-3 img-box2">
 				<h4><span class="badge badge-success">${frm.company}&nbsp;</span><span class="badge badge-light">${frm.reg_date}</span></h4>
-				<a href="/user/review/reviewSelectList.do?bsmno=${frm.bsmno}">${frm.review}</a>
+				<a href="/user/review/reviewSelectList.do?bsmno=${frm.bsmno}" class="rounded anima" >${frm.review}</a>
 			</div>
 		</c:forEach>
-			<hr class="d-sm-none">
+		<hr class="d-sm-none">
 		</div>
 	</div>
 </div>
