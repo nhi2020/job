@@ -30,16 +30,16 @@ li {
 					class="img-fluid" style="width: 100px; height: 100px;" /></li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">이름: ${sessionScope.user.name}</li>
 				<li class="list-group-item" style="background-color: #eef5df;">성별: <c:if
-						test="${sessionScope.user.gender ==1 }">
+						test="${sessionScope.user.gender eq '1' }">
 						남자
-					</c:if> <c:if test="${sessionScope.user.gender ==2 }">
+					</c:if> <c:if test="${sessionScope.user.gender eq '2' }">
 						여자
 					</c:if>
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">이메일: ${sessionScope.user.email }</li>
 				<li class="list-group-item" style="background-color: #eef5df;">전화번호: ${sessionScope.user.phone }</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">생일: ${sessionScope.user.birthday }</li>
-				<li class="list-group-item" style="background-color: #eef5df;">경력: ${user.career }</li>
+				<li class="list-group-item" style="background-color: #eef5df;">경력: ${sessionScope.user.career }</li>
 
 				<li class="list-group-item" style="background-color: #e3f5bc;"><input type="submit"
 					class="btn btn-success float-right" value="수정" /></li>

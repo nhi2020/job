@@ -18,6 +18,7 @@
 }
 
 .img-box2:hover a{
-	border-style: solid;
-  	border-right-color: coral;
+	border: 1px solid;
+	padding: 5px;
+	box-shadow: 5px 5px green;
 }
