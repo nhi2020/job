@@ -28,7 +28,7 @@ li {
 					<li class="list-group-item" style="background-color: #eef5df;">이미지:
 					<img
 					src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
-					class="img-fluid" style="width:100px;height:100px;" />
+					class="img-fluid" width="100px" height="100px"  />
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">기업명:
 					${sessionScope.b_user.company}</li>

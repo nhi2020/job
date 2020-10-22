@@ -161,7 +161,7 @@ function p_check(){
 						test="${sessionScope.b_user.storedfilename ne '' and not empty sessionScope.b_user.storedfilename}">
 						<img
 							src="/resources/images/upload/biz/${sessionScope.b_user.storedfilename}"
-							class="img-fluid" style="width: 100px; height: 100px;" />
+							class="img-fluid" width="100px" height="100px"  />
 					</c:if>
 				</li>
 				<li class="list-group-item" style="background-color: #e3f5bc;">
