@@ -137,7 +137,7 @@ public class ReviewUserController {
 	@RequestMapping("/user/review/reviewUpdate.do")
 	public String reviewUpdate(ReviewUserVO reviewUserVO) {
 		reviewUserService.reviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
+		return "redirect:/user/review/reviewUpdate.do?rnum="+reviewUserVO.getRnum();
 	}
 	@RequestMapping("/user/review/salUpdate.do")
 	public void sreviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
@@ -154,6 +154,6 @@ public class ReviewUserController {
 	public String mreviewUpdate(ReviewUserVO reviewUserVO) {
 		System.out.println("mreviewUpdate : " + reviewUserVO.getBsmno());
 		reviewUserService.mreviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
+		return "redirect:/user/review/mreviewDetailForm.do?rnum="+reviewUserVO.getRnum();
 	}
 }

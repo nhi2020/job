@@ -283,6 +283,7 @@
 				MREVIEW = #{mreview},
 				M_STATUS = #{m_status},
 				M_DIFFICULTLY = #{m_difficultly},
+				M_DATE = #{m_date},
 				UP_DATE = sysdate
 		WHERE RNUM = #{rnum}
 	</update> 

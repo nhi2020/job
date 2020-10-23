@@ -63,9 +63,10 @@ textarea {width: 100%;}
 		    <div class="form-group p-3">
 		      <label for="reg_date">등록날짜:</label> ${review.reg_date }
 		    </div>
-		    <div class="form-group p-3">
-		      <label for="m_date">면접날짜:</label> ${review.m_date }
-		    </div>
+	    </div>
+	    <div class="form-group p-3">
+	      <label for="m_date">면접날짜:</label> 
+	      <input type="date" class="form-control" id="m_date" name="m_date" value="${review.m_date }" required="required" >
 	    </div>
 	    <div class="form-group p-3">
 	      <label for="m_status">면접상태:</label>
