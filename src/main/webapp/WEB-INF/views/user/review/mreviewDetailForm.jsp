@@ -84,7 +84,7 @@ textarea {width: 100%;}
 		  </select>
 	    </div>
 	    <div class="form-group p-3">
-	      <label for="mreview">면접날짜:</label> 
+	      <label for="mreview">면접후기:</label> 
 	      <textarea class="form-control" name="mreview" cols="73" rows="17" required>${review.mreview }</textarea>
 	    </div>
 		<div class="text-center">

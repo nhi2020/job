@@ -89,7 +89,7 @@ function goWrite(frm) {
 		  </select>
 		</div>
 		<div class="form-group">
-		  <label for="m_date">면접난이도:</label>
+		  <label for="m_date">면접날짜:</label>
 	      <input type="date" class="form-control" id="m_date" name="m_date" required="required" >
 	    </div>
 		<div class="form-group">
