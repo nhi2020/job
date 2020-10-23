@@ -22,6 +22,10 @@ function goWrite(frm) {
 		alert("연봉정보를 입력해주세요");
 		return false;
 	}
+	if (isNaN(sal.trim())){
+		alert("연봉은 숫자로 입력해주세요");
+		return false;
+	}
 	if(confirm ("연봉을 등록 하시겠습니까?") === true){
 		alert("등록완료");
 		document.frm.submit();

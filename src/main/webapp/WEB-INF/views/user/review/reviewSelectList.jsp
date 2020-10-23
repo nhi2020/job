@@ -54,8 +54,8 @@
 	      <c:if test="${total1 == 0 }">
 	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
 	      </c:if>
-	      <c:forEach var="result1" items="${list1}">
-			<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
+	      <c:forEach var="result1" items="${list1}" varStatus="i">
+			<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${i.index+1 } | 등록일: ${result1.reg_date }</div>
   			<div class="p-5 border border-success">
   				<c:choose>
   					<c:when test="${(sessionScope.user.id != null && not empty sessionScope.user.id) && sessionScope.user.id eq result1.id }">
@@ -120,10 +120,10 @@
 	      <c:if test="${total3 == 0 }">
 	      	<p style="color: grey">등록된 후기가 없습니다</p>
 	      </c:if>
-	      	<c:forEach var="result3" items="${list3}">
+	      	<c:forEach var="result3" items="${list3}" varStatus="i">
 	      	 	<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
-				  	글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
+				  	글번호 : ${i.index+1 } | 등록일: ${result3.reg_date }
 				  </div> 
 				  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
 				  	면접일자 : ${result3.m_date }<br/>

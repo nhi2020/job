@@ -89,6 +89,10 @@ function goWrite(frm) {
 		  </select>
 		</div>
 		<div class="form-group">
+		  <label for="m_date">면접난이도:</label>
+	      <input type="date" class="form-control" id="m_date" name="m_date" required="required" >
+	    </div>
+		<div class="form-group">
 		  <label for="mreview">글 작성:</label>
 		  <textarea class="form-control" rows="5" id="mreview" name="mreview"></textarea>
 		</div>
