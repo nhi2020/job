@@ -41,15 +41,14 @@ h2 {text-align: center;}
 		<input type="hidden" name="rnum" value="${review.rnum }" />
 		<input type="hidden" name="bsmno" value="${review.bsmno }">
 		<h2>기업 리뷰 상세보기</h2>
-		<div class="form-group p-3">
-	      <label for="rnum">글번호:</label> ${review.rnum }
-	    </div>
-	    <div class="form-group p-3">
-	      <label for="reg_date">등록날짜:</label> ${review.reg_date }
-	    </div>
-	    <div class="form-group p-3">
-	      <label for="id">작성 아이디:</label> ${review.id }
-	    </div>
+	    <div class="p-3 border font-weight-bold h5">
+	    	<div class="form-group p-3">
+		      <label for="reg_date">기업명:</label> ${param.company }
+		    </div>
+		    <div class="form-group p-3">
+		      <label for="reg_date">등록날짜:</label> ${review.reg_date }
+		    </div>
+		</div>
 	    <div class="form-group p-3">
 		  <label for="review">내용:</label>
 		  <textarea class="form-control" name="review" rows="5" id="review">${review.review }</textarea>

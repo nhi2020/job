@@ -56,14 +56,16 @@ textarea {width: 100%;}
 		<input type="hidden" name="rnum" value="${review.rnum}" />
 		<input type="hidden" name="bsmno" value="${review.bsmno}" />
 		<h2>면접 후기 상세보기</h2>
-		<div class="form-group p-3">
-	      <label for="rnum">글번호:</label> ${review.rnum }
-	    </div>
-	    <div class="form-group p-3">
-	      <label for="reg_date">등록날짜:</label> ${review.reg_date }
-	    </div>
-	    <div class="form-group p-3">
-	      <label for="m_date">면접날짜:</label> ${review.m_date }
+		<div class="p-3 border font-weight-bold h5">
+			<div class="form-group p-3">
+		      <label for="rnum">기업명:</label> ${param.company }
+		    </div>
+		    <div class="form-group p-3">
+		      <label for="reg_date">등록날짜:</label> ${review.reg_date }
+		    </div>
+		    <div class="form-group p-3">
+		      <label for="m_date">면접날짜:</label> ${review.m_date }
+		    </div>
 	    </div>
 	    <div class="form-group p-3">
 	      <label for="m_status">면접상태:</label>
