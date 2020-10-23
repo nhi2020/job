@@ -215,8 +215,8 @@
 				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{review}, 0, sysdate, sysdate, 'N')
 	</insert>
 	<insert id="mreviewWrite" parameterType="ReviewUserVO">
-			INSERT INTO REVIEW (rnum, bsmno, id, m_status, m_difficultly, mreview, b_cnt, reg_date, up_date, del_yn)
-				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{m_status}, #{m_difficultly}, #{mreview}, 0, sysdate, sysdate, 'N')
+			INSERT INTO REVIEW (rnum, bsmno, id, m_status, m_difficultly, mreview, b_cnt, reg_date, up_date, del_yn, m_date)
+				VALUES (REVIEW_SEQ.nextval, #{bsmno}, #{id}, #{m_status}, #{m_difficultly}, #{mreview}, 0, sysdate, sysdate, 'N', to_date(#{m_date},'yyyy-mm-dd'))
 	</insert>
 	<insert id="salWrite" parameterType="ReviewUserVO">
 			INSERT INTO REVIEW (rnum, bsmno, id, spot, sal, reg_date, up_date, del_yn)
