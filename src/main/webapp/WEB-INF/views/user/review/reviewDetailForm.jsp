@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../../inc/top.jsp" %>
-<title>글 상세보기</title>
+<title>기업리뷰상세보기</title>
 <style>
 h2 {text-align: center;}
 </style>
@@ -40,7 +40,7 @@ h2 {text-align: center;}
 	<form action="/user/review/reviewUpdate.do" name="frm">
 		<input type="hidden" name="rnum" value="${review.rnum }" />
 		<input type="hidden" name="bsmno" value="${review.bsmno }">
-		<h2>게시판</h2>
+		<h2>기업 리뷰 상세보기</h2>
 		<div class="form-group p-3">
 	      <label for="rnum">글번호:</label> ${review.rnum }
 	    </div>

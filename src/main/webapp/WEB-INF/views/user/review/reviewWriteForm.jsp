@@ -43,7 +43,7 @@ function goWrite(frm) {
 <body>
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
-	<h2 style="text-align: center;">글 작성</h2><br>
+	<h2 style="text-align: center;">기업 리뷰글 작성</h2><br>
 	
 	<div style="width: 60%; margin: auto;">
 		<form method="post" action="/user/review/write.do" name="frm">
