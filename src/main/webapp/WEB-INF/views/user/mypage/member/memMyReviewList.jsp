@@ -42,8 +42,11 @@
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
 	     <h3 style="font-weight: bold;">기업리뷰</h3>
+	           <c:if test="${total1 == 0 }">
+	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
+	      </c:if>
 	      <c:forEach var="result1" items="${list1}">
-				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${result1.rnum } | 조회수 : ${result1.b_cnt } | 등록일: ${result1.reg_date }</div>
+				<div class="pt-4 list-group-item-light text-success bg-light">내가 작성한 기업 리뷰입니다.</div>
 				<div class="p-5 border border-success">
 					<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
 				</div>
@@ -88,7 +91,7 @@
 	      	<c:forEach var="result3" items="${list3}">
 	      		<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
-	      	 	 	 글번호 : ${result3.rnum } | 조회수 : ${result3.b_cnt } | 등록일: ${result3.reg_date }
+	      	 	 	내가 작성한 면접 후기입니다.
 				  </div> 
 	      	 	  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
 				  	면접일자 : ${result3.m_date }<br/>
