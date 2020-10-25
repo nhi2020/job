@@ -136,14 +136,20 @@ public class ReviewUserController {
 	
 	/*리뷰 수정*/
 	@RequestMapping("/user/review/reviewUpdate.do")
-	public String reviewUpdate(ReviewUserVO reviewUserVO) {
-		reviewUserService.reviewUpdate(reviewUserVO);
-		return "redirect:/user/review/reviewUpdate.do?rnum="+reviewUserVO.getRnum();
+	public void reviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
+		int result = reviewUserService.reviewUpdate(reviewUserVO);
+		if(result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('수정 되었습니다.');</script>");
+			writer.println("<script>location.href='/user/review/reviewDetailForm.do?rnum="+reviewUserVO.getRnum()+"';</script>");
+			writer.flush();
+		}
 	}
 	@RequestMapping("/user/review/salUpdate.do")
 	public void sreviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
-		int result=reviewUserService.salUpdate(reviewUserVO);
-		if(result==1) {
+		int result = reviewUserService.salUpdate(reviewUserVO);
+		if(result == 1) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer=response.getWriter();
 			writer.println("<script>alert('수정 되었습니다.');</script>");
@@ -152,11 +158,14 @@ public class ReviewUserController {
 		}
 	}
 	@RequestMapping("/user/review/mreviewUpdate.do")
-	public String mreviewUpdate(ReviewUserVO reviewUserVO) {
-		System.out.println("mreviewUpdate : " + reviewUserVO.getBsmno());
-		reviewUserService.mreviewUpdate(reviewUserVO);
-		return "redirect:/user/review/mreviewDetailForm.do?rnum="+reviewUserVO.getRnum();
-	}
-	
-	
+	public void mreviewUpdate(ReviewUserVO reviewUserVO, HttpServletResponse response) throws IOException {
+		int result = reviewUserService.mreviewUpdate(reviewUserVO);
+		if(result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			writer.println("<script>alert('수정 되었습니다.');</script>");
+			writer.println("<script>location.href='/user/review/mreviewDetailForm.do?rnum="+reviewUserVO.getRnum()+"';</script>");
+			writer.flush();
+		}
+	}		
 }
