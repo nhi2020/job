@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.job.user.biz.service.BizUserVO;
 import com.job.user.review.service.ReviewUserService;
 import com.job.user.review.service.ReviewUserVO;
 
@@ -87,12 +88,6 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	public ReviewUserVO salDetailForm(int rnum) {
 		return reviewUserDAO.salDetailForm(rnum);
 	}
-
-	/*조회수+1*/
-	@Override
-	public int plusBcnt(int rnum) {
-		return reviewUserDAO.plusBcnt(rnum);
-	}
 	
 	/*리뷰 수정*/
 	@Override
@@ -113,5 +108,5 @@ public class ReviewUserServiceImpl implements ReviewUserService {
 	public int Delete(int rnum) {
 		return reviewUserDAO.Delete(rnum);
 	}
-
+	
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.job.user.biz.service.BizUserVO;
 import com.job.user.review.service.ReviewUserVO;
 
 @Repository("reviewUserDAO")
@@ -87,12 +88,6 @@ public class ReviewUserDAO {
 	public ReviewUserVO salDetailForm(int rnum) {
 		return sessionTemplate.selectOne("reviewUser.reviewDetail", rnum);
 	}
-
-	/*조회수+1*/
-	public int plusBcnt(int rnum) {
-		// TODO Auto-generated method stub
-		return sessionTemplate.update("reviewUser.plusBcnt", rnum);
-	}
 	
 	/*리뷰 삭제*/
 	public int Delete(int rnum) {
@@ -110,4 +105,6 @@ public class ReviewUserDAO {
 	public int mUpdate(ReviewUserVO reviewUserVO) {
 		return sessionTemplate.update("reviewUser.mreviewUpdate", reviewUserVO);		
 	}
+
+
 }

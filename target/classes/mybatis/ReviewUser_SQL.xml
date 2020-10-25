@@ -287,12 +287,6 @@
 				UP_DATE = sysdate
 		WHERE RNUM = #{rnum}
 	</update> 
-	
-	<!-- 리뷰 삭제 -->
-	<update id="reviewDelete" parameterType="int">
-		UPDATE REVIEW SET DEL_YN = 'Y' WHERE RNUM = #{rnum}
-	</update>
-	
-	
+
 	
 </mapper>

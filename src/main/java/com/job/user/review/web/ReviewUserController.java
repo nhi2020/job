@@ -2,15 +2,20 @@ package com.job.user.review.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.job.user.biz.service.BizUserVO;
 import com.job.user.member.login.service.MemLoginUserVO;
 import com.job.user.review.service.Paging;
 import com.job.user.review.service.ReviewUserService;
@@ -105,8 +110,6 @@ public class ReviewUserController {
 	/*리뷰상세보기*/
 	@RequestMapping("/user/review/reviewDetailForm.do")
 	public String reviewDetailForm(int rnum, Model model) {	
-		//조회수 +1
-		reviewUserService.plusBcnt(rnum);	
 		ReviewUserVO review = reviewUserService.reviewDetailForm(rnum);
 		model.addAttribute("review", review);
 		return "/user/review/reviewDetailForm"; 
@@ -119,8 +122,6 @@ public class ReviewUserController {
 	}
 	@RequestMapping("/user/review/mreviewDetailForm.do")
 	public String mreviewDetailForm(int rnum, Model model) {
-		//조회수 +1
-		reviewUserService.plusBcnt(rnum);	
 		ReviewUserVO review = reviewUserService.mreviewDetailForm(rnum);
 		model.addAttribute("review", review);
 		return "/user/review/mreviewDetailForm";
@@ -156,4 +157,6 @@ public class ReviewUserController {
 		reviewUserService.mreviewUpdate(reviewUserVO);
 		return "redirect:/user/review/mreviewDetailForm.do?rnum="+reviewUserVO.getRnum();
 	}
+	
+	
 }
