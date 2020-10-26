@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.job.user.biz.service.BizUserVO;
 import com.job.user.review.service.ReviewUserVO;
 
 @Repository("reviewUserDAO")
@@ -16,36 +17,29 @@ public class ReviewUserDAO {
 	/*리뷰리스트*/
 	/*-기업리뷰*/
 	public ReviewUserVO reviewBizInfo(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO1 : "+reviewUserVO.getBsmno());
 		ReviewUserVO reviewBizInfo = sessionTemplate.selectOne("reviewUser.reviewBizInfo", reviewUserVO);
-		System.out.println("StartDAO111");
 		return reviewBizInfo;
 	}	
 	/*-기업리뷰*/
 	public List<ReviewUserVO> reviewSelectList1(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO1");
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList1", reviewUserVO);
 		return reviewSelectList;
 	}	
 	public int total1(String bsmno) {
-		System.out.println("ReviewUserDAO total1");
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.total1", bsmno);
 		return total;		
 	}
 	
 	/*-기업연봉*/ 
 	public List<ReviewUserVO> reviewSelectList2(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO2");
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList2", reviewUserVO);
 		return reviewSelectList;
 	}	
 	public int total2(String bsmno) {
-		System.out.println("ReviewUserDAO total2");
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.total2", bsmno);
 		return total;		
 	}
 	public int reviewSalChk(ReviewUserVO reviewUserVO) {
-		System.out.println("reviewUserVO : "+reviewUserVO.getId()+" , "+reviewUserVO.getBsmno()+" , "+reviewUserVO.getSpot());
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.reviewSalChk",reviewUserVO);
 		return total;		
 	}
@@ -55,12 +49,10 @@ public class ReviewUserDAO {
 	}
 	/*-면접후기*/ 
 	public List<ReviewUserVO> reviewSelectList3(ReviewUserVO reviewUserVO) {
-		System.out.println("StartDAO3");
 		List<ReviewUserVO> reviewSelectList = sessionTemplate.selectList("reviewUser.reviewList3", reviewUserVO);
 		return reviewSelectList;
 	}
 	public int total3(String bsmno) {
-		System.out.println("ReviewUserDAO total3");
 		int total = (Integer)sessionTemplate.selectOne("reviewUser.total3", bsmno);
 		return total;		
 	}
@@ -87,12 +79,6 @@ public class ReviewUserDAO {
 	public ReviewUserVO salDetailForm(int rnum) {
 		return sessionTemplate.selectOne("reviewUser.reviewDetail", rnum);
 	}
-
-	/*조회수+1*/
-	public int plusBcnt(int rnum) {
-		// TODO Auto-generated method stub
-		return sessionTemplate.update("reviewUser.plusBcnt", rnum);
-	}
 	
 	/*리뷰 삭제*/
 	public int Delete(int rnum) {
@@ -110,4 +96,6 @@ public class ReviewUserDAO {
 	public int mUpdate(ReviewUserVO reviewUserVO) {
 		return sessionTemplate.update("reviewUser.mreviewUpdate", reviewUserVO);		
 	}
+
+
 }

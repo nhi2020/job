@@ -256,11 +256,6 @@
 		WHERE BSMNO=#{bsmno} AND ID=#{id} AND SPOT=#{spot}
 	</update>
 	
-	<!-- 조회수 +1-->
-	<update id="plusBcnt" parameterType="int">
-		UPDATE REVIEW SET B_CNT = B_CNT + 1 WHERE rnum = #{rnum}
-	</update>
-	
 	<!-- 게시글 수정 -->
 	<update id="reviewUpdate" parameterType="ReviewUserVO">
 		UPDATE REVIEW 
@@ -283,15 +278,14 @@
 				MREVIEW = #{mreview},
 				M_STATUS = #{m_status},
 				M_DIFFICULTLY = #{m_difficultly},
+				M_DATE = #{m_date},
 				UP_DATE = sysdate
 		WHERE RNUM = #{rnum}
 	</update> 
-	
+
 	<!-- 리뷰 삭제 -->
 	<update id="reviewDelete" parameterType="int">
 		UPDATE REVIEW SET DEL_YN = 'Y' WHERE RNUM = #{rnum}
 	</update>
-	
-	
 	
 </mapper>

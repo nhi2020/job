@@ -42,6 +42,9 @@
 	  <div class="tab-content">
 	    <div id="tab1" class="container tab-pane ${(param.pg eq 'pg1' or param.pg == null)?'active':'fade'}"><br>
 	     <h3 style="font-weight: bold;">기업리뷰</h3>
+	           <c:if test="${total1 == 0 }">
+	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
+	      </c:if>
 	      <c:forEach var="result1" items="${list1}" varStatus="i">
 				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${i.index+1 } | 등록일: ${result1.reg_date }</div>
 				<div class="p-5 border border-success">
