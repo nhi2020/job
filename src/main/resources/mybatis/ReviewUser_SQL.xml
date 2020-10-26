@@ -65,7 +65,7 @@
 				AND A.BSMNO=#{bsmno}
 				AND A.REVIEW IS NOT NULL
 				AND A.BSMNO=B.BSMNO
-				ORDER BY A.RNUM
+				ORDER BY A.REG_DATE DESC
 			) A
 		) A
 		WHERE 1=1 
@@ -92,8 +92,8 @@
 					, BSMNO
 					, AVG(SAL) AS AVG_SAL
 					, MAX(SPOT) AS SPOT
-		          	, MAX(SAL) AS MAX_SAL
-		          	, MIN(SAL) AS MIN_SAL
+		          	, MAX(TO_NUMBER(SAL)) AS MAX_SAL
+		          	, MIN(TO_NUMBER(SAL)) AS MIN_SAL
 		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
 				FROM REVIEW 
 				WHERE 1=1
@@ -159,7 +159,7 @@
 				AND A.BSMNO=#{bsmno}
 				AND A.MREVIEW IS NOT NULL
 				AND A.BSMNO=B.BSMNO
-				ORDER BY A.RNUM
+				ORDER BY A.REG_DATE DESC
 			) A
 		) A
 		WHERE 1=1 
