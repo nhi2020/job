@@ -241,7 +241,8 @@
 				, M_STATUS
 				, M_DIFFICULTLY
 				, TO_CHAR(M_DATE,'YYYY-MM-DD') AS M_DATE
-				FROM REVIEW WHERE RNUM = #{rnum}
+				, (SELECT COMPANY FROM BIZ B WHERE 1=1 AND A.BSMNO=B.BSMNO) AS COMPANY
+				FROM REVIEW A WHERE RNUM = #{rnum}
 	</select>
 	
 	<select id="reviewSalChk" resultType="int" parameterType="ReviewUserVO">

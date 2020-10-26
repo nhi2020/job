@@ -43,7 +43,7 @@ h2 {text-align: center;}
 		<h2>기업 리뷰 상세보기</h2>
 	    <div class="p-3 border font-weight-bold h5">
 	    	<div class="form-group p-3">
-		      <label for="reg_date">기업명:</label> ${param.company }
+		      <label for="reg_date">기업명:</label> ${review.company }
 		    </div>
 		    <div class="form-group p-3">
 		      <label for="reg_date">등록날짜:</label> ${review.reg_date }
