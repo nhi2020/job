@@ -26,6 +26,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	/* opacity: 0.7; */
 }
 .box01{
     padding: 4rem 2rem;
