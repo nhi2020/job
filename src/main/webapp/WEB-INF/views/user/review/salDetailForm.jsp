@@ -54,6 +54,10 @@ textarea {width: 100%;}
 		<input type="hidden" name="bsmno" value="${sal.bsmno }" />
 		<h2>연봉 상세보기</h2>
 		<div class="form-group">
+	      <label for="reg_date">기업명:</label> 
+	      <input type="text" class="form-control" name="company" value="${sal.company }" readonly="readonly"/>
+	    </div>
+		<div class="form-group">
 	      <label for="reg_date">등록날짜:</label> 
 	      <input type="text" class="form-control" name="reg_date" value="${sal.reg_date }" readonly="readonly"/>
 	    </div>
