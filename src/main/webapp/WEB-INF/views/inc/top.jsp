@@ -19,8 +19,8 @@
 <title>Job</title>
 <style type="text/css">
 body {
-	background-image: url("/resources/images/main/main01.jpg");
-	background-color: #d9cbb3;
+	/* background-image: url("/resources/images/main/main01.jpg"); */
+	/* background-color: #E4F7BA; */
 	height: 100%; 
 	width: 100%;
 	background-position: center;
