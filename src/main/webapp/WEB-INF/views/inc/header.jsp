@@ -97,7 +97,7 @@ $(document).ready(function() {
 					  		</a>
 							<li class="nav-item"><a class="nav-link font-weight-bold" style="color: black">${sessionScope.user.name}님 환영합니다.</a></li>
 							<li class="nav-item"><a class="nav-link font-weight-bold" style="color: black" href="/mng/main/main.do">관리자 메인</a></li>
-							<li class="nav-item font-weight-bold"><a class="nav-link" href="/user/member/login/memLogout.do">로그아웃</a></li>
+							<li class="nav-item font-weight-bold"><a class="nav-link" href="/user/member/login/memLogout.do" style="color: black">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>
 							<c:if test="${!empty sessionScope.user.id}">

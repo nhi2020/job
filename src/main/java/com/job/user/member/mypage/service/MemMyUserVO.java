@@ -39,6 +39,17 @@ public class MemMyUserVO {
 	private int start;
 	private int end;
 	
+	private  String company;
+	
+	
+	
+	
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 	public String getId() {
 		return id;
 	}

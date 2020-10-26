@@ -59,7 +59,7 @@
   			<div class="p-5 border border-success">
   				<c:choose>
   					<c:when test="${(sessionScope.user.id != null && not empty sessionScope.user.id) && sessionScope.user.id eq result1.id }">
-  						<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
+  						<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}&company=${bizInfo.company}">${result1.review }</a>
   					</c:when>
   					<c:otherwise>
   						${result1.review }
@@ -133,7 +133,7 @@
 				  <div class="col-7">
 				  	<c:choose>
 	  					<c:when test="${sessionScope.user.id != null && not empty sessionScope.user.id && sessionScope.user.id eq result3.id }">
-	  						<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}">${result3.mreview }</a>
+	  						<a href="/user/review/mreviewDetailForm.do?rnum=${result3.rnum}&company=${bizInfo.company}">${result3.mreview }</a>
 	  					</c:when>
 	  					<c:otherwise>
 	  						${result3.mreview }

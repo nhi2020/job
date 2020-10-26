@@ -29,9 +29,6 @@ public interface ReviewUserService {
 	public ReviewUserVO mreviewDetailForm(int rnum);
 	public ReviewUserVO salDetailForm(int rnum);
 
-	/*조회수+1*/
-	public int plusBcnt(int rnum);
-	
 	/*리뷰 수정*/
 	public int reviewUpdate(ReviewUserVO reviewUserVO);
 	public int salUpdate(ReviewUserVO reviewUserVO);
@@ -39,8 +36,6 @@ public interface ReviewUserService {
 
 	/*리뷰 삭제*/
 	public int Delete(int rnum);
-	
-
 	
 		
 }
