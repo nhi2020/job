@@ -131,7 +131,7 @@ public class ReviewUserController {
 	@RequestMapping("/user/review/reviewDeleteForm.do")
 	public String reviewDeleteForm(ReviewUserVO reviewUserVO) {
 		reviewUserService.Delete(reviewUserVO.getRnum());
-		return "redirect:/user/mypage/member/memMyReviewList.do";
+		return "redirect:/user/review/reviewSelectList.do?bsmno="+reviewUserVO.getBsmno();
 	}	
 	
 	/*리뷰 수정*/
