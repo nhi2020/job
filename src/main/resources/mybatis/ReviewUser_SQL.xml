@@ -92,9 +92,9 @@
 					, BSMNO
 					, AVG(SAL) AS AVG_SAL
 					, MAX(SPOT) AS SPOT
-		          	, MAX(TO_NUMBER(SAL)) AS MAX_SAL
-		          	, MIN(TO_NUMBER(SAL)) AS MIN_SAL
-		          	, ROUND((AVG(SAL)/MAX(SAL))*100,2)||'%' AS PER_SAL
+          			, MAX(TO_NUMBER(SAL)) AS MAX_SAL
+          			, MIN(TO_NUMBER(SAL)) AS MIN_SAL
+          			, ROUND((AVG(TO_NUMBER(SAL))/MAX(TO_NUMBER(SAL))),2)*100||'%' AS PER_SAL
 				FROM REVIEW 
 				WHERE 1=1
 				AND DEL_YN='N'
