@@ -17,6 +17,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link rel="stylesheet" href="/resources/css/main.css">
 <title>Job</title>
+<style type="text/css">
+body {
+	background-image: url("/resources/images/main/main01.jpg");
+	background-color: #d9cbb3;
+	height: 100%; 
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box01{
+    padding: 4rem 2rem;
+}
+</style>
 </head>
 <body>
 </body>
