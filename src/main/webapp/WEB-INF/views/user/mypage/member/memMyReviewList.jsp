@@ -46,7 +46,7 @@
 	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
 	      </c:if>
 	      <c:forEach var="result1" items="${list1}" varStatus="i">
-				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${i.index+1 } | 등록일: ${result1.r_reg_date }</div>
+				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${i.index+1 } | 등록일: ${result1.r_reg_date } | 기업명: ${result1.company }</div>
 				<div class="p-5 border border-success">
 					<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
 				</div>
@@ -92,7 +92,7 @@
 	      	<c:forEach var="result3" items="${list3}" varStatus="i">
 	      		<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
-	      	 	 	 글번호 : ${i.index+1} | 등록일: ${result3.r_reg_date }
+	      	 	 	 글번호 : ${i.index+1} | 등록일: ${result3.r_reg_date } | 기업명: ${result3.company }
 				  </div> 
 	      	 	  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
 				  	면접일자 : ${result3.m_date }<br/>
