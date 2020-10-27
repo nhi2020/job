@@ -45,8 +45,8 @@
 	           <c:if test="${total1 == 0 }">
 	      	<p style="color: grey">등록된 리뷰가 없습니다</p>
 	      </c:if>
-	      <c:forEach var="result1" items="${list1}">
-				<div class="pt-4 list-group-item-light text-success bg-light">내가 작성한 기업 리뷰입니다.</div>
+	      <c:forEach var="result1" items="${list1}" varStatus="i">
+				<div class="pt-4 list-group-item-light text-success bg-light">글번호 : ${i.index+1 } | 등록일: ${result1.r_reg_date } | 기업명: ${result1.company }</div>
 				<div class="p-5 border border-success">
 					<a href="/user/review/reviewDetailForm.do?rnum=${result1.rnum}">${result1.review }</a>
 				</div>
@@ -69,6 +69,7 @@
 	      <c:forEach var="result2" items="${list2}">
 	      	<div class="container p-3 my-3 border">
 		      	<p> 
+		      		기업명 : ${result2.company }<br/>
 		      		직위 : ${result2.spot }<br/>
 		      		평균연봉 : <a href="/user/review/salDetailForm.do?rnum=${result2.rnum}"><fmt:formatNumber value="${result2.sal }" pattern="#,###.##"/>만원</a><br>
 		      	</p>
@@ -88,10 +89,10 @@
 	    </div>
 	    <div id="tab3" class="container tab-pane ${(param.pg eq 'pg3')?'active':'fade'}"><br>
 	      <h3 style="font-weight: bold;">면접후기</h3>
-	      	<c:forEach var="result3" items="${list3}">
+	      	<c:forEach var="result3" items="${list3}" varStatus="i">
 	      		<div class="row p-3 my-3 border">
 	      	 	  <div class="col-12 border border-top-0 border-left-0 border-right-0">
-	      	 	 	내가 작성한 면접 후기입니다.
+	      	 	 	 글번호 : ${i.index+1} | 등록일: ${result3.r_reg_date } | 기업명: ${result3.company }
 				  </div> 
 	      	 	  <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
 				  	면접일자 : ${result3.m_date }<br/>

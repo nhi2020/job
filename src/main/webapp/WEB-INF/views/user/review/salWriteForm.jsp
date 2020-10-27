@@ -40,10 +40,11 @@ function goWrite(frm) {
 <%@ include file="../../inc/header.jsp" %>
 <div class="container" style="margin-top:30px">
 	<form method="post" action="/user/review/sWrite.do" name="frm">
+		<input type="hidden" name="bsmno" value="${review.bsmno }" />
 		<h2>연봉 작성</h2>
 		<div class="form-group">
-	      <label for="bsmno">사업자번호:</label> 
-	      <input type="text" class="form-control" name="bsmno" value="${review.bsmno }" readonly="readonly"/>
+	      <label for="bsmno">기업명:</label> 
+	      <input type="text" class="form-control" name="company" value="${review.company }" readonly="readonly"/>
 	    </div>
 	    <div class="form-group">
 	      <label for="id">아이디:</label> 

@@ -12,10 +12,10 @@
  }
 </style>
 <script type="text/javascript">
-	function reviewWrite(url, bsmno){
+	function reviewWrite(url, bsmno, company){
 		var userid='${sessionScope.user.id}';
 		if(userid != ''){
-			location.href=url+"?id="+userid+"&bsmno="+bsmno;
+			location.href=url+"?id="+userid+"&bsmno="+bsmno+"&company="+company;
 		}else{
 			alert('개인회원만 작성이 가능합니다.');
 			return false;
@@ -67,7 +67,7 @@
   			</div>
 	      </c:forEach>
 	      <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
-			<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}');"/>
+			<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/reviewWriteForm.do','${param.bsmno}','${bizInfo.company}');"/>
 		  </c:if>
 			<div class="text-center">
 			    <c:if test="${pg1.startPage > pg1.pageBlock }">
@@ -100,7 +100,7 @@
 	      </c:forEach>
 	      </c:if>
 	      <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
-	      	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}');"/>
+	      	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/salWriteForm.do','${param.bsmno}','${bizInfo.company}');"/>
 	      </c:if>
 	      	<div class="text-center">
 		       <c:if test="${pg2.startPage > pg2.pageBlock }">
@@ -142,7 +142,7 @@
 				</div>
 		    </c:forEach>	
 		    <c:if test="${sessionScope.user.id != null && not empty sessionScope.user.id }">
-		    	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}');"/>
+		    	<input type="button" value="글쓰기" class="btn btn-success" style="float: right;" onclick="reviewWrite('/user/review/mreviewWriteForm.do','${param.bsmno}','${bizInfo.company}');"/>
 		    </c:if>
 		    <div class="text-center">
 			    <c:if test="${pg3.startPage > pg3.pageBlock }">

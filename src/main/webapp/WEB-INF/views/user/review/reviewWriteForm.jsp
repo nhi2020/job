@@ -47,9 +47,10 @@ function goWrite(frm) {
 	
 	<div style="width: 60%; margin: auto;">
 		<form method="post" action="/user/review/write.do" name="frm">
+			<input type="hidden" name="bsmno" id="bsmno" value="${review.bsmno}" />
 			<div class="form-group">
-			  <label for="bsmno">사업자번호:</label>
-			  <input type="text" class="form-control" name="bsmno" id="bsmno" value="${review.bsmno}" readonly="readonly">
+			  <label for="bsmno">회사명:</label>
+			  <input type="text" class="form-control" name="company" id="company" value="${review.company}" readonly="readonly">
 			</div>
 			<div class="form-group">
 			  <label for="id">아이디:</label>

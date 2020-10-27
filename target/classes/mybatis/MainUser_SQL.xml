@@ -27,6 +27,7 @@
 			FROM   REVIEW R,BIZ B
             WHERE  ROWNUM<=8
             AND    R.BSMNO=B.BSMNO
+            AND    R.REVIEW IS NOT NULL
 			ORDER  BY R.REG_DATE DESC
 		]]>
 	</select>
